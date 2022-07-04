@@ -26,7 +26,7 @@ jobs:
         run: |
           pip3 install -r requirements.txt
 
-      - name: Make the Sphinx Docs
+      - name: Make JupyterBook docs
         run: |
           jupyter-book build --all ./docs/.
 
