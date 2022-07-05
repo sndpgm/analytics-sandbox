@@ -3,5 +3,17 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: analytics/probability-distribution
+parts:
+  - caption: 確率変数と確率分布
+    chapters:
+    - file: analytics/distribution/random_variables
+    - file: analytics/distribution/probability_distribution
+    - file: analytics/distribution/multi_probability_distribution
+
+  - caption: 時系列モデリング
+    chapters:
+    - file: analytics/tsa/time_series
+    - file: analytics/tsa/autoregressive
+    - file: analytics/tsa/move_average
+    - file: analytics/tsa/arima
+    - file: analytics/tsa/state_space_model
