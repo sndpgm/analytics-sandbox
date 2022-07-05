@@ -1,0 +1,1354 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>確率変数 &#8212; Analytics Study Blog</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="確率分布" href="probability_distribution.html" />
+    <link rel="prev" title="Welcome to my Analytics Sandbox" href="../../intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Analytics Study Blog</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to my Analytics Sandbox
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  確率変数と確率分布
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   確率変数
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="probability_distribution.html">
+   確率分布
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_probability_distribution.html">
+   多次元確率分布
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  時系列モデリング
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tsa/time_series.html">
+   時系列データ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tsa/autoregressive.html">
+   自己回帰モデル
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tsa/move_average.html">
+   移動平均モデル
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tsa/arima.html">
+   ARMA・ARIMA・SARIMAX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tsa/state_space_model.html">
+   状態空間モデル
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/distribution/random_variables.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/sndpgm/analytics-sandbox"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/distribution/random_variables.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/analytics/distribution/random_variables.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1. 確率変数と確率分布
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     例 1.1 (表の出た回数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     定義 1.2 (離散型確率分布)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     定義 1.3 (連続型確率分布)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     定義 1.4 (累積分布関数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     定理 1.5 (離散型・連続型それぞれの累積分布関数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     例 1.6 (pythonで離散型累積分布関数の確認)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     例 1.7 (pythonで連続型累積分布関数の確認)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   2. 期待値と分散
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     定義 2.1 (期待値)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     例 2.2 (期待値の具体例)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     命題 2.3 (期待値の性質)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     定義 2.4 (分散)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     命題 2.5 (分散と期待値の関係式)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     命題 2.6 (分散の性質)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   3. モーメントと積率母関数
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     定義 3.1 (歪度)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     定義 3.2 (尖度)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id19">
+     定義 3.3 (モーメント)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     定義 3.4 (積率母関数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id21">
+     命題 3.5 (積率母関数とモーメントとの関係)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id22">
+   4. 確率変数の変換
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id23">
+     定理 4.1 (確率変数の変換)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exmaple-normal-lognormal">
+     例 4.2 (正規分布と対数正規分布)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>確率変数</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1. 確率変数と確率分布
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     例 1.1 (表の出た回数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     定義 1.2 (離散型確率分布)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     定義 1.3 (連続型確率分布)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     定義 1.4 (累積分布関数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     定理 1.5 (離散型・連続型それぞれの累積分布関数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     例 1.6 (pythonで離散型累積分布関数の確認)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     例 1.7 (pythonで連続型累積分布関数の確認)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   2. 期待値と分散
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     定義 2.1 (期待値)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     例 2.2 (期待値の具体例)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     命題 2.3 (期待値の性質)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     定義 2.4 (分散)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     命題 2.5 (分散と期待値の関係式)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     命題 2.6 (分散の性質)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   3. モーメントと積率母関数
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     定義 3.1 (歪度)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     定義 3.2 (尖度)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id19">
+     定義 3.3 (モーメント)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     定義 3.4 (積率母関数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id21">
+     命題 3.5 (積率母関数とモーメントとの関係)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id22">
+   4. 確率変数の変換
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id23">
+     定理 4.1 (確率変数の変換)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exmaple-normal-lognormal">
+     例 4.2 (正規分布と対数正規分布)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>確率変数<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<section id="id2">
+<h2>1. 確率変数と確率分布<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<section id="id3">
+<h3>例 1.1 (表の出た回数)<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>1枚のコインが存在し, そのコインを投げた際に表と裏のどちらかをし, 表と裏を示す確率は等しいものとする. そのコインを連続で5回投げた際に出た表の回数ごとに確率を計算すると以下の通りである.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>表の回数 <span class="math notranslate nohighlight">\(X\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(0\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(3\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(4\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(5\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>確率 <span class="math notranslate nohighlight">\({\rm P}(X)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\dfrac{1}{32}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\dfrac{5}{32}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\dfrac{5}{16}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\dfrac{5}{16}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\dfrac{5}{32}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\dfrac{1}{32}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>この時, 「コインを投げた際に出た表の回数」という現象を割り当てられた表の回数 <span class="math notranslate nohighlight">\(X\)</span> のことを <strong>確率変数</strong> (random variable) という. また確率変数ごとに割り当てられた確率全体を表したものを <strong>確率分布</strong> (probability distribution) という.</p>
+</section>
+<section id="id4">
+<h3>定義 1.2 (離散型確率分布)<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(\{x_1, x_2, \cdots, x_m, m \in \mathbb{N}\}\)</span> の中の値をとる確率変数 <span class="math notranslate nohighlight">\(X\)</span> を<strong>離散型</strong> (discrete type) と呼び, それぞれの値の確率</p>
+<div class="math notranslate nohighlight">
+\[
+    {\rm P}(X = x_k) = f(x_k)
+\]</div>
+<p>を <span class="math notranslate nohighlight">\(X\)</span> の<strong>確率分布</strong> (probability distribution) という. <span class="math notranslate nohighlight">\(f\)</span> は</p>
+<p><a id="math-1.2"></a>
+<a id="math-1.3"></a></p>
+<div class="math notranslate nohighlight" id="discrete-distribution">
+\[\begin{split}
+    \begin{align}
+        &amp; f(x_k) \geq 0 \quad (k = 1, 2, \cdots) \\
+        &amp; \sum_{ k=0 }^{ n }{ f(x_k) } = 1
+    \end{align}
+\end{split}\]</div>
+<p>の条件を満たす. この <span class="math notranslate nohighlight">\(f\)</span> を<strong>確率質量関数</strong> (probability mass function, pmf) という.</p>
+</div></section>
+<section id="id5">
+<h3>定義 1.3 (連続型確率分布)<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>確率変数 <span class="math notranslate nohighlight">\(X\)</span> が連続値を取る場合, <strong>連続型</strong> (continuous type) と呼び, 取りうる区間で確率分布が定義される.</p>
+<div class="math notranslate nohighlight">
+\[
+    {\rm P}(a \leq X \leq b) = \int_{a}^{b}{f(x)dx}
+\]</div>
+<p><span class="math notranslate nohighlight">\(f\)</span> は,</p>
+<p><a id="math-1.5"></a>
+<a id="math-1.6"></a></p>
+<div class="math notranslate nohighlight" id="continuous-distribution">
+\[\begin{split}
+    \begin{align}
+        &amp; f(x_k) \geq 0 \quad (x \in \mathbb{R}) \\
+        &amp; \int_{- \infty}^{\infty}{f(x)dx} = 1 
+    \end{align}
+\end{split}\]</div>
+<p>であるものとする. この <span class="math notranslate nohighlight">\(f\)</span> を <span class="math notranslate nohighlight">\(X\)</span> の<strong>確率密度関数</strong> (probability density function, pdf) という.</p>
+</div></section>
+<section id="id6">
+<h3>定義 1.4 (累積分布関数)<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>確率変数 <span class="math notranslate nohighlight">\(X\)</span> に対して, <span class="math notranslate nohighlight">\(x\)</span> を実数とするとき <span class="math notranslate nohighlight">\(x\)</span> 以下の確率</p>
+<div class="math notranslate nohighlight">
+\[
+    F(x) = {\rm P}(X \geq x)
+\]</div>
+<p>を <span class="math notranslate nohighlight">\(X\)</span> の<strong>累積分布関数</strong> (cumulative distribution function, cdf) と呼ぶ.</p>
+</div></section>
+<section id="id7">
+<h3>定理 1.5 (離散型・連続型それぞれの累積分布関数)<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>離散型の確率変数の場合, 確率質量関数 <span class="math notranslate nohighlight">\(f(x)\)</span> を用いて <span class="math notranslate nohighlight">\(-\infty\)</span> から <span class="math notranslate nohighlight">\(x\)</span> までの積み上げたものとなり以下のように書ける.</p>
+<div class="math notranslate nohighlight">
+\[
+    F(x) = \sum_{u \geq x}{f(u)}
+\]</div>
+<p>また, 連続型の確率変数の場合, 確率密度関数 <span class="math notranslate nohighlight">\(f(x)\)</span> を用いて</p>
+<div class="math notranslate nohighlight">
+\[
+    F(x) = \int_{-\infty}^{x}{f(u)du}
+\]</div>
+<p>となる. また, 微分積分学の基本定理より <span class="math notranslate nohighlight">\(F(x)\)</span> から密度関数 <span class="math notranslate nohighlight">\(f(x)\)</span> が求められる.</p>
+<div class="math notranslate nohighlight">
+\[
+    F'(x) = \frac{d}{dx} \int_{-\infty}^{x}{f(u)du} = f(x)
+\]</div>
+</div></section>
+<section id="python">
+<h3>例 1.6 (pythonで離散型累積分布関数の確認)<a class="headerlink" href="#python" title="Permalink to this headline">#</a></h3>
+<p>例 1.1.1 で挙げたコインの表の回数に関する分布を再考する. 表の出る回数を <span class="math notranslate nohighlight">\(x (x = 0,1, \cdots, 5)\)</span> とした時に <span class="math notranslate nohighlight">\(f(x) = {\rm P}(X=x)\)</span> は以下のように書ける.</p>
+<div class="math notranslate nohighlight">
+\[
+    f(x) = {}_5{\rm C}_{5-x} \biggl( \frac{1}{2} \biggr)^x \biggl( 1-\frac{1}{2} \biggr)^{5-x} = {}_5{\rm C}_{5-x} \biggl( \frac{1}{2} \biggr)^5 = \frac{{}_5{\rm C}_{5-x}}{32}
+\]</div>
+<p>後述するが, この確率質量関数によって表現される分布を<strong>二項分布</strong> (binomial distribution) といい, python の <a class="reference external" href="https://docs.scipy.org/doc/scipy/index.html">SciPy</a> にある <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.binom.html#scipy.stats.binom"><code class="docutils literal notranslate"><span class="pre">scipy.stats.binom</span></code></a> を用いて分布に従った確率変数を生成できる.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 必要なモジュールのインポート.</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">binom</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+
+<span class="c1"># 表が出る確率 p = 0.5 のコインを n = 5回投げるものとする.</span>
+<span class="n">p</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">5</span>
+
+<span class="c1"># 表が2回出る確率を求める (理論値は 5/16).</span>
+<span class="c1"># SciPy は疑似乱数から分布を生成しているが理論値とほとんど一致していることが分かる.</span>
+<span class="n">prob_2</span> <span class="o">=</span> <span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;======================================&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;二項分布の確率&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;======================================&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SciPy: </span><span class="si">{</span><span class="n">prob_2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;理論値: </span><span class="si">{</span><span class="mi">5</span><span class="o">/</span><span class="mi">16</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;差分: </span><span class="si">{</span><span class="mi">5</span><span class="o">/</span><span class="mi">16</span> <span class="o">-</span> <span class="n">prob_2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 二項分布に従う乱数列の生成</span>
+<span class="c1"># 「表が出る確率 p = 0.5 のコインを n = 5回投げる」分布に従った疑似乱数を size=10000 個生成する.</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">rvs</span> <span class="o">=</span> <span class="n">binom</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+
+<span class="c1"># 確率分布を取得してプロットするため, 回数を表す横軸 (x) とそれに対応する確率質量関数の値 (y) を取得する.</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># 可視化</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;======================================&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;二項分布の確率質量関数と累積分布関数&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;======================================&quot;</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">rvs</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;probability&quot;</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;random variables&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;probability mass function&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Mass function&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="c1"># 累積分布関数</span>
+<span class="n">cdf</span> <span class="o">=</span> <span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">cdf</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;cumulative distribution function&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Cumulative distribution function&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>======================================
+二項分布の確率
+======================================
+SciPy: 0.31249999999999983
+理論値: 0.3125
+差分: 1.6653345369377348e-16
+
+======================================
+二項分布の確率質量関数と累積分布関数
+======================================
+</pre></div>
+</div>
+<img alt="../../_images/random_variables_8_1.png" src="../../_images/random_variables_8_1.png" />
+</div>
+</div>
+</section>
+<section id="id8">
+<h3>例 1.7 (pythonで連続型累積分布関数の確認)<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<p>連続型の確率分布で最も有名な<strong>正規分布</strong> (normal distribution, ガウス分布 &lt;Gaussina distribution&gt; とも呼ばれる) について考える.<br />
+　日本の17歳男子の身長の平均は170.7 cmで, その標準偏差が5.8の正規分布に従うとされており, ここでは簡単なために平均値 <span class="math notranslate nohighlight">\(\mu=170\)</span>, 標準偏差 <span class="math notranslate nohighlight">\(\sigma=6\)</span> として考える. この時, 以下の確率密度関数で表現することができる.</p>
+<div class="math notranslate nohighlight">
+\[
+    f(x) = \frac{1}{\sqrt{2 \pi \cdot 6^2 }} \exp{ \biggl( - \frac{(x-170)^2}{2 \cdot 6^2} \biggr) }
+\]</div>
+<p>これは <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.norm.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.norm</span></code></a> によって正規分布に従った乱数を生成できる.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+
+<span class="c1"># 正規分布に従う乱数列の生成</span>
+<span class="n">loc</span> <span class="o">=</span> <span class="mi">170</span>
+<span class="n">scale</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">rvs</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+
+<span class="c1"># 確率分布を取得してプロットするため, 回数を表す横軸 (x) とそれに対応する確率質量関数の値 (y) を取得する.</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">130</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+
+<span class="c1"># 可視化</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;======================================&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;正規分布の確率質量関数と累積分布関数&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;======================================&quot;</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">rvs</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;density&quot;</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;random variables&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;probability density function&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Density function&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="c1"># 累積分布関数</span>
+<span class="n">cdf</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">cdf</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;cumulative distribution function&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Cumulative distribution function&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>======================================
+正規分布の確率質量関数と累積分布関数
+======================================
+</pre></div>
+</div>
+<img alt="../../_images/random_variables_10_1.png" src="../../_images/random_variables_10_1.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id9">
+<h2>2. 期待値と分散<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h2>
+<section id="id10">
+<h3>定義 2.1 (期待値)<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>確率変数 <span class="math notranslate nohighlight">\(X\)</span> に対して <span class="math notranslate nohighlight">\({\rm E}(X)\)</span> を<strong>期待値</strong> (expectation) といい</p>
+<p><a id="math-1.13"></a>
+<a id="math-1.14"></a></p>
+<div class="math notranslate nohighlight" id="expectation">
+\[\begin{split}
+    \begin{align}
+        &amp;(離散型) \quad {\rm E}(X) = \sum_{ x }{ xf(x) } \\
+        &amp;(連続型) \quad {\rm E}(X) = \int_{ -\infty }^{ \infty }{ xf(x)dx }
+    \end{align}
+\end{split}\]</div>
+<p>と書ける. ただし <span class="math notranslate nohighlight">\(f\)</span> は離散型の場合は確率質量関数, 連続型の場合は確率密度関数を示す.
+　また, <span class="math notranslate nohighlight">\(X\)</span> の関数 <span class="math notranslate nohighlight">\(\phi(X)\)</span> についても同様に期待値は定義でき以下の通りである.</p>
+<p><a id="math-1.15"></a>
+<a id="math-1.16"></a></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp;(離散型) \quad {\rm E}(X) = \sum_{ x }{ \phi(x)f(x) } \\
+        &amp;(連続型) \quad {\rm E}(X) = \int_{ -\infty }^{ \infty }{ \phi(x)f(x)dx }
+    \end{align}
+\end{split}\]</div>
+</div></section>
+<section id="id11">
+<h3>例 2.2 (期待値の具体例)<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<p>例 1.1.1 のケースの期待値の計算は以下の通りとなる.</p>
+<div class="math notranslate nohighlight">
+\[
+    {\rm E}(X) = 0 \times \frac{1}{32} + 1 \times \frac{5}{32} + 2 \times \frac{10}{32} + 3 \times \frac{10}{32} + 4 \times \frac{5}{32} + 5 \times \frac{1}{32} = \frac{5}{2}
+\]</div>
+<p>また連続型の分布のうち指数分布があり</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    f(x) = 
+    \begin{cases}
+        \lambda e^{-\lambda x} &amp; (x \geq 0) \\
+        0 &amp; (x \le 0)
+    \end{cases}
+\end{split}\]</div>
+<p>と書ける. ただし <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span> である. この時の期待値は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        {\rm E}(X) 
+            &amp;= \int_{ -\infty }^{ 0 }{ x \cdot 0dx} + \int_{ 0 }^{ \infty }{ x \lambda e^{-\lambda x} dx} \\
+            &amp;= 0 + \int_{ 0 }^{ \infty }{ \lambda e^{-\lambda x} dx} - \frac{1}{ \lambda } \Bigl[ x \lambda e^{-\lambda x} \Bigr]_{0}^{ \infty } \\
+            &amp;= - \frac{1}{\lambda} \Bigl[ \lambda e^{-\lambda x} \Bigr]_{0}^{ \infty } \\
+            &amp;= \frac{1}{\lambda}
+    \end{align}
+\end{split}\]</div>
+<p>となる. 計算には部分積分を用いて実施した. (<a class="reference external" href="https://ja.wolframalpha.com/input?i2d=true&amp;i=Integrate%5Bx%CE%BBExp%5B-%CE%BBx%5D%2C%7Bx%2C0%2C%E2%88%9E%7D%5D">WolframAlpha</a> を用いると上の結果はすぐに導ける.)</p>
+</section>
+<section id="id12">
+<h3>命題 2.3 (期待値の性質)<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>期待値の演算について確率変数 <span class="math notranslate nohighlight">\(X, Y\)</span> について以下の性質が成立する. ただし, <span class="math notranslate nohighlight">\(c\)</span> は定数とする.</p>
+<p><a id="math-1.17"></a></p>
+<div class="math notranslate nohighlight" id="expectation-property">
+\[\begin{split}
+    \begin{align}
+        &amp; {\rm E}(c) = c \\
+        &amp; {\rm E}(X + c) = {\rm E}(X) + c \\
+        &amp; {\rm E}(cX) = c{\rm E}(X)  \\
+        &amp; {\rm E}(X + Y) = {\rm E}(X) + {\rm E}(Y)
+    \end{align}
+\end{split}\]</div>
+</div></section>
+<section id="id13">
+<h3>定義 2.4 (分散)<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>確率変数 <span class="math notranslate nohighlight">\(X\)</span> に対して <span class="math notranslate nohighlight">\({\rm Var}(X)\)</span> を<strong>分散</strong> (variance) といい</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp;(離散型) \quad {\rm Var}(X) = \sum_{ x }{ (x - {\rm E}(X))^2f(x) } \\
+        &amp;(連続型) \quad {\rm Var}(X) = \int_{ -\infty }^{ \infty }{ (x - {\rm E}(X))^2f(x)dx }
+    \end{align}
+\end{split}\]</div>
+</div>
+<p>ただし, 実際に分散を求める際には以下の等式を利用する方が楽である.</p>
+</section>
+<section id="id14">
+<h3>命題 2.5 (分散と期待値の関係式)<a class="headerlink" href="#id14" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>分散と期待値の間には以下の関係が成立する.</p>
+<p><a id="math-1.20"></a></p>
+<div class="math notranslate nohighlight" id="expect-variance">
+\[
+    \begin{align}
+        {\rm Var}(X) = {\rm E}(X^2) - ({\rm E}(X))^2
+    \end{align}
+\]</div>
+</div>
+<p><u>証明</u></p>
+<p>離散型, 連続型いずれにおいても</p>
+<div class="math notranslate nohighlight">
+\[
+{\rm Var}(X) = {\rm E}(X^2) - 2({\rm E}(X))^2 + ({\rm E}(X))^2 = {\rm E}(X^2) - ({\rm E}(X))^2
+\]</div>
+<p>と計算できる.</p>
+</section>
+<section id="id15">
+<h3>命題 2.6 (分散の性質)<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>分散の演算について確率変数 <span class="math notranslate nohighlight">\(X\)</span> について以下の性質が成立する. ただし, <span class="math notranslate nohighlight">\(c\)</span> は定数とする.</p>
+<div class="math notranslate nohighlight" id="variance-property">
+\[\begin{split}
+    \begin{align}
+        &amp; {\rm Var}(c) = 0 \\
+        &amp; {\rm Var}(X + c) = {\rm Var}(X) \\
+        &amp; {\rm Var}(cX) = c^2{\rm Var}(X)
+    \end{align}
+\end{split}\]</div>
+</div></section>
+</section>
+<section id="id16">
+<h2>3. モーメントと積率母関数<a class="headerlink" href="#id16" title="Permalink to this headline">#</a></h2>
+<p>期待値を <span class="math notranslate nohighlight">\(\mu\)</span>, 標準偏差 (分散のルート値) を <span class="math notranslate nohighlight">\(\sigma\)</span> とする.</p>
+<section id="id17">
+<h3>定義 3.1 (歪度)<a class="headerlink" href="#id17" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>非対称性の指標として<strong>歪度</strong> (skewness) と呼び, 以下のように定義する.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \alpha_3 = \frac{ {\rm E}(X-\mu)^3 }{\sigma^3}
+    \end{align}
+\]</div>
+</div>
+<p><span class="math notranslate nohighlight">\(\alpha_3 &gt; 0\)</span> ならば右の裾が長く, <span class="math notranslate nohighlight">\(\alpha_3 &lt; 0\)</span> ならば左に裾が長い. <span class="math notranslate nohighlight">\(|\alpha_3|\)</span> がその程度を表す.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -------------------------------</span>
+<span class="c1"># 歪度による二項分布の形状</span>
+<span class="c1"># -------------------------------</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">binom</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># 二項分布に関する python モジュールの使い方については後述.</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">p_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># x軸</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 図の定義</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]:</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">binom</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    
+    <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;skewness = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.61</span><span class="p">)</span>
+    
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/random_variables_20_0.png" src="../../_images/random_variables_20_0.png" />
+</div>
+</div>
+</section>
+<section id="id18">
+<h3>定義 3.2 (尖度)<a class="headerlink" href="#id18" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>確率分布の尖り具合の程度については以下を用いる.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \alpha_4 = \frac{ {\rm E}(X-\mu)^4}{\sigma^4}
+    \end{align}
+\]</div>
+</div>
+<p>また, <strong>尖度</strong> (kurtosis) は正規分布の <span class="math notranslate nohighlight">\(\alpha_4 = 3\)</span> と比較して <span class="math notranslate nohighlight">\(\alpha_4 - 3\)</span> として定義し, <span class="math notranslate nohighlight">\(\alpha_4 - 3 &gt; 0\)</span> ならば正規分布より尖っており, <span class="math notranslate nohighlight">\(\alpha_4 - 3 &lt; 0\)</span> ならば正規分布より丸く鈍い形をしている.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -------------------------------</span>
+<span class="c1"># 歪度による二項分布の形状</span>
+<span class="c1"># -------------------------------</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">uniform</span><span class="p">,</span> <span class="n">lognorm</span><span class="p">,</span> <span class="n">expon</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># 正規分布</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">moments</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;kurtosis = </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 連続一様分布</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">uniform</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">uniform</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">moments</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;kurtosis = </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 対数正規分布</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">lognorm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">lognorm</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;kurtosis = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 指数分布</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">expon</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">expon</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">moments</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;kurtosis = </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;kurtosis = 6.0&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/random_variables_22_1.png" src="../../_images/random_variables_22_1.png" />
+</div>
+</div>
+</section>
+<section id="id19">
+<h3>定義 3.3 (モーメント)<a class="headerlink" href="#id19" title="Permalink to this headline">#</a></h3>
+<p>確率分布の形は <span class="math notranslate nohighlight">\({\rm E}(X - \mu)^r\)</span> となる量, あるいは <span class="math notranslate nohighlight">\({\rm E}(X^r)\)</span> によって決まってくる.</p>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>一般に以下を <span class="math notranslate nohighlight">\(X\)</span> の<strong>原点周りの</strong> <span class="math notranslate nohighlight">\(r\)</span> 次の <strong>モーメント</strong> (moment), または<strong>積率</strong>という.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \mu_r = {\rm E}(X^r)
+    \end{align}
+\]</div>
+<p>また以下を <span class="math notranslate nohighlight">\(X\)</span> の<strong>期待値 (平均) の周りの</strong> <span class="math notranslate nohighlight">\(r\)</span> 次の <strong>モーメント</strong> (moment) という.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \mu'_r = {\rm E}(X - \mu)^r
+    \end{align}
+\]</div>
+<p>また</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \alpha_r = \frac{{\rm E}(X - \mu)^r}{\sigma^r}
+    \end{align}
+\]</div>
+<p>を <span class="math notranslate nohighlight">\(X\)</span> の <span class="math notranslate nohighlight">\(r\)</span> 次の<strong>標準化モーメント</strong>と言われる.</p>
+</div></section>
+<section id="id20">
+<h3>定義 3.4 (積率母関数)<a class="headerlink" href="#id20" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>全ての次数のモーメントを生成する関数を<strong>積率母関数</strong>または<strong>モーメント母関数</strong> (moment generating function) と言い, 以下のように定義される.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp;(離散型) \quad M_t(X) = {\rm E}\bigl(e^{tX}\bigr) = \sum_{ x }{ e^{tx} f(x) } \\
+        &amp;(連続型) \quad M_t(X) = {\rm E}\bigl(e^{tX}\bigr) = \int_{ -\infty }^{ \infty }{ e^{tx} f(x)dx }
+    \end{align}
+\end{split}\]</div>
+</div>
+<p>ただし, この定義で無限和, 積分が存在しないこともある.</p>
+</section>
+<section id="id21">
+<h3>命題 3.5 (積率母関数とモーメントとの関係)<a class="headerlink" href="#id21" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>積率母関数とモーメントの間に以下の関係が成立する.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        M_X^{(r)}(0) = \mu_r
+    \end{align}
+\]</div>
+<p>ただし, <span class="math notranslate nohighlight">\(M_X^{(r)}(t)\)</span> は <span class="math notranslate nohighlight">\(r\)</span> 階導関数である.</p>
+</div>
+<p><u>証明</u></p>
+<p>e^x に対するマクローリン展開式は以下の通り.</p>
+<div class="math notranslate nohighlight">
+\[
+    e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots
+\]</div>
+<p><span class="math notranslate nohighlight">\(x = tX\)</span> を代入し</p>
+<div class="math notranslate nohighlight">
+\[
+    e^{tX} = 1 + tX + \frac{(tX)^2}{2!} + \frac{(tX)^3}{3!} + \cdots
+\]</div>
+<p>で, 両辺の期待値を取れば,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        M_X(t) &amp;= 1 + tE(X) + \frac{t^2E(X^2)}{2!} + \frac{t^3E(X^3)}{3!} + \cdots \\
+               &amp;= 1 + \mu_1t + \frac{\mu_2}{2!}t^2 + + \frac{\mu_3}{3!}t^3 + \cdots
+    \end{align}
+\end{split}\]</div>
+<p>ここで, <span class="math notranslate nohighlight">\(r (&gt;0)\)</span> 階導関数を求めると</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        M_X^{(r)}(t) &amp;= \mu_r + \frac{\mu_{r+1}}{r+1}t + \frac{\mu_{r+2}}{(r+1)(r+2)}t^2 + \cdots
+    \end{align}
+\]</div>
+<p>となるので, <span class="math notranslate nohighlight">\(t = 0\)</span> を代入して求められる.</p>
+</section>
+</section>
+<section id="id22">
+<h2>4. 確率変数の変換<a class="headerlink" href="#id22" title="Permalink to this headline">#</a></h2>
+<section id="id23">
+<h3>定理 4.1 (確率変数の変換)<a class="headerlink" href="#id23" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>確率変数 <span class="math notranslate nohighlight">\(X\)</span>を <span class="math notranslate nohighlight">\(Y = \phi(X)\)</span> で変換した確率変数 <span class="math notranslate nohighlight">\(Y\)</span> について, 確率変数 <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> それぞれの密度関数を <span class="math notranslate nohighlight">\(f(x)\)</span>, <span class="math notranslate nohighlight">\(g(y)\)</span> と表す. この時,</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        g(y) = f \Bigl(\phi^{-1}(y) \Bigr) \left| \frac{d\phi^{-1}(y)}{dy} \right|
+    \end{align}
+\]</div>
+<p>と書ける. ただし, <span class="math notranslate nohighlight">\(\phi^{-1}\)</span> は <span class="math notranslate nohighlight">\(\phi\)</span> の逆関数である.</p>
+</div>
+<p><u>証明</u></p>
+<p><span class="math notranslate nohighlight">\(y = \phi(x)\)</span> が単調増加であるとする. 区間 <span class="math notranslate nohighlight">\((x, x + \varDelta x)\)</span> が <span class="math notranslate nohighlight">\(\phi(x)\)</span> によって <span class="math notranslate nohighlight">\((y, y + \varDelta y)\)</span> に移ったとする. また, <span class="math notranslate nohighlight">\(\varDelta y = \phi(x + \varDelta x) - \phi(x)\)</span> とする. <span class="math notranslate nohighlight">\(\phi\)</span> は単調増加関数より, <span class="math notranslate nohighlight">\(x \leq X \leq x + \varDelta x\)</span> と <span class="math notranslate nohighlight">\(y \leq Y \leq y + \varDelta y\)</span> は論理的に同値である. 従って,</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        P(y \leq Y \leq y + \varDelta y) = P(x \leq X \leq x + \varDelta x) \Rightarrow g(y) \left| \varDelta y \right| = f(x) \left| \varDelta x \right|
+    \end{align}
+\]</div>
+<p>よって,</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        g(y) = f(x) \left| \frac{\varDelta x}{\varDelta y} \right| \stackrel{\varDelta \rightarrow 0}{=} f(x) \left| \frac{dx}{dy} \right|
+    \end{align}
+\]</div>
+<p>また単調減少においては <span class="math notranslate nohighlight">\((y, y - \varDelta y)\)</span> に移ったものとし, <span class="math notranslate nohighlight">\(P(y \leq Y \leq y - \varDelta y) = P(x \leq X \leq x + \varDelta x) \Rightarrow g(y) \left| \varDelta y \right| = f(x) \left| \varDelta x \right|\)</span> から同式を得られる.
+　ここで <span class="math notranslate nohighlight">\(y = \phi(x) \Rightarrow \phi^{-1}(y) = x\)</span> で代入すると目的の式を得られる.</p>
+</section>
+<section id="exmaple-normal-lognormal">
+<span id="id24"></span><h3>例 4.2 (正規分布と対数正規分布)<a class="headerlink" href="#exmaple-normal-lognormal" title="Permalink to this headline">#</a></h3>
+<p><span class="math notranslate nohighlight">\(x = \log{y}\)</span> が正規分布に従うとする (詳細は <a class="reference internal" href="probability_distribution.html#normal-distribution"><span class="std std-ref">例 2.2 (正規分布)</span></a> を参照のこと). この時,</p>
+<div class="math notranslate nohighlight">
+\[
+    f(x) = \frac{1}{\sqrt{2\pi} \sigma} \exp{ \biggl( - \frac{(x -\mu)^2}{2 \sigma^2} \biggr) }
+\]</div>
+<p>が成立する. <span class="math notranslate nohighlight">\(\dfrac{dx}{dy} = \dfrac{1}{y}\)</span> なので</p>
+<div class="math notranslate nohighlight">
+\[
+    g(y) = f(x) \frac{1}{y} = \frac{1}{\sqrt{2\pi} \sigma y} \exp{ \biggl( - \frac{(\log{y} -\mu)^2}{2 \sigma^2} \biggr) }
+\]</div>
+<p>と分布関数が求められる.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./analytics/distribution"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../../intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Welcome to my Analytics Sandbox</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="probability_distribution.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">確率分布</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By sndpgm<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
