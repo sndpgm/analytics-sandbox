@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="多次元確率分布" href="multi_probability_distribution.html" />
+    <link rel="next" title="多変量確率分布" href="multi_probability_distribution.html" />
     <link rel="prev" title="確率変数" href="random_variables.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -133,7 +133,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="multi_probability_distribution.html">
-   多次元確率分布
+   多変量確率分布
   </a>
  </li>
 </ul>
@@ -1443,9 +1443,9 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[0 0 0 0 0 1 0 1 0 0 0 0 1 0 0 0 1 1 1 1 1 0 1 0 0 0 0 1 1 0 0 0 1 0 1 1 0
- 0 0 1 0 0 1 0 1 0 1 1 0 1 1 0 0 0 0 0 0 1 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0
- 0 0 0 1 0 0 0 1 0 1 0 0 1 0 0 0 0 0 1 0 0 1 0 0 0 1]
+[0 0 0 0 1 0 0 1 1 1 0 0 0 1 0 1 0 1 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 1
+ 0 0 0 1 0 0 1 0 0 1 0 1 0 0 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0
+ 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 1 1 0 0 1 0 0 0]
 &gt; NumPy
 [0 0 1 0 0 0 0 0 0 1 0 1 0 0 0 1 0 0 1 0 0 0 0 0 0 1 0 0 0 0 1 0 1 1 1 1 0
  1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0
@@ -1499,8 +1499,8 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 0.3012 vs 0.3
-分散(乱数 vs 真値): 0.21047855999999993 vs 0.21
+期待値(乱数 vs 真値): 0.3036 vs 0.3
+分散(乱数 vs 真値): 0.21142703999999998 vs 0.21
 &gt; NumPy
 期待値(乱数 vs 真値): 0.2951 vs 0.3
 分散(乱数 vs 真値): 0.20801598999999996 vs 0.21
@@ -1668,9 +1668,9 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[4 3 5 4 7 2 4 2 2 3 2 1 2 3 3 4 7 2 6 1 1 1 4 2 1 2 2 3 4 3 4 5 5 2 4 4 3
- 0 2 7 4 2 5 4 2 1 3 1 3 2 2 2 5 1 4 2 2 3 2 2 2 1 2 1 2 0 3 4 4 7 2 5 4 2
- 3 6 2 3 3 3 4 5 3 5 1 2 3 4 3 2 3 2 2 2 2 3 2 5 3 1]
+[3 4 4 0 3 3 1 4 5 0 5 5 3 3 5 1 5 2 3 3 2 2 3 0 4 7 4 4 2 1 1 2 2 2 3 1 1
+ 1 4 3 2 2 1 4 4 4 2 4 3 3 6 4 4 3 3 2 6 2 5 1 3 2 1 2 3 2 2 2 1 4 1 1 2 2
+ 4 4 5 4 5 3 3 3 1 2 5 5 5 3 5 1 3 3 1 3 4 3 4 3 3 1]
 &gt; NumPy
 [5 5 4 2 4 2 4 3 2 3 3 1 6 2 4 5 3 5 6 1 3 4 6 4 7 3 4 2 3 2 5 4 5 2 4 2 3
  3 3 5 2 4 3 2 5 2 2 2 3 1 4 2 2 2 5 4 3 3 5 1 3 4 5 4 4 5 5 2 2 2 7 1 3 2
@@ -1701,8 +1701,8 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 3.0133 vs 3.0
-分散(乱数 vs 真値): 2.09472311 vs 2.0999999999999996
+期待値(乱数 vs 真値): 3.0058 vs 3.0
+分散(乱数 vs 真値): 2.09136636 vs 2.0999999999999996
 &gt; NumPy
 期待値(乱数 vs 真値): 3.0054 vs 3.0
 分散(乱数 vs 真値): 2.14157084 vs 2.0999999999999996
@@ -1761,7 +1761,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1287340a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x125d3f190&gt;
 </pre></div>
 </div>
 <img alt="../../_images/probability_distribution_23_1.png" src="../../_images/probability_distribution_23_1.png" />
@@ -1787,7 +1787,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1287bd730&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x125dc7700&gt;
 </pre></div>
 </div>
 <img alt="../../_images/probability_distribution_24_1.png" src="../../_images/probability_distribution_24_1.png" />
@@ -1904,11 +1904,11 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[ 6  4  9  5  5  4  4  6  4  9  3  1  6  3  6  6  6  4  4  5  4  6  6  5
-  5  3  7  6  6  7  1  8  8  3 10  8  3  5  5  5  3  3  5  5  6  7  5  5
-  5  2  2  1  2  6  5  4  4  3  5  3  4  6  5  4  3  7  5  4  4  5  8  1
-  3  2  4  5  4  9  6  7  8  5  3  4  5  8  2  5  6  1  4  5  7  7 11  5
-  5  4  7  5]
+[ 6  5  2  4  6  3  5  5  7  7  6  4  9  5  8  5  2  4  5  4  4  4  2  6
+  5  3  2  4  2  4  6  4  3  0  4 11  5  7  2  5  3  3  6  6  3  6  4  7
+  5  8  6 10  3  6  6  6  7  5  5  6  9  5  4  5  4  4  6  8  6  6  4  2
+  8  5  2  9  9  7  6  5  3  3  6 12  7  1  1  9  4  5  2  5  4  4  2  3
+  2  6  3  4]
 &gt; NumPy
 [ 3  4 10  3  3  2 13  6  5  2  6  5  5  2  5  4  3  3  4  6  8  6  8  7
   4  5  3  4  7  7  4  3  7  6  4  4  2  5  2  7  3  4  5  4  6  5  4  8
@@ -1941,8 +1941,8 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 5.007 vs 5.0
-分散(乱数 vs 真値): 5.049950999999999 vs 5.0
+期待値(乱数 vs 真値): 5.0189 vs 5.0
+分散(乱数 vs 真値): 5.095342789999999 vs 5.0
 &gt; NumPy
 期待値(乱数 vs 真値): 5.0234 vs 5.0
 分散(乱数 vs 真値): 4.98485244 vs 5.0
@@ -2002,7 +2002,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1288d9790&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x125f473a0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/probability_distribution_33_1.png" src="../../_images/probability_distribution_33_1.png" />
@@ -2059,7 +2059,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x128988190&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x125d8e970&gt;
 </pre></div>
 </div>
 <img alt="../../_images/probability_distribution_35_1.png" src="../../_images/probability_distribution_35_1.png" />
@@ -2203,11 +2203,11 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[ 1 15  1  1  2  1  2  2  3  3  5  3  5  3  5  1  2  7  2  8  3  2  1  1
-  4  6  2  1  2 10  2  2  2  8  4  9  1  1  4  2  3  1  6  1  2  3  1  2
-  3  1  3  2  1  1  1  2  1  1  1  1  3  1  2  2  1  2  4  1  7  8  2  1
-  5  1  9  7 15  4  5 14  7  1  2  4  5  2  3  3  3 12  5  1  2  2  1  1
-  1  2  4  2]
+[ 5  3 14  4  2  1  4  3  1  4  5  1  2  8  1  3  4  3  1  1  1  2  1  2
+  5  1  1  3  8  4  1  1  4  5  2  6  4  3  2  6  4  1 11  6  3  2  1  1
+  1  6  1  3  2  6  1  1  1  5  2  1  1 10  1  1  1  5  4  3  2  4  2  3
+  1  4  4  3 14  2  2  8  1  1  2  2  1  3  2  2  2  8  5  4  8  1  3  1
+  2  2  1  1]
 &gt; NumPy
 [ 3  1  3  1  2  2  2  2  3  1  3  3  1  1  1  7  1  4  1  5  8  2  3  2
   1  3  2  5  3  1  3  7  3  1  3  5  1  4  1  1  1  1  8  4  3  1  3  4
@@ -2241,8 +2241,8 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 3.3597 vs 3.3333333333333335
-分散(乱数 vs 真値): 8.13591591 vs 7.777777777777779
+期待値(乱数 vs 真値): 3.3489 vs 3.3333333333333335
+分散(乱数 vs 真値): 7.725368789999999 vs 7.777777777777779
 &gt; NumPy
 期待値(乱数 vs 真値): 3.3007 vs 3.3333333333333335
 分散(乱数 vs 真値): 7.4182795100000005 vs 7.777777777777779
@@ -2301,7 +2301,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x128a41310&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1261439d0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/probability_distribution_44_1.png" src="../../_images/probability_distribution_44_1.png" />
@@ -2460,11 +2460,11 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[20 21 13 10  6 27 14 13 21 18  8 17  2 25 19  7 12 22  3 25 13 14  8 16
- 31 10 13 13  4 22 19 31 20 21  4 19 31 21 19  9 24 15 14 19 16 13 13  9
- 31 12 27 23 23 28  5 18 10 12  9 13 32 42 14 37 14 16 13 14 23 13  5 16
- 10  7 18 11  8 16 11 17  7 29 13 10 12 22 20 14 40 24 38 14 18  6  0 14
- 12 32  9 12]
+[10  7 12  7 15  7 16  7 12 19 13 31 26 19 29 23  5 20 11 12 20 31 10 16
+ 17  5 13 18 16 18 11  4 19 22 26  8  3 42 19 20 17 20 14 26 16 13 12  5
+ 20  3  8 14 12 20 10 14  9 27  1 12 22  4 14 24 14  8 32 17 32  9 21 14
+  3 22 10 18 11  8 18  8 12 27  2  4  5  8 13 31  9  5  5  5  5 11 17 15
+  2 14 18  5]
 &gt; NumPy
 [19 34 25  3  8 16 18 12 44 10  5 26 11 16 28 12  6 14  6 19 23 14  3 23
  22 15 16 14 10 29  6 20 16  5 25  5 10 10 21  9  9 21 25 29 13 22  4 21
@@ -2498,8 +2498,8 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 16.171 vs｜ 16.0
-分散(乱数 vs 真値): 80.654159 vs 79.99999999999999
+期待値(乱数 vs 真値): 16.0035 vs｜ 16.0
+分散(乱数 vs 真値): 81.84928774999999 vs 79.99999999999999
 &gt; NumPy
 期待値(乱数 vs 真値): 16.0454 vs 16.0
 分散(乱数 vs 真値): 82.54973884 vs 79.99999999999999
@@ -2557,7 +2557,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x128d78340&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x126387580&gt;
 </pre></div>
 </div>
 <img alt="../../_images/probability_distribution_53_1.png" src="../../_images/probability_distribution_53_1.png" />
@@ -2587,7 +2587,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x128daeeb0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x126403fd0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/probability_distribution_54_1.png" src="../../_images/probability_distribution_54_1.png" />
@@ -2715,10 +2715,10 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[4.57506139 5.16910396 7.7231139  3.53505928 5.61296967 4.04986082
- 5.8470623  4.44587079 3.7754624  7.7767397  4.81591173 7.6547566
- 5.61174398 7.83148817 5.73436528 5.33237395 3.49288665 3.83568864
- 7.14556137 3.7545413 ]
+[3.26168411 3.00728711 4.10519048 3.18207612 6.49012575 7.66908154
+ 6.44281696 5.89350069 3.21800854 4.53675392 5.02526455 6.67130076
+ 3.54985671 7.85256094 4.84632008 3.03231546 4.39028001 4.74202257
+ 5.48546337 6.49068834]
 &gt; NumPy
 [7.22090427 4.98426609 7.55452031 3.1926514  6.32169067 4.0104301
  7.9795091  4.4106398  7.99999312 3.92861151 6.61590431 5.92276641
@@ -2750,8 +2750,8 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 5.486206835952165 vs｜ 5.5
-分散(乱数 vs 真値): 2.067214708035977 vs 2.083333333333333
+期待値(乱数 vs 真値): 5.530425832056538 vs｜ 5.5
+分散(乱数 vs 真値): 2.0616115462134257 vs 2.083333333333333
 &gt; NumPy
 期待値(乱数 vs 真値): 5.500166337412839 vs 5.5
 分散(乱数 vs 真値): 2.0828626544358886 vs 2.083333333333333
@@ -2943,10 +2943,10 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[11.35771351 12.36660066  5.32435016  9.94083898 10.42830294 14.12054917
-  7.20532933 12.31520037 13.59871435 10.5408856   6.75512625 13.71393698
- 11.50314574  9.67514042 10.73048719 10.10158558 12.55663071 13.21248565
- 11.16578257  9.96014176]
+[ 6.77821607  9.12067981  8.10985832 10.15357314 11.82147727 11.5228486
+ 10.85663777 11.65189136 11.13940028  8.00062447 10.00426758 11.84774281
+ 14.66520438  8.02051174  8.99418752  9.84699889  7.54519868 11.19750954
+ 10.5690138   9.51489386]
 &gt; NumPy
 [ 8.70461874 11.39812729  8.50115066 10.33695154 10.55931471  9.32878914
   9.00163263 13.17880852 10.83535446 13.12140641  9.68146009  7.14082452
@@ -2978,8 +2978,8 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 9.992542700263908 vs 10.0
-分散(乱数 vs 真値): 4.057147039085652 vs 4.0
+期待値(乱数 vs 真値): 9.993196908384503 vs 10.0
+分散(乱数 vs 真値): 3.8173047338818824 vs 4.0
 &gt; NumPy
 期待値(乱数 vs 真値): 10.022351940478329 vs 10.0
 分散(乱数 vs 真値): 3.992217287294061 vs 4.0
@@ -3039,7 +3039,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x129028ac0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12663ac40&gt;
 </pre></div>
 </div>
 <img alt="../../_images/probability_distribution_73_1.png" src="../../_images/probability_distribution_73_1.png" />
@@ -3068,7 +3068,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1291d2ee0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x126873550&gt;
 </pre></div>
 </div>
 <img alt="../../_images/probability_distribution_74_1.png" src="../../_images/probability_distribution_74_1.png" />
@@ -3346,15 +3346,15 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[ 6.96629335  4.50790272  9.26740194 13.17121215  8.64465202 19.00559935
-  7.34204906 21.21479376 28.05826577  6.6884706   0.81080907  3.96070933
-  4.82034466  7.29250812  8.4250925   6.70009236  7.1303636  20.93913091
-  7.82988783  9.43527957]
+[ 7.74163243 18.55678098 10.84737509  8.90202658 17.14179034 21.34686782
+ 14.21191417 68.46259116  6.32169806 37.49445874  3.55382985 10.66973519
+ 15.60562934 14.57402227  1.83596654 16.54796773 30.17032241 10.85469261
+  7.42661383  7.99949743]
 &gt; NumPy
-[14.98423773  4.6362146   9.42837536  3.47955521  3.13755706 12.65455819
- 16.64598557  4.58493064  7.20066531 31.75257111  6.83295634  1.54278764
- 11.11164961 14.89449667 12.27219205  1.39749206 15.88794435  5.60587722
-  2.7203181   8.22260913]
+[15.17174522  3.05617019  8.08014388  2.67255529  0.71133933 13.43157431
+  2.07202044 10.22062059 28.69481159  6.99136814 24.03357521 12.88094079
+ 17.43740225  1.74007583  1.99316434 24.63301044  3.86936909 41.70313205
+  6.24338967  1.50301079]
 </pre></div>
 </div>
 </div>
@@ -3381,11 +3381,11 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 11.998494984354858 vs 12.182493960703473
-分散(乱数 vs 真値): 244.9391984301655 vs 255.0156343901585
+期待値(乱数 vs 真値): 12.281053005766957 vs 12.182493960703473
+分散(乱数 vs 真値): 280.20503247062993 vs 255.0156343901585
 &gt; NumPy
-期待値(乱数 vs 真値): 12.091372503665514 vs 12.182493960703473
-分散(乱数 vs 真値): 246.43055844888607 vs 255.0156343901585
+期待値(乱数 vs 真値): 12.313698364105925 vs 12.182493960703473
+分散(乱数 vs 真値): 251.67293409433765 vs 255.0156343901585
 </pre></div>
 </div>
 </div>
@@ -3441,7 +3441,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12b6549a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x128e64d30&gt;
 </pre></div>
 </div>
 <img alt="../../_images/probability_distribution_86_1.png" src="../../_images/probability_distribution_86_1.png" />
@@ -3554,15 +3554,15 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[0.03776759 0.03934826 0.16929247 0.03167572 0.04078784 0.05602367
- 0.14588878 0.04527548 0.00793771 0.05595575 0.00362247 0.01848977
- 0.07339141 0.01638039 0.07931008 0.11742665 0.08060066 0.08967821
- 0.09778224 0.00038829]
+[0.00182574 0.02211385 0.0228966  0.09872815 0.01914351 0.00857162
+ 0.01443956 0.11927105 0.1625802  0.03704349 0.16679557 0.01238515
+ 0.01458321 0.00889898 0.21438724 0.16561689 0.01654524 0.04849434
+ 0.04720021 0.0258865 ]
 &gt; NumPy
-[0.01061273 0.1672275  0.02447372 0.13080378 0.05773126 0.00831174
- 0.10121906 0.04807394 0.3960044  0.02489522 0.21555043 0.0843007
- 0.0153727  0.00125794 0.132463   0.0983386  0.02926759 0.04135509
- 0.02085151 0.25666775]
+[0.09819211 0.04010057 0.00566012 0.04456497 0.072896   0.00446438
+ 0.02663963 0.0506917  0.09036695 0.04541771 0.02996069 0.07648744
+ 0.00385579 0.00340839 0.32705842 0.03407565 0.18321968 0.51088583
+ 0.05005945 0.11208116]
 </pre></div>
 </div>
 </div>
@@ -3589,11 +3589,11 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 0.1000061396016627 vs 0.1
-分散(乱数 vs 真値): 0.009836680018765344 vs 0.010000000000000002
+期待値(乱数 vs 真値): 0.09937003397956116 vs 0.1
+分散(乱数 vs 真値): 0.009470716834519397 vs 0.010000000000000002
 &gt; NumPy
-期待値(乱数 vs 真値): 0.10077812343677332 vs 0.1
-分散(乱数 vs 真値): 0.01003944059333298 vs 0.010000000000000002
+期待値(乱数 vs 真値): 0.10088889972945816 vs 0.1
+分散(乱数 vs 真値): 0.009757853198835535 vs 0.010000000000000002
 </pre></div>
 </div>
 </div>
@@ -3651,7 +3651,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12bacd550&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1290b8f10&gt;
 </pre></div>
 </div>
 <img alt="../../_images/probability_distribution_95_1.png" src="../../_images/probability_distribution_95_1.png" />
@@ -3849,15 +3849,15 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[1.77162969 1.09941269 2.86088115 1.79367332 1.2649411  1.54933607
- 2.39158675 1.94784257 5.63773768 0.53492858 2.50432061 2.2413136
- 0.68204667 0.80632793 0.83556714 2.13965109 2.75086454 1.3193552
- 3.15129443 0.58905636]
+[0.79036465 1.46212226 0.47927159 2.19494027 0.60141905 1.59085735
+ 0.82759117 2.26743968 1.66993216 1.68924577 1.70602936 4.6999173
+ 3.37955819 0.77407089 0.80383827 1.58704573 3.08829393 0.55347416
+ 1.51973723 2.80950523]
 &gt; NumPy
-[0.44462747 2.33708898 1.1036855  0.5259511  0.74204048 2.46256156
- 0.49332163 5.43189698 1.83440641 1.40689558 3.04142258 1.9737372
- 1.09495643 0.56537171 0.67355189 0.72885988 0.35038733 1.7283808
- 1.90648798 2.88183991]
+[2.58243166 2.01272602 0.49315603 0.64450145 1.0150721  3.98669716
+ 0.7373191  2.68686732 0.27792287 3.09825351 2.76260498 3.15018068
+ 4.37710632 0.97252315 1.44359638 1.11264624 2.05256367 4.27571719
+ 1.69702056 1.4741884 ]
 </pre></div>
 </div>
 </div>
@@ -3884,11 +3884,11 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 1.982470769212128 vs 2.0
-分散(乱数 vs 真値): 1.9633640688521552 vs 2.0
+期待値(乱数 vs 真値): 2.0149963173509304 vs 2.0
+分散(乱数 vs 真値): 2.051561238402544 vs 2.0
 &gt; NumPy
-期待値(乱数 vs 真値): 2.0010881712623934 vs 2.0
-分散(乱数 vs 真値): 1.9446954961261032 vs 2.0
+期待値(乱数 vs 真値): 2.0268528715773706 vs 2.0
+分散(乱数 vs 真値): 2.018506039417837 vs 2.0
 </pre></div>
 </div>
 </div>
@@ -3946,7 +3946,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12bb64dc0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x128ee22e0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/probability_distribution_105_1.png" src="../../_images/probability_distribution_105_1.png" />
@@ -3972,7 +3972,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12b8ce130&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x128b42d30&gt;
 </pre></div>
 </div>
 <img alt="../../_images/probability_distribution_106_1.png" src="../../_images/probability_distribution_106_1.png" />
@@ -4192,15 +4192,15 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[0.35188361 0.66725538 0.52218551 0.6521465  0.27671161 0.82414815
- 0.45347776 0.36119499 0.81198164 0.35882483 0.36705477 0.21951356
- 0.85367991 0.84382114 0.84858286 0.78135637 0.31597685 0.46364789
- 0.27231409 0.42554532]
+[0.26589726 0.93230735 0.30007416 0.35944834 0.57586283 0.36730888
+ 0.23065217 0.4409897  0.54506185 0.65895969 0.15554426 0.38713479
+ 0.42583148 0.25930272 0.57675852 0.4599154  0.79831148 0.90715269
+ 0.28088164 0.53227201]
 &gt; NumPy
-[0.36360295 0.58655151 0.37989317 0.23760279 0.66970677 0.51374586
- 0.35918108 0.55706028 0.7864252  0.65152104 0.35564068 0.2597021
- 0.77587648 0.4616575  0.24112506 0.49184703 0.60354871 0.44558557
- 0.28257662 0.12754681]
+[0.67096979 0.67935121 0.75576553 0.70310782 0.34070654 0.42330521
+ 0.36036579 0.27265174 0.05643426 0.46016056 0.5943762  0.50408389
+ 0.27342301 0.65729222 0.26726408 0.96802936 0.86723274 0.31085784
+ 0.46987529 0.23401165]
 </pre></div>
 </div>
 </div>
@@ -4227,11 +4227,11 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 0.5000093132404972 vs 0.5
-分散(乱数 vs 真値): 0.05085708183147199 vs 0.05
+期待値(乱数 vs 真値): 0.498593082952027 vs 0.5
+分散(乱数 vs 真値): 0.05057843514203467 vs 0.05
 &gt; NumPy
-期待値(乱数 vs 真値): 0.49887597882623025 vs 0.5
-分散(乱数 vs 真値): 0.049530275916420556 vs 0.05
+期待値(乱数 vs 真値): 0.5003635762116688 vs 0.5
+分散(乱数 vs 真値): 0.04956033238458475 vs 0.05
 </pre></div>
 </div>
 </div>
@@ -4285,7 +4285,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12b3fc130&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x128aa8b50&gt;
 </pre></div>
 </div>
 <img alt="../../_images/probability_distribution_116_1.png" src="../../_images/probability_distribution_116_1.png" />
@@ -4339,7 +4339,7 @@ title="Print to PDF"
     <a class='right-next' id="next-link" href="multi_probability_distribution.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">多次元確率分布</p>
+        <p class="prev-next-title">多変量確率分布</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>多次元確率分布 &#8212; Analytics Study Blog</title>
+    <title>多変量確率分布 &#8212; Analytics Study Blog</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="時系列データ" href="../tsa/time_series.html" />
@@ -131,7 +133,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   多次元確率分布
+   多変量確率分布
   </a>
  </li>
 </ul>
@@ -374,16 +376,38 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
-   1. 期待値と分散
+   1. 多変量確率ベクトルと同時分布関数
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     定義 1.1 (離散型の同時分布)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     例 1.2 (2つのサイコロの目)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     定義 1.3 (連続型の同時分布)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     例 1.4 (線形和によって表現される同時密度関数)
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
+  <a class="reference internal nav-link" href="#id7">
    2. 周辺分布と条件付確率
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
+  <a class="reference internal nav-link" href="#id8">
    3. 多次元確率分布
   </a>
  </li>
@@ -396,7 +420,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>多次元確率分布</h1>
+                <h1>多変量確率分布</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -408,16 +432,38 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
-   1. 期待値と分散
+   1. 多変量確率ベクトルと同時分布関数
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     定義 1.1 (離散型の同時分布)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     例 1.2 (2つのサイコロの目)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     定義 1.3 (連続型の同時分布)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     例 1.4 (線形和によって表現される同時密度関数)
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
+  <a class="reference internal nav-link" href="#id7">
    2. 周辺分布と条件付確率
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
+  <a class="reference internal nav-link" href="#id8">
    3. 多次元確率分布
   </a>
  </li>
@@ -432,15 +478,175 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>多次元確率分布<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<h1>多変量確率分布<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
 <section id="id2">
-<h2>1. 期待値と分散<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
-</section>
+<h2>1. 多変量確率ベクトルと同時分布関数<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
 <section id="id3">
-<h2>2. 周辺分布と条件付確率<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
-</section>
+<h3>定義 1.1 (離散型の同時分布)<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(n\)</span> 個の離散型の確率変数 <span class="math notranslate nohighlight">\(X_1, \cdots, X_n\)</span> について</p>
+<div class="math notranslate nohighlight">
+\[
+    {\rm P}(X_1 = x_1, \dots, X_n = x_n) = f(x_1, \dots, x_n)
+\]</div>
+<p>を <strong>同時確率関数</strong> (joint probability mass function) という. このとき関数 <span class="math notranslate nohighlight">\(f\)</span> は</p>
+<div class="math notranslate nohighlight" id="multi-discrete-distribution">
+\[\begin{split}
+    \begin{align}
+        &amp; f(x_1, \dots, x_n) \geq 0 \\
+        &amp; \sum_{ i }{ \sum_{ j }{ \cdots \sum_{ k }{ f(x_{1i}, x_{2j}, \dots, x_{nk}) } } } = 1
+    \end{align}
+\end{split}\]</div>
+<p>を満たす.</p>
+</div></section>
 <section id="id4">
-<h2>3. 多次元確率分布<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<h3>例 1.2 (2つのサイコロの目)<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p>2 つのサイコロの目 <span class="math notranslate nohighlight">\(P, Q\)</span> の大きい方, 小さい方をそれぞれ <span class="math notranslate nohighlight">\(X_1 = \max{(P, Q)}\)</span>, <span class="math notranslate nohighlight">\(X_2 = \min{(P, Q)}\)</span> とする. ただし <span class="math notranslate nohighlight">\(x \geq y\)</span> のとき <span class="math notranslate nohighlight">\(\max{(x, y)} = x\)</span>, <span class="math notranslate nohighlight">\(\min{(x, y)} = y\)</span> である. このとき <span class="math notranslate nohighlight">\(X_1 = x_1\)</span> かつ <span class="math notranslate nohighlight">\(X_2 = x_2\)</span> となる確率 <span class="math notranslate nohighlight">\(f(x_1, x_2)\)</span> とする. このとき以下の確率表となる.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(X_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(3\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(4\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(5\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(6\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(X_2\)</span></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/36\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2/36\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2/36\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2/36\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2/36\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2/36\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/36\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2/36\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2/36\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2/36\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2/36\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/36\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2/36\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2/36\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2/36\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(4\)</span></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/36\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2/36\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2/36\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(5\)</span></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/36\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2/36\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(6\)</span></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/36\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>よって <span class="math notranslate nohighlight">\(f(x_1, x_2) \geq 0\)</span> であり,</p>
+<div class="math notranslate nohighlight">
+\[
+    \sum_{x_1=1}^{6}{ \sum_{x_2=1}^{6}{f(x_1, x_2)} } = 1.
+\]</div>
+</section>
+<section id="id5">
+<h3>定義 1.3 (連続型の同時分布)<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(n\)</span> 個の連続型の確率変数 <span class="math notranslate nohighlight">\(X=(X_1 \cdots X_n)'\)</span> について <span class="math notranslate nohighlight">\(X \in \mathbb{X}\)</span> となる確率が以下で定義されるとする.</p>
+<div class="math notranslate nohighlight">
+\[
+    {\rm P}(X \in \mathbb{X}) = \int_{\mathbb{X}}{f(x_1, \dots, x_n)dx_1 \dots dx_n}
+\]</div>
+<p>このとき <span class="math notranslate nohighlight">\(f\)</span> は <strong>同時密度関数</strong> (joint probability density function) といい</p>
+<div class="math notranslate nohighlight" id="multi-continuous-distribution">
+\[\begin{split}
+    \begin{align}
+        &amp; f(x_1, \dots, x_n) \geq 0 \\
+        &amp; \int_{x_1}{ \cdots \int_{x_n}{ f(x_1, \dots, x_n)dx_n \dots dx_1 } } = 1 
+    \end{align}
+\end{split}\]</div>
+<p>である.</p>
+</div></section>
+<section id="id6">
+<h3>例 1.4 (線形和によって表現される同時密度関数)<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<p>以下の同時密度関数が与えられたとする.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        f(x, y) = \begin{cases}
+            x + y &amp;(0 \leq x, y \leq 1) \\
+            0     &amp;(\text{otherwise})
+        \end{cases}
+    \end{align}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(0 \leq x \leq \dfrac{1}{2}\)</span>, <span class="math notranslate nohighlight">\(0 \leq y \leq \dfrac{1}{4}\)</span> となる確率は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        P \biggl(0 \leq x \leq \frac{1}{2}, 0 \leq y \leq \frac{1}{4} \biggr)
+            &amp;= \int_{0}^{1/4}{ \int_{0}^{1/2}{(x + y)dx}dy } \\
+            &amp;= \int_{0}^{1/4}{ \biggl[ \frac{1}{2}x^2 + xy \biggr]_{0}^{1/2} dy } \\
+            &amp;= \int_{0}^{1/4}{ \biggl( \frac{1}{8} + \frac{1}{2}y \biggr) dy } \\
+            &amp;= \biggl[ \frac{1}{8}y + \frac{1}{4}y^2 \biggr]_{0}^{1/4} \\
+            &amp;= \frac{3}{64}
+    \end{align}
+\end{split}\]</div>
+<p>となる.<br />
+　もちろん <span class="math notranslate nohighlight">\(f(x, y) \geq 0\)</span> で</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        \int_{0}^{1}{ \int_{0}^{1}{(x + y)dx}dy }
+            &amp;= \int_{0}^{1}{ \biggl[ \frac{1}{2}x^2 + xy \biggr]_{0}^{1} dy } \\
+            &amp;= \int_{0}^{1}{ \biggl( \frac{1}{2} + y \biggr) dy } \\
+            &amp;= \biggl[ \frac{1}{2}y + \frac{1}{2}y^2 \biggr]_{0}^{1} \\
+            &amp;= 1.
+    \end{align}
+\end{split}\]</div>
+</section>
+</section>
+<section id="id7">
+<h2>2. 周辺分布と条件付確率<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="id8">
+<h2>3. 多次元確率分布<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h2>
 </section>
 </section>
 
