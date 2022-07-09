@@ -17,3 +17,8 @@ parts:
     - file: analytics/tsa/move_average
     - file: analytics/tsa/arima
     - file: analytics/tsa/state_space_model
+
+  - caption: 補足
+    chapters:
+    - file: analytics/math/calculus
+    - file: analytics/math/linear_algebra
