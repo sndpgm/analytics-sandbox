@@ -169,6 +169,23 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  補足
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../math/calculus.html">
+   微分積分学
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../math/linear_algebra.html">
+   線形代数学
+  </a>
+ </li>
+</ul>
 
     </div>
 </nav></div>
@@ -426,15 +443,30 @@ title="Print to PDF"
      命題 2.4 (共分散行列の性質)
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     命題 2.5 (分散共分散行列の定値性)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     命題 2.6 (分散共分散行列のコレスキー分解)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     例 2.7 (コレスキー分解を用いた多変数正規分布乱数の生成)
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id12">
+  <a class="reference internal nav-link" href="#id15">
    2. 周辺分布と条件付確率
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id13">
+  <a class="reference internal nav-link" href="#id16">
    3. 多次元確率分布
   </a>
  </li>
@@ -509,15 +541,30 @@ title="Print to PDF"
      命題 2.4 (共分散行列の性質)
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     命題 2.5 (分散共分散行列の定値性)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     命題 2.6 (分散共分散行列のコレスキー分解)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     例 2.7 (コレスキー分解を用いた多変数正規分布乱数の生成)
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id12">
+  <a class="reference internal nav-link" href="#id15">
    2. 周辺分布と条件付確率
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id13">
+  <a class="reference internal nav-link" href="#id16">
    3. 多次元確率分布
   </a>
  </li>
@@ -730,10 +777,10 @@ title="Print to PDF"
 <div class="math notranslate nohighlight" id="multi-expectation-property">
 \[\begin{split}
     \begin{align}
-        &amp; \mathbb{E}(A) = A \\
-        &amp; \mathbb{E}(X + a) = \mathbb{E}(X) + a \\
-        &amp; \mathbb{E}(AX) = A\mathbb{E}(X)  \\
-        &amp; \mathbb{E}(X_1 + X_2) = \mathbb{E}(X_1) + \mathbb{E}(X_2)
+        &amp;\text{性質(1)} \quad \mathbb{E}(A) = A \\
+        &amp;\text{性質(2)} \quad \mathbb{E}(X + a) = \mathbb{E}(X) + a \\
+        &amp;\text{性質(3)} \quad \mathbb{E}(AX) = A\mathbb{E}(X)  \\
+        &amp;\text{性質(4)} \quad \mathbb{E}(X_1 + X_2) = \mathbb{E}(X_1) + \mathbb{E}(X_2)
     \end{align}
 \end{split}\]</div>
 </div></section>
@@ -743,12 +790,12 @@ title="Print to PDF"
 <p id="multi-variance"><span class="math notranslate nohighlight">\(n\)</span> 次元確率ベクトル <span class="math notranslate nohighlight">\(X=[X_1 \cdots X_n]'\)</span> と <span class="math notranslate nohighlight">\(m\)</span> 次元確率ベクトル <span class="math notranslate nohighlight">\(Y=[Y_1 \cdots Y_m]'\)</span> の 2 つの確率ベクトルに対して, <span class="math notranslate nohighlight">\(X\)</span> と <span class="math notranslate nohighlight">\(Y\)</span> の <strong>共分散行列</strong> (covariance matrix) を以下のように定義する.</p>
 <div class="math notranslate nohighlight">
 \[
-    \mathbb{Cov}(X, Y) = \mathbb{E}[ (X - \mathbb{E}[X])'(Y - \mathbb{E}[Y]) ]
+    \mathbb{Cov}(X, Y) = \mathbb{E}[ (X - \mathbb{E}[X])(Y - \mathbb{E}[Y])' ]
 \]</div>
 <p>特に, <span class="math notranslate nohighlight">\(\mathbb{Var}(X) = \mathbb{Cov}(X, X)\)</span> を <span class="math notranslate nohighlight">\(X\)</span> の <strong>分散共分散行列</strong> (variance-covariance matrix) と呼ぶ. つまり,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-    \mathbb{Var}(X) = \mathbb{E}[ (X - \mathbb{E}[X])'(X - \mathbb{E}[X]) ] = \begin{bmatrix}
+    \mathbb{Var}(X) = \mathbb{E}[ (X - \mathbb{E}[X])(X - \mathbb{E}[X])' ] = \begin{bmatrix}
             {\rm Cov}(X_1, X_1) &amp; {\rm Cov}{X_1, X_2} &amp; \cdots &amp; {\rm Cov}(X_1, X_n) \\
             {\rm Cov}(X_2, X_1) &amp; {\rm Cov}{X_2, X_2} &amp; \cdots &amp; {\rm Cov}(X_2, X_n) \\
             \vdots              &amp; \vdots              &amp; \ddots &amp; \vdots              \\
@@ -763,21 +810,180 @@ title="Print to PDF"
 <div class="math notranslate nohighlight" id="multi-variance-property">
 \[\begin{split}
     \begin{align}
-        &amp; \mathbb{Cov}(X + a, Y + b) = \mathbb{Cov}(X, Y)                          \\
-        &amp; \mathbb{Cov}(AX, BY)       = A \mathbb{Cov}(X, Y) B'                     \\
-        &amp; \mathbb{Cov}(X_1 + X_2, Y) = \mathbb{Cov}(X_1, Y) + \mathbb{Cov}(X_2, Y) \\
-        &amp; \mathbb{Cov}(X, Y_1 + Y_2) = \mathbb{Cov}(X, Y_1) + \mathbb{Cov}(X, Y_2) \\
-        &amp; \mathbb{Var}(X + a)        = \mathbb{Var}(X)                             \\
-        &amp; \mathbb{Var}(AX)           = A \mathbb{Var}(X) A'
+        &amp;\text{性質(1)} \quad \mathbb{Cov}(X + a, Y + b) = \mathbb{Cov}(X, Y)                          \\
+        &amp;\text{性質(2)} \quad \mathbb{Cov}(AX, BY)       = A \mathbb{Cov}(X, Y) B'                     \\
+        &amp;\text{性質(3)} \quad \mathbb{Cov}(X_1 + X_2, Y) = \mathbb{Cov}(X_1, Y) + \mathbb{Cov}(X_2, Y) \\
+        &amp;\text{性質(4)} \quad \mathbb{Cov}(X, Y_1 + Y_2) = \mathbb{Cov}(X, Y_1) + \mathbb{Cov}(X, Y_2) \\
+        &amp;\text{性質(5)} \quad \mathbb{Var}(X + a)        = \mathbb{Var}(X)                             \\
+        &amp;\text{性質(6)} \quad \mathbb{Var}(AX)           = A \mathbb{Var}(X) A'
     \end{align}
 \end{split}\]</div>
-</div></section>
+</div>
+<p><u>証明</u><br />
+　性質(1)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        \mathbb{Cov}(X + a, Y + b) &amp;= \mathbb{E} [ (X + a - \mathbb{E}[X + a])(Y + b - \mathbb{E}[Y + b])' ] \\
+                                   &amp;= \mathbb{E} [ (X + a - \mathbb{E}[X] - a)(Y + b - \mathbb{E}[Y] - b)' ] &amp;\quad (\text{期待値の性質(1)}) \\
+                                   &amp;= \mathbb{E} [ (X - \mathbb{E}[X])(Y - \mathbb{E}[Y])' ] \\
+                                   &amp;= \mathbb{Cov}(X, Y).
+    \end{align}
+\end{split}\]</div>
+<p>性質(2)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        \mathbb{Cov}(AX, BYb) &amp;= \mathbb{E} [ (AX - \mathbb{E}[AX])(BY - \mathbb{E}[BY])' ] \\
+                              &amp;= \mathbb{E} [ AX - A\mathbb{E}[X])(BY - B\mathbb{E}[Y])' ] \quad (\text{期待値の性質(3)}) \\
+                              &amp;= \mathbb{E} [ A(X - \mathbb{E}[X]) (Y - \mathbb{E}[Y])' B' ] \quad (\text{転置行列について} (PQ)' = Q'P') \\
+                              &amp;= A \mathbb{E} [ (X - \mathbb{E}[X]) (Y - \mathbb{E}[Y])' ] B' \quad (\text{期待値の性質(3)}) \\
+                              &amp;= A \mathbb{Cov}(X, Y) B'.
+    \end{align}
+\end{split}\]</div>
+<p>性質(3)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        \mathbb{Cov}(X_1 + X_2, Y) &amp;= \mathbb{E} [ (X_1 + X_2 - \mathbb{E}[X_1 + X_2])(Y - \mathbb{E}[Y])' ] \\
+                                   &amp;= \mathbb{E} [ \{(X_1 - \mathbb{E} (X_1) \} + \{ X_2 - \mathbb{E}[X_2] \} )(Y - \mathbb{E}[Y])' ] \\
+                                   &amp;= \mathbb{E} [ (X_1 - \mathbb{E} (X_1)) (Y - \mathbb{E}[Y])' + ( X_2 - \mathbb{E}[X_2] )(Y - \mathbb{E}[Y])' ] \\
+                                   &amp;= \mathbb{E} [ (X_1 - \mathbb{E} (X_1)) (Y - \mathbb{E}[Y])' ] + \mathbb{E} [ ( X_2 - \mathbb{E}[X_2] )(Y - \mathbb{E}[Y])' ] \quad (\text{期待値の性質(4)}) \\
+                                   &amp;= \mathbb{Cov}(X_1, Y) + \mathbb{Cov}(X_2, Y).
+    \end{align}
+\end{split}\]</div>
+<p>性質(4)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        \mathbb{Cov}(X, Y_1 + Y_2) &amp;= \mathbb{E} [ (X - \mathbb{E}[X])(Y_1 + Y_2 - \mathbb{E}[Y_1 + Y_2])' ] \\
+                                   &amp;= \mathbb{E} [ (X - \mathbb{E}[X])\{(Y_1 - \mathbb{E} (Y_1) \} + \{ Y_2 - \mathbb{E}[Y_2] \} )' ] \\
+                                   &amp;= \mathbb{E} [ (X - \mathbb{E}[X]) (Y_1 - \mathbb{E}[Y_1])' + ( X - \mathbb{E}[X] )(Y_2 - \mathbb{E}[Y_2])' ] \\
+                                   &amp;= \mathbb{E} [ (X - \mathbb{E}[X]) (Y_1 - \mathbb{E}[Y_1])' ] + \mathbb{E} [ ( X - \mathbb{E}[X] )(Y_2 - \mathbb{E}[Y_2])' ] \quad (\text{期待値の性質(4)}) \\
+                                   &amp;= \mathbb{Cov}(X, Y_1) + \mathbb{Cov}(X, Y_2).
+    \end{align}
+\end{split}\]</div>
+<p>性質(5) は 性質(1) を用いて</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \mathbb{Var}(X + a) = \mathbb{Cov}[X + a, X + a] = \mathbb{Cov}[X, X] = \mathbb{Var}(X).
+    \end{align}
+\]</div>
+<p>性質(6) は 性質(2) を用いて</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \mathbb{Var}(AX) = \mathbb{Cov}[AX, AX] = A \mathbb{Cov}[X, X] A' = A\mathbb{Var}(X)A'.
+    \end{align}
+\]</div>
 </section>
 <section id="id12">
-<h2>2. 周辺分布と条件付確率<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h2>
+<h3>命題 2.5 (分散共分散行列の定値性)<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>分散行分散行列は半正定値行列である. すなわち, <span class="math notranslate nohighlight">\(n\)</span> 次元確率ベクトル <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(n\)</span> 次元定数実ベクトル <span class="math notranslate nohighlight">\(u\)</span> を用いて</p>
+<div class="math notranslate nohighlight">
+\[
+    \langle u \mathbb{Var} (X), u \rangle = u' \mathbb{Var} (X) u \geq 0.
+\]</div>
+</div>
+<p><u>証明</u></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        u' \mathbb{Var} (X) u &amp;= u' \mathbb{E}[ (X - \mathbb{E}[X])(X - \mathbb{E}[X])' ] u \\
+                              &amp;= \mathbb{E}[ u' (X - \mathbb{E}[X])(X - \mathbb{E}[X])' u ] \\
+                              &amp;= \mathbb{E}[ \langle u, X - \mathbb{E}[X] \rangle \langle X - \mathbb{E}[X], u \rangle ] \\
+                              &amp;= \mathbb{E}[ (\langle u, X - \mathbb{E}[X] \rangle)^2 ] \geq 0.
+    \end{align}
+\end{split}\]</div>
+<p>等号成立は <span class="math notranslate nohighlight">\(\langle u, X - \mathbb{E}[X] \rangle = 0 \Leftrightarrow u'X = u' \mathbb{E}[X]\)</span> の時.</p>
 </section>
 <section id="id13">
-<h2>3. 多次元確率分布<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h2>
+<h3>命題 2.6 (分散共分散行列のコレスキー分解)<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(\mathbb{Var}\)</span> が正則行列である時, <strong>コレスキー分解</strong> (Cholesky decomposition) により</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb{Var}(X) = LL'
+\]</div>
+<p>を満たす正則な下三角行列 <span class="math notranslate nohighlight">\(L\)</span> が一意に存在する.</p>
+</div>
+</section>
+<section id="id14">
+<h3>例 2.7 (コレスキー分解を用いた多変数正規分布乱数の生成)<a class="headerlink" href="#id14" title="Permalink to this headline">#</a></h3>
+<p>分散共分散行列に対してコレスキー分解を行って算出された行列を用いて多変数正規分布に従った乱数を生成できる. 例えば, <span class="math notranslate nohighlight">\(X = (X_1 \cdots X_n)'\)</span> は互いに独立した標準正規分布 <span class="math notranslate nohighlight">\(N(0, 1)\)</span> に従っているものとする. すなわち, <span class="math notranslate nohighlight">\(i = 1, \cdots, n\)</span> で <span class="math notranslate nohighlight">\(X_i \sim N(0,1)\)</span> である. この時, <span class="math notranslate nohighlight">\(n\)</span> 次元の平均ベクトル <span class="math notranslate nohighlight">\(\mu\)</span>, <span class="math notranslate nohighlight">\(n \times n\)</span> 分散共分散行列 <span class="math notranslate nohighlight">\(V\)</span> の多変数正規分布の乱数 <span class="math notranslate nohighlight">\(Z = (Z_1 \cdots Z_n)'\)</span> を生成する. <span class="math notranslate nohighlight">\(V = LL'\)</span> とコレスキー分解した時,</p>
+<div class="math notranslate nohighlight">
+\[
+    Z = \mu + LX
+\]</div>
+<p>と表せる.
+　ここでは</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \mu = \begin{bmatrix}
+        3.0 \\
+        4.0 \\
+        2.0
+    \end{bmatrix} \quad
+    V = \begin{bmatrix}
+        3.0 &amp; 1.2 &amp; 1.5\\
+        1.2 &amp; 2.0 &amp; 1.7 \\
+        1.5 &amp; 1.7 &amp; 2.2
+    \end{bmatrix}
+\end{split}\]</div>
+<p>の多変数正規分布の擬似乱数を生成してみる.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># n 変数正規分布の乱数を size だけ生成.</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">100000</span>
+
+<span class="c1"># 平均ベクトル, 分散共分散行列を設定.</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">3.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">]])</span>
+<span class="n">cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">]])</span>
+
+<span class="c1"># N(0, 1) の擬似乱数を生成.</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">12345</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
+
+<span class="c1"># 設定した分散共分散行列をコレスキー分解.</span>
+<span class="n">l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cholesky</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span>
+
+<span class="c1"># 多変量正規分布の擬似乱数 z を生成.</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">mu</span> <span class="o">+</span> <span class="n">l</span> <span class="o">*</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 生成した擬似乱数の平均, 分散共分散行列が設定したものになっているかの確認.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[3.00992411]
+ [4.00137683]
+ [2.00654081]]
+[[2.994005   1.20354477 1.49936322]
+ [1.20354477 1.99552296 1.69781946]
+ [1.49936322 1.69781946 2.19759746]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id15">
+<h2>2. 周辺分布と条件付確率<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="id16">
+<h2>3. 多次元確率分布<a class="headerlink" href="#id16" title="Permalink to this headline">#</a></h2>
 </section>
 </section>
 

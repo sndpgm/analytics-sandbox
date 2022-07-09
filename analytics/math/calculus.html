@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>時系列データ &#8212; Analytics Study Blog</title>
+    <title>微分積分学 &#8212; Analytics Study Blog</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="自己回帰モデル" href="autoregressive.html" />
-    <link rel="prev" title="多変量確率分布" href="../distribution/multi_probability_distribution.html" />
+    <link rel="next" title="線形代数学" href="linear_algebra.html" />
+    <link rel="prev" title="状態空間モデル" href="../tsa/state_space_model.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -140,29 +140,29 @@ const thebe_selector_output = ".output, .cell_output"
   時系列モデリング
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tsa/time_series.html">
    時系列データ
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="autoregressive.html">
+  <a class="reference internal" href="../tsa/autoregressive.html">
    自己回帰モデル
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="move_average.html">
+  <a class="reference internal" href="../tsa/move_average.html">
    移動平均モデル
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="arima.html">
+  <a class="reference internal" href="../tsa/arima.html">
    ARMA・ARIMA・SARIMAX
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="state_space_model.html">
+  <a class="reference internal" href="../tsa/state_space_model.html">
    状態空間モデル
   </a>
  </li>
@@ -172,14 +172,14 @@ const thebe_selector_output = ".output, .cell_output"
   補足
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../math/calculus.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    微分積分学
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../math/linear_algebra.html">
+  <a class="reference internal" href="linear_algebra.html">
    線形代数学
   </a>
  </li>
@@ -242,7 +242,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/tsa/time_series.ipynb"
+        <a href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/math/calculus.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -302,7 +302,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/tsa/time_series.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/math/calculus.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -330,7 +330,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../_sources/analytics/tsa/time_series.ipynb"
+        <a href="../../_sources/analytics/math/calculus.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -379,7 +379,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>時系列データ</h1>
+                <h1>微分積分学</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -392,7 +392,8 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>時系列データ<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<h1>微分積分学<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p>アナリティクスを厳密に読み進めるために必要な微分積分学の知識を書き留める.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -408,7 +409,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./analytics/tsa"
+            path: "./analytics/math"
         },
         predefinedOutput: true
     }
@@ -422,17 +423,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../distribution/multi_probability_distribution.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../tsa/state_space_model.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">多変量確率分布</p>
+            <p class="prev-next-title">状態空間モデル</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="autoregressive.html" title="next page">
+    <a class='right-next' id="next-link" href="linear_algebra.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">自己回帰モデル</p>
+        <p class="prev-next-title">線形代数学</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

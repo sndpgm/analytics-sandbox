@@ -1,0 +1,818 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>線形代数学 &#8212; Analytics Study Blog</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="微分積分学" href="calculus.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Analytics Study Blog</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to my Analytics Sandbox
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  確率変数と確率分布
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../distribution/random_variables.html">
+   確率変数
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../distribution/probability_distribution.html">
+   確率分布
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../distribution/multi_probability_distribution.html">
+   多変量確率分布
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  時系列モデリング
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tsa/time_series.html">
+   時系列データ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tsa/autoregressive.html">
+   自己回帰モデル
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tsa/move_average.html">
+   移動平均モデル
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tsa/arima.html">
+   ARMA・ARIMA・SARIMAX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tsa/state_space_model.html">
+   状態空間モデル
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  補足
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="calculus.html">
+   微分積分学
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   線形代数学
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/math/linear_algebra.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/sndpgm/analytics-sandbox"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/math/linear_algebra.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/analytics/math/linear_algebra.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   転置行列の定義
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   転置行列の基本的な性質
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   転置行列の正方行列に対する性質
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   対称行列
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   対称行列の性質
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   随伴行列
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   エルミート行列
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   行列の定値性
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   正定値行列・半正定値行列の性質
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>線形代数学</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   転置行列の定義
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   転置行列の基本的な性質
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   転置行列の正方行列に対する性質
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   対称行列
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   対称行列の性質
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   随伴行列
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   エルミート行列
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   行列の定値性
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   正定値行列・半正定値行列の性質
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>線形代数学<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p>アナリティクスを厳密に読み進めるために必要な線型代数学の知識を書き留める.</p>
+<section id="id2">
+<h2>転置行列の定義<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(m \times n\)</span> 行列</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        A = \begin{bmatrix}
+            a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\
+            a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\
+            \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+            a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
+        \end{bmatrix}
+    \end{align}
+\end{split}\]</div>
+<p>に対し, その行と列を置き換えた <span class="math notranslate nohighlight">\(n \times m\)</span> 行列</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        A^{{\rm T}} = \begin{bmatrix}
+            a_{11} &amp; a_{21} &amp; \cdots &amp; a_{m1} \\
+            a_{12} &amp; a_{22} &amp; \cdots &amp; a_{m2} \\
+            \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+            a_{1n} &amp; a_{2n} &amp; \cdots &amp; a_{mn}
+        \end{bmatrix}
+    \end{align}
+\end{split}\]</div>
+<p>を <span class="math notranslate nohighlight">\(A\)</span> の<strong>転置行列</strong> (transposed matrix) という.</p>
+</div>
+<p>専門書や流派によっては <span class="math notranslate nohighlight">\(A^t, {}^tA, {}^{{\rm T}}A, A^{tr}, A'\)</span> などと書くこともある.</p>
+</section>
+<section id="id3">
+<h2>転置行列の基本的な性質<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span> を <span class="math notranslate nohighlight">\(m \times n\)</span> 行列とする. このとき,</p>
+<ul class="simple">
+<li><p><u>性質1</u>　<span class="math notranslate nohighlight">\((A^{{\rm T}})^{{\rm T}} = A\)</span></p></li>
+<li><p><u>性質2</u>　<span class="math notranslate nohighlight">\((A + B)^{{\rm T}} = A^{{\rm T}} + B^{{\rm T}}\)</span></p></li>
+<li><p><u>性質3</u>　<span class="math notranslate nohighlight">\(k\)</span> を定数とすると <span class="math notranslate nohighlight">\((kA)^{{\rm T}} = kA^{{\rm T}}\)</span></p></li>
+<li><p><u>性質4</u>　<span class="math notranslate nohighlight">\(C\)</span> を対角行列とすると, <span class="math notranslate nohighlight">\(C^{{\rm T}} = C\)</span></p></li>
+</ul>
+<p>また, <span class="math notranslate nohighlight">\(A\)</span>　を <span class="math notranslate nohighlight">\(m \times n\)</span> 行列, <span class="math notranslate nohighlight">\(B\)</span>　を <span class="math notranslate nohighlight">\(n \times l\)</span> 行列とすると,</p>
+<ul class="simple">
+<li><p><u>性質5</u>　<span class="math notranslate nohighlight">\((AB)^{{\rm T}} = B^{{\rm T}} A^{{\rm T}}\)</span></p></li>
+</ul>
+</div>
+<p><u>証明</u></p>
+<p>性質1 から性質4 までは明らか.<br />
+　性質5 については, <span class="math notranslate nohighlight">\(A = (a_{ij}), B = (b_{ij}), A^{{\rm T}} = (a'_{ij}), B^{{\rm T}} = (b'_{ij})\)</span> と定めると, <span class="math notranslate nohighlight">\(a'_{ij} = a_{ji}, b'_{ij} = b_{ji}\)</span> である. さらに <span class="math notranslate nohighlight">\(C = (c_{ij}) = AB, C' = (c'_{ij}) = B^{{\rm T}} A^{{\rm T}}\)</span> と定めると,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+    &amp;c_{ij} = \sum_{k=1}{n}{a_{ik}}{b_{kj}} \\
+    &amp;c'_{ij} = \sum_{k=1}{n}{b'_{ik}}{a'_{kj}} = \sum_{k=1}{n}{a_{jk}}{b_{ki}}
+\end{align}
+\end{split}\]</div>
+<p>であるから, <span class="math notranslate nohighlight">\(c_{ij} = c'_{ji}\)</span> なため, <span class="math notranslate nohighlight">\(C^{{\rm T}} = C'\)</span> となる.</p>
+</section>
+<section id="id4">
+<h2>転置行列の正方行列に対する性質<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(A\)</span> を <span class="math notranslate nohighlight">\(n\)</span> 次正方行列とする. このとき,</p>
+<ul class="simple">
+<li><p><u>性質1</u>　<span class="math notranslate nohighlight">\({\rm tr} A = {\rm tr} A^{{\rm T}}\)</span></p></li>
+<li><p><u>性質2</u>　<span class="math notranslate nohighlight">\({\rm det} A = {\rm det} A^{{\rm T}}\)</span></p></li>
+<li><p><u>性質3</u>　転置行列の固有値は, 元の行列の固有値と等しい.</p></li>
+<li><p><u>性質4</u>　<span class="math notranslate nohighlight">\({\rm rank}A = {\rm rank}A^{{\rm T}}\)</span></p></li>
+<li><p><u>性質5</u>　<span class="math notranslate nohighlight">\(A\)</span> を実正方行列とすると, 列ベクトル <span class="math notranslate nohighlight">\(v, w \in \mathbb{R}^n\)</span> の内積について
+$<span class="math notranslate nohighlight">\(
+  \langle  Av, w \rangle = \langle  v, A^{{\rm T}}w \rangle
+\)</span>$</p></li>
+<li><p><u>性質6</u>　<span class="math notranslate nohighlight">\(A\)</span> を正則とすると,
+$<span class="math notranslate nohighlight">\(
+  (A^{{\rm T}})^{-1} = (A^{-1})^{{\rm T}}
+\)</span>$</p></li>
+</ul>
+</div>
+<p><u>証明</u></p>
+<p>性質1 は</p>
+<div class="math notranslate nohighlight">
+\[
+    {\rm tr} A = \sum_{k=1}^{n} {a_{kk}} = {\rm tr} A^{{\rm T}}.
+\]</div>
+<p>性質2 は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp; {\rm det} A = \sum_{\sigma \in S_n} { ({\rm sgn} \sigma)a_{1 \sigma(1)} a_{2 \sigma(2)} \dots a_{n \sigma(n)} } \\
+        &amp; {\rm det} A^{{\rm T}} = \sum_{\sigma \in S_n} { ({\rm sgn} \sigma)a_{\sigma(1) 1} a_{\sigma(2) 2} \dots a_{\sigma(n) n} }
+    \end{align}
+\end{split}\]</div>
+<p>である. ここで第 2 式の右辺を最初の添字に対して昇順に並び替えると,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        a_{\sigma(1) 1} a_{\sigma(2) 2} \dots a_{\sigma(n) n } = a_{1 \sigma ^{-1}(1)} a_{ 2 \sigma^{-1}(2) } \dots a_{ n \sigma^{-1}(n) } \\
+    \end{align}
+\end{split}\]</div>
+<p>であることが分かる. <span class="math notranslate nohighlight">\({\rm sgn} \sigma = {\rm sgn} \sigma^{-1}\)</span> であるから結局</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        {\rm det} A^{{\rm T}} &amp;= \sum_{\sigma \in S_n} { ({\rm sgn} \sigma)a_{\sigma(1) 1} a_{\sigma(2) 2} \dots a_{\sigma(n) n} } \\
+                              &amp;= \sum_{\sigma \in S_n} { ({\rm sgn} \sigma^{-1}) a_{1 \sigma ^{-1}(1)} a_{ 2 \sigma^{-1}(2) } \dots a_{ n \sigma^{-1}(n) } } \\
+                              &amp;= \sum_{\sigma^{-1} \in S_n} { ({\rm sgn} \sigma^{-1}) a_{1 \sigma ^{-1}(1)} a_{ 2 \sigma^{-1}(2) } \dots a_{ n \sigma^{-1}(n) } } \\
+                              &amp;= {\rm det} A.
+    \end{align}
+\end{split}\]</div>
+</section>
+<section id="id5">
+<h2>対称行列<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(n\)</span> 次正方行列 <span class="math notranslate nohighlight">\(A\)</span> について</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        A^{{\rm T}} = A
+    \end{align}
+\]</div>
+<p>が成立するとき, <span class="math notranslate nohighlight">\(A\)</span> を<strong>対称行列</strong> (symmetric matrix) という.</p>
+</div></section>
+<section id="id6">
+<h2>対称行列の性質<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<ul class="simple">
+<li><p><u>性質1</u>　<span class="math notranslate nohighlight">\(A\)</span> を正方行列とするとき, <span class="math notranslate nohighlight">\(A + A^{{\rm T}}\)</span>, <span class="math notranslate nohighlight">\(AA^{{\rm T}}\)</span> は対称行列になる.</p></li>
+<li><p><u>性質2</u>　<span class="math notranslate nohighlight">\(A\)</span> を実対象行列とするとき, <span class="math notranslate nohighlight">\(x, y \in \mathbb{C}^n\)</span> を列ベクトルとすると, 内積について, <span class="math notranslate nohighlight">\(\langle Ax, y \rangle = \langle x, Ay \rangle\)</span>が成り立つ.</p></li>
+<li><p><u>性質3</u>　実対称行列の固有値は全て実数である.</p></li>
+<li><p><u>性質4</u>　実対称行列 <span class="math notranslate nohighlight">\(A\)</span> は実直行行列 <span class="math notranslate nohighlight">\(P\)</span> により対角化可能である. すなわち, <span class="math notranslate nohighlight">\(T = P^{-1}AP\)</span> が対角行列にできる.</p></li>
+</ul>
+</div>
+<p><u>証明</u></p>
+<p>性質1 について</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        (A + A^{{\rm T}})^{{\rm T}} = A^{{\rm T}} + (A^{{\rm T}})^{{\rm T}} = A^{{\rm T}} + A = A + A^{{\rm T}}
+    \end{align}
+\]</div>
+<p>より <span class="math notranslate nohighlight">\(A + A^{{\rm T}}\)</span> は対称行列である. また</p>
+<div class="math notranslate nohighlight">
+\[
+    AA^{{\rm T}} = (A^{{\rm T}})^{{\rm T}} A^{{\rm T}} = A A^{{\rm T}}
+\]</div>
+<p>より対称行列である.</p>
+<p><a class="reference external" href="https://mathlandscape.com/hermitian-transpose/">https://mathlandscape.com/hermitian-transpose/</a></p>
+</section>
+<section id="id7">
+<h2>随伴行列<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h2>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(A = (a_ij)\)</span> を <span class="math notranslate nohighlight">\(m \times n\)</span> 行列とする. <span class="math notranslate nohighlight">\(A\)</span> の各成分で複素共役をとり, 転置させた <span class="math notranslate nohighlight">\(n \times m\)</span> 行列</p>
+<div class="math notranslate nohighlight">
+\[
+A^* = \bar{A}^{{\rm T}} = (\bar{a}_{ij})^{{\rm T}} = (\bar{a}_{ji})
+\]</div>
+<p>を<strong>随伴行列</strong> (adjoint matrix) または <strong>エルミート転置</strong> (<strong>共役転置</strong>; Hermitian transpose) という.</p>
+</div>
+<p>以下は全て随伴行列である.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp; \begin{bmatrix}
+            1 &amp; i   \\
+            0 &amp; 2-i \\
+        \end{bmatrix}^* 
+        = \begin{bmatrix}
+            1 &amp; 0   \\
+            i &amp; 2+i \\
+        \end{bmatrix} \\
+        &amp; \begin{bmatrix}
+            1   &amp; 2+i &amp; 2i \\
+            1-i &amp; -3i &amp; 0  \\
+        \end{bmatrix}^* 
+        = \begin{bmatrix}
+            1   &amp; 1+i \\
+            2-i &amp; 3i  \\
+            -2i &amp; 0   \\
+        \end{bmatrix}
+    \end{align}
+\end{split}\]</div>
+</section>
+<section id="id8">
+<h2>エルミート行列<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h2>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>正方行列 <span class="math notranslate nohighlight">\(A\)</span> が</p>
+<div class="math notranslate nohighlight">
+\[
+A^* = A
+\]</div>
+<p>を満たすとき, <span class="math notranslate nohighlight">\(A\)</span> を<strong>エルミート行列</strong> (Hermitian matrix) という. ただし, <span class="math notranslate nohighlight">\(A^* = \bar{A}^{{\rm T}}\)</span> は随伴行列を指す.</p>
+</div>
+<p>以下は全てエルミート行列である.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{bmatrix}
+        1  &amp; i \\
+        -i &amp; 2 \\
+    \end{bmatrix}, \quad
+    \begin{bmatrix}
+        0    &amp; 1+i &amp; 2-3i \\
+        1-i  &amp; 3   &amp; 2 \\
+        2+3i &amp; 2   &amp; 4
+    \end{bmatrix}, \quad
+    \begin{bmatrix}
+        1 &amp; 2 &amp; 3 \\
+        2 &amp; 1 &amp; 2 \\
+        3 &amp; 2 &amp; 1
+    \end{bmatrix} \quad (\text{実対称行列})
+\end{split}\]</div>
+</section>
+<section id="id9">
+<h2>行列の定値性<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h2>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(A\)</span> を <span class="math notranslate nohighlight">\(n\)</span> 次エルミート行列とする. 任意の列ベクトル <span class="math notranslate nohighlight">\(x \in \mathbb{C}^n \text{ \\ } {0}\)</span> に対し内積</p>
+<div class="math notranslate nohighlight">
+\[
+\langle  Ax, x \rangle = x^* A x &gt; 0
+\]</div>
+<p>が成立するとき, <span class="math notranslate nohighlight">\(A\)</span> を<strong>正定値行列</strong> (positive definite matrix) という. また,</p>
+<div class="math notranslate nohighlight">
+\[
+\langle  Ax, x \rangle = x^* A x \geq 0
+\]</div>
+<p>が成立するとき, <span class="math notranslate nohighlight">\(A\)</span> を<strong>半正定値行列</strong> (positive semidefinite matrix) という.</p>
+</div></section>
+<section id="id10">
+<h2>正定値行列・半正定値行列の性質<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h2>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(A\)</span> を <span class="math notranslate nohighlight">\(n\)</span> 次エルミート行列とする. このとき,</p>
+<ul class="simple">
+<li><p><u>性質1</u>　<span class="math notranslate nohighlight">\(A\)</span> が正定値行列（半正定値行列）である必要十分条件は <span class="math notranslate nohighlight">\(A\)</span> の固有値が正の実数 (非負の実数) となることである.</p></li>
+<li><p><u>性質2</u>　<span class="math notranslate nohighlight">\(A\)</span> が半正定値行列である必要十分条件は <span class="math notranslate nohighlight">\(A\)</span> がグラム行列となることである. すなわち, ある <span class="math notranslate nohighlight">\(n\)</span> 次正方行列 <span class="math notranslate nohighlight">\(B\)</span> が存在して, <span class="math notranslate nohighlight">\(A = B^* B\)</span> と表せることである.</p></li>
+<li><p><u>性質3</u>　<span class="math notranslate nohighlight">\(A\)</span> が正定値行列のときは正則(可逆)であり，逆行列 <span class="math notranslate nohighlight">\(A^{-1}\)</span> も正定値行列である.</p></li>
+<li><p><u>性質4</u>　半正定値行列 <span class="math notranslate nohighlight">\(A\)</span> が正定値であるための必要十分条件は正則であることである.</p></li>
+</ul>
+</div>
+<p><u>証明</u></p>
+<p><a class="reference external" href="https://mathlandscape.com/positive-definite-matrix/">https://mathlandscape.com/positive-definite-matrix/</a></p>
+<p>性質4 について,<br />
+( <span class="math notranslate nohighlight">\(\text{半正定値行列} A \text{は正定値} \Rightarrow A \text{は正則行列}\)</span> ) 性質3 から明らか.<br />
+( <span class="math notranslate nohighlight">\(\text{半正定値行列} A \text{は正定値} \Leftarrow A \text{は正則行列}\)</span> ) 行列 <span class="math notranslate nohighlight">\(A\)</span> が正則のとき, 方程式 <span class="math notranslate nohighlight">\(Ax = 0\)</span> は自明解 <span class="math notranslate nohighlight">\(x=0\)</span> のみを解に持つので, <span class="math notranslate nohighlight">\(x \neq 0\)</span> ならば <span class="math notranslate nohighlight">\(Ax \neq 0\)</span> より <span class="math notranslate nohighlight">\(x^* Ax \neq 0\)</span> である. <span class="math notranslate nohighlight">\(A\)</span> は半正定値行列であることから正定値行列.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./analytics/math"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="calculus.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">微分積分学</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By sndpgm<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
