@@ -392,46 +392,61 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
-   転置行列の定義
+   定義 (行列の和・差・定数倍)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id3">
-   転置行列の基本的な性質
+   定義 (零行列)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id4">
-   転置行列の正方行列に対する性質
+   定理 (行列和の結合法則・交換法則)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id5">
-   対称行列
+   転置行列の定義
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id6">
-   対称行列の性質
+   転置行列の基本的な性質
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id7">
-   随伴行列
+   転置行列の正方行列に対する性質
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id8">
-   エルミート行列
+   対称行列
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id9">
-   行列の定値性
+   対称行列の性質
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id10">
+   随伴行列
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   エルミート行列
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   行列の定値性
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
    正定値行列・半正定値行列の性質
   </a>
  </li>
@@ -456,46 +471,61 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
-   転置行列の定義
+   定義 (行列の和・差・定数倍)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id3">
-   転置行列の基本的な性質
+   定義 (零行列)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id4">
-   転置行列の正方行列に対する性質
+   定理 (行列和の結合法則・交換法則)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id5">
-   対称行列
+   転置行列の定義
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id6">
-   対称行列の性質
+   転置行列の基本的な性質
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id7">
-   随伴行列
+   転置行列の正方行列に対する性質
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id8">
-   エルミート行列
+   対称行列
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id9">
-   行列の定値性
+   対称行列の性質
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id10">
+   随伴行列
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   エルミート行列
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   行列の定値性
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
    正定値行列・半正定値行列の性質
   </a>
  </li>
@@ -513,7 +543,60 @@ title="Print to PDF"
 <h1>線形代数学<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
 <p>アナリティクスを厳密に読み進めるために必要な線型代数学の知識を書き留める.</p>
 <section id="id2">
-<h2>転置行列の定義<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<h2>定義 (行列の和・差・定数倍)<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(m \times n\)</span> 行列 <span class="math notranslate nohighlight">\(A = (a_{ij}), B = (b_{ij})\)</span> において <span class="math notranslate nohighlight">\(A + B\)</span>, <span class="math notranslate nohighlight">\(A - B\)</span> を以下のように定める.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp;A + B = (a_{ij} + b_{ij}) = \begin{bmatrix}
+            a_{11} + b_{11} &amp; a_{12} + b_{12} &amp; \cdots &amp; a_{1n} + b_{1n} \\
+            a_{21} + b_{21} &amp; a_{22} + b_{22} &amp; \cdots &amp; a_{2n} + b_{2n} \\
+            \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+            a_{m1} + b_{m1} &amp; a_{m2} + b_{m2} &amp; \cdots &amp; a_{mn} + b_{mn}
+        \end{bmatrix} \\
+        \\
+        &amp;A - B = (a_{ij} - b_{ij}) = \begin{bmatrix}
+            a_{11} - b_{11} &amp; a_{12} - b_{12} &amp; \cdots &amp; a_{1n} - b_{1n} \\
+            a_{21} - b_{21} &amp; a_{22} - b_{22} &amp; \cdots &amp; a_{2n} - b_{2n} \\
+            \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+            a_{m1} - b_{m1} &amp; a_{m2} - b_{m2} &amp; \cdots &amp; a_{mn} - b_{mn}
+        \end{bmatrix}
+    \end{align}
+\end{split}\]</div>
+<p>また, <span class="math notranslate nohighlight">\(c \in \mathbb{C}\)</span> を用いて <span class="math notranslate nohighlight">\(cA\)</span> を以下のように定める.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        cA = (ca_{ij}) = \begin{bmatrix}
+            ca_{11} &amp; ca_{12} &amp; \cdots &amp; ca_{1n} \\
+            ca_{21} &amp; ca_{22} &amp; \cdots &amp; ca_{2n} \\
+            \vdots  &amp; \vdots  &amp; \ddots &amp; \vdots  \\
+            ca_{m1} &amp; ca_{m2} &amp; \cdots &amp; ca_{mn}
+        \end{bmatrix}
+    \end{align}
+\end{split}\]</div>
+</div></section>
+<section id="id3">
+<h2>定義 (零行列)<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>全ての成分が零であるベクトルを<strong>零行列</strong> (zero matrix, null matrix) といい <span class="math notranslate nohighlight">\(O\)</span> と表す.</p>
+</div></section>
+<section id="id4">
+<h2>定理 (行列和の結合法則・交換法則)<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>行列 <span class="math notranslate nohighlight">\(A, B\)</span> において以下が成立する.</p>
+<ul class="simple">
+<li><p>(結合法則) <span class="math notranslate nohighlight">\(A + B = B + A\)</span></p></li>
+<li><p>(交換法則) <span class="math notranslate nohighlight">\((A + B) + C = A + (B + C)\)</span></p></li>
+<li><p>(零行列の演算) <span class="math notranslate nohighlight">\(A + O = O + A = A\)</span></p></li>
+</ul>
+</div>
+<p><u>証明</u><br />
+　<span class="math notranslate nohighlight">\(A = (a_{ij}), B = (b_{ij})\)</span> とし各辺の演算を成分で実施し比較すれば成立することが分かる.</p>
+</section>
+<section id="id5">
+<h2>転置行列の定義<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
 <p><span class="math notranslate nohighlight">\(m \times n\)</span> 行列</p>
 <div class="math notranslate nohighlight">
@@ -543,8 +626,8 @@ title="Print to PDF"
 </div>
 <p>専門書や流派によっては <span class="math notranslate nohighlight">\(A^t, {}^tA, {}^{{\rm T}}A, A^{tr}, A'\)</span> などと書くこともある.</p>
 </section>
-<section id="id3">
-<h2>転置行列の基本的な性質<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<section id="id6">
+<h2>転置行列の基本的な性質<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
 <p><span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span> を <span class="math notranslate nohighlight">\(m \times n\)</span> 行列とする. このとき,</p>
 <ul class="simple">
@@ -570,8 +653,8 @@ title="Print to PDF"
 \end{split}\]</div>
 <p>であるから, <span class="math notranslate nohighlight">\(c_{ij} = c'_{ji}\)</span> なため, <span class="math notranslate nohighlight">\(C^{{\rm T}} = C'\)</span> となる.</p>
 </section>
-<section id="id4">
-<h2>転置行列の正方行列に対する性質<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<section id="id7">
+<h2>転置行列の正方行列に対する性質<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h2>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
 <p><span class="math notranslate nohighlight">\(A\)</span> を <span class="math notranslate nohighlight">\(n\)</span> 次正方行列とする. このとき,</p>
 <ul class="simple">
@@ -621,8 +704,8 @@ $<span class="math notranslate nohighlight">\(
     \end{align}
 \end{split}\]</div>
 </section>
-<section id="id5">
-<h2>対称行列<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<section id="id8">
+<h2>対称行列<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h2>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
 <p><span class="math notranslate nohighlight">\(n\)</span> 次正方行列 <span class="math notranslate nohighlight">\(A\)</span> について</p>
 <div class="math notranslate nohighlight">
@@ -633,8 +716,8 @@ $<span class="math notranslate nohighlight">\(
 \]</div>
 <p>が成立するとき, <span class="math notranslate nohighlight">\(A\)</span> を<strong>対称行列</strong> (symmetric matrix) という.</p>
 </div></section>
-<section id="id6">
-<h2>対称行列の性質<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>
+<section id="id9">
+<h2>対称行列の性質<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h2>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
 <ul class="simple">
 <li><p><u>性質1</u>　<span class="math notranslate nohighlight">\(A\)</span> を正方行列とするとき, <span class="math notranslate nohighlight">\(A + A^{{\rm T}}\)</span>, <span class="math notranslate nohighlight">\(AA^{{\rm T}}\)</span> は対称行列になる.</p></li>
@@ -659,8 +742,8 @@ $<span class="math notranslate nohighlight">\(
 <p>より対称行列である.</p>
 <p><a class="reference external" href="https://mathlandscape.com/hermitian-transpose/">https://mathlandscape.com/hermitian-transpose/</a></p>
 </section>
-<section id="id7">
-<h2>随伴行列<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h2>
+<section id="id10">
+<h2>随伴行列<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h2>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
 <p><span class="math notranslate nohighlight">\(A = (a_ij)\)</span> を <span class="math notranslate nohighlight">\(m \times n\)</span> 行列とする. <span class="math notranslate nohighlight">\(A\)</span> の各成分で複素共役をとり, 転置させた <span class="math notranslate nohighlight">\(n \times m\)</span> 行列</p>
 <div class="math notranslate nohighlight">
@@ -693,8 +776,8 @@ A^* = \bar{A}^{{\rm T}} = (\bar{a}_{ij})^{{\rm T}} = (\bar{a}_{ji})
     \end{align}
 \end{split}\]</div>
 </section>
-<section id="id8">
-<h2>エルミート行列<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h2>
+<section id="id11">
+<h2>エルミート行列<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h2>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
 <p>正方行列 <span class="math notranslate nohighlight">\(A\)</span> が</p>
 <div class="math notranslate nohighlight">
@@ -722,8 +805,8 @@ A^* = A
     \end{bmatrix} \quad (\text{実対称行列})
 \end{split}\]</div>
 </section>
-<section id="id9">
-<h2>行列の定値性<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h2>
+<section id="id12">
+<h2>行列の定値性<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h2>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
 <p><span class="math notranslate nohighlight">\(A\)</span> を <span class="math notranslate nohighlight">\(n\)</span> 次エルミート行列とする. 任意の列ベクトル <span class="math notranslate nohighlight">\(x \in \mathbb{C}^n \text{ \\ } {0}\)</span> に対し内積</p>
 <div class="math notranslate nohighlight">
@@ -737,8 +820,8 @@ A^* = A
 \]</div>
 <p>が成立するとき, <span class="math notranslate nohighlight">\(A\)</span> を<strong>半正定値行列</strong> (positive semidefinite matrix) という.</p>
 </div></section>
-<section id="id10">
-<h2>正定値行列・半正定値行列の性質<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h2>
+<section id="id13">
+<h2>正定値行列・半正定値行列の性質<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h2>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
 <p><span class="math notranslate nohighlight">\(A\)</span> を <span class="math notranslate nohighlight">\(n\)</span> 次エルミート行列とする. このとき,</p>
 <ul class="simple">
