@@ -6,3 +6,4 @@ jupyterlab
 matplotlib
 seaborn
 scipy>=1.6.0
+scikit-learn>=1.1.0
