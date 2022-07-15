@@ -1,0 +1,58 @@
+import sandbox.datasets.utils as du
+
+COPYRIGHT = """This data is public domain."""
+
+TITLE = """BLSALLFOOD data"""
+
+DESCRIPTION = """
+The monthly time series of the number of workers engaged in food industries
+in America according to the United States Bureau of Labor Statistics (BLS)
+(January 1967 - December 1979).
+"""
+
+SOURCE = """
+http://www.mi.u-tokyo.ac.jp/mds-oudan/lecture_document_2019_math7/時系列データ/blsfood_new.csv
+"""
+
+NOTE = """
+Number of Observations - 156
+Number of Variables - 1
+    blsfood - the number of workerd engaged in food industries
+"""
+
+
+def load():
+    dataset = _process_data()
+    return dataset
+
+
+def _get_data():
+    return du.load_csv(__file__, "blsallfood.csv")
+
+
+def _process_data():
+    data = _get_data()
+
+    import pandas as pd
+
+    data.set_index(
+        pd.to_datetime(data["date"], format="%Y-%m-%d"), drop=True, inplace=True
+    )
+    data.index.freq = "MS"
+    data.drop(columns=["date"], inplace=True)
+    data = data.astype(float)
+
+    names = list(data.columns)
+    endog_name = "blsfood"
+    endog = data[endog_name]
+    exog_name = None
+    exog = None
+    dataset = du.Dataset(
+        data=data,
+        names=names,
+        endog=endog,
+        endog_name=endog_name,
+        exog=exog,
+        exog_name=exog_name,
+    )
+    return dataset
