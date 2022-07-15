@@ -1,0 +1,12 @@
+# test
+pytest
+pytest-cov
+
+# code quality
+black
+flake8
+isort
+pydocstyle
+
+# precommt
+pre-commit
