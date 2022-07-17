@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="自己回帰モデル" href="autoregressive.html" />
@@ -367,12 +369,169 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1. 時系列データ
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#air-passengers">
+     例 1.1 (air_passengers)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hakusan">
+     例 1.2 (hakusan)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sunspots">
+     例 1.3 (sunspots)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maxtemp">
+     例 1.4 (maxtemp)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#blsallfood">
+     例 1.5 (blsallfood)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#whard">
+     例 1.6 (whard)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mye1f">
+     例 1.7 (mye1f)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nikkei225">
+     例 1.8 (nikkei225)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   2. 定常性
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     定義 2.1 (弱定常性)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     定義 2.2 (強定常性)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     定義 2.3 (非定常性)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     例 2.4 (ホワイトノイズ)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     例 2.5 (ランダムウォークの非定常性)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ar-1">
+     例 2.5 (AR(1) の定常性)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adf">
+     検定 2.6 (ADF検定)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   3. コレログラム
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     定義 3.1 (自己相関関数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     定義 3.2 (偏自己相関関数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     例 3.3 (コレログラム)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   4. 時系列モデリングと定常性
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   5. データの前処理による定常化
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     例 5.1 (対数変換)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#box-cox">
+     例 5.2 (Box-Cox 変換)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     例 5.3 (階差)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -384,6 +543,152 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1. 時系列データ
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#air-passengers">
+     例 1.1 (air_passengers)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hakusan">
+     例 1.2 (hakusan)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sunspots">
+     例 1.3 (sunspots)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maxtemp">
+     例 1.4 (maxtemp)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#blsallfood">
+     例 1.5 (blsallfood)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#whard">
+     例 1.6 (whard)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mye1f">
+     例 1.7 (mye1f)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nikkei225">
+     例 1.8 (nikkei225)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   2. 定常性
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     定義 2.1 (弱定常性)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     定義 2.2 (強定常性)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     定義 2.3 (非定常性)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     例 2.4 (ホワイトノイズ)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     例 2.5 (ランダムウォークの非定常性)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ar-1">
+     例 2.5 (AR(1) の定常性)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adf">
+     検定 2.6 (ADF検定)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   3. コレログラム
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     定義 3.1 (自己相関関数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     定義 3.2 (偏自己相関関数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     例 3.3 (コレログラム)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   4. 時系列モデリングと定常性
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   5. データの前処理による定常化
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     例 5.1 (対数変換)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#box-cox">
+     例 5.2 (Box-Cox 変換)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     例 5.3 (階差)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -393,6 +698,1010 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>時系列データ<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<section id="id2">
+<h2>1. 時系列データ<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>ここではテストデータを用いて時系列データを俯瞰する.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>以降では <code class="docutils literal notranslate"><span class="pre">sandbox.datasets</span></code> モジュールにあるデータから取ってくるため, 特にデータロードの部分は同じコードで実施するためには <code class="docutils literal notranslate"><span class="pre">analytics-sandbox</span></code> レポジトリを clone する必要がある. もし clone せずにコードを実施する場合, 適宜 <code class="docutils literal notranslate"><span class="pre">pandas.read_csv</span></code> で取得する必要がある. 場合によってはそのコードも付しているが, ない場合には適宜各必要あり.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># グラフ図示に必要なモジュール</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># 一部 statsmodels から取得</span>
+<span class="kn">from</span> <span class="nn">statsmodels.datasets</span> <span class="kn">import</span> <span class="n">sunspots</span>
+
+<span class="c1"># sandbox.datasets にテストデータが保存されている</span>
+<span class="c1"># sandbox.datasets.{dataset_name}.{dataset_name}.csv に生データ csv が配置</span>
+<span class="kn">from</span> <span class="nn">sandbox</span> <span class="kn">import</span> <span class="n">datasets</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s2">&quot;figure&quot;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s2">&quot;font&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1949年から1960年の国際線月別乗客数データ (1000人)</span>
+<span class="n">psgr</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">air_passengers</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># 外洋を航行中の船舶の方向角速度 (yaw rate) を1秒ごとに記録した時系列</span>
+<span class="n">hakusan</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">hakusan</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># 毎年の太陽黒点数 (wolfer sunspot number) を記録した時系列</span>
+<span class="n">sunspot</span> <span class="o">=</span> <span class="n">sunspots</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+<span class="n">sunspot</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">sunspot</span><span class="o">.</span><span class="n">YEAR</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sunspot</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;YEAR&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 東京の毎日の最高気温を16ヶ月にわたって記録したデータ</span>
+<span class="n">maxtemp</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">maxtemp</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># アメリカの食品産業に従事する労働者の人数を毎月調べた時系列</span>
+<span class="n">blsallfood</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">blsallfood</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># あるハードウェアの毎月の卸売高を記録したデータ</span>
+<span class="n">whard</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">whard</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># 地震波の東西成分を約0.02秒間隔で記録した時系列</span>
+<span class="n">mye1f</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">mye1f</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># 日経225平均株価データで1988/1/4から1993/12/30までの日次終値を示す</span>
+<span class="n">nikkei225</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">nikkei225</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="air-passengers">
+<h3>例 1.1 (air_passengers)<a class="headerlink" href="#air-passengers" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>非定常性</p>
+<ul>
+<li><p>トレンド (上昇トレンド)</p></li>
+<li><p>トレンド周りは周期的な変化あり</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">psgr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(a) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">air_passengers</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_5_0.png" src="../../_images/time_series_5_0.png" />
+</div>
+</div>
+</section>
+<section id="hakusan">
+<h3>例 1.2 (hakusan)<a class="headerlink" href="#hakusan" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>定常性</p>
+<ul>
+<li><p>0 の付近で波形が前後</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">hakusan</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;YawRate&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(b) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">hakusan</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_7_0.png" src="../../_images/time_series_7_0.png" />
+</div>
+</div>
+</section>
+<section id="sunspots">
+<h3>例 1.3 (sunspots)<a class="headerlink" href="#sunspots" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>非定常性</p>
+<ul>
+<li><p>正値のみを取り, 上下非対称</p></li>
+<li><p>約10年周期で同様なパターンをとる (疑似周期性)</p></li>
+<li><p>前後非対称</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">sunspot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(c) </span><span class="si">{</span><span class="n">sunspots</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_9_0.png" src="../../_images/time_series_9_0.png" />
+</div>
+</div>
+</section>
+<section id="maxtemp">
+<h3>例 1.4 (maxtemp)<a class="headerlink" href="#maxtemp" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>非定常性</p>
+<ul>
+<li><p>トレンドとして年周期あり</p></li>
+<li><p>トレンドの周りはほぼ定常と見られる</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">maxtemp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(d) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">maxtemp</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_11_0.png" src="../../_images/time_series_11_0.png" />
+</div>
+</div>
+</section>
+<section id="blsallfood">
+<h3>例 1.5 (blsallfood)<a class="headerlink" href="#blsallfood" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>非定常性</p>
+<ul>
+<li><p>年周期あり</p></li>
+<li><p>1975年に向けて減少トレンド, それ以降は増加トレンド</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">blsallfood</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(e) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">blsallfood</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_13_0.png" src="../../_images/time_series_13_0.png" />
+</div>
+</div>
+</section>
+<section id="whard">
+<h3>例 1.6 (whard)<a class="headerlink" href="#whard" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>非定常性</p>
+<ul>
+<li><p>年周期</p></li>
+<li><p>ほぼ同じ割合で増加するトレンドが見られ, それに連動して変動も徐々に増加</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">whard</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(f) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">whard</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_15_0.png" src="../../_images/time_series_15_0.png" />
+</div>
+</div>
+</section>
+<section id="mye1f">
+<h3>例 1.7 (mye1f)<a class="headerlink" href="#mye1f" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>非定常性</p>
+<ul>
+<li><p>トレンドなし</p></li>
+<li><p>P波の区間, S波の区間, 地震の終了していく区間で定常 (区分的定常性)</p></li>
+<li><p>分散非定常, 共分散非定常</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">mye1f</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(g) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">mye1f</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_17_0.png" src="../../_images/time_series_17_0.png" />
+</div>
+</div>
+</section>
+<section id="nikkei225">
+<h3>例 1.8 (nikkei225)<a class="headerlink" href="#nikkei225" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>非定常性</p>
+<ul>
+<li><p>トレンド + 分散変動</p></li>
+<li><p>トレンド下降時にブレが大きい (分散の増加)</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">nikkei225</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(h) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">nikkei225</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_19_0.png" src="../../_images/time_series_19_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id3">
+<h2>2. 定常性<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<p>時系列 <span class="math notranslate nohighlight">\(y_1, \dots, y_n\)</span> について, 平均と分散を</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp;\text{(平均)} \quad \mu_t = {\rm E}(y_t)\\
+        &amp;\text{(分散)} \quad \sigma_t^2 = {\rm E}[(y_t - \mu_t)^2]
+    \end{align}
+\end{split}\]</div>
+<p>とおく. ただし <span class="math notranslate nohighlight">\(t = 1, \dots, n\)</span> とする. また, 同一時系列内の共分散を</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        {\rm Cov}(y_s, y_t) = {\rm E}[(y_s - \mu_s)(y_t - \mu_t)], \quad s = 1, \dots, n,　t = 1, \dots, n
+    \end{align}
+\]</div>
+<p>と表し, これを<strong>自己共分散</strong> (autocovariance) と呼ぶ. これらを用いて定常性について定義する.</p>
+<section id="id4">
+<h3>定義 2.1 (弱定常性)<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>時系列 <span class="math notranslate nohighlight">\(y_1, \dots, y_n\)</span> の平均, 分散, 自己共分散が時間を通じて変化しないとき<strong>弱定常性</strong> (weakly stationary) であるという. すなわち任意の整数 <span class="math notranslate nohighlight">\(k\)</span> について</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp;\mu_{t+k} = \mu_t \\
+        &amp;\sigma_{t+k}^2 = \sigma_t^2 \\
+        &amp;{\rm Cov}(y_{s+k}, y_{t+k}) = {\rm Cov}(y_s, y_t)
+    \end{align}
+\end{split}\]</div>
+<p>を満たす.</p>
+</div></section>
+<section id="id5">
+<h3>定義 2.2 (強定常性)<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>時系列 <span class="math notranslate nohighlight">\(y_1, \dots, y_n\)</span> の分布が時間を通じて不変で, その確率分布を時間軸方向に移動しても変化しないとき<strong>強定常性</strong> (strongly stationary) であるという. すなわち同時密度関数 <span class="math notranslate nohighlight">\(f\)</span> について任意の時点の集合 <span class="math notranslate nohighlight">\(\{ t_1, \dots, t_m \}\)</span> と任意の整数 <span class="math notranslate nohighlight">\(k\)</span> に対して</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        f(y_{t_1 + k}, \dots, y_{t_m + k}) = f(y_{t_1}, \dots, y_{t_m})
+    \end{align}
+\]</div>
+<p>を満たす.</p>
+</div></section>
+<section id="id6">
+<h3>定義 2.3 (非定常性)<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>常に定常性を満たさない時系列は<strong>非定常</strong> (non-stationary) であるという.</p>
+</div></section>
+<section id="id7">
+<h3>例 2.4 (ホワイトノイズ)<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<p>定常な時系列の最も簡単な例として<strong>ホワイトノイズ</strong> (white noise) が挙げられる. 時系列 <span class="math notranslate nohighlight">\(\eta_1, \dots, \eta_n\)</span> がホワイトノイズのとき,</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        {\rm Cov}(\eta_s, \eta_t) = 0 \quad (s \neq t)
+    \end{align}
+\]</div>
+<p>を示す.
+　時系列 <span class="math notranslate nohighlight">\(\eta_1, \dots, \eta_n\)</span> が互いに独立した正規分布 <span class="math notranslate nohighlight">\(N(0, 1)\)</span> に従うものとする.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># 標準正規分布を1000だけ生起</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">12345</span><span class="p">)</span>
+<span class="n">wn</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+
+<span class="n">df_wn</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">wn</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;white_noise&quot;</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">df_wn</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;White Noise&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_25_0.png" src="../../_images/time_series_25_0.png" />
+</div>
+</div>
+</section>
+<section id="id8">
+<h3>例 2.5 (ランダムウォークの非定常性)<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<p>時系列 <span class="math notranslate nohighlight">\(y_1, \dots, y_n\)</span> が<strong>ランダムウォーク</strong> (random walk) を構成するとき, 互いに独立な標準正規分布をとるホワイトノイズ <span class="math notranslate nohighlight">\(\eta_t\)</span> を用いて</p>
+<div class="math notranslate nohighlight">
+\[
+    y_t = y_{t-1} + \eta_t, \quad t = 1, \dots, n, \quad \{\eta_t\} \sim \text{i.i.d} \ N(0, \sigma_{\eta}^2)
+\]</div>
+<p>と表せられる.<br />
+　ランダムウォーク <span class="math notranslate nohighlight">\(\{ y_t \}\)</span> は <span class="math notranslate nohighlight">\(\nabla y_t = y_t - y_{t-1} = \eta_t\)</span> と変形したときに, 時系列 <span class="math notranslate nohighlight">\(\{ \nabla y_t \}\)</span> はホワイトノイズとなり定常となる. このように一階の階差を取ることで定常過程となる時系列を <strong>一次の和分過程</strong> (integrated process of order one) に従っているといい, <span class="math notranslate nohighlight">\(I(1)\)</span> 過程と表現される. <span class="math notranslate nohighlight">\(I(0)\)</span> は定常過程として表現される.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># 先ほど生成したホワイトノイズを利用</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">wn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="n">df_y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;random_walk&quot;</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">df_y</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Random Walk&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_27_0.png" src="../../_images/time_series_27_0.png" />
+</div>
+</div>
+<p>ランダムウォークは以下のように書ける.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        y_{t} &amp;= y_{t-1} + \eta_{t} \\
+              &amp;= y_{t-2} + \eta_{t-1} + \eta_{t} \\
+              &amp;\cdots \\
+              &amp;= y_{0} + \eta_{1} + \cdots + \eta_{t}
+    \end{align}
+\end{split}\]</div>
+<p>ゆえに期待値, 分散をとると</p>
+<div class="math notranslate nohighlight">
+\[
+    {\rm E}(y_{t}) = y_{0}, \quad {\rm Var}(y_{t}) = t \sigma_{\eta}^{2}
+\]</div>
+<p>となり, <span class="math notranslate nohighlight">\({\rm E}(y_{t}) = {\rm E}(y_{t+k})\)</span> であるが, <span class="math notranslate nohighlight">\({\rm Var}(y_{t}) \neq {\rm Var}(y_{t+k})\)</span>.
+　また, <span class="math notranslate nohighlight">\(s &lt; t\)</span> とすれば</p>
+<div class="math notranslate nohighlight">
+\[
+    y_{t} = y_{s} + \eta_{s+1} + \eta_{s+2} + \cdots + \eta_{t}
+\]</div>
+<p>と書けるので,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        {\rm Cov}(y_s, y_t) &amp;= {\rm E} \bigl((y_s - y_0)(y_t - y_0) \bigr) \\
+                            &amp;= {\rm E} \bigl((y_s - y_0)(y_{s} + \eta_{s+1} + \eta_{s+2} + \cdots + \eta_{t} - y_0) \bigr) \\
+                            &amp;= {\rm E} \bigl((y_s - y_0)^2 + (y_s - y_0)(\eta_{s+1} + \eta_{s+2} + \cdots + \eta_{t}) \bigr) \\
+                            &amp;= {\rm E} \bigl((y_s - y_0)^2 \bigr) + {\rm E} \bigl( (y_s - y_0)(\eta_{s+1} + \eta_{s+2} + \cdots + \eta_{t}) \bigr) \\
+                            &amp;= {\rm E} \bigl((y_s - y_0)^2 \bigr) \\
+                            &amp;= {\rm Var} (y_s) \\
+                            &amp;= s \sigma_{\eta}^{2}
+    \end{align}
+\end{split}\]</div>
+<p>ゆえに, <span class="math notranslate nohighlight">\({\rm Cov}(y_{s+k}, y_{t+k}) = (s+k) \sigma_{\eta}^{2}\)</span> より <span class="math notranslate nohighlight">\({\rm Cov}(y_{s+k}, y_{t+k}) \neq {\rm Cov}(y_{s}, y_{t})\)</span> で弱定常性条件を満たさない.<br />
+　また, <span class="math notranslate nohighlight">\(y_1, \dots, y_t\)</span> の同時確率密度関数 <span class="math notranslate nohighlight">\(f(y_1, \dots, y_t)\)</span> は</p>
+<div class="math notranslate nohighlight">
+\[
+    f(y_1, \dots, y_t) \propto \prod_{i=1}^{t} { \frac{1}{\sqrt{2 \pi i \sigma_{\eta}^{2}} } \exp{ \biggl(  - \frac{(y_i - y_0)^2}{2 i \sigma_{\eta}^{2}} \biggr) } }
+\]</div>
+<p>より明らかに <span class="math notranslate nohighlight">\(f(y_{t_1 + k}, \dots, y_{t_m + k}) \neq f(y_{t_1}, \dots, y_{t_m})\)</span> であるので強定常性条件も満たさないので, 非定常性である.</p>
+</section>
+<section id="ar-1">
+<h3>例 2.5 (AR(1) の定常性)<a class="headerlink" href="#ar-1" title="Permalink to this headline">#</a></h3>
+<p>1次の自己回帰過程 (AR(1)) に従う時系列 <span class="math notranslate nohighlight">\(\{ y_t \}\)</span> は以下のように書ける.</p>
+<div class="math notranslate nohighlight">
+\[
+    y_t = m + \phi y_{t-1} + \eta_t, \quad t = 1, \dots, n, \quad \{\eta_t\} \sim \text{i.i.d} \ N(0, \sigma_{\eta}^2)
+\]</div>
+<p>ここで期待値を計算してみる.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        {\rm E}(y_t) &amp;= {\rm E}(m + \phi y_{t-1} + \eta_t) \\
+                     &amp;= m + \phi {\rm E}(y_{t-1})
+    \end{align}
+\end{split}\]</div>
+<p>AR(1) が定常性をもつものとすれば, <span class="math notranslate nohighlight">\(E(y_t) = E(y_{t-1})\)</span> より <span class="math notranslate nohighlight">\(\mu\)</span> とすれば <span class="math notranslate nohighlight">\(\phi \neq 1\)</span> とし</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \mu = m + \phi \mu \Leftrightarrow \mu = \frac{m}{1-\phi}
+    \end{align}
+\]</div>
+<p>また分散 <span class="math notranslate nohighlight">\(\sigma^2\)</span> も同様にして</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \sigma^2 = \phi^2 \sigma^2 + \sigma_{\eta}^2 \Leftrightarrow \sigma^2 = \frac{\sigma_{\eta}^2}{1-\phi^2}
+    \end{align}
+\]</div>
+<p><span class="math notranslate nohighlight">\(\sigma^2 &gt; 0\)</span> より定常性を備えるためには <span class="math notranslate nohighlight">\(1-\phi^2 &gt; 0 \Leftrightarrow |\phi| &lt; 1\)</span> が必要.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ar1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="n">ar1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="c1"># 先ほど生成したホワイトノイズを利用</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">ar1</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">phi</span> <span class="o">*</span> <span class="n">ar1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">wn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="n">df_ar1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ar1</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AR(1)&quot;</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">df_ar1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;AR(1)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_30_0.png" src="../../_images/time_series_30_0.png" />
+</div>
+</div>
+<p>また <span class="math notranslate nohighlight">\(|\phi| &gt; 1\)</span> の時は時系列が発散してしまう.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ar1_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="n">ar1_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="mf">1.1</span>
+
+<span class="c1"># 先ほど生成したホワイトノイズを利用</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">ar1_</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">phi</span> <span class="o">*</span> <span class="n">ar1_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">wn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="n">df_ar1_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ar1_</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AR(1)&quot;</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">df_ar1_</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;AR(1) (Divergence)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_32_0.png" src="../../_images/time_series_32_0.png" />
+</div>
+</div>
+</section>
+<section id="adf">
+<h3>検定 2.6 (ADF検定)<a class="headerlink" href="#adf" title="Permalink to this headline">#</a></h3>
+<p><strong>ADF検定 (拡張ディッキー・フラー検定)</strong> (augumented Dickey-Fuller test) は与えられた時系列 <span class="math notranslate nohighlight">\(\{ y_t \}\)</span> についての以下の仮設検定を行う.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp;\text{帰無仮説} \ H_0: y_t \sim I(1) \\
+        &amp;\text{対立仮設} \ H_1: y_t \sim I(0)
+    \end{align}
+\end{split}\]</div>
+<p>ゆえに簡易的に定常性を確認できるが, 仮に帰無仮説が棄却できなかったとしても, <span class="math notranslate nohighlight">\(\nabla^2 y_t = (y_t - y_{t-1}) - (y_{t-1} - y_{t-2})\)</span> が <span class="math notranslate nohighlight">\(I(0)\)</span> に従う, すなわち <span class="math notranslate nohighlight">\(y_t \sim I(2)\)</span> の可能性があるので, 棄却できなかった場合には階差をとったデータで検定を行うことも検討するとよい.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">adfuller</span>
+
+<span class="n">ret_</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">hakusan</span><span class="p">[</span><span class="s2">&quot;YawRate&quot;</span><span class="p">])</span>
+
+<span class="n">ret_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;adfstat&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">,</span> <span class="s2">&quot;usedlag&quot;</span><span class="p">,</span> <span class="s2">&quot;nobs&quot;</span><span class="p">,</span> <span class="s2">&quot;critvalues&quot;</span><span class="p">,</span> <span class="s2">&quot;icbest&quot;</span><span class="p">]</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">ret_keys</span><span class="p">:</span>
+    <span class="n">ret</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">ret</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;adfstat&#39;: -6.1193416637984015,
+ &#39;pvalue&#39;: 8.933551221207623e-08,
+ &#39;usedlag&#39;: 16,
+ &#39;nobs&#39;: 983,
+ &#39;critvalues&#39;: {&#39;1%&#39;: -3.4370198458812156,
+  &#39;5%&#39;: -2.864484708707697,
+  &#39;10%&#39;: -2.568337912084273},
+ &#39;icbest&#39;: 2119.0840225668217}
+</pre></div>
+</div>
+</div>
+</div>
+<p>上記の結果から <code class="docutils literal notranslate"><span class="pre">hakusan[&quot;YawRate&quot;]</span></code><span class="math notranslate nohighlight">\(\sim I(0)\)</span> と見なしても問題ない.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">adfstat</span></code> : 検定統計量</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pvalue</span></code> : <span class="math notranslate nohighlight">\(p\)</span> 値</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usedlag</span></code> : ADF検定で前提としている <span class="math notranslate nohighlight">\(\text{AR}(p)\)</span> 過程における <span class="math notranslate nohighlight">\(p\)</span> の値 (情報基準で最適な値を採用)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nobs</span></code> : ADF検定で使用した観測値の数</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">critvalues</span></code> : <span class="math notranslate nohighlight">\(p\)</span> 値1%, 5%, 10%それぞれに対する統計臨界値</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">icbest</span></code> : 情報基準の値</p></li>
+</ul>
+<p>一方で <code class="docutils literal notranslate"><span class="pre">nikkei225</span></code> はADF検定により <span class="math notranslate nohighlight">\(I(0)\)</span> 過程でないことが分かる.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ret_</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">nikkei225</span><span class="p">)</span>
+
+<span class="n">ret_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;adfstat&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">,</span> <span class="s2">&quot;usedlag&quot;</span><span class="p">,</span> <span class="s2">&quot;nobs&quot;</span><span class="p">,</span> <span class="s2">&quot;critvalues&quot;</span><span class="p">,</span> <span class="s2">&quot;icbest&quot;</span><span class="p">]</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">ret_keys</span><span class="p">:</span>
+    <span class="n">ret</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">ret</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;adfstat&#39;: -0.8863644520571672,
+ &#39;pvalue&#39;: 0.7924296279527006,
+ &#39;usedlag&#39;: 10,
+ &#39;nobs&#39;: 1469,
+ &#39;critvalues&#39;: {&#39;1%&#39;: -3.4348093353507494,
+  &#39;5%&#39;: -2.863509503599295,
+  &#39;10%&#39;: -2.5678185447142},
+ &#39;icbest&#39;: 20958.594912460438}
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">nikkei225</span></code> に対して階差をとったデータに対してもう一度ADF検定を取ると帰無仮説が棄却され, グラフ化すると定常的な推移を示す.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nikkei225_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">nikkei225</span><span class="p">[</span><span class="s2">&quot;nikkei225&quot;</span><span class="p">]),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;diff_nikkei225&quot;</span><span class="p">])</span>
+
+<span class="n">ret_</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">nikkei225_</span><span class="p">)</span>
+<span class="n">ret_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;adfstat&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">,</span> <span class="s2">&quot;usedlag&quot;</span><span class="p">,</span> <span class="s2">&quot;nobs&quot;</span><span class="p">,</span> <span class="s2">&quot;critvalues&quot;</span><span class="p">,</span> <span class="s2">&quot;icbest&quot;</span><span class="p">]</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">ret_keys</span><span class="p">:</span>
+    <span class="n">ret</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">ret</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;adfstat&#39;: -10.217930348147535,
+ &#39;pvalue&#39;: 5.419565541031902e-18,
+ &#39;usedlag&#39;: 9,
+ &#39;nobs&#39;: 1469,
+ &#39;critvalues&#39;: {&#39;1%&#39;: -3.4348093353507494,
+  &#39;5%&#39;: -2.863509503599295,
+  &#39;10%&#39;: -2.5678185447142},
+ &#39;icbest&#39;: 20943.788988444103}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">nikkei225_</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_40_0.png" src="../../_images/time_series_40_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id9">
+<h2>3. コレログラム<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h2>
+<p>以降では時系列 <span class="math notranslate nohighlight">\(\{ y_n \}\)</span> に定常性を仮定すると平均と, 自己共分散は以下のように書ける.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        \text{(平均)} \quad &amp;\mu = {\rm E}(y_n) \\
+        \text{(自己共分散)} \quad &amp;C_k = {\rm Cov}(y_n, y_{n-k}) = {\rm E}\bigl[ (y_n - \mu)(y_{n-k} - \mu) \bigr]
+    \end{align}
+\end{split}\]</div>
+<p>コレログラムを作成するのに必要な自己相関関数, 偏自己相関関数を定義する上では上記を前提に進める.</p>
+<section id="id10">
+<h3>定義 3.1 (自己相関関数)<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>定常時系列における<strong>自己相関関数</strong> (autocorrelation function, ACF) は以下で定義される.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \rho_k = \frac{{\rm Cov}(y_n, y_{n-k})}{\sqrt{{\rm Var}(y_n){\rm Var}(y_{n-k})}} = \frac{C_k}{C_0}
+    \end{align}
+\]</div>
+</div>
+<p>時系列データ <span class="math notranslate nohighlight">\(\{ y_1, \cdots, y_N \}\)</span> が与えられたとき, 平均 <span class="math notranslate nohighlight">\(\mu\)</span>, 自己共分散 <span class="math notranslate nohighlight">\(C_k\)</span> および自己相関関数 <span class="math notranslate nohighlight">\(\rho_k\)</span> の推定値 <span class="math notranslate nohighlight">\(\hat{\mu}_k, \hat{C}_k, \hat{\rho}_k\)</span> は次の式で求められる.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp; \hat{\mu}_k = \frac{1}{N} \sum_{n=1}^{N}{y_n}                                        \\
+        &amp; \hat{C}_k = \frac{1}{N} \sum_{n=k+1}^{N}{(y_n - \hat{\mu}_k)(y_{n-k} - \hat{\mu}_k)} \\
+        &amp; \hat{\rho}_k = \frac{\hat{C}_k}{\hat{C}_0}
+    \end{align}
+\end{split}\]</div>
+<p>それぞれ<strong>標本平均</strong>(sample mean), <strong>標本自己共分散</strong> (sample autocovariance), <strong>標本自己相関関数</strong> (sample autocorrelation function) と言う.</p>
+</section>
+<section id="id11">
+<h3>定義 3.2 (偏自己相関関数)<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<p>自己相関関数において他の時系列の影響までは勘案できていない. すなわち, <span class="math notranslate nohighlight">\(y_n, y_{n-k}\)</span> の自己相関の中には時点 <span class="math notranslate nohighlight">\(n-1, n-2, \cdots, n-k+1\)</span> の影響を含みうる. ここで以下の等式が成立するものとする.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        y_t - \mu = \phi_{k,1} (y_{t-1} - \mu) + \phi_{k,2} (y_{t-2} - \mu) + \cdots + \phi_{k,k} (y_{t-k} - \mu)
+    \end{align}
+\]</div>
+<p>この等式に対して <span class="math notranslate nohighlight">\((y_{t-i} - \mu) \quad (i = 1, \dots, k)\)</span> を両辺に掛け期待値を取ると</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp; (y_t - \mu)(y_{t-i} - \mu) = \phi_{k,1} (y_{t-1} - \mu)(y_{t-i} - \mu) + \phi_{k,2} (y_{t-2} - \mu)(y_{t-i} - \mu) + \cdots + \phi_{k,k} (y_{t-k} - \mu)(y_{t-i} - \mu) \\
+        \Leftrightarrow \ &amp; {\rm E}(y_t - \mu)(y_{t-i} - \mu) = \phi_{k,1} {\rm E}(y_{t-1} - \mu)(y_{t-i} - \mu) + \phi_{k,2} {\rm E}(y_{t-2} - \mu)(y_{t-i} - \mu) + \cdots + \phi_{k,k} {\rm E}(y_{t-k} - \mu)(y_{t-i} - \mu) \\
+        \Leftrightarrow \ &amp;  C_i = \phi_{k,1} C_{i-1} + \phi_{k,2} C_{i-2} + \cdots + \phi_{k,k} C_{k-i} \quad (i = 1, \cdots, k)
+    \end{align}
+\end{split}\]</div>
+<p>両辺を <span class="math notranslate nohighlight">\(C_0\)</span> で割ると</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \rho_i = \phi_{k,1} \rho_{i-1} + \phi_{k,2} \rho_{i-2} + \cdots + \phi_{k,k} \rho_{k-i} \quad (i = 1, \cdots, k)
+    \end{align}
+\]</div>
+<p>となる. 従って, 行列表現をすると</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        \begin{bmatrix}
+            \rho_1 \\ \rho_2 \\ \vdots \\ \rho_k
+        \end{bmatrix} =
+        \begin{bmatrix}
+            \rho_0     &amp; \rho_1     &amp; \cdots &amp; \rho_{k-1} \\ 
+            \rho_1     &amp; \rho_0     &amp; \cdots &amp; \rho_{k-2} \\ 
+            \vdots     &amp; \vdots     &amp; \ddots &amp; \vdots     \\ 
+            \rho_{k-1} &amp; \rho_{k-2} &amp; \cdots &amp; \rho_0
+        \end{bmatrix}
+        \begin{bmatrix}
+            \phi_{k,1} \\ \phi_{k,2} \\ \vdots \\ \phi_{k,k}
+        \end{bmatrix}
+    \end{align}
+\end{split}\]</div>
+<p>となる.</p>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>定常時系列における<strong>偏自己相関関数</strong> (partial autocorrelation function, PACF) <span class="math notranslate nohighlight">\(\phi_{k,k}\)</span> は以下で定義される.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        \begin{bmatrix}
+            \phi_{k,1} \\ \phi_{k,2} \\ \vdots \\ \phi_{k,k}
+        \end{bmatrix} = 
+        \begin{bmatrix}
+            \rho_0     &amp; \rho_1     &amp; \cdots &amp; \rho_{k-1} \\ 
+            \rho_1     &amp; \rho_0     &amp; \cdots &amp; \rho_{k-2} \\ 
+            \vdots     &amp; \vdots     &amp; \ddots &amp; \vdots     \\ 
+            \rho_{k-1} &amp; \rho_{k-2} &amp; \cdots &amp; \rho_0
+        \end{bmatrix}^{\ -1}
+        \begin{bmatrix}
+            \rho_1 \\ \rho_2 \\ \vdots \\ \rho_k
+        \end{bmatrix}
+    \end{align}
+\end{split}\]</div>
+</div></section>
+<section id="id12">
+<h3>例 3.3 (コレログラム)<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h3>
+<p>今まで定義した自己相関関数, 偏自己相関関数をプロットしたグラフのことを<strong>コレログラフ</strong> (correlogram) と言い時系列データで試してみる.<br />
+　<code class="docutils literal notranslate"><span class="pre">hakusan</span></code> データは比較的定常的な時系列データだが, コレログラムにおいても大きく相関のあるラグは確認されない.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.graphics.tsaplots</span> <span class="kn">import</span> <span class="n">plot_acf</span><span class="p">,</span> <span class="n">plot_pacf</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_acf</span><span class="p">(</span><span class="n">hakusan</span><span class="p">[</span><span class="s2">&quot;YawRate&quot;</span><span class="p">],</span> <span class="n">lags</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_pacf</span><span class="p">(</span><span class="n">hakusan</span><span class="p">[</span><span class="s2">&quot;YawRate&quot;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;ywm&quot;</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_45_0.png" src="../../_images/time_series_45_0.png" />
+</div>
+</div>
+<p>一方で <code class="docutils literal notranslate"><span class="pre">blsallfood</span></code> データは12ヶ月周期が波形から見えるが, 実際にラグが11の時の ACF, PACF の相関が大きいことが分かる.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_acf</span><span class="p">(</span><span class="n">blsallfood</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_pacf</span><span class="p">(</span><span class="n">blsallfood</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;ywm&quot;</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_47_0.png" src="../../_images/time_series_47_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id13">
+<h2>4. 時系列モデリングと定常性<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h2>
+<p>時系列モデリングは通常は定常性を仮定してモデリングすることが中心である (モデルによっては非定常時系列データでも対応するものがあるが, モデリングのどこかに定常性を担保するための要素が入っている). ゆえにデータの前処理を行なって定常モデリングを行うことが必要.</p>
+<ul class="simple">
+<li><p>定常モデリング (ARモデル, ARMAモデルなど)</p>
+<ol class="simple">
+<li><p>データに対する前処理でできる限り定常性を持たせる</p></li>
+<li><p>定常モデリングを実施する</p></li>
+</ol>
+</li>
+<li><p>非定常モデリング</p>
+<ul>
+<li><p>平均が非定常</p>
+<ul>
+<li><p>時刻が経過するにつれてなだらかに推移する:</p>
+<ul>
+<li><p>ARIMA(X)</p></li>
+<li><p>SARIMA(X)</p></li>
+</ul>
+</li>
+<li><p>特定の区分に分けることで平均が定常的と見なせる:</p>
+<ul>
+<li><p>レベルシフトモデル</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>平均・分散が非定常</p>
+<ul>
+<li><p>特定の時間区分ごとに見ると定常的と見なせる:</p>
+<ul>
+<li><p>局所定常ARモデル</p></li>
+</ul>
+</li>
+<li><p>トレンド要因, 季節要因, 誤差要因といった風に直接モデリング:</p>
+<ul>
+<li><p>状態空間モデル</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id14">
+<h2>5. データの前処理による定常化<a class="headerlink" href="#id14" title="Permalink to this headline">#</a></h2>
+<p>与えられた時系列が定常性を持っていることの方が稀なので, 非定常な時系列データに対して変数変換を行うことで定常に近づける.</p>
+<section id="id15">
+<h3>例 5.1 (対数変換)<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h3>
+<p>金額や人数などのデータのように値の増加に伴って変動の大きさも増大する特徴をもつ時系列に有効である. 対数変換の特徴として</p>
+<ul class="simple">
+<li><p>分散の一様化 (分散定常化に寄与)</p></li>
+<li><p>トレンドは残るので, トレンドのある時系列に対して平均定常化を検討することは残る</p></li>
+<li><p>正値時系列の無制約化 (時系列の区間変換: <span class="math notranslate nohighlight">\((0, \infty) \rightarrow (-\infty, \infty)\)</span>)</p></li>
+</ul>
+<p>が挙げられる.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># 対数変換を行う前</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">whard</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Original&quot;</span><span class="p">)</span>
+
+<span class="c1"># 対数変換後</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">whard_transformed</span> <span class="o">=</span> <span class="n">whard</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">whard_transformed</span><span class="p">[</span><span class="s2">&quot;whard&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">whard</span><span class="p">[</span><span class="s2">&quot;whard&quot;</span><span class="p">])</span>
+<span class="n">whard_transformed</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Log-transformed&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_51_0.png" src="../../_images/time_series_51_0.png" />
+</div>
+</div>
+</section>
+<section id="box-cox">
+<h3>例 5.2 (Box-Cox 変換)<a class="headerlink" href="#box-cox" title="Permalink to this headline">#</a></h3>
+<p><strong>Boc-Cox変換</strong> (Box-Cox transformation) は正値のデータ系列を<strong>正規分布に近づけるための変換</strong>手法で以下のように変換を行う.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        y_\lambda = \begin{cases}
+            \dfrac{x^{\lambda} - 1}{\lambda} \quad &amp;(\lambda \neq 0) \\
+            \log{x} \quad &amp;(\lambda \neq 0)
+        \end{cases}
+    \end{align}
+\end{split}\]</div>
+<p>従って問題になるのは, <span class="math notranslate nohighlight">\(\lambda\)</span> をどう決めるかだが, <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.boxcox.html"> <code class="docutils literal notranslate"><span class="pre">SciPy</span></code> </a> では対数尤度関数の値が最大となるような値を決定する.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">boxcox</span>
+
+<span class="n">boxcox</span><span class="p">,</span> <span class="n">lam</span> <span class="o">=</span> <span class="n">boxcox</span><span class="p">(</span><span class="n">psgr</span><span class="p">[</span><span class="s2">&quot;#Passengers&quot;</span><span class="p">])</span>
+<span class="n">psgr_boxcox</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">boxcox</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;#Passengers_Boxcox&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">psgr</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">psgr_boxcox</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>#Passengers_Boxcox</th>
+    </tr>
+    <tr>
+      <th>Month</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1949-01-01</th>
+      <td>6.827490</td>
+    </tr>
+    <tr>
+      <th>1949-02-01</th>
+      <td>6.932822</td>
+    </tr>
+    <tr>
+      <th>1949-03-01</th>
+      <td>7.161892</td>
+    </tr>
+    <tr>
+      <th>1949-04-01</th>
+      <td>7.114611</td>
+    </tr>
+    <tr>
+      <th>1949-05-01</th>
+      <td>6.983787</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1960-08-01</th>
+      <td>10.684049</td>
+    </tr>
+    <tr>
+      <th>1960-09-01</th>
+      <td>10.234573</td>
+    </tr>
+    <tr>
+      <th>1960-10-01</th>
+      <td>9.992159</td>
+    </tr>
+    <tr>
+      <th>1960-11-01</th>
+      <td>9.582623</td>
+    </tr>
+    <tr>
+      <th>1960-12-01</th>
+      <td>9.831860</td>
+    </tr>
+  </tbody>
+</table>
+<p>144 rows × 1 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">psgr_boxcox</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Box-Cox transformation (lambda = </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_54_0.png" src="../../_images/time_series_54_0.png" />
+</div>
+</div>
+</section>
+<section id="id16">
+<h3>例 5.3 (階差)<a class="headerlink" href="#id16" title="Permalink to this headline">#</a></h3>
+<p>トレンドの含まれている時系列に対しトレンド影響をなくして解析する上で<strong>階差 (差分)</strong> を取ることは非常に有効である. 例えば直線トレンドを有していたとすれば <span class="math notranslate nohighlight">\(y_n = a+bn\)</span> として</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        \nabla y_n &amp;= y_n - y_{n-1} \\
+                   &amp;= (a + bn) - (a + b(n-1)) \\
+                   &amp;= b
+    \end{align}
+\end{split}\]</div>
+<p>となって直線の傾き部分を打ち消すことができ, 直線トレンドの傾きの影響を取り除ける.
+　また, <span class="math notranslate nohighlight">\(y = a + bn + cn^2\)</span> と 2 次曲線のトレンドを有するときに</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        \nabla y_n &amp;= y_n - y_{n-1} \\
+                   &amp;= (a + bn + cn^2) - (a + b(n-1) + c(n-1)^2) \\
+                   &amp;= (b-c) + 2cn
+    \end{align}
+\end{split}\]</div>
+<p>なので 2 階階差は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        \nabla^2 y_n &amp;= \nabla y_n - \nabla y_{n-1} \\
+                     &amp;= ((b-c) + 2cn) - ((b-c) + 2c(n-1)) \\
+                     &amp;= 2c
+    \end{align}
+\end{split}\]</div>
+<p>より 1 次成分, 2 次成分いずれも打ち消されることが分かる.<br />
+　<code class="docutils literal notranslate"><span class="pre">air_passengers</span></code> データにはまだ線形トレンドが見られていたので, 階差によって打ち消してみる.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psgr_boxcox_diff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">psgr_boxcox</span> <span class="o">-</span> <span class="n">psgr_boxcox</span><span class="o">.</span><span class="n">shift</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">psgr</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">psgr_boxcox_diff</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Box-Cox and Differencing&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/time_series_57_0.png" src="../../_images/time_series_57_0.png" />
+</div>
+</div>
+<p>ADF検定により実際に <span class="math notranslate nohighlight">\(I(0)\)</span> 過程であると見なすことができる.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ret_</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">psgr_boxcox_diff</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+<span class="n">ret_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;adfstat&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">,</span> <span class="s2">&quot;usedlag&quot;</span><span class="p">,</span> <span class="s2">&quot;nobs&quot;</span><span class="p">,</span> <span class="s2">&quot;critvalues&quot;</span><span class="p">,</span> <span class="s2">&quot;icbest&quot;</span><span class="p">]</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">ret_keys</span><span class="p">:</span>
+    <span class="n">ret</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">ret</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;adfstat&#39;: -2.8717075283173945,
+ &#39;pvalue&#39;: 0.048738333926618124,
+ &#39;usedlag&#39;: 14,
+ &#39;nobs&#39;: 128,
+ &#39;critvalues&#39;: {&#39;1%&#39;: -3.4825006939887997,
+  &#39;5%&#39;: -2.884397984161377,
+  &#39;10%&#39;: -2.578960197753906},
+ &#39;icbest&#39;: -234.74315733709795}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
