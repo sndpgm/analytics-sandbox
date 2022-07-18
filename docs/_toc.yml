@@ -13,8 +13,7 @@ parts:
   - caption: 時系列モデリング
     chapters:
     - file: analytics/tsa/time_series
-    - file: analytics/tsa/autoregressive
-    - file: analytics/tsa/move_average
+    - file: analytics/tsa/arma
     - file: analytics/tsa/arima
     - file: analytics/tsa/state_space_model
 
