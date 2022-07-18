@@ -149,18 +149,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../tsa/autoregressive.html">
-   自己回帰モデル
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../tsa/move_average.html">
-   移動平均モデル
+  <a class="reference internal" href="../tsa/arma.html">
+   ARMAモデル系
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../tsa/arima.html">
-   ARMA・ARIMA・SARIMAX
+   ARIMAモデル
   </a>
  </li>
  <li class="toctree-l1">
@@ -424,22 +419,22 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
+    <a class="reference internal nav-link" href="#multi-expectation">
      定義 2.1 (期待値)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
+    <a class="reference internal nav-link" href="#multi-expectation-property">
      命題 2.2 (期待値の性質)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id10">
+    <a class="reference internal nav-link" href="#multi-variance">
      定義 2.3 (分散共分散)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id11">
+    <a class="reference internal nav-link" href="#multi-variance-property">
      命題 2.4 (共分散行列の性質)
     </a>
    </li>
@@ -491,34 +486,44 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id21">
-     定義 3.6 条件付期待値
+    <a class="reference internal nav-link" href="#multi-conditional-expectation">
+     定義 3.6 (条件付期待値)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id22">
-     定義 3.7 条件付分散共分散
+    <a class="reference internal nav-link" href="#conditional-expectation-property">
+     命題 3.7 (条件付期待値の性質)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multi-conditional-variance-covariance">
+     定義 3.8 (条件付分散共分散)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conditional-variance-property">
+     命題 3.9 (条件付分散の性質)
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id23">
+  <a class="reference internal nav-link" href="#id25">
    4. 多変量確率分布
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id24">
+    <a class="reference internal nav-link" href="#id26">
      例 4.1 (多項分布)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id25">
+    <a class="reference internal nav-link" href="#id27">
      例 4.2 (多変量正規分布)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id26">
+    <a class="reference internal nav-link" href="#id28">
      例 4.3 (ディリクレ分布)
     </a>
    </li>
@@ -576,22 +581,22 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
+    <a class="reference internal nav-link" href="#multi-expectation">
      定義 2.1 (期待値)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
+    <a class="reference internal nav-link" href="#multi-expectation-property">
      命題 2.2 (期待値の性質)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id10">
+    <a class="reference internal nav-link" href="#multi-variance">
      定義 2.3 (分散共分散)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id11">
+    <a class="reference internal nav-link" href="#multi-variance-property">
      命題 2.4 (共分散行列の性質)
     </a>
    </li>
@@ -643,34 +648,44 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id21">
-     定義 3.6 条件付期待値
+    <a class="reference internal nav-link" href="#multi-conditional-expectation">
+     定義 3.6 (条件付期待値)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id22">
-     定義 3.7 条件付分散共分散
+    <a class="reference internal nav-link" href="#conditional-expectation-property">
+     命題 3.7 (条件付期待値の性質)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multi-conditional-variance-covariance">
+     定義 3.8 (条件付分散共分散)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conditional-variance-property">
+     命題 3.9 (条件付分散の性質)
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id23">
+  <a class="reference internal nav-link" href="#id25">
    4. 多変量確率分布
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id24">
+    <a class="reference internal nav-link" href="#id26">
      例 4.1 (多項分布)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id25">
+    <a class="reference internal nav-link" href="#id27">
      例 4.2 (多変量正規分布)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id26">
+    <a class="reference internal nav-link" href="#id28">
      例 4.3 (ディリクレ分布)
     </a>
    </li>
@@ -854,10 +869,10 @@ title="Print to PDF"
 <section id="id7">
 <h2>2. 期待値と分散<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h2>
 <p>以下では明示的に行列やベクトル作用の場合の期待値, 分散, 共分散を示すときはそれぞれ <span class="math notranslate nohighlight">\(\mathbb{E}, \mathbb{Var}, \mathbb{Cov}\)</span>, スカラーに作用する場合には <span class="math notranslate nohighlight">\({\rm E}, {\rm Var}, {\rm Cov}\)</span> とする.</p>
-<section id="id8">
-<h3>定義 2.1 (期待値)<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<section id="multi-expectation">
+<span id="id8"></span><h3>定義 2.1 (期待値)<a class="headerlink" href="#multi-expectation" title="Permalink to this headline">#</a></h3>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
-<p id="multi-expectation"><span class="math notranslate nohighlight">\(n\)</span> 個の確率変数 <span class="math notranslate nohighlight">\(X=[X_1 \cdots X_n]'\)</span> について以下で期待値が定義できる.</p>
+<p><span class="math notranslate nohighlight">\(n\)</span> 個の確率変数 <span class="math notranslate nohighlight">\(X=[X_1 \cdots X_n]'\)</span> について以下で期待値が定義できる.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \mathbb{E}(X) = \begin{bmatrix}
@@ -878,24 +893,23 @@ title="Print to PDF"
 \end{split}\]</div>
 <p>上記から分かる通り <span class="math notranslate nohighlight">\(np \times q\)</span> 行列となる.</p>
 </section>
-<section id="id9">
-<h3>命題 2.2 (期待値の性質)<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<section id="multi-expectation-property">
+<span id="id9"></span><h3>命題 2.2 (期待値の性質)<a class="headerlink" href="#multi-expectation-property" title="Permalink to this headline">#</a></h3>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
 <p><span class="math notranslate nohighlight">\(X, X_1, X_2\)</span> をそれぞれ <span class="math notranslate nohighlight">\(n\)</span> 次元確率ベクトル, <span class="math notranslate nohighlight">\(A\)</span> は <span class="math notranslate nohighlight">\(p \times n\)</span> 行列, <span class="math notranslate nohighlight">\(a\)</span> は <span class="math notranslate nohighlight">\(n\)</span> 次元定数ベクトルとすると以下が成立する.</p>
-<div class="math notranslate nohighlight" id="multi-expectation-property">
+<div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
-        &amp;\text{性質(1)} \quad \mathbb{E}(A) = A \\
-        &amp;\text{性質(2)} \quad \mathbb{E}(X + a) = \mathbb{E}(X) + a \\
-        &amp;\text{性質(3)} \quad \mathbb{E}(AX) = A\mathbb{E}(X)  \\
-        &amp;\text{性質(4)} \quad \mathbb{E}(X_1 + X_2) = \mathbb{E}(X_1) + \mathbb{E}(X_2)
+        &amp;\text{性質(1)} \quad \mathbb{E}(X + a) = \mathbb{E}(X) + a \\
+        &amp;\text{性質(2)} \quad \mathbb{E}(AX) = A\mathbb{E}(X)  \\
+        &amp;\text{性質(3)} \quad \mathbb{E}(X_1 + X_2) = \mathbb{E}(X_1) + \mathbb{E}(X_2)
     \end{align}
 \end{split}\]</div>
 </div></section>
-<section id="id10">
-<h3>定義 2.3 (分散共分散)<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<section id="multi-variance">
+<span id="id10"></span><h3>定義 2.3 (分散共分散)<a class="headerlink" href="#multi-variance" title="Permalink to this headline">#</a></h3>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
-<p id="multi-variance"><span class="math notranslate nohighlight">\(n\)</span> 次元確率ベクトル <span class="math notranslate nohighlight">\(X=[X_1 \cdots X_n]'\)</span> と <span class="math notranslate nohighlight">\(m\)</span> 次元確率ベクトル <span class="math notranslate nohighlight">\(Y=[Y_1 \cdots Y_m]'\)</span> の 2 つの確率ベクトルに対して, <span class="math notranslate nohighlight">\(X\)</span> と <span class="math notranslate nohighlight">\(Y\)</span> の <strong>共分散行列</strong> (covariance matrix) を以下のように定義する.</p>
+<p><span class="math notranslate nohighlight">\(n\)</span> 次元確率ベクトル <span class="math notranslate nohighlight">\(X=[X_1 \cdots X_n]'\)</span> と <span class="math notranslate nohighlight">\(m\)</span> 次元確率ベクトル <span class="math notranslate nohighlight">\(Y=[Y_1 \cdots Y_m]'\)</span> の 2 つの確率ベクトルに対して, <span class="math notranslate nohighlight">\(X\)</span> と <span class="math notranslate nohighlight">\(Y\)</span> の <strong>共分散行列</strong> (covariance matrix) を以下のように定義する.</p>
 <div class="math notranslate nohighlight">
 \[
     \mathbb{Cov}(X, Y) = \mathbb{E}[ (X - \mathbb{E}[X])(Y - \mathbb{E}[Y])' ]
@@ -911,11 +925,11 @@ title="Print to PDF"
     \end{bmatrix} = \Sigma
 \end{split}\]</div>
 </section>
-<section id="id11">
-<h3>命題 2.4 (共分散行列の性質)<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<section id="multi-variance-property">
+<span id="id11"></span><h3>命題 2.4 (共分散行列の性質)<a class="headerlink" href="#multi-variance-property" title="Permalink to this headline">#</a></h3>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
 <p><span class="math notranslate nohighlight">\(X, X_1, X_2\)</span> をそれぞれ <span class="math notranslate nohighlight">\(n\)</span> 次元確率ベクトル, <span class="math notranslate nohighlight">\(Y, Y_1, Y_2\)</span> をそれぞれ <span class="math notranslate nohighlight">\(m\)</span> 次元確率ベクトル, <span class="math notranslate nohighlight">\(A\)</span> は <span class="math notranslate nohighlight">\(p \times n\)</span> 行列, <span class="math notranslate nohighlight">\(B\)</span> は <span class="math notranslate nohighlight">\(q \times m\)</span> 行列, <span class="math notranslate nohighlight">\(a\)</span> を <span class="math notranslate nohighlight">\(n\)</span> 次元定数ベクトル, <span class="math notranslate nohighlight">\(b\)</span> を <span class="math notranslate nohighlight">\(m\)</span> 次元定数ベクトルとすると以下が成立する.</p>
-<div class="math notranslate nohighlight" id="multi-variance-property">
+<div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
         &amp;\text{性質(1)} \quad \mathbb{Cov}(X + a, Y + b) = \mathbb{Cov}(X, Y)                          \\
@@ -1299,23 +1313,78 @@ title="Print to PDF"
     f_{Y|X}(y|x) = \dfrac{ f_{X|Y}(x|y) f_Y(y) }{\displaystyle \int {f_{X|Y}(x, y)f_Y(y) dy} }.
 \]</div>
 </section>
-<section id="id21">
-<h3>定義 3.6 条件付期待値<a class="headerlink" href="#id21" title="Permalink to this headline">#</a></h3>
+<section id="multi-conditional-expectation">
+<span id="id21"></span><h3>定義 3.6 (条件付期待値)<a class="headerlink" href="#multi-conditional-expectation" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(X, Y\)</span> はそれぞれ離散型の確率変数とする. このとき, <span class="math notranslate nohighlight">\(Y = y\)</span> が与えられた下での <span class="math notranslate nohighlight">\(\phi(X)\)</span> の<strong>条件付期待値</strong> (conditional expectation) は以下のように定義する.</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb{E}(\phi(X)|Y) = \sum_{x}{ \phi(x) f_{X|Y}(x|y)}
+\]</div>
+<p>また, <span class="math notranslate nohighlight">\(X, Y\)</span> が連続型の確率変数の場合は以下のように定義する.</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb{E}(\phi(X)|Y) = \int { \phi(x) f_{X|Y}(x|y) dx }
+\]</div>
+</div>
+<p>特に, <span class="math notranslate nohighlight">\(Y=y\)</span> が与えられた下での <span class="math notranslate nohighlight">\(X\)</span> の条件付期待値 <span class="math notranslate nohighlight">\(\mathbb{E}(X|Y)\)</span> を <strong>条件付平均</strong> (conditional mean) という.</p>
 </section>
-<section id="id22">
-<h3>定義 3.7 条件付分散共分散<a class="headerlink" href="#id22" title="Permalink to this headline">#</a></h3>
-</section>
-</section>
-<section id="id23">
-<h2>4. 多変量確率分布<a class="headerlink" href="#id23" title="Permalink to this headline">#</a></h2>
-<section id="id24">
-<h3>例 4.1 (多項分布)<a class="headerlink" href="#id24" title="Permalink to this headline">#</a></h3>
+<section id="conditional-expectation-property">
+<span id="id22"></span><h3>命題 3.7 (条件付期待値の性質)<a class="headerlink" href="#conditional-expectation-property" title="Permalink to this headline">#</a></h3>
+<p>条件付期待値でも<a class="reference internal" href="#multi-expectation-property"><span class="std std-ref">期待値の性質</span></a>を満たす.</p>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(X, Y, X_1, X_2\)</span> をそれぞれ <span class="math notranslate nohighlight">\(n\)</span> 次元確率ベクトル, <span class="math notranslate nohighlight">\(A\)</span> は <span class="math notranslate nohighlight">\(p \times n\)</span> 行列, <span class="math notranslate nohighlight">\(a\)</span> は <span class="math notranslate nohighlight">\(n\)</span> 次元定数ベクトルとすると以下が成立する.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp;\text{性質(1)} \quad \mathbb{E}(X + a | Y) = \mathbb{E}(X | Y) + a \\
+        &amp;\text{性質(2)} \quad \mathbb{E}(AX | Y) = A\mathbb{E}(X | Y)  \\
+        &amp;\text{性質(3)} \quad \mathbb{E}(X_1 + X_2 | Y) = \mathbb{E}(X_1 | Y) + \mathbb{E}(X_2 | Y)
+    \end{align}
+\end{split}\]</div>
+</div></section>
+<section id="multi-conditional-variance-covariance">
+<span id="id23"></span><h3>定義 3.8 (条件付分散共分散)<a class="headerlink" href="#multi-conditional-variance-covariance" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>確率ベクトル <span class="math notranslate nohighlight">\(X, Y\)</span> について以下を<strong>条件付分散</strong> (conditional variance) という.</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb{Var}(X|Y) = \mathbb{E}[ (X - \mathbb{E}[X])(X - \mathbb{E}[X])' | Y]
+\]</div>
+<p>また <span class="math notranslate nohighlight">\(Y = y\)</span> が与えられた下での二つの確率ベクトル <span class="math notranslate nohighlight">\(X_1, X_2\)</span> の条件付共分散 (conditional covariance) は以下で定義される.</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb{Cov}(X_1, X_2|Y) = \mathbb{E}[ (X_1 - \mathbb{E}[X_1])(X_2 - \mathbb{E}[X_2])' | Y ]
+\]</div>
+</div></section>
+<section id="conditional-variance-property">
+<span id="id24"></span><h3>命題 3.9 (条件付分散の性質)<a class="headerlink" href="#conditional-variance-property" title="Permalink to this headline">#</a></h3>
+<p>条件付分散でも<a class="reference internal" href="#multi-variance-property"><span class="std std-ref">共分散行列の性質</span></a>を満たす.</p>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(X, X_1, X_2\)</span> をそれぞれ <span class="math notranslate nohighlight">\(n\)</span> 次元確率ベクトル, <span class="math notranslate nohighlight">\(Y, Y_1, Y_2\)</span> をそれぞれ <span class="math notranslate nohighlight">\(m\)</span> 次元確率ベクトル, <span class="math notranslate nohighlight">\(Z\)</span> を <span class="math notranslate nohighlight">\(l\)</span> 次元確率ベクトル, <span class="math notranslate nohighlight">\(A\)</span> は <span class="math notranslate nohighlight">\(p \times n\)</span> 行列, <span class="math notranslate nohighlight">\(B\)</span> は <span class="math notranslate nohighlight">\(q \times m\)</span> 行列, <span class="math notranslate nohighlight">\(a\)</span> を <span class="math notranslate nohighlight">\(n\)</span> 次元定数ベクトル, <span class="math notranslate nohighlight">\(b\)</span> を <span class="math notranslate nohighlight">\(m\)</span> 次元定数ベクトルとすると以下が成立する.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp;\text{性質(1)} \quad \mathbb{Cov}(X + a, Y + b | Z) = \mathbb{Cov}(X, Y | Z)                              \\
+        &amp;\text{性質(2)} \quad \mathbb{Cov}(AX, BY | Z)       = A \mathbb{Cov}(X, Y | Z) B'                         \\
+        &amp;\text{性質(3)} \quad \mathbb{Cov}(X_1 + X_2, Y | Z) = \mathbb{Cov}(X_1, Y | Z) + \mathbb{Cov}(X_2, Y | Z) \\
+        &amp;\text{性質(4)} \quad \mathbb{Cov}(X, Y_1 + Y_2 | Z) = \mathbb{Cov}(X, Y_1 | Z) + \mathbb{Cov}(X, Y_2 | Z) \\
+        &amp;\text{性質(5)} \quad \mathbb{Var}(X + a | Z)        = \mathbb{Var}(X | Z)                                 \\
+        &amp;\text{性質(6)} \quad \mathbb{Var}(AX | Z)           = A \mathbb{Var}(X | Z) A'
+    \end{align}
+\end{split}\]</div>
+</div></section>
 </section>
 <section id="id25">
-<h3>例 4.2 (多変量正規分布)<a class="headerlink" href="#id25" title="Permalink to this headline">#</a></h3>
-</section>
+<h2>4. 多変量確率分布<a class="headerlink" href="#id25" title="Permalink to this headline">#</a></h2>
 <section id="id26">
-<h3>例 4.3 (ディリクレ分布)<a class="headerlink" href="#id26" title="Permalink to this headline">#</a></h3>
+<h3>例 4.1 (多項分布)<a class="headerlink" href="#id26" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="id27">
+<h3>例 4.2 (多変量正規分布)<a class="headerlink" href="#id27" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="id28">
+<h3>例 4.3 (ディリクレ分布)<a class="headerlink" href="#id28" title="Permalink to this headline">#</a></h3>
 </section>
 </section>
 </section>

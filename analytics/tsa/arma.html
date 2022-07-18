@@ -1,0 +1,1373 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>ARMAモデル系 &#8212; Analytics Study Blog</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ARIMAモデル" href="arima.html" />
+    <link rel="prev" title="時系列データ" href="time_series.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Analytics Study Blog</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to my Analytics Sandbox
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  確率変数と確率分布
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../distribution/random_variables.html">
+   確率変数
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../distribution/probability_distribution.html">
+   確率分布
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../distribution/multi_probability_distribution.html">
+   多変量確率分布
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  時系列モデリング
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_series.html">
+   時系列データ
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   ARMAモデル系
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arima.html">
+   ARIMAモデル
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="state_space_model.html">
+   状態空間モデル
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  補足
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../math/calculus.html">
+   微分積分学
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../math/linear_algebra.html">
+   線形代数学
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/tsa/arma.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/sndpgm/analytics-sandbox"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/tsa/arma.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/analytics/tsa/arma.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1. ラグ演算子
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     定義 1.1 (差分作用子)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     定義 1.2 (ラグ演算子)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     定義 1.3 (ラグ多項式)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     命題 1.4 (ラグ代数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     命題 1.5 (ラグ演算子と差分作用子の関係)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ar">
+   2. ARモデル
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rm-ar-p">
+     定義 2.1 (
+     <span class="math notranslate nohighlight">
+      \({\rm AR}(p)\)
+     </span>
+     モデル)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statsmodels-ar">
+     例 2.2 (statsmodels による AR モデル)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       ドキュメント
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       具体例
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ma">
+   3. MAモデル
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rm-ma-q">
+     定義 3.1 (
+     <span class="math notranslate nohighlight">
+      \({\rm MA}(q)\)
+     </span>
+     モデル)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   4. ARMAモデル
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rm-arma-p-q">
+     定義 4.1 (
+     <span class="math notranslate nohighlight">
+      \({\rm ARMA}(p, q)\)
+     </span>
+     モデル)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   参考文献
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>ARMAモデル系</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1. ラグ演算子
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     定義 1.1 (差分作用子)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     定義 1.2 (ラグ演算子)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     定義 1.3 (ラグ多項式)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     命題 1.4 (ラグ代数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     命題 1.5 (ラグ演算子と差分作用子の関係)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ar">
+   2. ARモデル
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rm-ar-p">
+     定義 2.1 (
+     <span class="math notranslate nohighlight">
+      \({\rm AR}(p)\)
+     </span>
+     モデル)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statsmodels-ar">
+     例 2.2 (statsmodels による AR モデル)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       ドキュメント
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       具体例
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ma">
+   3. MAモデル
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rm-ma-q">
+     定義 3.1 (
+     <span class="math notranslate nohighlight">
+      \({\rm MA}(q)\)
+     </span>
+     モデル)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   4. ARMAモデル
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rm-arma-p-q">
+     定義 4.1 (
+     <span class="math notranslate nohighlight">
+      \({\rm ARMA}(p, q)\)
+     </span>
+     モデル)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   参考文献
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="arma">
+<h1>ARMAモデル系<a class="headerlink" href="#arma" title="Permalink to this headline">#</a></h1>
+<p>定常時系列モデルとして以下のモデルについて見ていく.</p>
+<ul class="simple">
+<li><p>自己回帰モデル <span class="math notranslate nohighlight">\({\rm AR}(p)\)</span></p></li>
+<li><p>移動平均モデル <span class="math notranslate nohighlight">\({\rm MA}(q)\)</span></p></li>
+<li><p>自己回帰移動平均モデル <span class="math notranslate nohighlight">\({\rm ARMA}(p, q)\)</span></p></li>
+</ul>
+<section id="id1">
+<h2>1. ラグ演算子<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>差分作用子ならびにラグ演算は関数解析学の領域でシフト作用子として厳密に定義, 定理が整理されているが, ここでは時系列モデルの表現の簡略化のために最低限の内容だけ整理.</p>
+<section id="id2">
+<h3>定義 1.1 (差分作用子)<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><strong>差分作用素</strong>または<strong>差分演算子</strong> (difference operator) とは関数に対して適当な有限差分を与える作用素として定義され, 特に<strong>前進差分作用素</strong> (forward difference operator) <span class="math notranslate nohighlight">\(\Delta\)</span> を時系列 <span class="math notranslate nohighlight">\(y_t\)</span> に作用する場合</p>
+<div class="math notranslate nohighlight">
+\[
+    \Delta y_{y} = y_{t+1}- y_{t}
+\]</div>
+<p>と書ける. また<strong>後退差分作用素</strong> (backward difference operator) <span class="math notranslate nohighlight">\(\nabla\)</span> は</p>
+<div class="math notranslate nohighlight">
+\[
+    \nabla y_{y} = y_{t} - y_{t-1}
+\]</div>
+<p>と書ける.</p>
+</div></section>
+<section id="id3">
+<h3>定義 1.2 (ラグ演算子)<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>時系列 <span class="math notranslate nohighlight">\(y_t\)</span> に対して<strong>後退オペレーター</strong> (lag operator) <span class="math notranslate nohighlight">\(L\)</span> は 整数 <span class="math notranslate nohighlight">\(k\)</span> を用いて以下で定義される.</p>
+<div class="math notranslate nohighlight">
+\[
+    L^k y_t = y_{t-k}
+\]</div>
+</div>
+</section>
+<section id="id4">
+<h3>定義 1.3 (ラグ多項式)<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><strong>ラグ多項式</strong> (lag polynomials) <span class="math notranslate nohighlight">\(a(L)\)</span> を <span class="math notranslate nohighlight">\(a(L) = a_0 + a_1 L + \cdots + a_p L^p \ s.t. a_m \in \mathbb(R), m \in \mathbb(N)\)</span> とする. この時, 時系列 <span class="math notranslate nohighlight">\(\{ y_t \}\)</span> に対して作用した <span class="math notranslate nohighlight">\(a(L)y_t\)</span> は以下のように書ける.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        a(L) y_t &amp;= a_0 y_t + a_1 L y_t + \cdots + a_p L^p y_t \\
+                 &amp;= a_0 y_t + a_1 y_{t-1} + \cdots + a_p y_{t-p}
+    \end{align}
+\end{split}\]</div>
+</div></section>
+<section id="id5">
+<h3>命題 1.4 (ラグ代数)<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(a, b, c, d \in \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(i, j \in \mathbb{N}\)</span> としたとき以下が成立する.</p>
+<ul class="simple">
+<li><p>(1) <span class="math notranslate nohighlight">\((a + b)L = aL + bL\)</span></p></li>
+<li><p>(2) <span class="math notranslate nohighlight">\((a + bL)(c + dL) = ac + (ad + bc)L + bdL^2\)</span></p></li>
+<li><p>(3) <span class="math notranslate nohighlight">\(L^i L^j = L^{i+j}\)</span></p></li>
+<li><p>(4) <span class="math notranslate nohighlight">\(L^{-1} L = 1\)</span></p></li>
+<li><p>(5) <span class="math notranslate nohighlight">\(\dfrac{1}{1-aL} = 1 + aL + a^2 L^2 + \cdots =\displaystyle \sum_{i=0}^{\infty}{(aL)^i} \quad (|aL| &lt; 1)\)</span></p></li>
+</ul>
+</div></section>
+<section id="id6">
+<h3>命題 1.5 (ラグ演算子と差分作用子の関係)<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>ラグ演算子 <span class="math notranslate nohighlight">\(L\)</span> と後退差分作用子 <span class="math notranslate nohighlight">\(\nabla\)</span> は以下の関係にある.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \nabla y_t = (1 - L) y_t
+    \end{align}
+\]</div>
+</div></section>
+</section>
+<section id="ar">
+<h2>2. ARモデル<a class="headerlink" href="#ar" title="Permalink to this headline">#</a></h2>
+<section id="rm-ar-p">
+<h3>定義 2.1 (<span class="math notranslate nohighlight">\({\rm AR}(p)\)</span>モデル)<a class="headerlink" href="#rm-ar-p" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>時系列 <span class="math notranslate nohighlight">\(\{ y_t \}\)</span> について <span class="math notranslate nohighlight">\(t = 1, 2, \cdots, T \)</span> のとき <strong>自己回帰モデル</strong> (autoregressive model, AR model) は以下で定義する.</p>
+<div class="math notranslate nohighlight">
+\[
+    y_t = c + \sum_{i=1}^{p} {\phi_{i} y_{t-i}} + \varepsilon_t \quad s.t. \ c \in \mathbb{R}, p \in \mathbb{N}, \varepsilon_t \sim \text{WN}(0, \sigma_{\varepsilon}^2)
+\]</div>
+<p>このとき <strong><span class="math notranslate nohighlight">\(\text{AR}(p)\)</span></strong> と表す. ここで, <span class="math notranslate nohighlight">\(c\)</span> は切片, <span class="math notranslate nohighlight">\(p\)</span> は<strong>自己回帰の次数</strong>, <span class="math notranslate nohighlight">\(\phi_i\)</span> を <strong><span class="math notranslate nohighlight">\(i\)</span> 次の自己回帰係数</strong>, <span class="math notranslate nohighlight">\(\varepsilon_t\)</span> はホワイトノイズで表現される誤差項である.</p>
+</div>
+<p>ここでラグ多項式 <span class="math notranslate nohighlight">\(\phi_p(L)\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \phi_p(L) = 1 - (\phi_1 L^{1} + \cdots + \phi_p L^{p}) = 1 - \sum_{i=1}^{p}{\phi_i L^{i}}
+    \end{align}
+\]</div>
+<p>を用いて</p>
+<div class="math notranslate nohighlight">
+\[
+    \phi_p(L)y_t = c + \varepsilon_t
+\]</div>
+<p>とも表現できる.</p>
+</section>
+<section id="statsmodels-ar">
+<h3>例 2.2 (statsmodels による AR モデル)<a class="headerlink" href="#statsmodels-ar" title="Permalink to this headline">#</a></h3>
+<section id="id7">
+<h4>ドキュメント<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h4>
+<p>詳細については適宜ドキュメントを参考にすること.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.ar_model.AutoReg</span></code></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\text{AR}(p)\)</span> モデルを構築するためのクラスモジュール.</p></li>
+<li><p><a class="reference external" href="https://www.statsmodels.org/stable/examples/notebooks/generated/autoregressions.html">ARモデル構築例 (公式)</a></p></li>
+<li><p><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.ar_model.AutoReg.html#statsmodels.tsa.ar_model.AutoReg">APIドキュメント</a></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.ar_model.ar_select_order</span></code></p>
+<ul>
+<li><p>情報量基準が最適な <span class="math notranslate nohighlight">\(\text{AR}(p)\)</span> の次数を選択し, その次数をもとにした <code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.ar_model.AutoReg</span></code> インスタンスを返すメソッド.</p></li>
+<li><p><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.ar_model.ar_select_order.html">APIドキュメント</a></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.arima.model.ARIMA</span></code></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\text{AR}(p)\)</span> モデルだけでなく, より一般的な <span class="math notranslate nohighlight">\({\rm SARIMAX}(p, d, q)\times(P, D, Q, s)\)</span> を構築可能なクラスモジュール.</p></li>
+<li><p><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMA.html#generated-statsmodels-tsa-arima-model-arima--page-root">APIドキュメント</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id8">
+<h4>具体例<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.arima.model.ARIMA</span></code> で実際に構築してみる. その際に, <code class="docutils literal notranslate"><span class="pre">sandbox.datasets.air_passengers</span></code> にあるデータで実行する.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 必要ライブラリを一括してインポートし図示の設定を実行.</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># from statsmodels.graphics.tsaplots import plot_acf, plot_pacf</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">boxcox</span><span class="p">,</span> <span class="n">inv_boxcox</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.arima.model</span> <span class="kn">import</span> <span class="n">ARIMA</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">adfuller</span>
+
+<span class="c1"># from statsmodels.tsa.seasonal import seasonal_decompose</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">register_matplotlib_converters</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s2">&quot;figure&quot;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s2">&quot;font&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># analytics-sandbox にあるテストデータをインポート.</span>
+<span class="kn">from</span> <span class="nn">sandbox.datasets</span> <span class="kn">import</span> <span class="n">air_passengers</span>
+
+<span class="c1"># データの読み込み</span>
+<span class="n">psgr</span> <span class="o">=</span> <span class="n">air_passengers</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">psgr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">air_passengers</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/arma_13_0.png" src="../../_images/arma_13_0.png" />
+</div>
+</div>
+<p>もし <code class="docutils literal notranslate"><span class="pre">sandbox</span></code> をインストールしていない場合は GitHub でクローンした後に <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code> を行うか, URL をして直接取得するかを行なえばよい.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/sndpgm/analytics-sandbox/main/sandbox/datasets/air_passengers/air_passengers.csv&quot;</span>
+
+<span class="n">psgr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">psgr</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">psgr</span><span class="p">[</span><span class="s2">&quot;Month&quot;</span><span class="p">])</span>
+<span class="n">psgr</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Month&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">psgr</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">freq</span> <span class="o">=</span> <span class="s2">&quot;MS&quot;</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">psgr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/arma_15_0.png" src="../../_images/arma_15_0.png" />
+</div>
+</div>
+<p>波形を見ると <code class="docutils literal notranslate"><span class="pre">air_passengers</span></code> データは非定常な時系列データのため定常時系列に近づけていく. 定常性については<a class="reference internal" href="time_series.html#tsa-time-series-stationarity"><span class="std std-ref">時系列データ &gt; 2.定常性</span></a> を参照のこと.
+　定常時系列に近づけるために以下を勘案することが必要.</p>
+<ul class="simple">
+<li><p>平均非定常 → 上昇トレンドのため時間が経つほどに平均値が増加 → <a class="reference internal" href="time_series.html#tsa-time-series-preprocess-difference"><span class="std std-ref">階差</span></a> を取ることで線形トレンドを消去.</p></li>
+<li><p>共分散非定常 → 時間が経つほどにブレ幅が増加 → <a class="reference internal" href="time_series.html#tsa-time-series-preprocess-boxcox"><span class="std std-ref">Box-Cox変換</span></a> によって低減をトライ.</p></li>
+<li><p>周期性 → 12ヶ月周期での季節要因が働いているように見える → <span class="math notranslate nohighlight">\({\rm AR}(11)\)</span> でモデリングを実施.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># scikit-learn でMAPE算出モジュールとデータを訓練用とテスト用に分割するモジュールを import</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># テストデータを 20% ととしてデータを分割する.</span>
+<span class="c1"># ただし, 時系列データのためデータ順序がシャッフルされないように設定する.</span>
+<span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.20</span>
+<span class="n">shuffle</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">psgr_train</span><span class="p">,</span> <span class="n">psgr_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">psgr</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="n">test_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># trainデータについて加工し定常時系列に近づける</span>
+<span class="c1"># Box-Cox 変換</span>
+<span class="n">boxcox_fitted</span><span class="p">,</span> <span class="n">lam</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">boxcox</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">[</span><span class="s2">&quot;#Passengers&quot;</span><span class="p">])</span>
+<span class="n">psgr_train_boxcox</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">boxcox</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">[</span><span class="s2">&quot;#Passengers&quot;</span><span class="p">],</span> <span class="n">lam</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">psgr_train</span><span class="o">.</span><span class="n">index</span>
+<span class="p">)</span>
+
+<span class="c1"># 階差</span>
+<span class="n">psgr_train_boxcox_diff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">psgr_train_boxcox</span> <span class="o">-</span> <span class="n">psgr_train_boxcox</span><span class="o">.</span><span class="n">shift</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">psgr_train</span><span class="o">.</span><span class="n">index</span>
+<span class="p">)</span>
+
+<span class="c1"># 図示</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">psgr_train_boxcox_diff</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Box-Cox and Differencing&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/arma_18_0.png" src="../../_images/arma_18_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ADF検定で定常性が確認できるかチェック.</span>
+<span class="c1"># pvalue &lt; 0.05 より定常性があるとして次に進める.</span>
+<span class="n">ret_</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">psgr_train_boxcox_diff</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+<span class="n">ret_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;adfstat&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">,</span> <span class="s2">&quot;usedlag&quot;</span><span class="p">,</span> <span class="s2">&quot;nobs&quot;</span><span class="p">,</span> <span class="s2">&quot;critvalues&quot;</span><span class="p">,</span> <span class="s2">&quot;icbest&quot;</span><span class="p">]</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">ret_keys</span><span class="p">:</span>
+    <span class="n">ret</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">ret</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;adfstat&#39;: -2.6441219334501214,
+ &#39;pvalue&#39;: 0.08421665282428503,
+ &#39;usedlag&#39;: 12,
+ &#39;nobs&#39;: 101,
+ &#39;critvalues&#39;: {&#39;1%&#39;: -3.4968181663902103,
+  &#39;5%&#39;: -2.8906107514600103,
+  &#39;10%&#39;: -2.5822770483285953},
+ &#39;icbest&#39;: -286.9590455026572}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># AR(11) モデル</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">psgr_train_boxcox_diff</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">model_fitted</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_fitted</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                               SARIMAX Results                                
+==============================================================================
+Dep. Variable:            #Passengers   No. Observations:                  115
+Model:                ARIMA(11, 0, 0)   Log Likelihood                 144.389
+Date:                Mon, 18 Jul 2022   AIC                           -262.778
+Time:                        16:55:09   BIC                           -227.094
+Sample:                    01-01-1949   HQIC                          -248.294
+                         - 07-01-1958                                         
+Covariance Type:                  opg                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0135      0.001     15.507      0.000       0.012       0.015
+ar.L1         -0.5406      0.092     -5.878      0.000      -0.721      -0.360
+ar.L2         -0.7064      0.064    -11.082      0.000      -0.831      -0.581
+ar.L3         -0.5763      0.084     -6.865      0.000      -0.741      -0.412
+ar.L4         -0.7655      0.061    -12.455      0.000      -0.886      -0.645
+ar.L5         -0.5664      0.079     -7.160      0.000      -0.721      -0.411
+ar.L6         -0.6324      0.071     -8.865      0.000      -0.772      -0.493
+ar.L7         -0.6116      0.082     -7.491      0.000      -0.772      -0.452
+ar.L8         -0.7866      0.061    -12.852      0.000      -0.907      -0.667
+ar.L9         -0.5930      0.092     -6.454      0.000      -0.773      -0.413
+ar.L10        -0.7364      0.075     -9.820      0.000      -0.883      -0.589
+ar.L11        -0.5341      0.094     -5.697      0.000      -0.718      -0.350
+sigma2         0.0040      0.001      6.680      0.000       0.003       0.005
+===================================================================================
+Ljung-Box (L1) (Q):                   9.06   Jarque-Bera (JB):                 0.15
+Prob(Q):                              0.00   Prob(JB):                         0.93
+Heteroskedasticity (H):               0.58   Skew:                            -0.04
+Prob(H) (two-sided):                  0.10   Kurtosis:                         3.16
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/statsmodels/base/model.py:604: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  warnings.warn(&quot;Maximum Likelihood optimization failed to &quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 予測期間はテストデータの期間</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">psgr_test</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">psgr_test</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="c1"># 予測値とともに 95% 信頼区間も算出</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># get_prediction メソッドにより予測結果インスタンスを取得</span>
+<span class="c1"># 信頼区間を求める場合には予測結果インスタンスを経由し conf_int メソッドから計算</span>
+<span class="n">predict_result</span> <span class="o">=</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+
+<span class="c1"># 予測値 Series を取得</span>
+<span class="n">predict</span> <span class="o">=</span> <span class="n">predict_result</span><span class="o">.</span><span class="n">predicted_mean</span>
+
+<span class="c1"># 信頼区間の格納された DataFrame を取得</span>
+<span class="n">df_ci</span> <span class="o">=</span> <span class="n">predict_result</span><span class="o">.</span><span class="n">conf_int</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="c1"># 予測値と信頼区間を一つの DataFrame にまとめる</span>
+<span class="n">df_predict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">predict</span><span class="p">)</span>
+<span class="n">df_predict</span> <span class="o">=</span> <span class="n">df_predict</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_ci</span><span class="p">)</span>
+
+<span class="c1"># 結果の確認</span>
+<span class="n">df_predict</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>predicted_mean</th>
+      <th>lower #Passengers</th>
+      <th>upper #Passengers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1958-08-01</th>
+      <td>0.061468</td>
+      <td>-0.063019</td>
+      <td>0.185956</td>
+    </tr>
+    <tr>
+      <th>1958-09-01</th>
+      <td>-0.097149</td>
+      <td>-0.238661</td>
+      <td>0.044362</td>
+    </tr>
+    <tr>
+      <th>1958-10-01</th>
+      <td>-0.200657</td>
+      <td>-0.351271</td>
+      <td>-0.050043</td>
+    </tr>
+    <tr>
+      <th>1958-11-01</th>
+      <td>-0.168210</td>
+      <td>-0.318869</td>
+      <td>-0.017552</td>
+    </tr>
+    <tr>
+      <th>1958-12-01</th>
+      <td>0.073074</td>
+      <td>-0.079194</td>
+      <td>0.225341</td>
+    </tr>
+    <tr>
+      <th>1959-01-01</th>
+      <td>0.007338</td>
+      <td>-0.146245</td>
+      <td>0.160921</td>
+    </tr>
+    <tr>
+      <th>1959-02-01</th>
+      <td>-0.048462</td>
+      <td>-0.202053</td>
+      <td>0.105128</td>
+    </tr>
+    <tr>
+      <th>1959-03-01</th>
+      <td>0.075137</td>
+      <td>-0.078743</td>
+      <td>0.229018</td>
+    </tr>
+    <tr>
+      <th>1959-04-01</th>
+      <td>-0.022695</td>
+      <td>-0.177494</td>
+      <td>0.132105</td>
+    </tr>
+    <tr>
+      <th>1959-05-01</th>
+      <td>0.074158</td>
+      <td>-0.081979</td>
+      <td>0.230295</td>
+    </tr>
+    <tr>
+      <th>1959-06-01</th>
+      <td>0.216081</td>
+      <td>0.059841</td>
+      <td>0.372321</td>
+    </tr>
+    <tr>
+      <th>1959-07-01</th>
+      <td>0.163306</td>
+      <td>0.006214</td>
+      <td>0.320397</td>
+    </tr>
+    <tr>
+      <th>1959-08-01</th>
+      <td>0.068040</td>
+      <td>-0.107154</td>
+      <td>0.243234</td>
+    </tr>
+    <tr>
+      <th>1959-09-01</th>
+      <td>-0.047724</td>
+      <td>-0.225311</td>
+      <td>0.129862</td>
+    </tr>
+    <tr>
+      <th>1959-10-01</th>
+      <td>-0.176792</td>
+      <td>-0.358408</td>
+      <td>0.004824</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>ここで予測した値について再考する. 元々の時系列 <span class="math notranslate nohighlight">\(\{ y_t \}\)</span> について Box-Cox 変換した時系列を <span class="math notranslate nohighlight">\(\{ y'_t \}\)</span> とする. すなわち,</p>
+<div class="math notranslate nohighlight">
+\[
+    y'_t = {\rm BoxCox}(y_t)
+\]</div>
+<p>である. これに対して階差をとった時系列 <span class="math notranslate nohighlight">\(\{ Y_t \}\)</span> とすれば</p>
+<div class="math notranslate nohighlight">
+\[
+    Y_t = \nabla y'_t = {\rm BoxCox}(y_t) - {\rm BoxCox}(y_{t-1})
+\]</div>
+<p>を学習し予測値を算出した. ゆえに予測値を <span class="math notranslate nohighlight">\(\{ y_t \}\)</span> スケールに戻すためには階差の逆の処理をする必要があるが, 予測開始時点を <span class="math notranslate nohighlight">\(t = T_s\)</span>, 予測終了時点を <span class="math notranslate nohighlight">\(t = T_e\)</span> とする. また算出した予測値を <span class="math notranslate nohighlight">\(\hat{Y}_t\)</span> とすれば, <span class="math notranslate nohighlight">\(\{ \hat{Y}_{T_s}, \hat{Y}_{T_s + 1}, \dots, \hat{Y}_{T_e} \}\)</span> が予測された列となる.<br />
+　<span class="math notranslate nohighlight">\(T_s \leq i \leq T_e\)</span> とすれば,</p>
+<div class="math notranslate nohighlight">
+\[
+    \hat{Y}_t = {\rm BoxCox}(\hat{y}_t) - {\rm BoxCox}(\hat{y}_{t-1})
+\]</div>
+<p>と表すと <span class="math notranslate nohighlight">\({\rm BoxCox}(\hat{y}_i)\)</span> は下記式々の和をとる.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        \begin{matrix}
+            \hat{Y}_{T_s}   &amp; =      &amp; {\rm BoxCox}(\hat{y}_{T_s})   &amp; - &amp; {\rm BoxCox}(\hat{y}_{T_s-1}) \\
+            \hat{Y}_{T_s+1} &amp; =      &amp; {\rm BoxCox}(\hat{y}_{T_s+1}) &amp; - &amp; {\rm BoxCox}(\hat{y}_{T_s})   \\
+                            &amp; \cdots &amp;                               &amp;   &amp;                               \\
+            \hat{Y}_{i-1}   &amp; =      &amp; {\rm BoxCox}(\hat{y}_{i-1})   &amp; - &amp; {\rm BoxCox}(\hat{y}_{i-2})   \\
+            \hat{Y}_{i}     &amp; =      &amp; {\rm BoxCox}(\hat{y}_{i})     &amp; - &amp; {\rm BoxCox}(\hat{y}_{i-1})
+        \end{matrix}
+    \end{align}
+\end{split}\]</div>
+<p>つまり</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+                          &amp; {\rm BoxCox}(\hat{y}_{i}) - {\rm BoxCox}(\hat{y}_{T_s-1}) = \sum_{k=T_s}^{i}{\hat{Y}_{k}} \\
+        \Leftrightarrow \ &amp; {\rm BoxCox}(\hat{y}_{i}) = {\rm BoxCox}(\hat{y}_{T_s-1}) + \sum_{k=T_s}^{i}{\hat{Y}_{k}}
+    \end{align}
+\end{split}\]</div>
+<p>ここで <span class="math notranslate nohighlight">\({\rm BoxCox}(\hat{y}_{T_s-1})\)</span> は学習データから取得でき, <span class="math notranslate nohighlight">\(\displaystyle \sum_{k=T_s}^{i}{\hat{Y}_{k}}\)</span> は <code class="docutils literal notranslate"><span class="pre">cumsum</span></code> メソッドで求めた予測値を足していけば良い.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">init</span> <span class="o">=</span> <span class="n">psgr_train_boxcox</span><span class="p">[</span><span class="s2">&quot;#Passengers&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df_predict_cumsum</span> <span class="o">=</span> <span class="n">df_predict</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">+</span> <span class="n">init</span>
+<span class="n">df_predict_cumsum_inv_boxcox</span> <span class="o">=</span> <span class="n">inv_boxcox</span><span class="p">(</span><span class="n">df_predict_cumsum</span><span class="p">,</span> <span class="n">lam</span><span class="p">)</span>
+<span class="n">df_predict_cumsum_inv_boxcox</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>predicted_mean</th>
+      <th>lower #Passengers</th>
+      <th>upper #Passengers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1958-08-01</th>
+      <td>514.371324</td>
+      <td>468.093896</td>
+      <td>564.999510</td>
+    </tr>
+    <tr>
+      <th>1958-09-01</th>
+      <td>477.902487</td>
+      <td>390.256449</td>
+      <td>584.165496</td>
+    </tr>
+    <tr>
+      <th>1958-10-01</th>
+      <td>410.240501</td>
+      <td>297.793186</td>
+      <td>562.588842</td>
+    </tr>
+    <tr>
+      <th>1958-11-01</th>
+      <td>360.667320</td>
+      <td>232.307983</td>
+      <td>555.203231</td>
+    </tr>
+    <tr>
+      <th>1958-12-01</th>
+      <td>381.455852</td>
+      <td>218.318851</td>
+      <td>657.472610</td>
+    </tr>
+    <tr>
+      <th>1959-01-01</th>
+      <td>383.605625</td>
+      <td>194.573069</td>
+      <td>741.265726</td>
+    </tr>
+    <tr>
+      <th>1959-02-01</th>
+      <td>369.619861</td>
+      <td>165.791730</td>
+      <td>801.414142</td>
+    </tr>
+    <tr>
+      <th>1959-03-01</th>
+      <td>391.518009</td>
+      <td>155.716272</td>
+      <td>948.991068</td>
+    </tr>
+    <tr>
+      <th>1959-04-01</th>
+      <td>384.776558</td>
+      <td>135.106256</td>
+      <td>1045.569429</td>
+    </tr>
+    <tr>
+      <th>1959-05-01</th>
+      <td>407.225714</td>
+      <td>126.492290</td>
+      <td>1236.783122</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mape</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span>
+    <span class="n">psgr_test</span><span class="p">,</span> <span class="n">df_predict_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">mape_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;MAPE: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mape</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mape_msg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAPE: 0.099
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Train&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_test</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">df_predict_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">],</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;p=</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">mape_msg</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/arma_25_0.png" src="../../_images/arma_25_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">plot_diagnostics</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/arma_26_0.png" src="../../_images/arma_26_0.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="ma">
+<h2>3. MAモデル<a class="headerlink" href="#ma" title="Permalink to this headline">#</a></h2>
+<section id="rm-ma-q">
+<h3>定義 3.1 (<span class="math notranslate nohighlight">\({\rm MA}(q)\)</span>モデル)<a class="headerlink" href="#rm-ma-q" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<section id="id9">
+<h2>4. ARMAモデル<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h2>
+<section id="rm-arma-p-q">
+<h3>定義 4.1 (<span class="math notranslate nohighlight">\({\rm ARMA}(p, q)\)</span>モデル)<a class="headerlink" href="#rm-arma-p-q" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<section id="id10">
+<h2>参考文献<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>ラグ演算子</p>
+<ul>
+<li><p><em>時系列分析：後退オペレータについて</em>. (2020, August 9). Hatena. Retriece July 18, 2022, from <a class="reference external" href="https://messefor.hatenablog.com/entry/2020/08/09/185747">https://messefor.hatenablog.com/entry/2020/08/09/185747</a></p>
+<ul>
+<li><p>日本語でラグ演算子について細かく説明している.</p></li>
+</ul>
+</li>
+<li><p>Hibbs, D. (n.d.). <em>Lag operations and first-order difference equations</em>. <a class="reference external" href="http://www.douglas-hibbs.com/MacroLectures/LagOperatorsAndDifferenceEquations.pdf">http://www.douglas-hibbs.com/MacroLectures/LagOperatorsAndDifferenceEquations.pdf</a></p>
+<ul>
+<li><p>英語であるがラグ演算子について詳しく記載されている.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./analytics/tsa"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="time_series.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">時系列データ</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="arima.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ARIMAモデル</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By sndpgm<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
