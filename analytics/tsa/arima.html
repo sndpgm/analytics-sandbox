@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>ARIMAモデル &#8212; Analytics Study Blog</title>
+    <title>ARIMAモデル系 &#8212; Analytics Study Blog</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -155,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   ARIMAモデル
+   ARIMAモデル系
   </a>
  </li>
  <li class="toctree-l1">
@@ -387,8 +387,8 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   1. ARIMAモデル
+  <a class="reference internal nav-link" href="#arima-sarima">
+   1. ARIMAモデル / SARIMAモデル
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -400,21 +400,112 @@ title="Print to PDF"
      モデル)
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sarima">
-   2. SARIMAモデル
-  </a>
-  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#rm-sarima-p-d-q-times-p-d-q-s">
-     2.1 定義 (
+     1.2 定義 (
      <span class="math notranslate nohighlight">
-      \({\rm SARIMA}(p, d, q) \times (P, D, Q)_s\)
+      \({\rm SARIMA}(p, d, q) \times (P, D, Q, s)\)
      </span>
      モデル)
     </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statsmodels-arima-sarima">
+     1.3 例 (statsmodels による ARIMA / SARIMA モデル)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       関連モジュール説明
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#statsmodels-tsa-arima-model-arima">
+         statsmodels.tsa.arima.model.ARIMA
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#statsmodels-tsa-arima-model-arima-fit">
+         statsmodels.tsa.arima.model.ARIMA.fit
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#statsmodels-tsa-arima-model-arimaresults">
+         statsmodels.tsa.arima.model.ARIMAResults
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#statsmodels-tsa-arima-model-arimaresults-get-prediction">
+         statsmodels.tsa.arima.model.ARIMAResults.get_prediction
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#statsmodels-tsa-statespace-sarimax-sarimax">
+         statsmodels.tsa.statespace.sarimax.SARIMAX
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#statsmodels-tsa-statespace-sarimax-sarimax-fit">
+         statsmodels.tsa.statespace.sarimax.SARIMAX.fit
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#statsmodels-tsa-statespace-sarimax-sarimaxresults">
+         statsmodels.tsa.statespace.sarimax.SARIMAXResults
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#statsmodels-tsa-statespace-sarimax-sarimaxresults-get-prediction">
+         statsmodels.tsa.statespace.sarimax.SARIMAXResults.get_prediction
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       具体例
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pmdarima-sarimax">
+     1.4 例 (pmdarima による自動 SARIMAX 構築)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       関連モジュール説明
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#pmdarima-arima-auto-arima">
+         pmdarima.arima.auto_arima
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#pmdarima-arima-arima">
+         pmdarima.arima.ARIMA
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#pmdarima-arima-arima-predict">
+         pmdarima.arima.ARIMA.predict
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#pmdarima-arima-arima-predict-in-sample">
+         pmdarima.arima.ARIMA.predict_in_sample
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       具体例
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -427,7 +518,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>ARIMAモデル</h1>
+                <h1>ARIMAモデル系</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -438,8 +529,8 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   1. ARIMAモデル
+  <a class="reference internal nav-link" href="#arima-sarima">
+   1. ARIMAモデル / SARIMAモデル
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -451,21 +542,112 @@ title="Print to PDF"
      モデル)
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sarima">
-   2. SARIMAモデル
-  </a>
-  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#rm-sarima-p-d-q-times-p-d-q-s">
-     2.1 定義 (
+     1.2 定義 (
      <span class="math notranslate nohighlight">
-      \({\rm SARIMA}(p, d, q) \times (P, D, Q)_s\)
+      \({\rm SARIMA}(p, d, q) \times (P, D, Q, s)\)
      </span>
      モデル)
     </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statsmodels-arima-sarima">
+     1.3 例 (statsmodels による ARIMA / SARIMA モデル)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       関連モジュール説明
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#statsmodels-tsa-arima-model-arima">
+         statsmodels.tsa.arima.model.ARIMA
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#statsmodels-tsa-arima-model-arima-fit">
+         statsmodels.tsa.arima.model.ARIMA.fit
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#statsmodels-tsa-arima-model-arimaresults">
+         statsmodels.tsa.arima.model.ARIMAResults
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#statsmodels-tsa-arima-model-arimaresults-get-prediction">
+         statsmodels.tsa.arima.model.ARIMAResults.get_prediction
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#statsmodels-tsa-statespace-sarimax-sarimax">
+         statsmodels.tsa.statespace.sarimax.SARIMAX
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#statsmodels-tsa-statespace-sarimax-sarimax-fit">
+         statsmodels.tsa.statespace.sarimax.SARIMAX.fit
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#statsmodels-tsa-statespace-sarimax-sarimaxresults">
+         statsmodels.tsa.statespace.sarimax.SARIMAXResults
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#statsmodels-tsa-statespace-sarimax-sarimaxresults-get-prediction">
+         statsmodels.tsa.statespace.sarimax.SARIMAXResults.get_prediction
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       具体例
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pmdarima-sarimax">
+     1.4 例 (pmdarima による自動 SARIMAX 構築)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       関連モジュール説明
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#pmdarima-arima-auto-arima">
+         pmdarima.arima.auto_arima
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#pmdarima-arima-arima">
+         pmdarima.arima.ARIMA
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#pmdarima-arima-arima-predict">
+         pmdarima.arima.ARIMA.predict
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#pmdarima-arima-arima-predict-in-sample">
+         pmdarima.arima.ARIMA.predict_in_sample
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       具体例
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -480,54 +662,1384 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="arima">
-<h1>ARIMAモデル<a class="headerlink" href="#arima" title="Permalink to this headline">#</a></h1>
-<section id="id1">
-<h2>1. ARIMAモデル<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<h1>ARIMAモデル系<a class="headerlink" href="#arima" title="Permalink to this headline">#</a></h1>
+<p>ARMAモデル系では対象の時系列データを定常なものに近づけてからモデリングする必要があったが, ARIMAモデルでは非定常な時系列データに対して適応できる.</p>
+<ul class="simple">
+<li><p>自己回帰和分移動平均モデル <span class="math notranslate nohighlight">\({\rm ARIMA}(p, d, q)\)</span></p>
+<ul>
+<li><p>時系列データが <span class="math notranslate nohighlight">\(d\)</span> 次の階差を取ることで定常性データと見なすことができそうな場合.</p></li>
+</ul>
+</li>
+<li><p>季節性自己回帰和分移動平均モデル <span class="math notranslate nohighlight">\({\rm SARIMA}(p, d, q) \times (P, D, Q, s)\)</span></p>
+<ul>
+<li><p>時系列データが <span class="math notranslate nohighlight">\(d\)</span> 次の階差を取ることに加え, 季節要因の基本周期分の階差を取って季節要因を除去し, 定常性データと見なすことができそうな場合.</p></li>
+</ul>
+</li>
+</ul>
+<section id="arima-sarima">
+<h2>1. ARIMAモデル / SARIMAモデル<a class="headerlink" href="#arima-sarima" title="Permalink to this headline">#</a></h2>
 <section id="rm-arima-p-d-q">
 <h3>1.1 定義 (<span class="math notranslate nohighlight">\({\rm ARIMA}(p, d, q)\)</span>モデル)<a class="headerlink" href="#rm-arima-p-d-q" title="Permalink to this headline">#</a></h3>
-</section>
-</section>
-<section id="sarima">
-<h2>2. SARIMAモデル<a class="headerlink" href="#sarima" title="Permalink to this headline">#</a></h2>
-<section id="rm-sarima-p-d-q-times-p-d-q-s">
-<h3>2.1 定義 (<span class="math notranslate nohighlight">\({\rm SARIMA}(p, d, q) \times (P, D, Q)_s\)</span>モデル)<a class="headerlink" href="#rm-sarima-p-d-q-times-p-d-q-s" title="Permalink to this headline">#</a></h3>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
-<p><span class="math notranslate nohighlight">\(t = 1, 2, \cdots, T \)</span> のとき, AR/MA系の時系列モデリングの一般式は以下のように一般化できる.</p>
+<p>時系列 <span class="math notranslate nohighlight">\(\{ y_t \}\)</span> について <span class="math notranslate nohighlight">\(t = 1, 2, \cdots, T \)</span> のとき <span class="math notranslate nohighlight">\(d\)</span> 次の<a class="reference internal" href="time_series.html#tsa-time-series-preprocess-difference"><span class="std std-ref">階差</span></a>をとった時系列 <span class="math notranslate nohighlight">\(\{ z_t \}\)</span>, つまり</p>
 <div class="math notranslate nohighlight">
 \[
-    \Phi(L) \nabla^{d} \nabla_{s}^{D} (y_t - \beta_t x_t) = A(t) + \Theta(L)\zeta_t
+    \begin{align}
+        z_n = \nabla^d y_n
+    \end{align}
 \]</div>
-<p>ここで,</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(y_t\)</span> : 時点 <span class="math notranslate nohighlight">\(t\)</span> での応答変数</p></li>
-<li><p><span class="math notranslate nohighlight">\(\beta_t\)</span> : 時点 <span class="math notranslate nohighlight">\(t\)</span> での回帰成分</p></li>
-<li><p><span class="math notranslate nohighlight">\(x_{t}\)</span> : 時点 <span class="math notranslate nohighlight">\(t\)</span> での説明変数行列</p></li>
-<li><p><span class="math notranslate nohighlight">\(A(t)\)</span> : 時点 <span class="math notranslate nohighlight">\(t\)</span> でのトレンド項</p></li>
-<li><p><span class="math notranslate nohighlight">\(\zeta_t\)</span> : 時点 <span class="math notranslate nohighlight">\(t\)</span> での誤差項</p></li>
-</ul>
-<p>であり, それ以外の要素は後退オペレーター多項式部分で</p>
+<p>に対して以下のモデル式で定義されたものを<strong>自己回帰和分移動平均モデル</strong> (autoregressive integrated moving average model, ARIMA model) という.</p>
+<div class="math notranslate nohighlight">
+\[
+    z_t = c + \sum_{i=1}^{p} {\phi_{i} z_{t-i}} + \varepsilon_t + \sum_{i=1}^{q} {\theta_{i} \varepsilon_{t-i}} \quad s.t. \ c \in \mathbb{R}, \ p, q \in \mathbb{N}, \ \varepsilon_t \sim \text{WN}(0, \sigma_{\varepsilon}^2)
+\]</div>
+<p>このとき <strong><span class="math notranslate nohighlight">\(\text{ARIMA}(p, d, q)\)</span></strong> と表す.</p>
+</div>
+<p>モデルの意味として, (1) <span class="math notranslate nohighlight">\(\{y_t\}\)</span> に対して <span class="math notranslate nohighlight">\(d\)</span> 次の階差をとり, (2) <span class="math notranslate nohighlight">\({\rm ARMA}(p,q)\)</span> モデルを構築しているだけに過ぎない. ゆえに, 時系列データ <span class="math notranslate nohighlight">\(\{y_t\}\)</span> が <span class="math notranslate nohighlight">\(d\)</span> 次の階差を取ることで定常性を持つと考えられるようなデータであれば, 非定常な時系列データでもモデリングができる.<br />
+　経験則ではあるが, 複数回の階差を取るとほとんどの時系列データは定常なデータと見なして問題ない.</p>
+<p>ここでラグ多項式 <span class="math notranslate nohighlight">\(\phi_p(L), \theta_q(L)\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
-        &amp; \Phi(L) = \phi_p(L) \tilde{\phi}_P(L^s) = \biggl( 1 - \sum_{i=1}^{p}{\phi_i L^{i}} \biggr) \biggl( 1 - \sum_{i=1}^{P}{\tilde{\phi}_i L^{si}} \biggr) \\
-        &amp; \Theta(L) = \theta_q(L) \tilde{\theta}_Q(L^s) = \biggl( 1 + \sum_{i=1}^{q}{\theta_i L^{i}} \biggr) \biggl( 1 + \sum_{i=1}^{Q}{\tilde{\theta}_i L^{si}} \biggr)
+        \phi_p(L) &amp;= 1 - (\phi_1 L^{1} + \cdots + \phi_p L^{p}) = 1 - \sum_{i=1}^{p}{\phi_i L^{i}} \\
+        \theta_q(L) &amp;= 1 + (\theta_1 L^{1} + \cdots + \theta_q L^{q}) = 1 - \sum_{i=1}^{q}{\theta_i L^{i}}
     \end{align}
 \end{split}\]</div>
-<p>で,</p>
+<p>および <span class="math notranslate nohighlight">\(\nabla = 1 - L\)</span> (<a class="reference internal" href="arma.html#tsa-arma-lag-operator-difference-relations"><span class="std std-ref">ラグ演算子と差分作用子の関係</span></a>) を用いて</p>
+<div class="math notranslate nohighlight">
+\[
+    (1-L)^d \phi_p(L)y_t = c + \theta_q(L) \varepsilon_t
+\]</div>
+<p>とも表現できる.</p>
+</section>
+<section id="rm-sarima-p-d-q-times-p-d-q-s">
+<h3>1.2 定義 (<span class="math notranslate nohighlight">\({\rm SARIMA}(p, d, q) \times (P, D, Q, s)\)</span>モデル)<a class="headerlink" href="#rm-sarima-p-d-q-times-p-d-q-s" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>時系列 <span class="math notranslate nohighlight">\(\{ y_t \}\)</span> について <span class="math notranslate nohighlight">\(t = 1, 2, \cdots, T \)</span> で, 季節要因の基本周期 <span class="math notranslate nohighlight">\(s\)</span> としたときに以下のモデル式で表現できるとき<strong>季節性自己回帰和分移動平均モデル</strong> (seasonal autoregressive integrated moving average model, SARIMA model) という.</p>
+<div class="math notranslate nohighlight">
+\[
+    \Phi(L) (1-L)^d (1-L^s)^D y_t = c + \Theta(L)\varepsilon_t \quad s.t. \ c \in \mathbb{R}, \ d, D, s \in \mathbb{N}, \ \varepsilon_t \sim \text{WN}(0, \sigma_{\varepsilon}^2)
+\]</div>
+<p>ただし,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp; \Phi(L) 
+            = \phi_p(L) \tilde{\phi}_P(L^s) 
+            = \biggl( 1 - \sum_{i=1}^{p}{\phi_i L^{i}} \biggr) \biggl( 1 - \sum_{i=1}^{P}{\tilde{\phi}_i L^{si}} \biggr) 
+            \quad &amp;s.t. \ \phi_i, \tilde{\phi}_i \in \mathbb{R}, \ p, P \in \mathbb{N} \\
+        &amp; \Theta(L) 
+            = \theta_q(L) \tilde{\theta}_Q(L^s) 
+            = \biggl( 1 + \sum_{i=1}^{q}{\theta_i L^{i}} \biggr) \biggl( 1 + \sum_{i=1}^{Q}{\tilde{\theta}_i L^{si}} \biggr)
+            \quad &amp;s.t. \ \theta_i, \tilde{\theta}_i \in \mathbb{R}, \ q, Q \in \mathbb{N}
+    \end{align}
+\end{split}\]</div>
+<p>とする. このとき <strong><span class="math notranslate nohighlight">\(\text{SARIMA}(p, d, q)\times(P, D, Q, s)\)</span></strong> と表す.</p>
+</div>
+<p>モデルのイメージとしては <span class="math notranslate nohighlight">\(\phi_p(L), \theta_q(L)\)</span> が通常の <span class="math notranslate nohighlight">\(d\)</span> 次階差部分の AR 成分, MA 成分を表現し, <span class="math notranslate nohighlight">\(\tilde{\phi}_P(L^s), \tilde{\theta}_Q(L^s)\)</span> が基本周期 <span class="math notranslate nohighlight">\(s\)</span> の <span class="math notranslate nohighlight">\(D\)</span> 次階差部分の AR 成分, MA 成分を表現している. <span class="math notranslate nohighlight">\({\rm ARIMA}(p, d ,q) = {\rm SARIMA}(p, d, q)\times (0, 0, 0, 0)\)</span> である.</p>
+</section>
+<section id="statsmodels-arima-sarima">
+<h3>1.3 例 (statsmodels による ARIMA / SARIMA モデル)<a class="headerlink" href="#statsmodels-arima-sarima" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://www.statsmodels.org/stable/index.html"><code class="docutils literal notranslate"><span class="pre">statsmodels</span></code></a> において ARIMA(X) / SARIMAX(X) を構築するクラスモジュールが2つ存在する.</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(p\)</span> : AR次数</p></li>
-<li><p><span class="math notranslate nohighlight">\(d\)</span> : 階差の次数</p></li>
-<li><p><span class="math notranslate nohighlight">\(q\)</span> : MA次数</p></li>
-<li><p><span class="math notranslate nohighlight">\(m\)</span> : 季節要因の基本周期</p></li>
-<li><p><span class="math notranslate nohighlight">\(P\)</span> : 季節差分のAR次数</p></li>
-<li><p><span class="math notranslate nohighlight">\(D\)</span> : 季節差分の階差次数</p></li>
-<li><p><span class="math notranslate nohighlight">\(Q\)</span> : 季節差分のMA次数</p></li>
-<li><p><span class="math notranslate nohighlight">\(\phi_i\)</span> : AR係数</p></li>
-<li><p><span class="math notranslate nohighlight">\(\tilde{\phi}_i\)</span> : 季節差分のAR係数</p></li>
-<li><p><span class="math notranslate nohighlight">\(\tilde{\theta}_i\)</span> : 季節差分のMA係数</p></li>
+<li><p><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMA.html"><code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.arima.model.ARIMA</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html"><code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.statespace.sarimax.SARIMAX</span></code></a></p></li>
 </ul>
-<p>であり <strong>SARIMAXモデル</strong> (<strong>S</strong>easonal <strong>A</strong>uto<strong>R</strong>egressive <strong>I</strong>ntegrated <strong>M</strong>oving <strong>A</strong>verage with e<strong>X</strong>ogenous variables) という.</p>
-</div></section>
+<p>トレンド項の入り方が微妙に異なっているので推定結果がいつでも一致するとは限らないので, その点を意識して使い分けをする必要がある.</p>
+<div style="background: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); padding-left: 20px;">
+    <span style="color: white; font-size: 100%;">
+        statsmodels.tsa.arima.model.ARIMA による SARIMAX
+    </span>
+</div>
+<div style="border: rgb(0, 0, 0) solid 1px; font-size: 100%; padding: 20px;">
+<p>時系列 <span class="math notranslate nohighlight">\(\{ y_t \}\)</span> について <span class="math notranslate nohighlight">\(t = 1, 2, \cdots, T \)</span> について, トレンド項を <span class="math notranslate nohighlight">\(A(t) = a_0 + a_1 t + \cdots + a_l = \displaystyle \sum_{i=0}^{l}{a_i x_i}\)</span>, 回帰成分が <span class="math notranslate nohighlight">\(j\)</span> 個存在し時点 <span class="math notranslate nohighlight">\(t\)</span> での値を <span class="math notranslate nohighlight">\(x_t = [x_{t1} \ x_{t2} \ \cdots \ x_{tj}]\)</span> とし, 回帰係数を <span class="math notranslate nohighlight">\(\beta = [\beta_{1} \ \beta_{2} \ \cdots \ \beta_{j}]'\)</span> とする. このとき <a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMA.html"><code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.arima.model.ARIMA</span></code></a> で表現できる <span class="math notranslate nohighlight">\({\rm SARIMA}(p, d, q) \times (P, D, Q, s)\)</span> は以下となる.</p>
+<div class="math notranslate nohighlight">
+\[
+    \Phi(L) (1-L)^d (1-L^s)^D (y_t - A(t) - \beta x_t) = \Theta(L)\varepsilon_t \quad s.t. \ \varepsilon_t \sim \text{WN}(0, \sigma_{\varepsilon}^2)
+\]</div>
+</div>
+<br>
+<div style="background: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); padding-left: 20px;">
+    <span style="color: white; font-size: 100%;">
+        statsmodels.tsa.statespace.sarimax.SARIMAX による SARIMAX
+    </span>
+</div>
+<div style="border: rgb(0, 0, 0) solid 1px; font-size: 100%; padding: 20px;">
+<p><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html"><code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.statespace.sarimax.SARIMAX</span></code></a> で表現できる <span class="math notranslate nohighlight">\({\rm SARIMA}(p, d, q) \times (P, D, Q, s)\)</span> は以下となる.</p>
+<div class="math notranslate nohighlight">
+\[
+    \Phi(L) (1-L)^d (1-L^s)^D (y_t - \beta x_t) = A(t) + \Theta(L)\varepsilon_t \quad s.t. \ \varepsilon_t \sim \text{WN}(0, \sigma_{\varepsilon}^2)
+\]</div>
+</div>
+<p>前述した通りラグ多項式 <span class="math notranslate nohighlight">\(\Phi(L), \Theta(L)\)</span> は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp; \Phi(L) 
+            = \phi_p(L) \tilde{\phi}_P(L^s) 
+            = \biggl( 1 - \sum_{i=1}^{p}{\phi_i L^{i}} \biggr) \biggl( 1 - \sum_{i=1}^{P}{\tilde{\phi}_i L^{si}} \biggr) \\
+        &amp; \Theta(L) 
+            = \theta_q(L) \tilde{\theta}_Q(L^s) 
+            = \biggl( 1 + \sum_{i=1}^{q}{\theta_i L^{i}} \biggr) \biggl( 1 + \sum_{i=1}^{Q}{\tilde{\theta}_i L^{si}} \biggr)
+    \end{align}
+\end{split}\]</div>
+<p>である.</p>
+<section id="id1">
+<h4>関連モジュール説明<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<section id="statsmodels-tsa-arima-model-arima">
+<h5><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMA.html">statsmodels.tsa.arima.model.ARIMA</a><a class="headerlink" href="#statsmodels-tsa-arima-model-arima" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">statsmodels.tsa.arima.model.ARIMA(endog,</span> <span class="pre">exog=None,</span> <span class="pre">order=(0,</span> <span class="pre">0,</span> <span class="pre">0),</span> <span class="pre">seasonal_order=(0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">0),</span> <span class="pre">trend=None,</span> <span class="pre">enforce_stationarity=True,</span> <span class="pre">enforce_invertibility=True,</span> <span class="pre">concentrate_scale=False,</span> <span class="pre">trend_offset=1,</span> <span class="pre">dates=None,</span> <span class="pre">freq=None,</span> <span class="pre">missing='none',</span> <span class="pre">validate_specification=True)</span></code></p></li>
+<li><p>トレンド項をAR成分に入れ込んだSARIMAXモデルを構築.</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameters</p></th>
+<th class="head"><p>Data type</p></th>
+<th class="head"><p>Explanation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">endog</span></code></p></td>
+<td><p><a class="reference external" href="https://numpy.org/doc/stable/glossary.html#term-array_like"><code class="docutils literal notranslate"><span class="pre">array_like</span></code></a></p></td>
+<td><p>観測値 (<span class="math notranslate nohighlight">\(y_t\)</span>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">exog</span></code></p></td>
+<td><p><a class="reference external" href="https://numpy.org/doc/stable/glossary.html#term-array_like"><code class="docutils literal notranslate"><span class="pre">array_like</span></code></a></p></td>
+<td><p>説明変数 (<span class="math notranslate nohighlight">\(x_t\)</span>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">order</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a></p></td>
+<td><p><span class="math notranslate nohighlight">\((p, d, q)\)</span> の設定</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">seasonal_order</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a></p></td>
+<td><p><span class="math notranslate nohighlight">\((P, D, Q, s)\)</span> の設定</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">trend</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>{“n”, “c”, “t”, “ct”} or <a class="reference external" href="https://docs.python.org/3/glossary.html#term-iterable"><code class="docutils literal notranslate"><span class="pre">iterable</span></code></a></p></td>
+<td><p>トレンド項の多項式を指定する. 文字列の場合, <br> - <code class="docutils literal notranslate"><span class="pre">n</span></code> : <span class="math notranslate nohighlight">\(A(t) = 0\)</span> <br> - <code class="docutils literal notranslate"><span class="pre">c</span></code> : <span class="math notranslate nohighlight">\(A(t) = a_0\)</span> <br> - <code class="docutils literal notranslate"><span class="pre">t</span></code> : <span class="math notranslate nohighlight">\(A(t) = a_1 t \)</span> <br> - <code class="docutils literal notranslate"><span class="pre">ct</span></code> : <span class="math notranslate nohighlight">\(A(t) = a_0 + a_1 t\)</span> <br> また, 1次元の数値のシーケンスでリストの場合, <span class="math notranslate nohighlight">\([a_0, a_1, \cdots, a_l]\)</span> を示し, 例えば <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">1]</span></code> のとき <span class="math notranslate nohighlight">\(A(t) = a_0 + a_1 t + a_3 t^3\)</span> となる.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">enforce_stationarity</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values"><code class="docutils literal notranslate"><span class="pre">bool</span></code></a></p></td>
+<td><p>自己回帰係数に対して<a class="reference internal" href="arma.html#tsa-arma-ar-model-stationarity"><span class="std std-ref">定常性条件</span></a>を満たすように推定 ( <span class="math notranslate nohighlight">\(|\)</span><span class="math notranslate nohighlight">\(\phi_i \)</span><span class="math notranslate nohighlight">\(|\)</span> <span class="math notranslate nohighlight">\( &lt; 1\)</span>, <span class="math notranslate nohighlight">\(|\)</span><span class="math notranslate nohighlight">\(\tilde{\phi}_i \)</span><span class="math notranslate nohighlight">\(|\)</span> <span class="math notranslate nohighlight">\( &lt; 1\)</span> )</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enforce_invertibility</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values"><code class="docutils literal notranslate"><span class="pre">bool</span></code></a></p></td>
+<td><p>移動平均係数に対して<a class="reference internal" href="arma.html#tsa-arma-ma-model-stationarity"><span class="std std-ref">反転可能性</span></a>を満たすように推定 ( <span class="math notranslate nohighlight">\(|\)</span><span class="math notranslate nohighlight">\(\theta_i \)</span><span class="math notranslate nohighlight">\(|\)</span> <span class="math notranslate nohighlight">\( &lt; 1\)</span>, <span class="math notranslate nohighlight">\(|\)</span><span class="math notranslate nohighlight">\(\tilde{\theta}_i \)</span><span class="math notranslate nohighlight">\(|\)</span> <span class="math notranslate nohighlight">\( &lt; 1\)</span> )</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">concentrate_scale</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values"><code class="docutils literal notranslate"><span class="pre">bool</span></code></a></p></td>
+<td><p>尤度関数に対して誤差項の分散を集約して最尤推定するかどうか.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">trend_offset</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></p></td>
+<td><p>トレンド項の <span class="math notranslate nohighlight">\(t\)</span> のオフセット値. デフォルトは1で, <code class="docutils literal notranslate"><span class="pre">trend_offset</span></code> <span class="math notranslate nohighlight">\(=\tau\)</span> とすれば <span class="math notranslate nohighlight">\( \{\tau, \tau+1, \cdots, t + \tau -1, \cdots \}\)</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">date</span></code></p></td>
+<td><p><a class="reference external" href="https://numpy.org/doc/stable/glossary.html#term-array_like"><code class="docutils literal notranslate"><span class="pre">array_like</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/datetime.html#module-datetime"><code class="docutils literal notranslate"><span class="pre">datetime</span></code></a></p></td>
+<td><p>設定した場合に <code class="docutils literal notranslate"><span class="pre">endog</span></code>, <code class="docutils literal notranslate"><span class="pre">exog</span></code> のindexに設定する</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">freq</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></p></td>
+<td><p>設定した場合に <code class="docutils literal notranslate"><span class="pre">endog</span></code>, <code class="docutils literal notranslate"><span class="pre">exog</span></code> のindexの時間 freq に設定</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="statsmodels-tsa-arima-model-arima-fit">
+<h5><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMA.fit.html">statsmodels.tsa.arima.model.ARIMA.fit</a><a class="headerlink" href="#statsmodels-tsa-arima-model-arima-fit" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ARIMA.fit(start_params=None,</span> <span class="pre">transformed=True,</span> <span class="pre">includes_fixed=False,</span> <span class="pre">method=None,</span> <span class="pre">method_kwargs=None,</span> <span class="pre">gls=None,</span> <span class="pre">gls_kwargs=None,</span> <span class="pre">cov_type=None,</span> <span class="pre">cov_kwds=None,</span> <span class="pre">return_params=False,</span> <span class="pre">low_memory=False)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ARIMA</span></code> クラスのパラメータ推定メソッド.</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameters</p></th>
+<th class="head"><p>Data type</p></th>
+<th class="head"><p>Explanation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">start_params</span></code></p></td>
+<td><p><a class="reference external" href="https://numpy.org/doc/stable/glossary.html#term-array_like"><code class="docutils literal notranslate"><span class="pre">array_like</span></code></a></p></td>
+<td><p>最尤推定の際の初期値.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="statsmodels-tsa-arima-model-arimaresults">
+<h5><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMAResults.html">statsmodels.tsa.arima.model.ARIMAResults</a><a class="headerlink" href="#statsmodels-tsa-arima-model-arimaresults" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">statsmodels.tsa.arima.model.ARIMAResults(model,</span> <span class="pre">params,</span> <span class="pre">filter_results,</span> <span class="pre">cov_type=None,</span> <span class="pre">**kwargs)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ARIMA.fit</span></code> の結果クラス.</p></li>
+</ul>
+</section>
+<section id="statsmodels-tsa-arima-model-arimaresults-get-prediction">
+<h5><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMAResults.get_prediction.html">statsmodels.tsa.arima.model.ARIMAResults.get_prediction</a><a class="headerlink" href="#statsmodels-tsa-arima-model-arimaresults-get-prediction" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ARIMAResults.get_prediction(start=None,</span> <span class="pre">end=None,</span> <span class="pre">dynamic=False,</span> <span class="pre">index=None,</span> <span class="pre">exog=None,</span> <span class="pre">extend_model=None,</span> <span class="pre">extend_kwargs=None,</span> <span class="pre">**kwargs)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ARIMAResults</span></code> クラスを通じて in-sample prediction (学習データ時系列内の予測), out-of-forecasting (学習データ時系列外の予測) に関する <code class="docutils literal notranslate"><span class="pre">PredictionResults</span></code> インスタンスを返す.</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameters</p></th>
+<th class="head"><p>Data type</p></th>
+<th class="head"><p>Explanation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">start</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, or <a class="reference external" href="https://docs.python.org/3/library/datetime.html#module-datetime"><code class="docutils literal notranslate"><span class="pre">datetime</span></code></a></p></td>
+<td><p>予測開始時点の index 番号, または日付</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">end</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, or <a class="reference external" href="https://docs.python.org/3/library/datetime.html#module-datetime"><code class="docutils literal notranslate"><span class="pre">datetime</span></code></a></p></td>
+<td><p>予測終了時点の index 番号, または日付</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="statsmodels-tsa-statespace-sarimax-sarimax">
+<h5><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html">statsmodels.tsa.statespace.sarimax.SARIMAX</a><a class="headerlink" href="#statsmodels-tsa-statespace-sarimax-sarimax" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>トレンド項を AR 成分, MA 成分とは独立して定義した SARIMAX モデルを構築.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">statsmodels.tsa.statespace.sarimax.SARIMAX(endog,</span> <span class="pre">exog=None,</span> <span class="pre">order=(1,</span> <span class="pre">0,</span> <span class="pre">0),</span> <span class="pre">seasonal_order=(0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">0),</span> <span class="pre">trend=None,</span> <span class="pre">measurement_error=False,</span> <span class="pre">time_varying_regression=False,</span> <span class="pre">mle_regression=True,</span> <span class="pre">simple_differencing=False,</span> <span class="pre">enforce_stationarity=True,</span> <span class="pre">enforce_invertibility=True,</span> <span class="pre">hamilton_representation=False,</span> <span class="pre">concentrate_scale=False,</span> <span class="pre">trend_offset=1,</span> <span class="pre">use_exact_diffuse=False,</span> <span class="pre">dates=None,</span> <span class="pre">freq=None,</span> <span class="pre">missing='none',</span> <span class="pre">validate_specification=True,</span> <span class="pre">**kwargs)</span></code></p></li>
+<li><p>引数の説明は <code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.arima.model.ARIMA</span></code> と重複している内容は同内容.</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameters</p></th>
+<th class="head"><p>Data type</p></th>
+<th class="head"><p>Explanation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">measurement_error</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values"><code class="docutils literal notranslate"><span class="pre">bool</span></code></a></p></td>
+<td><p><a class="reference internal" href="#tsa-arima-arima-sarima-statsmodels-sarimax"><span class="std std-ref">モデル左辺</span></a>において, <span class="math notranslate nohighlight">\(y_t - \beta x_t - \varepsilon\)</span> と <span class="math notranslate nohighlight">\(\varepsilon\)</span> を入れるかどうか</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time_varying_regression</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values"><code class="docutils literal notranslate"><span class="pre">bool</span></code></a></p></td>
+<td><p>回帰係数を時変するかどうか</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mle_regression</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values"><code class="docutils literal notranslate"><span class="pre">bool</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code> の場合は回帰係数の推定に最尤推定で行い, <code class="docutils literal notranslate"><span class="pre">False</span></code> の場合はカルマンフィルターによる逐次推定を実施する. <code class="docutils literal notranslate"><span class="pre">time_varying_regression</span> <span class="pre">=</span> <span class="pre">True</span></code> の時はカルマンフィルターによって時変の回帰係数を推定することとなるので <code class="docutils literal notranslate"><span class="pre">True</span></code> にする必要がある.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">simple_differencing</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values"><code class="docutils literal notranslate"><span class="pre">bool</span></code></a></p></td>
+<td><p>XXXXX</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hamilton_representation</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values"><code class="docutils literal notranslate"><span class="pre">bool</span></code></a></p></td>
+<td><p>XXXXX</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">use_exact_diffuse</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values"><code class="docutils literal notranslate"><span class="pre">bool</span></code></a></p></td>
+<td><p>XXXXX</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="statsmodels-tsa-statespace-sarimax-sarimax-fit">
+<h5><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.fit.html">statsmodels.tsa.statespace.sarimax.SARIMAX.fit</a><a class="headerlink" href="#statsmodels-tsa-statespace-sarimax-sarimax-fit" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SARIMAX.fit(start_params=None,</span> <span class="pre">transformed=True,</span> <span class="pre">includes_fixed=False,</span> <span class="pre">cov_type=None,</span> <span class="pre">cov_kwds=None,</span> <span class="pre">method='lbfgs',</span> <span class="pre">maxiter=50,</span> <span class="pre">full_output=1,</span> <span class="pre">disp=5,</span> <span class="pre">callback=None,</span> <span class="pre">return_params=False,</span> <span class="pre">optim_score=None,</span> <span class="pre">optim_complex_step=None,</span> <span class="pre">optim_hessian=None,</span> <span class="pre">flags=None,</span> <span class="pre">low_memory=False,</span> <span class="pre">**kwargs)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SARIMAX</span></code> クラスのパラメータ推定メソッド.</p></li>
+</ul>
+</section>
+<section id="statsmodels-tsa-statespace-sarimax-sarimaxresults">
+<h5><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.SARIMAXResults.html">statsmodels.tsa.statespace.sarimax.SARIMAXResults</a><a class="headerlink" href="#statsmodels-tsa-statespace-sarimax-sarimaxresults" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">statsmodels.tsa.statespace.sarimax.SARIMAXResults(model,</span> <span class="pre">params,</span> <span class="pre">filter_results,</span> <span class="pre">cov_type=None,</span> <span class="pre">**kwargs)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SARIMAX.fit</span></code> の結果クラス.</p></li>
+</ul>
+</section>
+<section id="statsmodels-tsa-statespace-sarimax-sarimaxresults-get-prediction">
+<h5><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.SARIMAXResults.get_prediction.html">statsmodels.tsa.statespace.sarimax.SARIMAXResults.get_prediction</a><a class="headerlink" href="#statsmodels-tsa-statespace-sarimax-sarimaxresults-get-prediction" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SARIMAXResults.get_prediction(start=None,</span> <span class="pre">end=None,</span> <span class="pre">dynamic=False,</span> <span class="pre">index=None,</span> <span class="pre">exog=None,</span> <span class="pre">extend_model=None,</span> <span class="pre">extend_kwargs=None,</span> <span class="pre">**kwargs)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SARIMAXResults</span></code> クラスを通じて in-sample prediction (学習データ時系列内の予測), out-of-forecasting (学習データ時系列外の予測) に関する <code class="docutils literal notranslate"><span class="pre">PredictionResults</span></code> インスタンスを返す.</p></li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h4>具体例<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="c1"># 必要ライブラリを一括してインポートし図示の設定を実行.</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">boxcox</span><span class="p">,</span> <span class="n">inv_boxcox</span>
+
+<span class="c1"># scikit-learn でMAPE算出モジュールとデータを訓練用とテスト用に分割するモジュールを import</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.arima.model</span> <span class="kn">import</span> <span class="n">ARIMA</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">adfuller</span>
+
+<span class="c1"># analytics-sandbox にあるテストデータをインポート.</span>
+<span class="kn">from</span> <span class="nn">sandbox.datasets</span> <span class="kn">import</span> <span class="n">air_passengers</span>
+
+<span class="c1"># 見た目のために warnings を強制的に非表示.</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="c1"># プロット時の設定.</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">register_matplotlib_converters</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s2">&quot;font&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データの読み込み</span>
+<span class="n">psgr</span> <span class="o">=</span> <span class="n">air_passengers</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">psgr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">air_passengers</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/arima_9_0.png" src="../../_images/arima_9_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># テストデータを 20% ととしてデータを分割する.</span>
+<span class="c1"># ただし, 時系列データのためデータ順序がシャッフルされないように設定する.</span>
+<span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.20</span>
+<span class="n">shuffle</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">psgr_train</span><span class="p">,</span> <span class="n">psgr_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">psgr</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="n">test_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">endog</span> <span class="o">=</span> <span class="n">psgr_train</span>
+<span class="n">order</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">model_arima</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">endog</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_and_fit</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">fit_count</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">start_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">print_progress</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">model_result</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">fit_count</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">model_result_temp</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">start_params</span><span class="o">=</span><span class="n">start_params</span><span class="p">)</span>
+            <span class="n">start_params</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">model_result_temp</span><span class="o">.</span><span class="n">params</span><span class="p">))</span>
+            <span class="n">model_result</span> <span class="o">=</span> <span class="n">model_result_temp</span>
+
+            <span class="k">if</span> <span class="n">print_progress</span><span class="p">:</span>
+                <span class="n">log_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;ARIMA </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">-th fitting:</span><span class="se">\r\n</span><span class="si">{</span><span class="n">model_result</span><span class="o">.</span><span class="n">params</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">log_msg</span><span class="p">)</span>
+
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">error_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;From start_params=</span><span class="si">{</span><span class="n">start_params</span><span class="si">}</span><span class="s2">, fit cannnot be executed, and before-one-step result returns&quot;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">model_result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_result_arima</span> <span class="o">=</span> <span class="n">update_and_fit</span><span class="p">(</span><span class="n">model_arima</span><span class="p">,</span> <span class="n">print_progress</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">model_result_arima</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>SARIMAX Results</caption>
+<tr>
+  <th>Dep. Variable:</th>      <td>#Passengers</td>   <th>  No. Observations:  </th>    <td>115</td>  
+</tr>
+<tr>
+  <th>Model:</th>            <td>ARIMA(12, 1, 1)</td> <th>  Log Likelihood     </th> <td>-424.140</td>
+</tr>
+<tr>
+  <th>Date:</th>            <td>Thu, 21 Jul 2022</td> <th>  AIC                </th>  <td>876.280</td>
+</tr>
+<tr>
+  <th>Time:</th>                <td>16:01:25</td>     <th>  BIC                </th>  <td>914.586</td>
+</tr>
+<tr>
+  <th>Sample:</th>             <td>01-01-1949</td>    <th>  HQIC               </th>  <td>891.826</td>
+</tr>
+<tr>
+  <th></th>                   <td>- 07-01-1958</td>   <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>        <td>opg</td>       <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+     <td></td>       <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>ar.L1</th>  <td>    0.0893</td> <td>    0.088</td> <td>    1.012</td> <td> 0.312</td> <td>   -0.084</td> <td>    0.262</td>
+</tr>
+<tr>
+  <th>ar.L2</th>  <td>   -0.0935</td> <td>    0.066</td> <td>   -1.407</td> <td> 0.159</td> <td>   -0.224</td> <td>    0.037</td>
+</tr>
+<tr>
+  <th>ar.L3</th>  <td>    0.0507</td> <td>    0.056</td> <td>    0.901</td> <td> 0.368</td> <td>   -0.060</td> <td>    0.161</td>
+</tr>
+<tr>
+  <th>ar.L4</th>  <td>   -0.0927</td> <td>    0.059</td> <td>   -1.584</td> <td> 0.113</td> <td>   -0.207</td> <td>    0.022</td>
+</tr>
+<tr>
+  <th>ar.L5</th>  <td>    0.0627</td> <td>    0.062</td> <td>    1.019</td> <td> 0.308</td> <td>   -0.058</td> <td>    0.183</td>
+</tr>
+<tr>
+  <th>ar.L6</th>  <td>   -0.0820</td> <td>    0.056</td> <td>   -1.472</td> <td> 0.141</td> <td>   -0.191</td> <td>    0.027</td>
+</tr>
+<tr>
+  <th>ar.L7</th>  <td>    0.0146</td> <td>    0.067</td> <td>    0.218</td> <td> 0.828</td> <td>   -0.117</td> <td>    0.146</td>
+</tr>
+<tr>
+  <th>ar.L8</th>  <td>   -0.1174</td> <td>    0.060</td> <td>   -1.961</td> <td> 0.050</td> <td>   -0.235</td> <td>-7.77e-05</td>
+</tr>
+<tr>
+  <th>ar.L9</th>  <td>    0.0425</td> <td>    0.068</td> <td>    0.628</td> <td> 0.530</td> <td>   -0.090</td> <td>    0.175</td>
+</tr>
+<tr>
+  <th>ar.L10</th> <td>   -0.1223</td> <td>    0.058</td> <td>   -2.120</td> <td> 0.034</td> <td>   -0.235</td> <td>   -0.009</td>
+</tr>
+<tr>
+  <th>ar.L11</th> <td>    0.0896</td> <td>    0.066</td> <td>    1.354</td> <td> 0.176</td> <td>   -0.040</td> <td>    0.219</td>
+</tr>
+<tr>
+  <th>ar.L12</th> <td>    0.8149</td> <td>    0.063</td> <td>   12.879</td> <td> 0.000</td> <td>    0.691</td> <td>    0.939</td>
+</tr>
+<tr>
+  <th>ma.L1</th>  <td>   -0.2483</td> <td>    0.142</td> <td>   -1.751</td> <td> 0.080</td> <td>   -0.526</td> <td>    0.030</td>
+</tr>
+<tr>
+  <th>sigma2</th> <td>   81.5037</td> <td>   12.632</td> <td>    6.452</td> <td> 0.000</td> <td>   56.746</td> <td>  106.262</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Ljung-Box (L1) (Q):</th>     <td>0.12</td> <th>  Jarque-Bera (JB):  </th> <td>2.94</td>
+</tr>
+<tr>
+  <th>Prob(Q):</th>                <td>0.73</td> <th>  Prob(JB):          </th> <td>0.23</td>
+</tr>
+<tr>
+  <th>Heteroskedasticity (H):</th> <td>1.85</td> <th>  Skew:              </th> <td>0.39</td>
+</tr>
+<tr>
+  <th>Prob(H) (two-sided):</th>    <td>0.06</td> <th>  Kurtosis:          </th> <td>3.02</td>
+</tr>
+</table><br/><br/>Warnings:<br/>[1] Covariance matrix calculated using the outer product of gradients (complex-step).</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model_result</span><span class="p">,</span> <span class="n">test_data</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;予測値データフレームを返す.</span>
+<span class="sd">    引数の test_data をもとに予測期間を決め, 予測値・信頼区間を返す.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    model_result : </span>
+<span class="sd">        statsmodels の fit() 結果インスタンス.</span>
+<span class="sd">    test_data : pandas.core.Dataframe</span>
+<span class="sd">        検証データ.</span>
+<span class="sd">    alpha : float, default None</span>
+<span class="sd">        信頼区間の確率.</span>
+<span class="sd">        </span>
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    df_predict : pandas.core.DataFrame</span>
+<span class="sd">        予測データフレーム.</span>
+<span class="sd">    mape : float</span>
+<span class="sd">        MAPE.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 予測期間を検証データから取得.</span>
+    <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">test_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">test_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+    <span class="c1"># 予測結果インスタンスを取得.</span>
+    <span class="n">predict_result</span> <span class="o">=</span> <span class="n">model_result</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+
+    <span class="c1"># 予測値データフレームを作成 (検証値, 予測値).</span>
+    <span class="n">df_predict</span> <span class="o">=</span> <span class="n">test_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">predict_result</span><span class="o">.</span><span class="n">predicted_mean</span><span class="p">)</span>
+
+    <span class="c1"># 信頼区間の alpha を設定した場合にはデータフレームに信頼区間を追加.</span>
+    <span class="k">if</span> <span class="n">alpha</span><span class="p">:</span>
+        <span class="n">df_predict_ci</span> <span class="o">=</span> <span class="n">predict_result</span><span class="o">.</span><span class="n">conf_int</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">df_predict</span> <span class="o">=</span> <span class="n">df_predict</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_predict_ci</span><span class="p">)</span>
+
+    <span class="c1"># scikit-learn のモジュールを用いて MAPE を計算.</span>
+    <span class="n">mape</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">predict_result</span><span class="o">.</span><span class="n">predicted_mean</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_predict</span><span class="p">,</span> <span class="n">mape</span>
+
+
+<span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="n">predictvalue</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;予測値をプロット.&quot;&quot;&quot;</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Train&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_test</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">predictvalue</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Predict&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_predict_arima</span><span class="p">,</span> <span class="n">mape_arima</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">model_result_arima</span><span class="p">,</span> <span class="n">psgr_test</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">mape_arima_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;MAPE: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mape_arima</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mape_arima_msg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAPE: 0.082
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">df_predict_arima</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/arima_16_0.png" src="../../_images/arima_16_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">arima_order_select_ic</span><span class="p">(</span>
+    <span class="n">endog</span><span class="p">,</span>
+    <span class="n">exog</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">ic</span><span class="o">=</span><span class="s2">&quot;bic&quot;</span><span class="p">,</span>
+    <span class="n">print_progress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">ignore_warning</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">warnings</span>
+
+    <span class="k">if</span> <span class="n">ignore_warning</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
+
+    <span class="n">p</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_order</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_order</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_order</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="kn">import</span> <span class="nn">itertools</span>
+
+    <span class="n">order_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">q</span><span class="p">))</span>
+
+    <span class="n">best_model</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">best_ic</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="n">order_list</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">endog</span><span class="o">=</span><span class="n">endog</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">exog</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+            <span class="n">model_result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">ic</span> <span class="o">==</span> <span class="s2">&quot;aic&quot;</span><span class="p">:</span>
+                <span class="n">now_ic</span> <span class="o">=</span> <span class="n">model_result</span><span class="o">.</span><span class="n">aic</span>
+            <span class="k">elif</span> <span class="n">ic</span> <span class="o">==</span> <span class="s2">&quot;bic&quot;</span><span class="p">:</span>
+                <span class="n">now_ic</span> <span class="o">=</span> <span class="n">model_result</span><span class="o">.</span><span class="n">bic</span>
+            <span class="k">elif</span> <span class="n">ic</span> <span class="o">==</span> <span class="s2">&quot;aicc&quot;</span><span class="p">:</span>
+                <span class="n">now_ic</span> <span class="o">=</span> <span class="n">model_result</span><span class="o">.</span><span class="n">aicc</span>
+            <span class="k">elif</span> <span class="n">ic</span> <span class="o">==</span> <span class="s2">&quot;hqic&quot;</span><span class="p">:</span>
+                <span class="n">now_ic</span> <span class="o">=</span> <span class="n">model_result</span><span class="o">.</span><span class="n">hqic</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Specified ic must be </span><span class="si">{</span><span class="s1">&#39;aic&#39;</span><span class="p">,</span> <span class="s1">&#39;bic&#39;</span><span class="p">,</span> <span class="s1">&#39;aicc&#39;</span><span class="p">,</span> <span class="s1">&#39;hqic&#39;</span><span class="si">}</span><span class="s2">, not </span><span class="si">{</span><span class="n">ic</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+            <span class="n">print_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;order</span><span class="si">{</span><span class="n">order</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">ic</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">now_ic</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">if</span> <span class="n">best_ic</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">best_ic</span> <span class="o">&gt;</span> <span class="n">now_ic</span><span class="p">:</span>
+                <span class="c1"># stationarity and inversibility check.</span>
+                <span class="n">ar_less_than_one</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="nb">abs</span><span class="p">(</span><span class="n">model_result</span><span class="o">.</span><span class="n">arparams</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">order</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">True</span>
+                <span class="p">)</span>
+                <span class="n">ma_less_than_one</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="nb">abs</span><span class="p">(</span><span class="n">model_result</span><span class="o">.</span><span class="n">maparams</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">order</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">True</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">ar_less_than_one</span> <span class="o">*</span> <span class="n">ma_less_than_one</span><span class="p">:</span>
+                    <span class="n">best_model</span> <span class="o">=</span> <span class="n">model</span>
+                    <span class="n">best_ic</span> <span class="o">=</span> <span class="n">now_ic</span>
+                    <span class="n">print_msg</span> <span class="o">+=</span> <span class="s2">&quot; [UPDATE]&quot;</span>
+                <span class="k">elif</span> <span class="ow">not</span> <span class="n">ar_less_than_one</span><span class="p">:</span>
+                    <span class="n">non_ar_msg</span> <span class="o">=</span> <span class="s2">&quot;Non-stationary autoregressive parameters found, &quot;</span>
+                    <span class="n">print_msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; [NOT UPDATE] </span><span class="si">{</span><span class="n">non_ar_msg</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="k">elif</span> <span class="ow">not</span> <span class="n">ma_less_than_one</span><span class="p">:</span>
+                    <span class="n">non_ma_msg</span> <span class="o">=</span> <span class="s2">&quot;Non-invertible moving average parameters found.&quot;</span>
+                    <span class="n">print_msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; [NOT UPDATE] </span><span class="si">{</span><span class="n">non_ma_msg</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">print_msg</span> <span class="o">+=</span> <span class="s2">&quot; [NOT UPDATE] Non-better information criteria&quot;</span>
+
+            <span class="k">if</span> <span class="n">print_progress</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">print_msg</span><span class="p">)</span>
+
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">error_msg</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;***ARIMA</span><span class="si">{</span><span class="n">order</span><span class="si">}</span><span class="s2"> cannot be estimated and </span><span class="si">{</span><span class="n">order</span><span class="si">}</span><span class="s2"> has been skipped.***&quot;</span>
+            <span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Decide ARIMA</span><span class="si">{</span><span class="n">best_model</span><span class="o">.</span><span class="n">order</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">ic</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">now_ic</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">best_model</span><span class="p">,</span> <span class="n">best_ic</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_order</span> <span class="o">=</span> <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">best_model</span><span class="p">,</span> <span class="n">best_ic</span> <span class="o">=</span> <span class="n">arima_order_select_ic</span><span class="p">(</span>
+    <span class="n">endog</span><span class="p">,</span> <span class="n">max_order</span><span class="o">=</span><span class="n">max_order</span><span class="p">,</span> <span class="n">print_progress</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ignore_warning</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Decide ARIMA(11, 2, 1) - bic: 913.41654
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_and_fit</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">fit_count</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">start_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">print_progress</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">model_result</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">fit_count</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">model_result_temp</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">start_params</span><span class="o">=</span><span class="n">start_params</span><span class="p">)</span>
+            <span class="n">start_params</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">model_result_temp</span><span class="o">.</span><span class="n">params</span><span class="p">))</span>
+            <span class="n">model_result</span> <span class="o">=</span> <span class="n">model_result_temp</span>
+
+            <span class="k">if</span> <span class="n">print_progress</span><span class="p">:</span>
+                <span class="n">log_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;ARIMA </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">-th fitting:</span><span class="se">\r\n</span><span class="si">{</span><span class="n">model_result</span><span class="o">.</span><span class="n">params</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">log_msg</span><span class="p">)</span>
+
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">error_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;From start_params=</span><span class="si">{</span><span class="n">start_params</span><span class="si">}</span><span class="s2">, fit cannnot be executed, and before-one-step result returns&quot;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">model_result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_model_result</span> <span class="o">=</span> <span class="n">update_and_fit</span><span class="p">(</span><span class="n">best_model</span><span class="p">,</span> <span class="n">print_progress</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">best_model_result</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>SARIMAX Results</caption>
+<tr>
+  <th>Dep. Variable:</th>      <td>#Passengers</td>   <th>  No. Observations:  </th>    <td>115</td>  
+</tr>
+<tr>
+  <th>Model:</th>            <td>ARIMA(11, 2, 1)</td> <th>  Log Likelihood     </th> <td>-422.761</td>
+</tr>
+<tr>
+  <th>Date:</th>            <td>Thu, 21 Jul 2022</td> <th>  AIC                </th>  <td>871.521</td>
+</tr>
+<tr>
+  <th>Time:</th>                <td>16:02:12</td>     <th>  BIC                </th>  <td>906.977</td>
+</tr>
+<tr>
+  <th>Sample:</th>             <td>01-01-1949</td>    <th>  HQIC               </th>  <td>885.909</td>
+</tr>
+<tr>
+  <th></th>                   <td>- 07-01-1958</td>   <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>        <td>opg</td>       <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+     <td></td>       <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>ar.L1</th>  <td>   -0.8765</td> <td>    0.077</td> <td>  -11.400</td> <td> 0.000</td> <td>   -1.027</td> <td>   -0.726</td>
+</tr>
+<tr>
+  <th>ar.L2</th>  <td>   -0.9433</td> <td>    0.051</td> <td>  -18.650</td> <td> 0.000</td> <td>   -1.042</td> <td>   -0.844</td>
+</tr>
+<tr>
+  <th>ar.L3</th>  <td>   -0.8619</td> <td>    0.072</td> <td>  -11.956</td> <td> 0.000</td> <td>   -1.003</td> <td>   -0.721</td>
+</tr>
+<tr>
+  <th>ar.L4</th>  <td>   -0.9285</td> <td>    0.052</td> <td>  -17.761</td> <td> 0.000</td> <td>   -1.031</td> <td>   -0.826</td>
+</tr>
+<tr>
+  <th>ar.L5</th>  <td>   -0.8350</td> <td>    0.070</td> <td>  -11.907</td> <td> 0.000</td> <td>   -0.972</td> <td>   -0.698</td>
+</tr>
+<tr>
+  <th>ar.L6</th>  <td>   -0.8912</td> <td>    0.051</td> <td>  -17.407</td> <td> 0.000</td> <td>   -0.992</td> <td>   -0.791</td>
+</tr>
+<tr>
+  <th>ar.L7</th>  <td>   -0.8481</td> <td>    0.065</td> <td>  -13.147</td> <td> 0.000</td> <td>   -0.974</td> <td>   -0.722</td>
+</tr>
+<tr>
+  <th>ar.L8</th>  <td>   -0.9388</td> <td>    0.053</td> <td>  -17.781</td> <td> 0.000</td> <td>   -1.042</td> <td>   -0.835</td>
+</tr>
+<tr>
+  <th>ar.L9</th>  <td>   -0.8654</td> <td>    0.055</td> <td>  -15.742</td> <td> 0.000</td> <td>   -0.973</td> <td>   -0.758</td>
+</tr>
+<tr>
+  <th>ar.L10</th> <td>   -0.9611</td> <td>    0.041</td> <td>  -23.295</td> <td> 0.000</td> <td>   -1.042</td> <td>   -0.880</td>
+</tr>
+<tr>
+  <th>ar.L11</th> <td>   -0.8403</td> <td>    0.064</td> <td>  -13.078</td> <td> 0.000</td> <td>   -0.966</td> <td>   -0.714</td>
+</tr>
+<tr>
+  <th>ma.L1</th>  <td>   -0.2652</td> <td>    0.131</td> <td>   -2.030</td> <td> 0.042</td> <td>   -0.521</td> <td>   -0.009</td>
+</tr>
+<tr>
+  <th>sigma2</th> <td>   83.1976</td> <td>   12.931</td> <td>    6.434</td> <td> 0.000</td> <td>   57.853</td> <td>  108.542</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Ljung-Box (L1) (Q):</th>     <td>0.04</td> <th>  Jarque-Bera (JB):  </th> <td>2.79</td>
+</tr>
+<tr>
+  <th>Prob(Q):</th>                <td>0.84</td> <th>  Prob(JB):          </th> <td>0.25</td>
+</tr>
+<tr>
+  <th>Heteroskedasticity (H):</th> <td>1.88</td> <th>  Skew:              </th> <td>0.38</td>
+</tr>
+<tr>
+  <th>Prob(H) (two-sided):</th>    <td>0.05</td> <th>  Kurtosis:          </th> <td>3.01</td>
+</tr>
+</table><br/><br/>Warnings:<br/>[1] Covariance matrix calculated using the outer product of gradients (complex-step).</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_predict_best_arima</span><span class="p">,</span> <span class="n">mape_best_arima</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span>
+    <span class="n">best_model_result</span><span class="p">,</span> <span class="n">psgr_test</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span>
+<span class="p">)</span>
+<span class="n">mape_best_arima_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;MAPE: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mape_best_arima</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mape_best_arima_msg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAPE: 0.06
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">df_predict_best_arima</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/arima_22_0.png" src="../../_images/arima_22_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">endog</span> <span class="o">=</span> <span class="n">psgr_train</span>
+<span class="n">order</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">seasonal_order</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+
+<span class="n">model_sarima</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">endog</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">seasonal_order</span><span class="o">=</span><span class="n">seasonal_order</span><span class="p">)</span>
+
+<span class="n">model_result_sarima</span> <span class="o">=</span> <span class="n">update_and_fit</span><span class="p">(</span><span class="n">model_sarima</span><span class="p">,</span> <span class="n">print_progress</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">model_result_sarima</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>SARIMAX Results</caption>
+<tr>
+  <th>Dep. Variable:</th>             <td>#Passengers</td>          <th>  No. Observations:  </th>    <td>115</td>  
+</tr>
+<tr>
+  <th>Model:</th>           <td>ARIMA(1, 1, 3)x(1, 1, [1], 12)</td> <th>  Log Likelihood     </th> <td>-370.977</td>
+</tr>
+<tr>
+  <th>Date:</th>                   <td>Thu, 21 Jul 2022</td>        <th>  AIC                </th>  <td>755.955</td>
+</tr>
+<tr>
+  <th>Time:</th>                       <td>16:02:14</td>            <th>  BIC                </th>  <td>774.330</td>
+</tr>
+<tr>
+  <th>Sample:</th>                    <td>01-01-1949</td>           <th>  HQIC               </th>  <td>763.395</td>
+</tr>
+<tr>
+  <th></th>                          <td>- 07-01-1958</td>          <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>               <td>opg</td>              <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>        <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>ar.L1</th>    <td>    0.6127</td> <td>    0.182</td> <td>    3.372</td> <td> 0.001</td> <td>    0.257</td> <td>    0.969</td>
+</tr>
+<tr>
+  <th>ma.L1</th>    <td>   -0.7865</td> <td>    0.197</td> <td>   -3.993</td> <td> 0.000</td> <td>   -1.173</td> <td>   -0.400</td>
+</tr>
+<tr>
+  <th>ma.L2</th>    <td>    0.1827</td> <td>    0.151</td> <td>    1.209</td> <td> 0.227</td> <td>   -0.113</td> <td>    0.479</td>
+</tr>
+<tr>
+  <th>ma.L3</th>    <td>   -0.3034</td> <td>    0.127</td> <td>   -2.397</td> <td> 0.017</td> <td>   -0.552</td> <td>   -0.055</td>
+</tr>
+<tr>
+  <th>ar.S.L12</th> <td>   -0.0901</td> <td>    0.654</td> <td>   -0.138</td> <td> 0.890</td> <td>   -1.371</td> <td>    1.191</td>
+</tr>
+<tr>
+  <th>ma.S.L12</th> <td>   -0.0686</td> <td>    0.674</td> <td>   -0.102</td> <td> 0.919</td> <td>   -1.389</td> <td>    1.252</td>
+</tr>
+<tr>
+  <th>sigma2</th>   <td>   83.4399</td> <td>   12.743</td> <td>    6.548</td> <td> 0.000</td> <td>   58.464</td> <td>  108.416</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Ljung-Box (L1) (Q):</th>     <td>0.07</td> <th>  Jarque-Bera (JB):  </th> <td>1.50</td>
+</tr>
+<tr>
+  <th>Prob(Q):</th>                <td>0.79</td> <th>  Prob(JB):          </th> <td>0.47</td>
+</tr>
+<tr>
+  <th>Heteroskedasticity (H):</th> <td>1.06</td> <th>  Skew:              </th> <td>0.29</td>
+</tr>
+<tr>
+  <th>Prob(H) (two-sided):</th>    <td>0.87</td> <th>  Kurtosis:          </th> <td>2.86</td>
+</tr>
+</table><br/><br/>Warnings:<br/>[1] Covariance matrix calculated using the outer product of gradients (complex-step).</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_predict_sarima</span><span class="p">,</span> <span class="n">mape_sarima</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">model_result_sarima</span><span class="p">,</span> <span class="n">psgr_test</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">mape_sarima_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;MAPE: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mape_sarima</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mape_sarima_msg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAPE: 0.043
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">df_predict_sarima</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/arima_25_0.png" src="../../_images/arima_25_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sarima_order_select_ic</span><span class="p">(</span>
+    <span class="n">endog</span><span class="p">,</span>
+    <span class="n">exog</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">max_seasonal_order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">seasonal</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">ic</span><span class="o">=</span><span class="s2">&quot;bic&quot;</span><span class="p">,</span>
+    <span class="n">print_progress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">ignore_warning</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">warnings</span>
+
+    <span class="k">if</span> <span class="n">ignore_warning</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
+
+    <span class="n">p</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_order</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_order</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_order</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Not set seasonal basic cycle -&gt; not define any seasonal effect.</span>
+    <span class="c1"># (P, D, Q, s) = (0, 0, 0, 0)</span>
+    <span class="c1"># If you set seasonal basic cycle, minimum order of difference in seasonality is one.</span>
+    <span class="k">if</span> <span class="n">seasonal</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">P</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">Q</span> <span class="o">=</span> <span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">P</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">Q</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_seasonal_order</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_seasonal_order</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_seasonal_order</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="kn">import</span> <span class="nn">itertools</span>
+
+    <span class="n">order_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">q</span><span class="p">))</span>
+    <span class="n">seasonal_order_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">Q</span><span class="p">))</span>
+
+    <span class="n">best_model</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">best_ic</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="n">order_list</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">seasonal_order</span> <span class="ow">in</span> <span class="n">seasonal_order_list</span><span class="p">:</span>
+            <span class="n">seasonal_order</span> <span class="o">+=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">seasonal</span><span class="p">])</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">model</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span>
+                    <span class="n">endog</span><span class="o">=</span><span class="n">endog</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">exog</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">seasonal_order</span><span class="o">=</span><span class="n">seasonal_order</span>
+                <span class="p">)</span>
+                <span class="n">model_result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+                <span class="k">if</span> <span class="n">ic</span> <span class="o">==</span> <span class="s2">&quot;aic&quot;</span><span class="p">:</span>
+                    <span class="n">now_ic</span> <span class="o">=</span> <span class="n">model_result</span><span class="o">.</span><span class="n">aic</span>
+                <span class="k">elif</span> <span class="n">ic</span> <span class="o">==</span> <span class="s2">&quot;bic&quot;</span><span class="p">:</span>
+                    <span class="n">now_ic</span> <span class="o">=</span> <span class="n">model_result</span><span class="o">.</span><span class="n">bic</span>
+                <span class="k">elif</span> <span class="n">ic</span> <span class="o">==</span> <span class="s2">&quot;aicc&quot;</span><span class="p">:</span>
+                    <span class="n">now_ic</span> <span class="o">=</span> <span class="n">model_result</span><span class="o">.</span><span class="n">aicc</span>
+                <span class="k">elif</span> <span class="n">ic</span> <span class="o">==</span> <span class="s2">&quot;hqic&quot;</span><span class="p">:</span>
+                    <span class="n">now_ic</span> <span class="o">=</span> <span class="n">model_result</span><span class="o">.</span><span class="n">hqic</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Specified ic must be </span><span class="si">{</span><span class="s1">&#39;aic&#39;</span><span class="p">,</span> <span class="s1">&#39;bic&#39;</span><span class="p">,</span> <span class="s1">&#39;aicc&#39;</span><span class="p">,</span> <span class="s1">&#39;hqic&#39;</span><span class="si">}</span><span class="s2">, not </span><span class="si">{</span><span class="n">ic</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+                <span class="c1"># define progress message</span>
+                <span class="n">print_msg</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;SARIMAX</span><span class="si">{</span><span class="n">order</span><span class="si">}</span><span class="s2">X</span><span class="si">{</span><span class="n">seasonal_order</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">ic</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">now_ic</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">_whether_be_better_in_ic</span><span class="p">(</span><span class="n">now_ic</span><span class="p">,</span> <span class="n">best_ic</span><span class="p">):</span>
+
+                    <span class="c1"># stationarity and inversibility check.</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">_is_stationary_in_ar</span><span class="p">(</span><span class="n">model_result</span><span class="o">.</span><span class="n">arparams</span><span class="p">):</span>
+                        <span class="n">non_ar_msg</span> <span class="o">=</span> <span class="s2">&quot;Non-stationary autoregressive parameters found, &quot;</span>
+                        <span class="n">print_msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; [NOT UPDATE] </span><span class="si">{</span><span class="n">non_ar_msg</span><span class="si">}</span><span class="s2">&quot;</span>
+
+                    <span class="k">elif</span> <span class="ow">not</span> <span class="n">_is_inversible_in_ma</span><span class="p">(</span><span class="n">model_result</span><span class="o">.</span><span class="n">maparams</span><span class="p">):</span>
+                        <span class="n">non_ma_msg</span> <span class="o">=</span> <span class="s2">&quot;Non-invertible moving average parameters found.&quot;</span>
+                        <span class="n">print_msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; [NOT UPDATE] </span><span class="si">{</span><span class="n">non_ma_msg</span><span class="si">}</span><span class="s2">&quot;</span>
+
+                    <span class="k">elif</span> <span class="ow">not</span> <span class="n">_is_stationary_in_ar</span><span class="p">(</span><span class="n">model_result</span><span class="o">.</span><span class="n">seasonalarparams</span><span class="p">):</span>
+                        <span class="n">non_seasonalar_msg</span> <span class="o">=</span> <span class="p">(</span>
+                            <span class="s2">&quot;Non-stationary seasonal autoregressive parameters found, &quot;</span>
+                        <span class="p">)</span>
+                        <span class="n">print_msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; [NOT UPDATE] </span><span class="si">{</span><span class="n">non_seasonalar_msg</span><span class="si">}</span><span class="s2">&quot;</span>
+
+                    <span class="k">elif</span> <span class="ow">not</span> <span class="n">_is_inversible_in_ma</span><span class="p">(</span><span class="n">model_result</span><span class="o">.</span><span class="n">seasonalmaparams</span><span class="p">):</span>
+                        <span class="n">non_seasonalma_msg</span> <span class="o">=</span> <span class="p">(</span>
+                            <span class="s2">&quot;Non-stationary seasonal moving average parameters found, &quot;</span>
+                        <span class="p">)</span>
+                        <span class="n">print_msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; [NOT UPDATE] </span><span class="si">{</span><span class="n">non_seasonalma_msg</span><span class="si">}</span><span class="s2">&quot;</span>
+
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">best_model</span> <span class="o">=</span> <span class="n">model</span>
+                        <span class="n">best_ic</span> <span class="o">=</span> <span class="n">now_ic</span>
+                        <span class="n">print_msg</span> <span class="o">+=</span> <span class="s2">&quot; [UPDATE]&quot;</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">print_msg</span> <span class="o">+=</span> <span class="s2">&quot; [NOT UPDATE] Non-better information criteria&quot;</span>
+
+                <span class="k">if</span> <span class="n">print_progress</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">print_msg</span><span class="p">)</span>
+
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">error_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;***SARIMAX</span><span class="si">{</span><span class="n">order</span><span class="si">}</span><span class="s2">X</span><span class="si">{</span><span class="n">seasonal_order</span><span class="si">}</span><span class="s2"> cannot be estimated and </span><span class="si">{</span><span class="n">order</span><span class="si">}</span><span class="s2">X</span><span class="si">{</span><span class="n">seasonal_order</span><span class="si">}</span><span class="s2"> has been skipped.***&quot;</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+    <span class="k">if</span> <span class="n">best_model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Not decide SARIMAX&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Decide SARIMAX</span><span class="si">{</span><span class="n">best_model</span><span class="o">.</span><span class="n">order</span><span class="si">}</span><span class="s2">X</span><span class="si">{</span><span class="n">best_model</span><span class="o">.</span><span class="n">seasonal_order</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">ic</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">now_ic</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">best_model</span><span class="p">,</span> <span class="n">best_ic</span>
+
+
+<span class="k">def</span> <span class="nf">_whether_be_better_in_ic</span><span class="p">(</span><span class="n">now_ic</span><span class="p">,</span> <span class="n">best_ic</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">best_ic</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">best_ic</span> <span class="o">&gt;</span> <span class="n">now_ic</span>
+
+
+<span class="k">def</span> <span class="nf">_is_stationary_in_ar</span><span class="p">(</span><span class="n">ar_params</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="c1"># calculate the order or ar.</span>
+    <span class="k">if</span> <span class="n">ar_params</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">ar_params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ar_params</span><span class="p">)</span>
+
+    <span class="c1"># check stationarity.</span>
+    <span class="n">ar_less_than_one</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ar_params</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">order</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="n">ar_less_than_one</span>
+
+
+<span class="k">def</span> <span class="nf">_is_inversible_in_ma</span><span class="p">(</span><span class="n">ma_params</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="c1"># calculate the order or ma.</span>
+    <span class="k">if</span> <span class="n">ma_params</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">ma_params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ma_params</span><span class="p">)</span>
+
+    <span class="c1"># check inversibility.</span>
+    <span class="n">ma_less_than_one</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ma_params</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">order</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="n">ma_less_than_one</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_order</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">max_seasonal_order</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">best_model</span><span class="p">,</span> <span class="n">best_ic</span> <span class="o">=</span> <span class="n">sarima_order_select_ic</span><span class="p">(</span>
+    <span class="n">endog</span><span class="p">,</span>
+    <span class="n">max_order</span><span class="o">=</span><span class="n">max_order</span><span class="p">,</span>
+    <span class="n">max_seasonal_order</span><span class="o">=</span><span class="n">max_seasonal_order</span><span class="p">,</span>
+    <span class="n">seasonal</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+    <span class="n">print_progress</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">ignore_warning</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Decide SARIMAX(0, 1, 0)X(0, 1, 0, 12) - bic: 817.80223
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_model_result_sarima</span> <span class="o">=</span> <span class="n">update_and_fit</span><span class="p">(</span><span class="n">best_model</span><span class="p">,</span> <span class="n">print_progress</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">best_model_result_sarima</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>SARIMAX Results</caption>
+<tr>
+  <th>Dep. Variable:</th>            <td>#Passengers</td>         <th>  No. Observations:  </th>    <td>115</td>  
+</tr>
+<tr>
+  <th>Model:</th>           <td>ARIMA(0, 1, 0)x(0, 1, 0, 12)</td> <th>  Log Likelihood     </th> <td>-377.913</td>
+</tr>
+<tr>
+  <th>Date:</th>                  <td>Thu, 21 Jul 2022</td>       <th>  AIC                </th>  <td>757.826</td>
+</tr>
+<tr>
+  <th>Time:</th>                      <td>16:04:07</td>           <th>  BIC                </th>  <td>760.451</td>
+</tr>
+<tr>
+  <th>Sample:</th>                   <td>01-01-1949</td>          <th>  HQIC               </th>  <td>758.889</td>
+</tr>
+<tr>
+  <th></th>                         <td>- 07-01-1958</td>         <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>              <td>opg</td>             <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+     <td></td>       <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>sigma2</th> <td>   96.7569</td> <td>   13.829</td> <td>    6.997</td> <td> 0.000</td> <td>   69.652</td> <td>  123.861</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Ljung-Box (L1) (Q):</th>     <td>4.33</td> <th>  Jarque-Bera (JB):  </th> <td>1.72</td>
+</tr>
+<tr>
+  <th>Prob(Q):</th>                <td>0.04</td> <th>  Prob(JB):          </th> <td>0.42</td>
+</tr>
+<tr>
+  <th>Heteroskedasticity (H):</th> <td>0.80</td> <th>  Skew:              </th> <td>0.31</td>
+</tr>
+<tr>
+  <th>Prob(H) (two-sided):</th>    <td>0.51</td> <th>  Kurtosis:          </th> <td>2.89</td>
+</tr>
+</table><br/><br/>Warnings:<br/>[1] Covariance matrix calculated using the outer product of gradients (complex-step).</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_predict_best_sarima</span><span class="p">,</span> <span class="n">mape_best_sarima</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span>
+    <span class="n">best_model_result_sarima</span><span class="p">,</span> <span class="n">psgr_test</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span>
+<span class="p">)</span>
+<span class="n">mape_best_sarima_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;MAPE: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mape_best_sarima</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mape_best_sarima_msg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAPE: 0.055
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">df_predict_best_sarima</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/arima_30_0.png" src="../../_images/arima_30_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="pmdarima-sarimax">
+<h3>1.4 例 (pmdarima による自動 SARIMAX 構築)<a class="headerlink" href="#pmdarima-sarimax" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> において <code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.statespace.sarimax.SARIMAX</span></code> を用いて次数を自動選定しモデリングする場合, <a class="reference external" href="https://alkaline-ml.com/pmdarima/index.html"><code class="docutils literal notranslate"><span class="pre">pmdarima</span></code></a> が便利である. <code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.statespace.sarimax.SARIMAX</span></code> をラップしたモジュールであるが</p>
+<ul class="simple">
+<li><p>情報量基準をもとにした次数の最適化</p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/"><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></a> のモジュールが使えるように <a class="reference external" href="https://scikit-learn.org/stable/developers/develop.html#apis-of-scikit-learn-objects"><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> 準拠モデル</a>として定義</p></li>
+</ul>
+<p>という特徴があるので, <code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.statespace.sarimax.SARIMAX</span></code> の代わりに <code class="docutils literal notranslate"><span class="pre">pmdarima</span></code> で試してみる.</p>
+<section id="id3">
+<h4>関連モジュール説明<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<section id="pmdarima-arima-auto-arima">
+<h5><a class="reference external" href="https://alkaline-ml.com/pmdarima/modules/generated/pmdarima.arima.auto_arima.html#pmdarima.arima.auto_arima">pmdarima.arima.auto_arima</a><a class="headerlink" href="#pmdarima-arima-auto-arima" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\({\rm SARIMAX}(p,d,q)\times(P,D,Q,s)\)</span> を情報量基準をもとに最適な次数を選択し学習まで行うメソッド.</p></li>
+</ul>
+</section>
+<section id="pmdarima-arima-arima">
+<h5><a class="reference external" href="https://alkaline-ml.com/pmdarima/modules/generated/pmdarima.arima.ARIMA.html">pmdarima.arima.ARIMA</a><a class="headerlink" href="#pmdarima-arima-arima" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.statespace.sarimax.SARIMAX</span></code> のラップクラス.</p></li>
+</ul>
+</section>
+<section id="pmdarima-arima-arima-predict">
+<h5><a class="reference external" href="https://alkaline-ml.com/pmdarima/modules/generated/pmdarima.arima.ARIMA.html#pmdarima.arima.ARIMA.predict">pmdarima.arima.ARIMA.predict</a><a class="headerlink" href="#pmdarima-arima-arima-predict" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>Out-of-sample forecast のためのメソッド.</p></li>
+</ul>
+</section>
+<section id="pmdarima-arima-arima-predict-in-sample">
+<h5><a class="reference external" href="https://alkaline-ml.com/pmdarima/modules/generated/pmdarima.arima.ARIMA.html#pmdarima.arima.ARIMA.predict_in_sample">pmdarima.arima.ARIMA.predict_in_sample</a><a class="headerlink" href="#pmdarima-arima-arima-predict-in-sample" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>In-sample predict のためのメソッド.</p></li>
+</ul>
+</section>
+</section>
+<section id="id4">
+<h4>具体例<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pmdarima</span> <span class="k">as</span> <span class="nn">pm</span>
+
+<span class="n">model_pmdarima</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">auto_arima</span><span class="p">(</span>
+    <span class="n">psgr_train</span><span class="p">,</span> <span class="n">seasonal</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">error_action</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">trace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">model_pmdarima</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Performing stepwise search to minimize aic
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,2)(1,1,1)[12]             : AIC=757.714, Time=0.55 sec
+ ARIMA(0,1,0)(0,1,0)[12]             : AIC=757.826, Time=0.01 sec
+ ARIMA(1,1,0)(1,1,0)[12]             : AIC=755.750, Time=0.06 sec
+ ARIMA(0,1,1)(0,1,1)[12]             : AIC=756.380, Time=0.09 sec
+ ARIMA(1,1,0)(0,1,0)[12]             : AIC=755.499, Time=0.03 sec
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,0)(0,1,1)[12]             : AIC=755.982, Time=0.10 sec
+ ARIMA(1,1,0)(1,1,1)[12]             : AIC=757.649, Time=0.15 sec
+ ARIMA(2,1,0)(0,1,0)[12]             : AIC=756.771, Time=0.04 sec
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,1)(0,1,0)[12]             : AIC=756.022, Time=0.06 sec
+ ARIMA(0,1,1)(0,1,0)[12]             : AIC=756.011, Time=0.03 sec
+ ARIMA(2,1,1)(0,1,0)[12]             : AIC=757.976, Time=0.07 sec
+ ARIMA(1,1,0)(0,1,0)[12] intercept   : AIC=757.438, Time=0.06 sec
+
+Best model:  ARIMA(1,1,0)(0,1,0)[12]          
+Total fit time: 1.284 seconds
+</pre></div>
+</div>
+<div class="output text_html"><table class="simpletable">
+<caption>SARIMAX Results</caption>
+<tr>
+  <th>Dep. Variable:</th>                  <td>y</td>               <th>  No. Observations:  </th>    <td>115</td>  
+</tr>
+<tr>
+  <th>Model:</th>           <td>SARIMAX(1, 1, 0)x(0, 1, 0, 12)</td> <th>  Log Likelihood     </th> <td>-375.750</td>
+</tr>
+<tr>
+  <th>Date:</th>                   <td>Thu, 21 Jul 2022</td>        <th>  AIC                </th>  <td>755.499</td>
+</tr>
+<tr>
+  <th>Time:</th>                       <td>16:04:11</td>            <th>  BIC                </th>  <td>760.749</td>
+</tr>
+<tr>
+  <th>Sample:</th>                         <td>0</td>               <th>  HQIC               </th>  <td>757.625</td>
+</tr>
+<tr>
+  <th></th>                             <td> - 115</td>             <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>               <td>opg</td>              <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+     <td></td>       <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>ar.L1</th>  <td>   -0.2048</td> <td>    0.090</td> <td>   -2.271</td> <td> 0.023</td> <td>   -0.382</td> <td>   -0.028</td>
+</tr>
+<tr>
+  <th>sigma2</th> <td>   92.6974</td> <td>   13.326</td> <td>    6.956</td> <td> 0.000</td> <td>   66.579</td> <td>  118.816</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Ljung-Box (L1) (Q):</th>     <td>0.03</td> <th>  Jarque-Bera (JB):  </th> <td>2.44</td>
+</tr>
+<tr>
+  <th>Prob(Q):</th>                <td>0.87</td> <th>  Prob(JB):          </th> <td>0.30</td>
+</tr>
+<tr>
+  <th>Heteroskedasticity (H):</th> <td>0.96</td> <th>  Skew:              </th> <td>0.37</td>
+</tr>
+<tr>
+  <th>Prob(H) (two-sided):</th>    <td>0.92</td> <th>  Kurtosis:          </th> <td>2.86</td>
+</tr>
+</table><br/><br/>Warnings:<br/>[1] Covariance matrix calculated using the outer product of gradients (complex-step).</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predict_pmdarima</span><span class="p">(</span><span class="n">model_result</span><span class="p">,</span> <span class="n">test_data</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;予測値データフレームを返す.</span>
+<span class="sd">    引数の test_data をもとに予測期間を決め, 予測値・信頼区間を返す.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    model_result : </span>
+<span class="sd">        statsmodels の fit() 結果インスタンス.</span>
+<span class="sd">    test_data : pandas.core.Dataframe</span>
+<span class="sd">        検証データ.</span>
+<span class="sd">    alpha : float, default None</span>
+<span class="sd">        信頼区間の確率.</span>
+<span class="sd">        </span>
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    df_predict : pandas.core.DataFrame</span>
+<span class="sd">        予測データフレーム.</span>
+<span class="sd">    mape : float</span>
+<span class="sd">        MAPE.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 予測期間を検証データから取得.</span>
+    <span class="n">n_periods</span> <span class="o">=</span> <span class="n">test_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># 予測結果インスタンスを取得.</span>
+    <span class="k">if</span> <span class="n">alpha</span><span class="p">:</span>
+        <span class="n">predicted_mean</span><span class="p">,</span> <span class="n">predicted_ci</span> <span class="o">=</span> <span class="n">model_result</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+            <span class="n">n_periods</span><span class="o">=</span><span class="n">n_periods</span><span class="p">,</span> <span class="n">return_conf_int</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">predicted_mean</span> <span class="o">=</span> <span class="n">model_result</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">n_periods</span><span class="o">=</span><span class="n">n_periods</span><span class="p">)</span>
+
+    <span class="c1"># 予測値データフレームを作成 (検証値, 予測値).</span>
+    <span class="n">df_predict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">predicted_mean</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">test_data</span><span class="o">.</span><span class="n">index</span>
+    <span class="p">)</span>
+    <span class="n">df_predict</span> <span class="o">=</span> <span class="n">test_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_predict</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">alpha</span><span class="p">:</span>
+        <span class="n">df_predict_ci</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="n">predicted_ci</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lower&quot;</span><span class="p">,</span> <span class="s2">&quot;upper&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">test_data</span><span class="o">.</span><span class="n">index</span>
+        <span class="p">)</span>
+        <span class="n">df_predict</span> <span class="o">=</span> <span class="n">df_predict</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_predict_ci</span><span class="p">)</span>
+
+    <span class="c1"># scikit-learn のモジュールを用いて MAPE を計算.</span>
+    <span class="n">mape</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">predicted_mean</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_predict</span><span class="p">,</span> <span class="n">mape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_predict_pmdarima</span><span class="p">,</span> <span class="n">mape_pmdarima</span> <span class="o">=</span> <span class="n">predict_pmdarima</span><span class="p">(</span><span class="n">model_pmdarima</span><span class="p">,</span> <span class="n">psgr_test</span><span class="p">)</span>
+<span class="n">mape_pmdarima_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;MAPE: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mape_pmdarima</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mape_pmdarima_msg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAPE: 0.061
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">df_predict_pmdarima</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/arima_37_0.png" src="../../_images/arima_37_0.png" />
+</div>
+</div>
+</section>
+</section>
 </section>
 </section>
 

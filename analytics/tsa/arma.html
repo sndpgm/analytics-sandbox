@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="ARIMAモデル" href="arima.html" />
+    <link rel="next" title="ARIMAモデル系" href="arima.html" />
     <link rel="prev" title="時系列データ" href="time_series.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -155,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="arima.html">
-   ARIMAモデル
+   ARIMAモデル系
   </a>
  </li>
  <li class="toctree-l1">
@@ -412,7 +412,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
+    <a class="reference internal nav-link" href="#tsa-arma-lag-operator-difference-relations">
      命題 1.5 (ラグ演算子と差分作用子の関係)
     </a>
    </li>
@@ -433,17 +433,35 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     定理 2.2 (
+     <span class="math notranslate nohighlight">
+      \({\rm AR}(p)\)
+     </span>
+     モデルの期待値・分散・自己相関関数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tsa-arma-ar-model-stationarity">
+     定理 2.3 (
+     <span class="math notranslate nohighlight">
+      \({\rm AR}(p)\)
+     </span>
+     モデルの定常性条件)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#statsmodels-ar">
-     例 2.2 (statsmodels による AR モデル)
+     例 2.4 (statsmodels による AR モデル)
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id7">
+      <a class="reference internal nav-link" href="#id9">
        ドキュメント
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id8">
+      <a class="reference internal nav-link" href="#id10">
        具体例
       </a>
      </li>
@@ -465,10 +483,45 @@ title="Print to PDF"
      モデル)
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     定理 3.2 (
+     <span class="math notranslate nohighlight">
+      \({\rm MA}(q)\)
+     </span>
+     モデルの期待値・分散・自己相関関数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tsa-arma-ma-model-stationarity">
+     定理 3.3 (
+     <span class="math notranslate nohighlight">
+      \({\rm MA}(q)\)
+     </span>
+     モデルの反転可能性)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statsmodels-ma">
+     例 3.4 (statsmodels による MA モデル)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id13">
+       ドキュメント
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       具体例
+      </a>
+     </li>
+    </ul>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id9">
+  <a class="reference internal nav-link" href="#id15">
    4. ARMAモデル
   </a>
   <ul class="nav section-nav flex-column">
@@ -481,10 +534,27 @@ title="Print to PDF"
      モデル)
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statsmodels-arma">
+     例 4.2 (statsmodels による ARMA モデル)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id16">
+       ドキュメント
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id17">
+       具体例
+      </a>
+     </li>
+    </ul>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id10">
+  <a class="reference internal nav-link" href="#id18">
    参考文献
   </a>
  </li>
@@ -533,7 +603,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
+    <a class="reference internal nav-link" href="#tsa-arma-lag-operator-difference-relations">
      命題 1.5 (ラグ演算子と差分作用子の関係)
     </a>
    </li>
@@ -554,17 +624,35 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     定理 2.2 (
+     <span class="math notranslate nohighlight">
+      \({\rm AR}(p)\)
+     </span>
+     モデルの期待値・分散・自己相関関数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tsa-arma-ar-model-stationarity">
+     定理 2.3 (
+     <span class="math notranslate nohighlight">
+      \({\rm AR}(p)\)
+     </span>
+     モデルの定常性条件)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#statsmodels-ar">
-     例 2.2 (statsmodels による AR モデル)
+     例 2.4 (statsmodels による AR モデル)
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id7">
+      <a class="reference internal nav-link" href="#id9">
        ドキュメント
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id8">
+      <a class="reference internal nav-link" href="#id10">
        具体例
       </a>
      </li>
@@ -586,10 +674,45 @@ title="Print to PDF"
      モデル)
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     定理 3.2 (
+     <span class="math notranslate nohighlight">
+      \({\rm MA}(q)\)
+     </span>
+     モデルの期待値・分散・自己相関関数)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tsa-arma-ma-model-stationarity">
+     定理 3.3 (
+     <span class="math notranslate nohighlight">
+      \({\rm MA}(q)\)
+     </span>
+     モデルの反転可能性)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statsmodels-ma">
+     例 3.4 (statsmodels による MA モデル)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id13">
+       ドキュメント
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       具体例
+      </a>
+     </li>
+    </ul>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id9">
+  <a class="reference internal nav-link" href="#id15">
    4. ARMAモデル
   </a>
   <ul class="nav section-nav flex-column">
@@ -602,10 +725,27 @@ title="Print to PDF"
      モデル)
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statsmodels-arma">
+     例 4.2 (statsmodels による ARMA モデル)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id16">
+       ドキュメント
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id17">
+       具体例
+      </a>
+     </li>
+    </ul>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id10">
+  <a class="reference internal nav-link" href="#id18">
    参考文献
   </a>
  </li>
@@ -679,8 +819,8 @@ title="Print to PDF"
 <li><p>(5) <span class="math notranslate nohighlight">\(\dfrac{1}{1-aL} = 1 + aL + a^2 L^2 + \cdots =\displaystyle \sum_{i=0}^{\infty}{(aL)^i} \quad (|aL| &lt; 1)\)</span></p></li>
 </ul>
 </div></section>
-<section id="id6">
-<h3>命題 1.5 (ラグ演算子と差分作用子の関係)<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<section id="tsa-arma-lag-operator-difference-relations">
+<span id="id6"></span><h3>命題 1.5 (ラグ演算子と差分作用子の関係)<a class="headerlink" href="#tsa-arma-lag-operator-difference-relations" title="Permalink to this headline">#</a></h3>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
 <p>ラグ演算子 <span class="math notranslate nohighlight">\(L\)</span> と後退差分作用子 <span class="math notranslate nohighlight">\(\nabla\)</span> は以下の関係にある.</p>
 <div class="math notranslate nohighlight">
@@ -717,10 +857,92 @@ title="Print to PDF"
 \]</div>
 <p>とも表現できる.</p>
 </section>
-<section id="statsmodels-ar">
-<h3>例 2.2 (statsmodels による AR モデル)<a class="headerlink" href="#statsmodels-ar" title="Permalink to this headline">#</a></h3>
 <section id="id7">
-<h4>ドキュメント<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h4>
+<h3>定理 2.2 (<span class="math notranslate nohighlight">\({\rm AR}(p)\)</span>モデルの期待値・分散・自己相関関数)<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\({\rm AR}(p)\)</span> モデルが定常な時系列過程の場合, 期待値 <span class="math notranslate nohighlight">\(\mu\)</span> は以下のように書ける.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \mu = \frac{c}{1 - \phi_1 - \phi_2 - \cdots - \phi_p}
+    \end{align}
+\]</div>
+<p>また分散 <span class="math notranslate nohighlight">\(C_0\)</span>, ラグ <span class="math notranslate nohighlight">\(k \ (= 1, 2, \dots, p)\)</span> の自己相関関数 <span class="math notranslate nohighlight">\(C_k\)</span> は 以下の方程式を解くことで求められる.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        C_0 &amp;= \sum_{i=1}^{p}{\phi_i C_i} + \sigma_{\varepsilon}^2 \\
+        C_k &amp;= \sum_{i=1}^{p}{\phi_i C_{k-i}}
+    \end{align}
+\end{split}\]</div>
+<p>上記方程式を <strong>ユール・ウォーカー方程式</strong> (Yule-Walker equation) と呼ばれる.</p>
+</div>
+<p><u>証明</u></p>
+<p><span class="math notranslate nohighlight">\(\varepsilon_t \sim \text{WN}(0, \sigma_{\varepsilon}^2)\)</span> であり定常過程の場合 <span class="math notranslate nohighlight">\(\mu = {\rm E}(y_{t-k})\)</span> と書ける. このことを踏まえて <span class="math notranslate nohighlight">\({\rm AR}(p)\)</span> モデルの両辺に期待値を取ると</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp; {\rm E}(y_t) = {\rm E}(c) + \sum_{i=1}^{p}{\phi_i {\rm E}(y_{t-i})} + {\rm E}(\varepsilon_t) \\
+        \Leftrightarrow \ &amp; \mu = c + \mu(\phi_1 + \phi_2 + \cdots + \phi_p) \\
+        \Leftrightarrow \ &amp; (1 - \phi_1 - \phi_2 - \cdots - \phi_p)\mu = c \\
+        \Leftrightarrow \ &amp; \mu = \frac{c}{1 - \phi_1 - \phi_2 - \cdots - \phi_p}
+    \end{align}
+\end{split}\]</div>
+<p>となる.
+　また <span class="math notranslate nohighlight">\({\rm AR}(p)\)</span> モデルの両辺に <span class="math notranslate nohighlight">\(\mu = c + \mu(\phi_1 + \phi_2 + \cdots + \phi_p)\)</span> を差し引いて</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        &amp; y_t - \mu = \sum_{i=1}^{p}{\phi_i (y_{t-i} - \mu)} + \varepsilon_t
+    \end{align}
+\]</div>
+<p>両辺に <span class="math notranslate nohighlight">\(y_t - \mu\)</span> をかけて期待値を取る. ここで, <span class="math notranslate nohighlight">\(C_0 = {\rm Cov}(y_t - \mu, y_t - \mu) = {\rm Var}(y_t)\)</span>, <span class="math notranslate nohighlight">\(C_i = {\rm Cov}(y_t - \mu, y_{t-i} - \mu)\)</span> より</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        &amp; C_0 = \sum_{i=1}^{p}{\phi_i C_i} + {\rm E}(\varepsilon_t(y_t - \mu))
+    \end{align}
+\]</div>
+<p>ここで <span class="math notranslate nohighlight">\(\varepsilon_t(y_t - \mu) = \displaystyle \sum_{i=1}^{p}{\phi_i \varepsilon_t (y_{t-i} - \mu)} + \varepsilon_t^2\)</span> で <span class="math notranslate nohighlight">\({\rm E}(\varepsilon_t^2) = 0\)</span> より</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        &amp; {\rm}E(\varepsilon_t(y_t - \mu)) = {\rm}E(\varepsilon_t^2) = \sigma_{\varepsilon}^2
+    \end{align}
+\]</div>
+<p>よって</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        C_0 &amp;= \sum_{i=1}^{p}{\phi_i C_i} + \sigma_{\varepsilon}^2
+    \end{align}
+\]</div>
+<p>また, <span class="math notranslate nohighlight">\(y_t - \mu\)</span> の代わりに <span class="math notranslate nohighlight">\(y_{t-k} - \mu\)</span> をかけて期待値を取る. このとき定常性を仮定すると <span class="math notranslate nohighlight">\({\rm Cov}(y_{t-i}, y_{t-k}) = {\rm Cov}(y_{t}, y_{t-(k-i)}) = C_{k-i}\)</span> より</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        &amp; C_k = \sum_{i=1}^{p}{\phi_i C_{k-i}}
+    \end{align}
+\]</div>
+</section>
+<section id="tsa-arma-ar-model-stationarity">
+<span id="id8"></span><h3>定理 2.3 (<span class="math notranslate nohighlight">\({\rm AR}(p)\)</span>モデルの定常性条件)<a class="headerlink" href="#tsa-arma-ar-model-stationarity" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>AR特性方程式</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \phi_p(x) = 1 - (\phi_1 x + \phi_2 x^2 + \cdots + \phi_p x^{p}) = 0
+    \end{align}
+\]</div>
+<p>の根の絶対値が全て1より大きい場合, <span class="math notranslate nohighlight">\({\rm AR}(p)\)</span> モデルは定常過程である.</p>
+</div>
+<p><a class="reference external" href="http://matthieustigler.github.io/Lectures/Lect2ARMA.pdf">http://matthieustigler.github.io/Lectures/Lect2ARMA.pdf</a></p>
+</section>
+<section id="statsmodels-ar">
+<h3>例 2.4 (statsmodels による AR モデル)<a class="headerlink" href="#statsmodels-ar" title="Permalink to this headline">#</a></h3>
+<section id="id9">
+<h4>ドキュメント<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h4>
 <p>詳細については適宜ドキュメントを参考にすること.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.ar_model.AutoReg</span></code></p>
@@ -744,8 +966,8 @@ title="Print to PDF"
 </li>
 </ul>
 </section>
-<section id="id8">
-<h4>具体例<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h4>
+<section id="id10">
+<h4>具体例<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.arima.model.ARIMA</span></code> で実際に構築してみる. その際に, <code class="docutils literal notranslate"><span class="pre">sandbox.datasets.air_passengers</span></code> にあるデータで実行する.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -780,7 +1002,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/arma_13_0.png" src="../../_images/arma_13_0.png" />
+<img alt="../../_images/arma_15_0.png" src="../../_images/arma_15_0.png" />
 </div>
 </div>
 <p>もし <code class="docutils literal notranslate"><span class="pre">sandbox</span></code> をインストールしていない場合は GitHub でクローンした後に <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code> を行うか, URL をして直接取得するかを行えばよい.</p>
@@ -800,7 +1022,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/arma_15_0.png" src="../../_images/arma_15_0.png" />
+<img alt="../../_images/arma_17_0.png" src="../../_images/arma_17_0.png" />
 </div>
 </div>
 <p>波形を見ると <code class="docutils literal notranslate"><span class="pre">air_passengers</span></code> データは非定常な時系列データのため定常時系列に近づけていく. 定常性については<a class="reference internal" href="time_series.html#tsa-time-series-stationarity"><span class="std std-ref">時系列データ &gt; 2.定常性</span></a> を参照のこと.
@@ -847,7 +1069,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/arma_18_0.png" src="../../_images/arma_18_0.png" />
+<img alt="../../_images/arma_20_0.png" src="../../_images/arma_20_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -884,9 +1106,9 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># AR(11) モデル</span>
 <span class="n">p</span> <span class="o">=</span> <span class="mi">11</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">psgr_train_boxcox_diff</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-<span class="n">model_fitted</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">model_fitted</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="n">model_ar</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">psgr_train_boxcox_diff</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">model_ar_fitted</span> <span class="o">=</span> <span class="n">model_ar</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_ar_fitted</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -895,8 +1117,8 @@ title="Print to PDF"
 ==============================================================================
 Dep. Variable:            #Passengers   No. Observations:                  115
 Model:                ARIMA(11, 0, 0)   Log Likelihood                 144.389
-Date:                Mon, 18 Jul 2022   AIC                           -262.778
-Time:                        17:06:35   BIC                           -227.094
+Date:                Thu, 21 Jul 2022   AIC                           -262.778
+Time:                        16:04:18   BIC                           -227.094
 Sample:                    01-01-1949   HQIC                          -248.294
                          - 07-01-1958                                         
 Covariance Type:                  opg                                         
@@ -944,20 +1166,20 @@ Warnings:
 
 <span class="c1"># get_prediction メソッドにより予測結果インスタンスを取得</span>
 <span class="c1"># 信頼区間を求める場合には予測結果インスタンスを経由し conf_int メソッドから計算</span>
-<span class="n">predict_result</span> <span class="o">=</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+<span class="n">predict_result_ar</span> <span class="o">=</span> <span class="n">model_ar_fitted</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
 
 <span class="c1"># 予測値 Series を取得</span>
-<span class="n">predict</span> <span class="o">=</span> <span class="n">predict_result</span><span class="o">.</span><span class="n">predicted_mean</span>
+<span class="n">predict_ar</span> <span class="o">=</span> <span class="n">predict_result_ar</span><span class="o">.</span><span class="n">predicted_mean</span>
 
 <span class="c1"># 信頼区間の格納された DataFrame を取得</span>
-<span class="n">df_ci</span> <span class="o">=</span> <span class="n">predict_result</span><span class="o">.</span><span class="n">conf_int</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+<span class="n">df_ci_ar</span> <span class="o">=</span> <span class="n">predict_result_ar</span><span class="o">.</span><span class="n">conf_int</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
 
 <span class="c1"># 予測値と信頼区間を一つの DataFrame にまとめる</span>
-<span class="n">df_predict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">predict</span><span class="p">)</span>
-<span class="n">df_predict</span> <span class="o">=</span> <span class="n">df_predict</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_ci</span><span class="p">)</span>
+<span class="n">df_predict_ar</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">predict_ar</span><span class="p">)</span>
+<span class="n">df_predict_ar</span> <span class="o">=</span> <span class="n">df_predict_ar</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_ci_ar</span><span class="p">)</span>
 
 <span class="c1"># 結果の確認</span>
-<span class="n">df_predict</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">df_predict_ar</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1090,7 +1312,7 @@ Warnings:
 \[
     Y_t = \nabla y'_t = {\rm BoxCox}(y_t) - {\rm BoxCox}(y_{t-1})
 \]</div>
-<p>を学習し予測値を算出した. ゆえに予測値を <span class="math notranslate nohighlight">\(\{ y_t \}\)</span> スケールに戻すためには階差の逆の処理をする必要があるが, 予測開始時点を <span class="math notranslate nohighlight">\(t = T_s\)</span>, 予測終了時点を <span class="math notranslate nohighlight">\(t = T_e\)</span> とする. また算出した予測値を <span class="math notranslate nohighlight">\(\hat{Y}_t\)</span> とすれば, <span class="math notranslate nohighlight">\(\{ \hat{Y}_{T_s}, \hat{Y}_{T_s + 1}, \dots, \hat{Y}_{T_e} \}\)</span> が予測された列となる.<br />
+<p>を学習し予測値を算出した. ゆえに予測値を <span class="math notranslate nohighlight">\(\{ y_t \}\)</span> スケールに戻すためには階差の逆の処理をする必要がある. 予測開始時点を <span class="math notranslate nohighlight">\(t = T_s\)</span>, 予測終了時点を <span class="math notranslate nohighlight">\(t = T_e\)</span> とする. また算出した予測値を <span class="math notranslate nohighlight">\(\hat{Y}_t\)</span> とすれば, <span class="math notranslate nohighlight">\(\{ \hat{Y}_{T_s}, \hat{Y}_{T_s + 1}, \dots, \hat{Y}_{T_e} \}\)</span> が予測された列となる.<br />
 　<span class="math notranslate nohighlight">\(T_s \leq i \leq T_e\)</span> とすれば,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1121,9 +1343,9 @@ Warnings:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">init</span> <span class="o">=</span> <span class="n">psgr_train_boxcox</span><span class="p">[</span><span class="s2">&quot;#Passengers&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">df_predict_cumsum</span> <span class="o">=</span> <span class="n">df_predict</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">+</span> <span class="n">init</span>
-<span class="n">df_predict_cumsum_inv_boxcox</span> <span class="o">=</span> <span class="n">inv_boxcox</span><span class="p">(</span><span class="n">df_predict_cumsum</span><span class="p">,</span> <span class="n">lam</span><span class="p">)</span>
-<span class="n">df_predict_cumsum_inv_boxcox</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">df_predict_ar_cumsum</span> <span class="o">=</span> <span class="n">df_predict_ar</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">+</span> <span class="n">init</span>
+<span class="n">df_predict_ar_cumsum_inv_boxcox</span> <span class="o">=</span> <span class="n">inv_boxcox</span><span class="p">(</span><span class="n">df_predict_ar_cumsum</span><span class="p">,</span> <span class="n">lam</span><span class="p">)</span>
+<span class="n">df_predict_ar_cumsum_inv_boxcox</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1218,11 +1440,11 @@ Warnings:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mape</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span>
-    <span class="n">psgr_test</span><span class="p">,</span> <span class="n">df_predict_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mape_ar</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span>
+    <span class="n">psgr_test</span><span class="p">,</span> <span class="n">df_predict_ar_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">]</span>
 <span class="p">)</span>
-<span class="n">mape_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;MAPE: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mape</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">mape_msg</span><span class="p">)</span>
+<span class="n">mape_ar_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;MAPE: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mape_ar</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mape_ar_msg</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1238,9 +1460,9 @@ Warnings:
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Train&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_test</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">df_predict_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">],</span>
+    <span class="n">df_predict_ar_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">],</span>
     <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;p=</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">mape_msg</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;p=</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">mape_ar_msg</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -1249,18 +1471,18 @@ Warnings:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/arma_25_0.png" src="../../_images/arma_25_0.png" />
+<img alt="../../_images/arma_27_0.png" src="../../_images/arma_27_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">model_fitted</span><span class="o">.</span><span class="n">plot_diagnostics</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">model_ar_fitted</span><span class="o">.</span><span class="n">plot_diagnostics</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/arma_26_0.png" src="../../_images/arma_26_0.png" />
+<img alt="../../_images/arma_28_0.png" src="../../_images/arma_28_0.png" />
 </div>
 </div>
 </section>
@@ -1270,16 +1492,794 @@ Warnings:
 <h2>3. MAモデル<a class="headerlink" href="#ma" title="Permalink to this headline">#</a></h2>
 <section id="rm-ma-q">
 <h3>定義 3.1 (<span class="math notranslate nohighlight">\({\rm MA}(q)\)</span>モデル)<a class="headerlink" href="#rm-ma-q" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>時系列 <span class="math notranslate nohighlight">\(\{ y_t \}\)</span> について <span class="math notranslate nohighlight">\(t = 1, 2, \cdots, T \)</span> のとき <strong>移動平均モデル</strong> (moving average model, MA model) は以下で定義する.</p>
+<div class="math notranslate nohighlight">
+\[
+    y_t = c + \varepsilon_t + \sum_{i=1}^{q} {\theta_{i} \varepsilon_{t-i}} \quad s.t. \ c \in \mathbb{R}, q \in \mathbb{N}, \varepsilon_t \sim \text{WN}(0, \sigma_{\varepsilon}^2)
+\]</div>
+<p>このとき <strong><span class="math notranslate nohighlight">\(\text{MA}(q)\)</span></strong> と表す. ここで, <span class="math notranslate nohighlight">\(c\)</span> は切片, <span class="math notranslate nohighlight">\(q\)</span> は<strong>移動平均の次数</strong>, <span class="math notranslate nohighlight">\(\theta_i\)</span> を <strong><span class="math notranslate nohighlight">\(i\)</span> 次の移動平均係数</strong>, <span class="math notranslate nohighlight">\(\varepsilon_t\)</span> はホワイトノイズで表現される誤差項である.</p>
+</div>
+<p>ここでラグ多項式 <span class="math notranslate nohighlight">\(\phi_p(L)\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \theta_q(L) = 1 + (\theta_1 L^{1} + \cdots + \theta_q L^{q}) = 1 - \sum_{i=1}^{q}{\theta_i L^{i}}
+    \end{align}
+\]</div>
+<p>を用いて</p>
+<div class="math notranslate nohighlight">
+\[
+    y_t = c + \theta_q(L) \varepsilon_t
+\]</div>
+<p>とも表現できる.</p>
+</section>
+<section id="id11">
+<h3>定理 3.2 (<span class="math notranslate nohighlight">\({\rm MA}(q)\)</span>モデルの期待値・分散・自己相関関数)<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\({\rm MA}(q)\)</span> モデルの期待値 <span class="math notranslate nohighlight">\(\mu\)</span> は以下のように書ける.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \mu = c
+    \end{align}
+\]</div>
+<p>また分散 <span class="math notranslate nohighlight">\(C_0\)</span>, ラグ <span class="math notranslate nohighlight">\(k \ (= 1, 2, \dots, p)\)</span> の自己相関関数 <span class="math notranslate nohighlight">\(C_k\)</span> は以下の通りである. ただし, <span class="math notranslate nohighlight">\(\theta_0 = 1\)</span> とする.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        C_0 &amp;= (1 + \theta_1^2 + \cdots + \theta_q^2)\sigma_{\varepsilon}^2 = \sigma_{\varepsilon}^2 \sum_{i=0}^{q}{\theta_i} \\
+        C_k &amp;= \begin{cases}
+            \sigma_{\varepsilon}^2 (\theta_k + \theta_1 \theta_{k+1} + \theta_2 \theta_{k+2} + \cdots + + \theta_{q-k} \theta_{q} )
+                = \sigma_{\varepsilon}^2 \displaystyle \sum_{i=0}^{q-k}{\theta_i \theta_{i+k}} \quad &amp;(1 \leq k \leq q)\\
+            0 \quad &amp;(k \gt q)
+        \end{cases}
+    \end{align}
+\end{split}\]</div>
+</div>
+<p><u>証明</u></p>
+<p><span class="math notranslate nohighlight">\(\varepsilon_t \sim \text{WN}(0, \sigma_{\varepsilon}^2)\)</span> のため独立かつ期待値は0であることに注意し <span class="math notranslate nohighlight">\({\rm MA}(q)\)</span> のモデル式の両辺に期待値を取れば <span class="math notranslate nohighlight">\(\mu = {\rm E}(y_t)\)</span> は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        {\rm E}(y_t) &amp;= {\rm E}\biggl(c + \varepsilon_t + \sum_{i=1}^{q} {\theta_{i} \varepsilon_{t-i}} \biggr) \\
+                     &amp;= {\rm E}(c) + {\rm E}(\varepsilon_t) + \sum_{i=1}^{q}{\theta_i {\rm E}(\varepsilon_{t-i}) } \\
+                     &amp;= c
+    \end{align}
+\end{split}\]</div>
+<p>となる. また分散は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        {\rm Var}(y_t) &amp;= {\rm Var}\biggl(c + \varepsilon_t + \sum_{i=1}^{q} {\theta_{i} \varepsilon_{t-i}} \biggr) \\
+                       &amp;= {\rm Var}(c) + {\rm Var}(\varepsilon_t) + \sum_{i=1}^{q} {\theta_{i} {\rm Var}(\varepsilon_{t-i})} \\
+                       &amp;= (1 + \theta_1^2 + \cdots + \theta_q^2)\sigma_{\varepsilon}^2
+    \end{align}
+\end{split}\]</div>
+<p>と書ける. 最後にラグ <span class="math notranslate nohighlight">\(k\)</span> の自己共分散関数は <span class="math notranslate nohighlight">\(\varepsilon_t \sim \text{WN}(0, \sigma_{\varepsilon}^2)\)</span> のため定常過程であり <span class="math notranslate nohighlight">\({\rm Cov}(\varepsilon_t, \varepsilon_{t-k}) = 0 \Leftrightarrow {\rm E}(\varepsilon_t, \varepsilon_{t-k}) = 0\)</span> が成立することに注意して</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        {\rm Cov}(y_t, y_{t-k}) &amp;= {\rm E}[(y_t - \mu)(y_{t-k} - \mu)] \\
+                                &amp;= {\rm E} \biggl[ 
+                                    \biggl(\varepsilon_t + \sum_{i=1}^{q} {\theta_{i} \varepsilon_{t-i}} \biggr)
+                                    \biggl(\varepsilon_{t-k} + \sum_{j=1}^{q} {\theta_{j} \varepsilon_{t-k-j}} \biggr)
+                                \biggr] \\
+                                &amp;= {\rm E} \biggl[
+                                    \varepsilon_t \varepsilon_{t-k} 
+                                        + \varepsilon_t \sum_{j=1}^{q} {\theta_{j} \varepsilon_{t-k-j}}
+                                        + \varepsilon_{t-k} \sum_{i=1}^{q} {\theta_{i} \varepsilon_{t-i}}
+                                        + \sum_{i=1}^{q} {\theta_{i} \varepsilon_{t-i}} \sum_{j=1}^{q} {\theta_{j} \varepsilon_{t-k-j}}
+                                \biggr] \\
+                                &amp;= {\rm E}(\varepsilon_t \varepsilon_{t-k})
+                                    + {\rm E} \biggl[ \varepsilon_t \sum_{j=1}^{q} {\theta_{j} \varepsilon_{t-k-j}} \biggr]
+                                    + {\rm E} \biggl[ \varepsilon_{t-k} \sum_{i=1}^{q} {\theta_{i} \varepsilon_{t-i}} \biggr]
+                                    + {\rm E} \biggl[ \sum_{i=1}^{q} {\theta_{i} \varepsilon_{t-i}} \sum_{j=1}^{q} {\theta_{j} \varepsilon_{t-k-j}} \biggr] \\
+                                &amp;= {\rm E} \biggl[ \varepsilon_{t-k} \sum_{i=1}^{q} {\theta_{i} \varepsilon_{t-i}} \biggr]
+                                    + {\rm E} \biggl[ \sum_{i=1}^{q} {\theta_{i} \varepsilon_{t-i}} \sum_{j=1}^{q} {\theta_{j} \varepsilon_{t-k-j}} \biggr]
+    \end{align}
+\end{split}\]</div>
+<p>上式において <span class="math notranslate nohighlight">\(t \neq t-k \ (\because k &gt; 0)\)</span> より <span class="math notranslate nohighlight">\({\rm E}(\varepsilon_t \varepsilon_{t-q}) = 0\)</span> で, <span class="math notranslate nohighlight">\(t \neq t-k-i \ (\because k, i &gt; 0)\)</span> から <span class="math notranslate nohighlight">\(\displaystyle {\rm E} \biggl[ \varepsilon_t \sum_{i=1}^{q} {\theta_{i} \varepsilon_{t-k-i}} \biggr] = 0\)</span> である. また残りの項において <span class="math notranslate nohighlight">\(\varepsilon\)</span> の添字が一致する条件について第 1 項は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp; t - k = t - i \land 1 \leq i \leq q \\
+        \Leftrightarrow \ &amp; i = k \land 1 \leq i \leq q \\
+        \Leftrightarrow \ &amp; i = k \land 1 \leq k \leq q
+    \end{align}
+\end{split}\]</div>
+<p>で <span class="math notranslate nohighlight">\(\displaystyle {\rm E} \biggl[ \varepsilon_{t-k} \sum_{i=1}^{q} {\theta_{i} \varepsilon_{t-i}} \biggr] = E(\varepsilon_{k}^2) = \theta_0 \sigma_{\varepsilon}^2\)</span> となり, 第 2 項については</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        &amp; t - i = t - k - j \land 1 \leq i \leq q \land 1 \leq j \leq q \\
+        \Leftrightarrow \ &amp; i = j + k \land 1 \leq i \leq q \land 1 \leq j \leq q \\
+        \Rightarrow \ &amp; i = j + k \land 1 \leq j \leq q - k
+    \end{align}
+\end{split}\]</div>
+<p>つまり <span class="math notranslate nohighlight">\(1 \leq j \leq q - k\)</span> かつ <span class="math notranslate nohighlight">\(k \leq q\)</span> で添字が一致する. つまり</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        {\rm E} \biggl[ \sum_{i=1}^{q} {\theta_{i} \varepsilon_{t-i}} \sum_{j=1}^{q} {\theta_{j} \varepsilon_{t-k-j}} \biggr] = \sigma_{\varepsilon}^2 (\theta_1 \theta_{k+1} + \theta_2 \theta_{k+2} + \cdots + + \theta_{q-k} \theta_{q} )
+    \end{align}
+\]</div>
+<p>となる. 全てまとめると <span class="math notranslate nohighlight">\(1 \leq k \leq q\)</span> のとき</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        {\rm Cov}(y_t, y_{t-k}) = \sigma_{\varepsilon}^2 (\theta_k + \theta_1 \theta_{k+1} + \theta_2 \theta_{k+2} + \cdots + + \theta_{q-k} \theta_{q} )
+    \end{align}
+\]</div>
+<p>であり, <span class="math notranslate nohighlight">\(k \gt q\)</span> のとき添字が一致する誤差項どうしの掛け算は存在せず 0 となる.</p>
+<br>
+<p>上記の期待値, 分散, 自己相関関数の結果から <span class="math notranslate nohighlight">\({\rm MA}(q)\)</span> モデルは<strong>常に弱定常性を満たす</strong>ことが分かる.</p>
+</section>
+<section id="tsa-arma-ma-model-stationarity">
+<span id="id12"></span><h3>定理 3.3 (<span class="math notranslate nohighlight">\({\rm MA}(q)\)</span>モデルの反転可能性)<a class="headerlink" href="#tsa-arma-ma-model-stationarity" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>MA特性方程式</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        \theta_q(x) = 1 + \theta_1 x + \theta_2 x^2 + \cdots + \theta_p x^{p} = 0
+    \end{align}
+\]</div>
+<p>の根の絶対値が全て1より大きい場合, <span class="math notranslate nohighlight">\({\rm MA}(q)\)</span> モデルは<strong>反転可能である</strong> (inversible).</p>
+</div></section>
+<section id="statsmodels-ma">
+<h3>例 3.4 (statsmodels による MA モデル)<a class="headerlink" href="#statsmodels-ma" title="Permalink to this headline">#</a></h3>
+<section id="id13">
+<h4>ドキュメント<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h4>
+<p>詳細については適宜ドキュメントを参考にすること.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.arima.model.ARIMA</span></code></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\text{MA}(q)\)</span> モデルだけでなく, より一般的な <span class="math notranslate nohighlight">\({\rm SARIMAX}(p, d, q)\times(P, D, Q, s)\)</span> を構築可能なクラスモジュール.</p></li>
+<li><p><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMA.html#generated-statsmodels-tsa-arima-model-arima--page-root">APIドキュメント</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id14">
+<h4>具体例<a class="headerlink" href="#id14" title="Permalink to this headline">#</a></h4>
+<p>ARモデルと同じデータを用いて <code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.arima.model.ARIMA</span></code> で実際に構築してみる.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># 元データ</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">psgr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+
+<span class="c1"># Box-Cox変換を行なったデータ時系列に階差をとったデータ</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">psgr_train_boxcox_diff</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Box-Cox and Differencing&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/arma_36_0.png" src="../../_images/arma_36_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># MA(11) モデル</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="n">model_ma</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">psgr_train_boxcox_diff</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">q</span><span class="p">))</span>
+<span class="n">model_ma_fitted</span> <span class="o">=</span> <span class="n">model_ma</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_ma_fitted</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/statsmodels/tsa/statespace/sarimax.py:978: UserWarning: Non-invertible starting MA parameters found. Using zeros as starting parameters.
+  warn(&#39;Non-invertible starting MA parameters found.&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                               SARIMAX Results                                
+==============================================================================
+Dep. Variable:            #Passengers   No. Observations:                  115
+Model:                ARIMA(0, 0, 11)   Log Likelihood                  95.962
+Date:                Thu, 21 Jul 2022   AIC                           -165.924
+Time:                        16:04:22   BIC                           -130.240
+Sample:                    01-01-1949   HQIC                          -151.440
+                         - 07-01-1958                                         
+Covariance Type:                  opg                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0146      0.005      3.092      0.002       0.005       0.024
+ma.L1          0.2231     84.005      0.003      0.998    -164.424     164.870
+ma.L2          0.3737    103.301      0.004      0.997    -202.092     202.839
+ma.L3          0.0820    134.065      0.001      1.000    -262.681     262.845
+ma.L4         -0.0323    141.576     -0.000      1.000    -277.516     277.452
+ma.L5          0.1074    138.025      0.001      0.999    -270.417     270.632
+ma.L6         -0.0603    147.780     -0.000      1.000    -289.705     289.584
+ma.L7          0.0564    142.233      0.000      1.000    -278.715     278.827
+ma.L8         -0.4870    147.730     -0.003      0.997    -290.033     289.058
+ma.L9         -0.0489    106.358     -0.000      1.000    -208.507     208.409
+ma.L10        -0.7933    102.570     -0.008      0.994    -201.827     200.240
+ma.L11        -0.4203     35.685     -0.012      0.991     -70.362      69.521
+sigma2         0.0093      0.788      0.012      0.991      -1.535       1.553
+===================================================================================
+Ljung-Box (L1) (Q):                   0.82   Jarque-Bera (JB):                 3.51
+Prob(Q):                              0.37   Prob(JB):                         0.17
+Heteroskedasticity (H):               1.13   Skew:                             0.42
+Prob(H) (two-sided):                  0.71   Kurtosis:                         3.20
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/statsmodels/base/model.py:604: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  warnings.warn(&quot;Maximum Likelihood optimization failed to &quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get_prediction メソッドにより予測結果インスタンスを取得</span>
+<span class="c1"># 信頼区間を求める場合には予測結果インスタンスを経由し conf_int メソッドから計算</span>
+<span class="n">predict_result_ma</span> <span class="o">=</span> <span class="n">model_ma_fitted</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+
+<span class="c1"># 予測値 Series を取得</span>
+<span class="n">predict_ma</span> <span class="o">=</span> <span class="n">predict_result_ma</span><span class="o">.</span><span class="n">predicted_mean</span>
+
+<span class="c1"># 信頼区間の格納された DataFrame を取得</span>
+<span class="n">df_ci_ma</span> <span class="o">=</span> <span class="n">predict_result_ma</span><span class="o">.</span><span class="n">conf_int</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="c1"># 予測値と信頼区間を一つの DataFrame にまとめる</span>
+<span class="n">df_predict_ma</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">predict_ma</span><span class="p">)</span>
+<span class="n">df_predict_ma</span> <span class="o">=</span> <span class="n">df_predict_ma</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_ci_ma</span><span class="p">)</span>
+
+<span class="c1"># 予測値に対して階差の逆変換, Box-Cox変換の逆変換を実施.</span>
+<span class="n">init</span> <span class="o">=</span> <span class="n">psgr_train_boxcox</span><span class="p">[</span><span class="s2">&quot;#Passengers&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df_predict_ma_cumsum</span> <span class="o">=</span> <span class="n">df_predict_ma</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">+</span> <span class="n">init</span>
+<span class="n">df_predict_ma_cumsum_inv_boxcox</span> <span class="o">=</span> <span class="n">inv_boxcox</span><span class="p">(</span><span class="n">df_predict_ma_cumsum</span><span class="p">,</span> <span class="n">lam</span><span class="p">)</span>
+<span class="n">df_predict_ma_cumsum_inv_boxcox</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>predicted_mean</th>
+      <th>lower #Passengers</th>
+      <th>upper #Passengers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1958-08-01</th>
+      <td>506.856681</td>
+      <td>437.741809</td>
+      <td>586.322166</td>
+    </tr>
+    <tr>
+      <th>1958-09-01</th>
+      <td>519.995951</td>
+      <td>386.113332</td>
+      <td>697.559354</td>
+    </tr>
+    <tr>
+      <th>1958-10-01</th>
+      <td>489.815619</td>
+      <td>308.806387</td>
+      <td>769.691048</td>
+    </tr>
+    <tr>
+      <th>1958-11-01</th>
+      <td>463.761126</td>
+      <td>247.645296</td>
+      <td>853.687888</td>
+    </tr>
+    <tr>
+      <th>1958-12-01</th>
+      <td>480.825495</td>
+      <td>217.747884</td>
+      <td>1033.266933</td>
+    </tr>
+    <tr>
+      <th>1959-01-01</th>
+      <td>483.947817</td>
+      <td>185.404940</td>
+      <td>1214.165405</td>
+    </tr>
+    <tr>
+      <th>1959-02-01</th>
+      <td>474.496128</td>
+      <td>153.367700</td>
+      <td>1390.181969</td>
+    </tr>
+    <tr>
+      <th>1959-03-01</th>
+      <td>492.286036</td>
+      <td>134.446181</td>
+      <td>1678.273440</td>
+    </tr>
+    <tr>
+      <th>1959-04-01</th>
+      <td>470.884115</td>
+      <td>106.437875</td>
+      <td>1898.135971</td>
+    </tr>
+    <tr>
+      <th>1959-05-01</th>
+      <td>471.371193</td>
+      <td>88.280266</td>
+      <td>2238.665718</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mape_ma</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span>
+    <span class="n">psgr_test</span><span class="p">,</span> <span class="n">df_predict_ma_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">mape_ma_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;MAPE: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mape_ma</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mape_ma_msg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAPE: 0.231
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Train&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_test</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">df_predict_ma_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">],</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;q=</span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">mape_ma_msg</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/arma_40_0.png" src="../../_images/arma_40_0.png" />
+</div>
+</div>
 </section>
 </section>
-<section id="id9">
-<h2>4. ARMAモデル<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="id15">
+<h2>4. ARMAモデル<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h2>
 <section id="rm-arma-p-q">
 <h3>定義 4.1 (<span class="math notranslate nohighlight">\({\rm ARMA}(p, q)\)</span>モデル)<a class="headerlink" href="#rm-arma-p-q" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>時系列 <span class="math notranslate nohighlight">\(\{ y_t \}\)</span> について <span class="math notranslate nohighlight">\(t = 1, 2, \cdots, T \)</span> のとき <strong>自己回帰移動平均モデル</strong> (autoregressive moving average model, ARMA model) は以下で定義する.</p>
+<div class="math notranslate nohighlight">
+\[
+    y_t = c + \sum_{i=1}^{p} {\phi_{i} y_{t-i}} + \varepsilon_t + \sum_{i=1}^{q} {\theta_{i} \varepsilon_{t-i}} \quad s.t. \ c \in \mathbb{R}, p, q \in \mathbb{N}, \varepsilon_t \sim \text{WN}(0, \sigma_{\varepsilon}^2)
+\]</div>
+<p>このとき <strong><span class="math notranslate nohighlight">\(\text{ARMA}(p, q)\)</span></strong> と表す.</p>
+</div>
+<p>ここでラグ多項式 <span class="math notranslate nohighlight">\(\phi_p(L), \theta_q(L)\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        \phi_p(L) &amp;= 1 - (\phi_1 L^{1} + \cdots + \phi_p L^{p}) = 1 - \sum_{i=1}^{p}{\phi_i L^{i}} \\
+        \theta_q(L) &amp;= 1 + (\theta_1 L^{1} + \cdots + \theta_q L^{q}) = 1 - \sum_{i=1}^{q}{\theta_i L^{i}}
+    \end{align}
+\end{split}\]</div>
+<p>を用いて</p>
+<div class="math notranslate nohighlight">
+\[
+    \phi_p(L)y_t = c + \theta_q(L) \varepsilon_t
+\]</div>
+<p>とも表現できる.</p>
+</section>
+<section id="statsmodels-arma">
+<h3>例 4.2 (statsmodels による ARMA モデル)<a class="headerlink" href="#statsmodels-arma" title="Permalink to this headline">#</a></h3>
+<section id="id16">
+<h4>ドキュメント<a class="headerlink" href="#id16" title="Permalink to this headline">#</a></h4>
+<p>詳細については適宜ドキュメントを参考にすること.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.arima.model.ARIMA</span></code></p>
+<ul>
+<li><p>より一般的な <span class="math notranslate nohighlight">\({\rm SARIMAX}(p, d, q)\times(P, D, Q, s)\)</span> を構築可能なクラスモジュール.</p></li>
+<li><p><a class="reference external" href="https://www.statsmodels.org/stable/examples/notebooks/generated/tsa_arma_1.html">ARMAモデル構築例 (公式)</a></p></li>
+<li><p><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMA.html">APIドキュメント</a></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.stattools.arma_order_select_ic</span></code></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\({\rm ARMA}(p, q)\)</span> モデルにおいて情報量基準が最適となる次数 <span class="math notranslate nohighlight">\(p, q\)</span> を選定するメソッド.</p></li>
+<li><p><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.stattools.arma_order_select_ic.html">APIドキュメント</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id17">
+<h4>具体例<a class="headerlink" href="#id17" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ARMA(11, 1) モデル</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">model_arma</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">psgr_train_boxcox_diff</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">q</span><span class="p">))</span>
+<span class="n">model_arma_fitted</span> <span class="o">=</span> <span class="n">model_arma</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_arma_fitted</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/statsmodels/tsa/statespace/sarimax.py:966: UserWarning: Non-stationary starting autoregressive parameters found. Using zeros as starting parameters.
+  warn(&#39;Non-stationary starting autoregressive parameters&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                               SARIMAX Results                                
+==============================================================================
+Dep. Variable:            #Passengers   No. Observations:                  115
+Model:                ARIMA(11, 0, 1)   Log Likelihood                 143.637
+Date:                Thu, 21 Jul 2022   AIC                           -259.275
+Time:                        16:04:23   BIC                           -220.845
+Sample:                    01-01-1949   HQIC                          -243.676
+                         - 07-01-1958                                         
+Covariance Type:                  opg                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0136      0.001     14.098      0.000       0.012       0.015
+ar.L1         -0.5727      0.228     -2.511      0.012      -1.020      -0.126
+ar.L2         -0.7494      0.076     -9.872      0.000      -0.898      -0.601
+ar.L3         -0.5731      0.152     -3.782      0.000      -0.870      -0.276
+ar.L4         -0.7764      0.081     -9.586      0.000      -0.935      -0.618
+ar.L5         -0.5795      0.151     -3.840      0.000      -0.875      -0.284
+ar.L6         -0.6499      0.097     -6.683      0.000      -0.841      -0.459
+ar.L7         -0.5934      0.131     -4.515      0.000      -0.851      -0.336
+ar.L8         -0.8114      0.093     -8.765      0.000      -0.993      -0.630
+ar.L9         -0.5776      0.162     -3.558      0.000      -0.896      -0.259
+ar.L10        -0.8570      0.090     -9.560      0.000      -1.033      -0.681
+ar.L11        -0.4773      0.179     -2.671      0.008      -0.828      -0.127
+ma.L1          0.1574      0.283      0.556      0.578      -0.398       0.713
+sigma2         0.0040      0.001      6.138      0.000       0.003       0.005
+===================================================================================
+Ljung-Box (L1) (Q):                   0.14   Jarque-Bera (JB):                 0.45
+Prob(Q):                              0.71   Prob(JB):                         0.80
+Heteroskedasticity (H):               0.51   Skew:                            -0.01
+Prob(H) (two-sided):                  0.04   Kurtosis:                         3.31
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/statsmodels/base/model.py:604: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  warnings.warn(&quot;Maximum Likelihood optimization failed to &quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get_prediction メソッドにより予測結果インスタンスを取得</span>
+<span class="c1"># 信頼区間を求める場合には予測結果インスタンスを経由し conf_int メソッドから計算</span>
+<span class="n">predict_result_arma</span> <span class="o">=</span> <span class="n">model_arma_fitted</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+
+<span class="c1"># 予測値 Series を取得</span>
+<span class="n">predict_arma</span> <span class="o">=</span> <span class="n">predict_result_arma</span><span class="o">.</span><span class="n">predicted_mean</span>
+
+<span class="c1"># 信頼区間の格納された DataFrame を取得</span>
+<span class="n">df_ci_arma</span> <span class="o">=</span> <span class="n">predict_result_arma</span><span class="o">.</span><span class="n">conf_int</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="c1"># 予測値と信頼区間を一つの DataFrame にまとめる</span>
+<span class="n">df_predict_arma</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">predict_arma</span><span class="p">)</span>
+<span class="n">df_predict_arma</span> <span class="o">=</span> <span class="n">df_predict_arma</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_ci_arma</span><span class="p">)</span>
+
+<span class="c1"># 予測値に対して階差の逆変換, Box-Cox変換の逆変換を実施.</span>
+<span class="n">init</span> <span class="o">=</span> <span class="n">psgr_train_boxcox</span><span class="p">[</span><span class="s2">&quot;#Passengers&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df_predict_arma_cumsum</span> <span class="o">=</span> <span class="n">df_predict_arma</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">+</span> <span class="n">init</span>
+<span class="n">df_predict_arma_cumsum_inv_boxcox</span> <span class="o">=</span> <span class="n">inv_boxcox</span><span class="p">(</span><span class="n">df_predict_arma_cumsum</span><span class="p">,</span> <span class="n">lam</span><span class="p">)</span>
+<span class="n">df_predict_arma_cumsum_inv_boxcox</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>predicted_mean</th>
+      <th>lower #Passengers</th>
+      <th>upper #Passengers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1958-08-01</th>
+      <td>509.977054</td>
+      <td>464.196863</td>
+      <td>560.050801</td>
+    </tr>
+    <tr>
+      <th>1958-09-01</th>
+      <td>476.409020</td>
+      <td>391.240894</td>
+      <td>579.117265</td>
+    </tr>
+    <tr>
+      <th>1958-10-01</th>
+      <td>404.780398</td>
+      <td>295.910402</td>
+      <td>551.306121</td>
+    </tr>
+    <tr>
+      <th>1958-11-01</th>
+      <td>360.065211</td>
+      <td>233.971624</td>
+      <td>549.600174</td>
+    </tr>
+    <tr>
+      <th>1958-12-01</th>
+      <td>390.174276</td>
+      <td>225.777599</td>
+      <td>665.495322</td>
+    </tr>
+    <tr>
+      <th>1959-01-01</th>
+      <td>380.656429</td>
+      <td>195.479394</td>
+      <td>727.046376</td>
+    </tr>
+    <tr>
+      <th>1959-02-01</th>
+      <td>372.046730</td>
+      <td>169.403370</td>
+      <td>795.468588</td>
+    </tr>
+    <tr>
+      <th>1959-03-01</th>
+      <td>394.218302</td>
+      <td>159.524126</td>
+      <td>940.414634</td>
+    </tr>
+    <tr>
+      <th>1959-04-01</th>
+      <td>378.563574</td>
+      <td>135.344257</td>
+      <td>1011.883666</td>
+    </tr>
+    <tr>
+      <th>1959-05-01</th>
+      <td>404.752474</td>
+      <td>128.268944</td>
+      <td>1207.213993</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mape_arma</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span>
+    <span class="n">psgr_test</span><span class="p">,</span> <span class="n">df_predict_arma_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">mape_arma_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;MAPE: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mape_arma</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mape_arma_msg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAPE: 0.101
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Train&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_test</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">df_predict_arma_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">],</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;ARMA(</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2">) (</span><span class="si">{</span><span class="n">mape_arma_msg</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/arma_49_0.png" src="../../_images/arma_49_0.png" />
+</div>
+</div>
+<p>次に <code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.stattools.arma_order_select_ic</span></code> を用いて情報量基準から最適な <span class="math notranslate nohighlight">\(p, q\)</span> を求めてモデリングする.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">arma_order_select_ic</span>
+
+<span class="c1"># 次数選定において最尤推定の際に warning が多く発生するので, 見た目上 warning を非表示する.</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="n">max_ar</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">max_ma</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">arma_order_select_ic</span><span class="p">(</span><span class="n">psgr_train_boxcox_diff</span><span class="p">,</span> <span class="n">max_ar</span><span class="o">=</span><span class="n">max_ar</span><span class="p">,</span> <span class="n">max_ma</span><span class="o">=</span><span class="n">max_ma</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;bic&#39;:              0           1           2
+0  -128.830141 -129.255008 -130.693682
+1  -127.564617 -130.688738 -147.048373
+2  -126.642656 -148.734036 -142.445931
+3  -122.060014 -142.649730 -142.523624
+4  -130.816903 -126.120713 -143.332959
+5  -126.118414 -121.375866 -139.310488
+6  -121.424899 -116.628715 -136.047200
+7  -122.974329 -159.724407 -138.067141
+8  -152.250700 -176.137680 -169.180449
+9  -153.495700 -172.442303 -166.812336
+10 -200.595191 -206.364897 -173.147287
+11 -227.094097 -220.845468 -158.875556
+12 -268.110965 -268.504419 -260.904618, &#39;bic_min_order&#39;: (12, 1)}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># arma_order_select_ic メソッドで選択された (p,q) でモデリング</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">bic_min_order</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">bic_min_order</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">model_armaic</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">psgr_train_boxcox_diff</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">q</span><span class="p">))</span>
+<span class="n">model_armaic_fitted</span> <span class="o">=</span> <span class="n">model_armaic</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_armaic_fitted</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                               SARIMAX Results                                
+==============================================================================
+Dep. Variable:            #Passengers   No. Observations:                  115
+Model:                ARIMA(12, 0, 1)   Log Likelihood                 169.839
+Date:                Thu, 21 Jul 2022   AIC                           -309.678
+Time:                        16:04:40   BIC                           -268.504
+Sample:                    01-01-1949   HQIC                          -292.966
+                         - 07-01-1958                                         
+Covariance Type:                  opg                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0125      0.003      4.919      0.000       0.008       0.017
+ar.L1          0.0176      0.138      0.128      0.898      -0.253       0.288
+ar.L2         -0.1560      0.086     -1.816      0.069      -0.324       0.012
+ar.L3         -0.0491      0.091     -0.539      0.590      -0.227       0.129
+ar.L4         -0.1677      0.107     -1.567      0.117      -0.377       0.042
+ar.L5         -0.0262      0.090     -0.291      0.771      -0.203       0.150
+ar.L6         -0.1171      0.092     -1.280      0.200      -0.297       0.062
+ar.L7         -0.0958      0.098     -0.980      0.327      -0.287       0.096
+ar.L8         -0.1849      0.089     -2.082      0.037      -0.359      -0.011
+ar.L9         -0.0314      0.114     -0.275      0.783      -0.255       0.192
+ar.L10        -0.1659      0.087     -1.911      0.056      -0.336       0.004
+ar.L11        -0.0040      0.103     -0.039      0.969      -0.205       0.197
+ar.L12         0.7141      0.084      8.516      0.000       0.550       0.878
+ma.L1         -0.3575      0.186     -1.923      0.054      -0.722       0.007
+sigma2         0.0025      0.000      6.650      0.000       0.002       0.003
+===================================================================================
+Ljung-Box (L1) (Q):                   0.13   Jarque-Bera (JB):                 3.85
+Prob(Q):                              0.72   Prob(JB):                         0.15
+Heteroskedasticity (H):               0.28   Skew:                             0.38
+Prob(H) (two-sided):                  0.00   Kurtosis:                         3.48
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get_prediction メソッドにより予測結果インスタンスを取得</span>
+<span class="c1"># 信頼区間を求める場合には予測結果インスタンスを経由し conf_int メソッドから計算</span>
+<span class="n">predict_result_armaic</span> <span class="o">=</span> <span class="n">model_armaic_fitted</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+
+<span class="c1"># 予測値 Series を取得</span>
+<span class="n">predict_armaic</span> <span class="o">=</span> <span class="n">predict_result_armaic</span><span class="o">.</span><span class="n">predicted_mean</span>
+
+<span class="c1"># 信頼区間の格納された DataFrame を取得</span>
+<span class="n">df_ci_armaic</span> <span class="o">=</span> <span class="n">predict_result_armaic</span><span class="o">.</span><span class="n">conf_int</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="c1"># 予測値と信頼区間を一つの DataFrame にまとめる</span>
+<span class="n">df_predict_armaic</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">predict_armaic</span><span class="p">)</span>
+<span class="n">df_predict_armaic</span> <span class="o">=</span> <span class="n">df_predict_armaic</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_ci_armaic</span><span class="p">)</span>
+
+<span class="c1"># 予測値に対して階差の逆変換, Box-Cox変換の逆変換を実施.</span>
+<span class="n">init</span> <span class="o">=</span> <span class="n">psgr_train_boxcox</span><span class="p">[</span><span class="s2">&quot;#Passengers&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df_predict_armaic_cumsum</span> <span class="o">=</span> <span class="n">df_predict_armaic</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">+</span> <span class="n">init</span>
+<span class="n">df_predict_armaic_cumsum_inv_boxcox</span> <span class="o">=</span> <span class="n">inv_boxcox</span><span class="p">(</span><span class="n">df_predict_armaic_cumsum</span><span class="p">,</span> <span class="n">lam</span><span class="p">)</span>
+
+<span class="c1"># 精度の確認</span>
+<span class="n">mape_armaic</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span>
+    <span class="n">psgr_test</span><span class="p">,</span> <span class="n">df_predict_armaic_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">mape_armaic_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;MAPE: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mape_armaic</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mape_armaic_msg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAPE: 0.047
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Train&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_test</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">df_predict_armaic_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">],</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;ARMA(</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2">) (</span><span class="si">{</span><span class="n">mape_armaic_msg</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/arma_54_0.png" src="../../_images/arma_54_0.png" />
+</div>
+</div>
 </section>
 </section>
-<section id="id10">
-<h2>参考文献<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="id18">
+<h2>参考文献<a class="headerlink" href="#id18" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>ラグ演算子</p>
 <ul>
@@ -1336,7 +2336,7 @@ Warnings:
     <a class='right-next' id="next-link" href="arima.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ARIMAモデル</p>
+        <p class="prev-next-title">ARIMAモデル系</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
