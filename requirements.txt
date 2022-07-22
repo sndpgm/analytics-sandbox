@@ -8,3 +8,4 @@ seaborn
 scipy>=1.6.0
 scikit-learn>=1.1.0
 pmdarima>=1.8.0
+numpy>=1.23.0
