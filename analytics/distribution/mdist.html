@@ -54,8 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="時系列データ" href="../tsa/time_series.html" />
-    <link rel="prev" title="確率分布" href="probability_distribution.html" />
+    <link rel="next" title="ベイズ線形回帰モデル" href="../regression/blm.html" />
+    <link rel="prev" title="確率分布" href="dist.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -122,12 +122,12 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="random_variables.html">
+  <a class="reference internal" href="rvs.html">
    確率変数
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="probability_distribution.html">
+  <a class="reference internal" href="dist.html">
    確率分布
   </a>
  </li>
@@ -139,12 +139,24 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  時系列モデリング
+  回帰モデル
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../tsa/time_series.html">
+  <a class="reference internal" href="../regression/blm.html">
+   ベイズ線形回帰モデル
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  時系列モデル
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tsa/ts.html">
    時系列データ
   </a>
  </li>
@@ -159,7 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../tsa/state_space_model.html">
+  <a class="reference internal" href="../tsa/ssm.html">
    状態空間モデル
   </a>
  </li>
@@ -239,7 +251,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/distribution/multi_probability_distribution.ipynb"
+        <a href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/distribution/mdist.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -299,7 +311,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/distribution/multi_probability_distribution.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/distribution/mdist.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -327,7 +339,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../_sources/analytics/distribution/multi_probability_distribution.ipynb"
+        <a href="../../_sources/analytics/distribution/mdist.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -456,7 +468,7 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id15">
+  <a class="reference internal nav-link" href="#dist-mdist-marginal-conditional">
    3. 周辺分布と条件付分布
   </a>
   <ul class="nav section-nav flex-column">
@@ -482,7 +494,7 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id20">
-     定義 3.5 (ベイズの定理)
+     定理 3.5 (ベイズの定理)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -505,25 +517,57 @@ title="Print to PDF"
      命題 3.9 (条件付分散の性質)
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dist-mdist-marginal-conditional-total-exp-var">
+     定理 3.10 (全期待値・全分散則)
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id25">
+  <a class="reference internal nav-link" href="#id26">
    4. 多変量確率分布
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id26">
+    <a class="reference internal nav-link" href="#id27">
      例 4.1 (多項分布)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id27">
+    <a class="reference internal nav-link" href="#id28">
      例 4.2 (多変量正規分布)
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id29">
+       定理 4.2.1 (標準多変量正規分布の確率密度関数)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id30">
+       定理 4.2.2 (多変量正規分布の確率密度関数)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id31">
+       定理 4.2.3 (多変量正規分布の周辺分布)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id32">
+       定理 4.2.4 (多変量正規分布の独立性)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dist-mdist-mdist-normal-cond-dist">
+       定理 4.2.4 (多変量正規分布の条件付分布)
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id28">
+    <a class="reference internal nav-link" href="#id34">
      例 4.3 (ディリクレ分布)
     </a>
    </li>
@@ -618,7 +662,7 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id15">
+  <a class="reference internal nav-link" href="#dist-mdist-marginal-conditional">
    3. 周辺分布と条件付分布
   </a>
   <ul class="nav section-nav flex-column">
@@ -644,7 +688,7 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id20">
-     定義 3.5 (ベイズの定理)
+     定理 3.5 (ベイズの定理)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -667,25 +711,57 @@ title="Print to PDF"
      命題 3.9 (条件付分散の性質)
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dist-mdist-marginal-conditional-total-exp-var">
+     定理 3.10 (全期待値・全分散則)
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id25">
+  <a class="reference internal nav-link" href="#id26">
    4. 多変量確率分布
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id26">
+    <a class="reference internal nav-link" href="#id27">
      例 4.1 (多項分布)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id27">
+    <a class="reference internal nav-link" href="#id28">
      例 4.2 (多変量正規分布)
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id29">
+       定理 4.2.1 (標準多変量正規分布の確率密度関数)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id30">
+       定理 4.2.2 (多変量正規分布の確率密度関数)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id31">
+       定理 4.2.3 (多変量正規分布の周辺分布)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id32">
+       定理 4.2.4 (多変量正規分布の独立性)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dist-mdist-mdist-normal-cond-dist">
+       定理 4.2.4 (多変量正規分布の条件付分布)
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id28">
+    <a class="reference internal nav-link" href="#id34">
      例 4.3 (ディリクレ分布)
     </a>
    </li>
@@ -881,7 +957,7 @@ title="Print to PDF"
             {\rm E}(X_n) 
     \end{bmatrix}
 \end{split}\]</div>
-<p><strong>平均ベクトル</strong> (mean vector) といい, 各成分の期待値スカラー <span class="math notranslate nohighlight">\({\rm E}(X_i)\)</span> は<a class="reference internal" href="random_variables.html#expectation"><span class="std std-ref">1変量の期待値の定義</span></a>の通り.<br />
+<p><strong>平均ベクトル</strong> (mean vector) といい, 各成分の期待値スカラー <span class="math notranslate nohighlight">\({\rm E}(X_i)\)</span> は<a class="reference internal" href="rvs.html#expectation"><span class="std std-ref">1変量の期待値の定義</span></a>の通り.<br />
 　また一般に <span class="math notranslate nohighlight">\(p \times q\)</span> 行列値関数 <span class="math notranslate nohighlight">\(\phi\)</span> を用いて <span class="math notranslate nohighlight">\(\phi(X)\)</span> についても同様に期待値は定義できる.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1101,8 +1177,8 @@ title="Print to PDF"
 </div>
 </section>
 </section>
-<section id="id15">
-<h2>3. 周辺分布と条件付分布<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h2>
+<section id="dist-mdist-marginal-conditional">
+<span id="id15"></span><h2>3. 周辺分布と条件付分布<a class="headerlink" href="#dist-mdist-marginal-conditional" title="Permalink to this headline">#</a></h2>
 <section id="marginal-distribution">
 <span id="id16"></span><h3>定義 3.1 (周辺分布関数)<a class="headerlink" href="#marginal-distribution" title="Permalink to this headline">#</a></h3>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
@@ -1258,9 +1334,15 @@ title="Print to PDF"
     f_{X|Y}(x|y) = \frac{f_{X, Y}(x, y)}{f_Y(y)}
 \]</div>
 <p>と書ける.</p>
-</div></section>
+</div>
+<p>上記の関係式から<strong>乗法定理</strong>としてベイズ計算でよく使用される.</p>
+<div class="math notranslate nohighlight">
+\[
+    f_{X, Y}(x, y) = f_{X|Y}(x|y) f_Y(y)
+\]</div>
+</section>
 <section id="id20">
-<h3>定義 3.5 (ベイズの定理)<a class="headerlink" href="#id20" title="Permalink to this headline">#</a></h3>
+<h3>定理 3.5 (ベイズの定理)<a class="headerlink" href="#id20" title="Permalink to this headline">#</a></h3>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
 <p>以下の条件付分布の関係式を<strong>ベイズの定理</strong> (Bayes’ theorem) という.</p>
 <div class="math notranslate nohighlight">
@@ -1374,17 +1456,183 @@ title="Print to PDF"
     \end{align}
 \end{split}\]</div>
 </div></section>
+<section id="dist-mdist-marginal-conditional-total-exp-var">
+<span id="id25"></span><h3>定理 3.10 (全期待値・全分散則)<a class="headerlink" href="#dist-mdist-marginal-conditional-total-exp-var" title="Permalink to this headline">#</a></h3>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p>確率変数 <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> について以下の条件付期待値, 分散を用いて以下の関係が成立する.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        {\rm E}(X) &amp;= {\rm E}[{\rm E}(X | Y)] \\
+        {\rm Var}(X) &amp;= {\rm E}[{\rm Var}(X|Y)] + {\rm Var}[{\rm E}(X | Y)] 
+    \end{align}
+\end{split}\]</div>
+<p>第 1 式を<strong>期待値の繰り返しの公式</strong> (law of iterated expectations), <strong>全期待値則</strong> (law of total expectation), 第 2 式を<strong>全分散則</strong> (law of total variance) という.</p>
+</div>
+<p><u>証明</u></p>
+<p>全期待値則についてまずは離散型を証明する. 確率変数 <span class="math notranslate nohighlight">\(X, Y\)</span> の同時分布を <span class="math notranslate nohighlight">\(f_{X,Y}(x,y)\)</span> とすれば<a class="reference internal" href="#conditional-distribution"><span class="std std-ref">条件付分布の定義</span></a>より</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        f_{X,Y}(x,y) = f_{X|Y}(x|y) f_Y(y)
+    \end{align}
+\]</div>
+<p>と書けることに注意して</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        {\rm E}(X) &amp;= \sum_{y}{\sum_{x}{xf_{X,Y}(x,y)}} \\
+                   &amp;= \sum_{y}{\sum_{x}{x f_{X|Y}(x|y) f_Y(y) }} \\
+                   &amp;= \sum_{y}{ \biggl( \sum_{x}{ x f_{X|Y}(x|y) } \biggr) f_Y(y) } \\
+                   &amp;= {\rm E}[{\rm E}(X|Y)]
+    \end{align}
+\end{split}\]</div>
+<p>となる. また連続型についても</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        {\rm E}(X) &amp;= \int{ \int{ xf_{X,Y}(x,y)dxdy } } \\
+                   &amp;= \int{ \biggl( \int{ x \frac{f_{X,Y}(x,y)}{f_Y(y)} dx } \biggr) f_Y(y) dy } \\
+                   &amp;= \int{ {\rm E}(X | Y) f_Y(y) dy } \\
+                   &amp;= {\rm E}[{\rm E}(X|Y)]
+    \end{align}
+\end{split}\]</div>
+<p>となる. ちなみに上の証明において <span class="math notranslate nohighlight">\(x = g(x,y)\)</span> としても成立するので以下の主張が成立する.</p>
+<div style="background: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); padding-left: 20px;">
+    <span style="color: white; font-size: 100%;">
+        全期待値則 (一般化)
+    </span>
+</div>
+<div style="border: rgb(0, 0, 0) solid 1px; font-size: 100%; padding: 20px;">
+<div class="math notranslate nohighlight">
+\[
+    {\rm E}[g(X, Y)] = {\rm E}[ \ {\rm E}[ g(X, Y) \ | Y] \ ]
+\]</div>
+</div>
+<br>
+<p>次に全分散則について <span class="math notranslate nohighlight">\(\mu = E[X] = E[E(X|Y)]\)</span>, <span class="math notranslate nohighlight">\(h(Y) = E[X|Y]\)</span> とし</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        {\rm Var}(X) &amp;= {\rm E}[ (X - \mu)(X - \mu)' ] \\
+                     &amp;= {\rm E} \bigl[ {\rm E}[ (X - \mu)(X - \mu)' | Y ] \bigr] \\
+                     &amp;= {\rm E} \bigl[ {\rm E}[ \{ (X - h(Y)) + (h(Y) - \mu) \}\{ (X - h(Y)) + (h(Y) - \mu) \}' | Y ] \bigr] \\
+                     &amp;= {\rm E} \bigl[ {\rm E}[ (X - h(Y))(X - h(Y))' + (h(Y) - \mu)(h(Y) - \mu)' 
+                         + (X - h(Y))(h(Y) - \mu)' + (h(Y) - \mu)(X - h(Y))' | Y ] \bigr] \\
+                     &amp;= {\rm E} \bigl[ {\rm E}[ (X - h(Y))(X - h(Y))' | Y ] 
+                         + {\rm E} [ (h(Y) - \mu)(h(Y) - \mu)' | Y ]  
+                         + {\rm E} [ (X - h(Y))(h(Y) - \mu)' + (h(Y) - \mu)(X - h(Y))' | Y ] \bigr] \\
+                     &amp;= {\rm E} \bigl[ {\rm E}[ (X - h(Y))(X - h(Y))' | Y ] \bigr] 
+                         + {\rm E} \bigl[ {\rm E} [ (h(Y) - \mu)(h(Y) - \mu)' | Y ] \bigr] 
+                         + {\rm E} \bigl[ {\rm E} [ (X - h(Y))(h(Y) - \mu)' + (h(Y) - \mu)(X - h(Y))' | Y ] \bigr] \\
+                     &amp;= {\rm E} \bigl[ {\rm E}[ (X - h(Y))(X - h(Y))' | Y ] \bigr] 
+                         + {\rm E} \bigl[ {\rm E} [ (h(Y) - \mu)(h(Y) - \mu)' | Y ] \bigr] 
+                         + {\rm E} \bigl[ {\rm E} [ (X - h(Y))(h(Y) - \mu)' | Y ] \bigr]
+                         + {\rm E} \bigl[ {\rm E} [ (h(Y) - \mu)(X - h(Y))' | Y ] \bigr]
+    \end{align}
+\end{split}\]</div>
+<p>上記において第 1 項は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        {\rm E} \bigl[ {\rm E}[ (X - {\rm E}[X|Y])(X - {\rm E}[X|Y])' | Y ] \bigr]
+            &amp;= {\rm E} [ {\rm E}[ (X - {\rm E}[X])(X - {\rm E}[X])' | Y ] ] \\
+            &amp;= {\rm E} [ {\rm Var}[X|Y] ]
+    \end{align}
+\end{split}\]</div>
+<p>であり第 2 項は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        {\rm E} \bigl[ {\rm E} [ ({\rm E}[X|Y] - \mu)({\rm E}[X|Y] - \mu)' | Y ] \bigr] 
+            &amp;= {\rm E} [ ({\rm E}[X|Y] - \mu)({\rm E}[X|Y] - \mu)' | Y ] \\
+            &amp;= {\rm Var}[{\rm E}[X|Y]]
+    \end{align}
+\end{split}\]</div>
+<p>である. 残りの項については</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        {\rm E} \bigl[ {\rm E} [ (X - h(Y))(h(Y) - \mu)' | Y ] \bigr] 
+            &amp;= {\rm E} \bigl[ {\rm E} [ X - {\rm E}[X|Y] | Y ] ({\rm E}[X|Y] - \mu)' \bigr] \\
+            &amp;= {\rm E} \bigl[ ( X - {\rm E}[X|Y] ) ({\rm E}[X|Y] - \mu)' | Y \bigr] \\
+            &amp;= 0
+    \end{align}
+\end{split}\]</div>
+<p>となる. よって</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        {\rm Var}(X) &amp;= {\rm E}[{\rm Var}(X|Y)] + {\rm Var}[{\rm E}(X | Y)] 
+    \end{align}
+\]</div>
 </section>
-<section id="id25">
-<h2>4. 多変量確率分布<a class="headerlink" href="#id25" title="Permalink to this headline">#</a></h2>
+</section>
 <section id="id26">
-<h3>例 4.1 (多項分布)<a class="headerlink" href="#id26" title="Permalink to this headline">#</a></h3>
-</section>
+<h2>4. 多変量確率分布<a class="headerlink" href="#id26" title="Permalink to this headline">#</a></h2>
 <section id="id27">
-<h3>例 4.2 (多変量正規分布)<a class="headerlink" href="#id27" title="Permalink to this headline">#</a></h3>
+<h3>例 4.1 (多項分布)<a class="headerlink" href="#id27" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="id28">
-<h3>例 4.3 (ディリクレ分布)<a class="headerlink" href="#id28" title="Permalink to this headline">#</a></h3>
+<h3>例 4.2 (多変量正規分布)<a class="headerlink" href="#id28" title="Permalink to this headline">#</a></h3>
+<section id="id29">
+<h4>定理 4.2.1 (標準多変量正規分布の確率密度関数)<a class="headerlink" href="#id29" title="Permalink to this headline">#</a></h4>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(Y_1, \dots, Y_n\)</span> を互いに独立な1次元の標準正規分布に従う確率分布とし <span class="math notranslate nohighlight">\(Y = (Y_1, \dots, Y_n)'\)</span> とおく. このとき, <span class="math notranslate nohighlight">\(Y\)</span> の分布を<strong>標準多変量正規分布</strong> (standard multivariate normal distribution) といい確率密度関数は以下で与えられる.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        f_Y(y) = \prod_{i=1}^{n}{\frac{1}{\sqrt{2 \pi}} e^{- y_i^2 \ / \ 2 }} = \frac{1}{(2 \pi)^{n \ / \ 2}}e^{-x'x \ / \ 2}
+    \end{align}
+\]</div>
+</div></section>
+<section id="id30">
+<h4>定理 4.2.2 (多変量正規分布の確率密度関数)<a class="headerlink" href="#id30" title="Permalink to this headline">#</a></h4>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(Y\)</span> が平均ベクトル <span class="math notranslate nohighlight">\(\mu\)</span>, 分散共分散行列 <span class="math notranslate nohighlight">\(\Sigma\)</span> の<strong>多変量正規分布</strong> (multivariate normal distribution) に従うとき <span class="math notranslate nohighlight">\(Y \sim {\rm N}_n(\mu, \Sigma)\)</span> と表し密度関数は以下で与えられる.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        f_Y(y) = \frac{1}{(2 \pi)^{n \ / \ 2} ({\rm det} \ \Sigma)^{1/2}} \exp{\biggl[ -\frac{1}{2}(y-\mu)' \Sigma^{-1} (y-\mu) \biggr]}
+    \end{align}
+\]</div>
+</div><p>以下では <span class="math notranslate nohighlight">\(Y = (Y_{(1)}, Y_{(2)})\)</span> と分割し, <span class="math notranslate nohighlight">\(Y_{(1)} = (Y_1, \dots, Y_h)', Y_{(2)} = (Y_{h+1}, \dots, Y_n)'\)</span> とする. また記法の簡便のため <span class="math notranslate nohighlight">\(Y_{(1)}, Y_{(2)}\)</span> を単に <span class="math notranslate nohighlight">\(Y_1, Y_2\)</span> と表すとする. また分割に応じて</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+        \mu = \begin{bmatrix}
+            \mu_1 \\
+            \mu_2
+        \end{bmatrix}, \quad
+        \Sigma = \begin{bmatrix}
+            \Sigma_{11} &amp; \Sigma_{12} \\
+            \Sigma_{21} &amp; \Sigma_{22}
+        \end{bmatrix}
+    \end{align}
+\end{split}\]</div>
+<p>と分割する.</p>
+</section>
+<section id="id31">
+<h4>定理 4.2.3 (多変量正規分布の周辺分布)<a class="headerlink" href="#id31" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="id32">
+<h4>定理 4.2.4 (多変量正規分布の独立性)<a class="headerlink" href="#id32" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="dist-mdist-mdist-normal-cond-dist">
+<span id="id33"></span><h4>定理 4.2.4 (多変量正規分布の条件付分布)<a class="headerlink" href="#dist-mdist-mdist-normal-cond-dist" title="Permalink to this headline">#</a></h4>
+<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+<p><span class="math notranslate nohighlight">\(Y_1 = y_1\)</span> が与えられたときの <span class="math notranslate nohighlight">\(Y_2\)</span> の条件付分布は以下の多変量正規分布となる.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align}
+        Y_2 | Y_1 = y_1 \sim {\rm N}(\mu_2 + \Sigma_{21} {\Sigma}_{11} \kern-0.8em{}^{-1} (y_1 - \mu_1), \Sigma_{22} - \Sigma_{21} \Sigma_{11} \kern-0.8em{}^{-1} \Sigma_{12})
+    \end{align}
+\]</div>
+</div>
+</section>
+</section>
+<section id="id34">
+<h3>例 4.3 (ディリクレ分布)<a class="headerlink" href="#id34" title="Permalink to this headline">#</a></h3>
 </section>
 </section>
 </section>
@@ -1416,17 +1664,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="probability_distribution.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="dist.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">確率分布</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../tsa/time_series.html" title="next page">
+    <a class='right-next' id="next-link" href="../regression/blm.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">時系列データ</p>
+        <p class="prev-next-title">ベイズ線形回帰モデル</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

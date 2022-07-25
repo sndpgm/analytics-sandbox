@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="ARMAモデル系" href="arma.html" />
-    <link rel="prev" title="多変量確率分布" href="../distribution/multi_probability_distribution.html" />
+    <link rel="prev" title="ベイズ線形回帰モデル" href="../regression/blm.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -122,24 +122,36 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../distribution/random_variables.html">
+  <a class="reference internal" href="../distribution/rvs.html">
    確率変数
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../distribution/probability_distribution.html">
+  <a class="reference internal" href="../distribution/dist.html">
    確率分布
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../distribution/multi_probability_distribution.html">
+  <a class="reference internal" href="../distribution/mdist.html">
    多変量確率分布
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  時系列モデリング
+  回帰モデル
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../regression/blm.html">
+   ベイズ線形回帰モデル
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  時系列モデル
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -159,7 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="state_space_model.html">
+  <a class="reference internal" href="ssm.html">
    状態空間モデル
   </a>
  </li>
@@ -239,7 +251,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/tsa/time_series.ipynb"
+        <a href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/tsa/ts.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -299,7 +311,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/tsa/time_series.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/tsa/ts.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -327,7 +339,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../_sources/analytics/tsa/time_series.ipynb"
+        <a href="../../_sources/analytics/tsa/ts.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -771,7 +783,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_5_0.png" src="../../_images/time_series_5_0.png" />
+<img alt="../../_images/ts_5_0.png" src="../../_images/ts_5_0.png" />
 </div>
 </div>
 </section>
@@ -793,7 +805,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_7_0.png" src="../../_images/time_series_7_0.png" />
+<img alt="../../_images/ts_7_0.png" src="../../_images/ts_7_0.png" />
 </div>
 </div>
 </section>
@@ -817,7 +829,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_9_0.png" src="../../_images/time_series_9_0.png" />
+<img alt="../../_images/ts_9_0.png" src="../../_images/ts_9_0.png" />
 </div>
 </div>
 </section>
@@ -840,7 +852,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_11_0.png" src="../../_images/time_series_11_0.png" />
+<img alt="../../_images/ts_11_0.png" src="../../_images/ts_11_0.png" />
 </div>
 </div>
 </section>
@@ -863,7 +875,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_13_0.png" src="../../_images/time_series_13_0.png" />
+<img alt="../../_images/ts_13_0.png" src="../../_images/ts_13_0.png" />
 </div>
 </div>
 </section>
@@ -886,7 +898,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_15_0.png" src="../../_images/time_series_15_0.png" />
+<img alt="../../_images/ts_15_0.png" src="../../_images/ts_15_0.png" />
 </div>
 </div>
 </section>
@@ -910,7 +922,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_17_0.png" src="../../_images/time_series_17_0.png" />
+<img alt="../../_images/ts_17_0.png" src="../../_images/ts_17_0.png" />
 </div>
 </div>
 </section>
@@ -933,7 +945,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_19_0.png" src="../../_images/time_series_19_0.png" />
+<img alt="../../_images/ts_19_0.png" src="../../_images/ts_19_0.png" />
 </div>
 </div>
 </section>
@@ -1016,7 +1028,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_25_0.png" src="../../_images/time_series_25_0.png" />
+<img alt="../../_images/ts_25_0.png" src="../../_images/ts_25_0.png" />
 </div>
 </div>
 </section>
@@ -1047,7 +1059,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_27_0.png" src="../../_images/time_series_27_0.png" />
+<img alt="../../_images/ts_27_0.png" src="../../_images/ts_27_0.png" />
 </div>
 </div>
 <p>ランダムウォークは以下のように書ける.</p>
@@ -1141,7 +1153,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_30_0.png" src="../../_images/time_series_30_0.png" />
+<img alt="../../_images/ts_30_0.png" src="../../_images/ts_30_0.png" />
 </div>
 </div>
 <p>また <span class="math notranslate nohighlight">\(|\phi| &gt; 1\)</span> の時は時系列が発散してしまう.</p>
@@ -1164,7 +1176,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_32_0.png" src="../../_images/time_series_32_0.png" />
+<img alt="../../_images/ts_32_0.png" src="../../_images/ts_32_0.png" />
 </div>
 </div>
 </section>
@@ -1289,7 +1301,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_40_0.png" src="../../_images/time_series_40_0.png" />
+<img alt="../../_images/ts_40_0.png" src="../../_images/ts_40_0.png" />
 </div>
 </div>
 </section>
@@ -1408,7 +1420,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_45_0.png" src="../../_images/time_series_45_0.png" />
+<img alt="../../_images/ts_45_0.png" src="../../_images/ts_45_0.png" />
 </div>
 </div>
 <p>一方で <code class="docutils literal notranslate"><span class="pre">blsallfood</span></code> データは12ヶ月周期が波形から見えるが, 実際にラグが11の時の ACF, PACF の相関が大きいことが分かる.</p>
@@ -1423,7 +1435,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_47_0.png" src="../../_images/time_series_47_0.png" />
+<img alt="../../_images/ts_47_0.png" src="../../_images/ts_47_0.png" />
 </div>
 </div>
 </section>
@@ -1504,7 +1516,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_51_0.png" src="../../_images/time_series_51_0.png" />
+<img alt="../../_images/ts_51_0.png" src="../../_images/ts_51_0.png" />
 </div>
 </div>
 </section>
@@ -1616,7 +1628,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_54_0.png" src="../../_images/time_series_54_0.png" />
+<img alt="../../_images/ts_54_0.png" src="../../_images/ts_54_0.png" />
 </div>
 </div>
 </section>
@@ -1663,7 +1675,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/time_series_57_0.png" src="../../_images/time_series_57_0.png" />
+<img alt="../../_images/ts_57_0.png" src="../../_images/ts_57_0.png" />
 </div>
 </div>
 <p>ADF検定により実際に <span class="math notranslate nohighlight">\(I(0)\)</span> 過程であると見なすことができる.</p>
@@ -1726,11 +1738,11 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../distribution/multi_probability_distribution.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../regression/blm.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">多変量確率分布</p>
+            <p class="prev-next-title">ベイズ線形回帰モデル</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="arma.html" title="next page">

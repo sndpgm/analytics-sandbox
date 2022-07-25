@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="確率分布" href="probability_distribution.html" />
+    <link rel="next" title="確率分布" href="dist.html" />
     <link rel="prev" title="Welcome to my Analytics Sandbox" href="../../intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -127,24 +127,36 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="probability_distribution.html">
+  <a class="reference internal" href="dist.html">
    確率分布
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="multi_probability_distribution.html">
+  <a class="reference internal" href="mdist.html">
    多変量確率分布
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  時系列モデリング
+  回帰モデル
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../tsa/time_series.html">
+  <a class="reference internal" href="../regression/blm.html">
+   ベイズ線形回帰モデル
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  時系列モデル
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tsa/ts.html">
    時系列データ
   </a>
  </li>
@@ -159,7 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../tsa/state_space_model.html">
+  <a class="reference internal" href="../tsa/ssm.html">
    状態空間モデル
   </a>
  </li>
@@ -239,7 +251,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/distribution/random_variables.ipynb"
+        <a href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/distribution/rvs.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -299,7 +311,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/distribution/random_variables.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/distribution/rvs.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -327,7 +339,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../_sources/analytics/distribution/random_variables.ipynb"
+        <a href="../../_sources/analytics/distribution/rvs.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -852,7 +864,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Cumulative Distribution Function&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/random_variables_10_1.png" src="../../_images/random_variables_10_1.png" />
+<img alt="../../_images/rvs_10_1.png" src="../../_images/rvs_10_1.png" />
 </div>
 </div>
 </section>
@@ -908,7 +920,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Cumulative distribution function&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/random_variables_13_1.png" src="../../_images/random_variables_13_1.png" />
+<img alt="../../_images/rvs_13_1.png" src="../../_images/rvs_13_1.png" />
 </div>
 </div>
 </section>
@@ -1078,7 +1090,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/random_variables_23_0.png" src="../../_images/random_variables_23_0.png" />
+<img alt="../../_images/rvs_23_0.png" src="../../_images/rvs_23_0.png" />
 </div>
 </div>
 </section>
@@ -1143,7 +1155,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 1.1)
 </pre></div>
 </div>
-<img alt="../../_images/random_variables_25_1.png" src="../../_images/random_variables_25_1.png" />
+<img alt="../../_images/rvs_25_1.png" src="../../_images/rvs_25_1.png" />
 </div>
 </div>
 </section>
@@ -1263,7 +1275,7 @@ title="Print to PDF"
 </section>
 <section id="exmaple-normal-lognormal">
 <span id="id24"></span><h3>例 4.2 (正規分布と対数正規分布)<a class="headerlink" href="#exmaple-normal-lognormal" title="Permalink to this headline">#</a></h3>
-<p><span class="math notranslate nohighlight">\(x = \log{y}\)</span> が正規分布に従うとする (詳細は <a class="reference internal" href="probability_distribution.html#normal-distribution"><span class="std std-ref">例 3.2 (正規分布)</span></a> を参照のこと). この時,</p>
+<p><span class="math notranslate nohighlight">\(x = \log{y}\)</span> が正規分布に従うとする (詳細は <a class="reference internal" href="dist.html#normal-distribution"><span class="std std-ref">例 3.2 (正規分布)</span></a> を参照のこと). この時,</p>
 <div class="math notranslate nohighlight">
 \[
     f(x) = \frac{1}{\sqrt{2\pi} \sigma} \exp{ \biggl( - \frac{(x -\mu)^2}{2 \sigma^2} \biggr) }
@@ -1312,7 +1324,7 @@ title="Print to PDF"
             <p class="prev-next-title">Welcome to my Analytics Sandbox</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="probability_distribution.html" title="next page">
+    <a class='right-next' id="next-link" href="dist.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">確率分布</p>

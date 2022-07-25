@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="確率変数" href="analytics/distribution/random_variables.html" />
+    <link rel="next" title="確率変数" href="analytics/distribution/rvs.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -119,29 +119,41 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="analytics/distribution/random_variables.html">
+  <a class="reference internal" href="analytics/distribution/rvs.html">
    確率変数
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="analytics/distribution/probability_distribution.html">
+  <a class="reference internal" href="analytics/distribution/dist.html">
    確率分布
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="analytics/distribution/multi_probability_distribution.html">
+  <a class="reference internal" href="analytics/distribution/mdist.html">
    多変量確率分布
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  時系列モデリング
+  回帰モデル
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="analytics/tsa/time_series.html">
+  <a class="reference internal" href="analytics/regression/blm.html">
+   ベイズ線形回帰モデル
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  時系列モデル
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="analytics/tsa/ts.html">
    時系列データ
   </a>
  </li>
@@ -156,7 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="analytics/tsa/state_space_model.html">
+  <a class="reference internal" href="analytics/tsa/ssm.html">
    状態空間モデル
   </a>
  </li>
@@ -363,18 +375,24 @@ title="Print to PDF"
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">確率変数と確率分布</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="analytics/distribution/random_variables.html">確率変数</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analytics/distribution/probability_distribution.html">確率分布</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analytics/distribution/multi_probability_distribution.html">多変量確率分布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics/distribution/rvs.html">確率変数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics/distribution/dist.html">確率分布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics/distribution/mdist.html">多変量確率分布</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">時系列モデリング</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">回帰モデル</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="analytics/tsa/time_series.html">時系列データ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics/regression/blm.html">ベイズ線形回帰モデル</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">時系列モデル</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="analytics/tsa/ts.html">時系列データ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="analytics/tsa/arma.html">ARMAモデル系</a></li>
 <li class="toctree-l1"><a class="reference internal" href="analytics/tsa/arima.html">ARIMAモデル系</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analytics/tsa/state_space_model.html">状態空間モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analytics/tsa/ssm.html">状態空間モデル</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -413,7 +431,7 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="analytics/distribution/random_variables.html" title="next page">
+    <a class='right-next' id="next-link" href="analytics/distribution/rvs.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">確率変数</p>

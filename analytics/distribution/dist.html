@@ -54,8 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="多変量確率分布" href="multi_probability_distribution.html" />
-    <link rel="prev" title="確率変数" href="random_variables.html" />
+    <link rel="next" title="多変量確率分布" href="mdist.html" />
+    <link rel="prev" title="確率変数" href="rvs.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -122,7 +122,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="random_variables.html">
+  <a class="reference internal" href="rvs.html">
    確率変数
   </a>
  </li>
@@ -132,19 +132,31 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="multi_probability_distribution.html">
+  <a class="reference internal" href="mdist.html">
    多変量確率分布
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  時系列モデリング
+  回帰モデル
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../tsa/time_series.html">
+  <a class="reference internal" href="../regression/blm.html">
+   ベイズ線形回帰モデル
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  時系列モデル
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tsa/ts.html">
    時系列データ
   </a>
  </li>
@@ -159,7 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../tsa/state_space_model.html">
+  <a class="reference internal" href="../tsa/ssm.html">
    状態空間モデル
   </a>
  </li>
@@ -239,7 +251,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/distribution/probability_distribution.ipynb"
+        <a href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/distribution/dist.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -299,7 +311,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/distribution/probability_distribution.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/distribution/dist.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -327,7 +339,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../_sources/analytics/distribution/probability_distribution.ipynb"
+        <a href="../../_sources/analytics/distribution/dist.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1377,7 +1389,7 @@ title="Print to PDF"
     f(x) = p^x(1-p)^{1-x}
 \]</div>
 </div>
-<p>ここで<a class="reference internal" href="random_variables.html#discrete-distribution"><span class="std std-ref">離散型の確率分布の性質</span></a>を確認する.<br />
+<p>ここで<a class="reference internal" href="rvs.html#discrete-distribution"><span class="std std-ref">離散型の確率分布の性質</span></a>を確認する.<br />
 　確率質量関数の定義から <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> であることは自明. また合計和についても以下から分かる.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1398,7 +1410,7 @@ title="Print to PDF"
 \end{split}\]</div>
 </div>
 <p><u>証明</u><br />
-　<a class="reference internal" href="random_variables.html#expectation"><span class="std std-ref">期待値の定義</span></a>より</p>
+　<a class="reference internal" href="rvs.html#expectation"><span class="std std-ref">期待値の定義</span></a>より</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -1406,7 +1418,7 @@ title="Print to PDF"
                    &amp;= p
     \end{align}
 \end{split}\]</div>
-<p>と計算できる. また分散について<a class="reference internal" href="random_variables.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から <span class="math notranslate nohighlight">\({\rm E}(X^2)\)</span> を求めることで分散も求められる.</p>
+<p>と計算できる. また分散について<a class="reference internal" href="rvs.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から <span class="math notranslate nohighlight">\({\rm E}(X^2)\)</span> を求めることで分散も求められる.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -1455,9 +1467,9 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[1 0 1 0 0 1 1 0 0 1 1 0 0 0 1 1 0 1 0 1 0 0 0 0 0 0 0 1 0 0 0 1 0 0 1 0 0
- 0 0 1 0 1 0 0 1 0 0 0 1 0 0 1 1 0 0 1 0 0 1 0 0 1 1 0 1 0 0 0 1 0 1 0 0 0
- 0 1 0 1 1 0 0 0 1 0 0 1 1 0 0 1 0 1 1 1 1 0 0 1 0 0]
+[1 0 0 0 1 0 0 0 1 1 0 0 1 0 1 0 0 1 0 0 1 1 0 0 1 1 0 0 1 0 1 0 0 1 0 0 0
+ 1 0 0 0 0 0 1 0 0 0 1 1 1 1 1 1 0 1 0 1 0 0 0 1 0 0 0 0 1 1 1 0 0 1 0 0 0
+ 0 1 1 0 0 0 1 1 0 0 0 1 0 0 1 0 1 0 0 1 1 0 0 0 0 0]
 &gt; NumPy
 [0 0 1 0 0 0 0 0 0 1 0 1 0 0 0 1 0 0 1 0 0 0 0 0 0 1 0 0 0 0 1 0 1 1 1 1 0
  1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0
@@ -1511,8 +1523,8 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 0.2983 vs 0.3
-分散(乱数 vs 真値): 0.20931711 vs 0.21
+期待値(乱数 vs 真値): 0.2959 vs 0.3
+分散(乱数 vs 真値): 0.20834319 vs 0.21
 &gt; NumPy
 期待値(乱数 vs 真値): 0.2951 vs 0.3
 分散(乱数 vs 真値): 0.20801598999999996 vs 0.21
@@ -1550,7 +1562,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Bernoulli Distribution (p = 0.3)&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_14_1.png" src="../../_images/probability_distribution_14_1.png" />
+<img alt="../../_images/dist_14_1.png" src="../../_images/dist_14_1.png" />
 </div>
 </div>
 </section>
@@ -1576,7 +1588,7 @@ title="Print to PDF"
 \]</div>
 </div>
 <p>確率変数 <span class="math notranslate nohighlight">\(X\)</span> が 二項分布に従っていることを <span class="math notranslate nohighlight">\(X \sim Bi(n, p)\)</span> と記載する.</p>
-<p>ここで<a class="reference internal" href="random_variables.html#discrete-distribution"><span class="std std-ref">離散型の確率分布の性質</span></a>を確認する.<br />
+<p>ここで<a class="reference internal" href="rvs.html#discrete-distribution"><span class="std std-ref">離散型の確率分布の性質</span></a>を確認する.<br />
 　確率質量関数の定義から <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> であることは自明. また合計和については下記よりまさに二項展開式より 1 となる.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1597,7 +1609,7 @@ title="Print to PDF"
 \end{split}\]</div>
 </div>
 <p><u>証明</u><br />
-　<a class="reference internal" href="random_variables.html#expectation"><span class="std std-ref">期待値の定義</span></a>より</p>
+　<a class="reference internal" href="rvs.html#expectation"><span class="std std-ref">期待値の定義</span></a>より</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -1609,7 +1621,7 @@ title="Print to PDF"
                    &amp;= np
     \end{align}
 \end{split}\]</div>
-<p>と計算できる. また分散について<a class="reference internal" href="random_variables.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から</p>
+<p>と計算できる. また分散について<a class="reference internal" href="rvs.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -1680,9 +1692,9 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[5 2 2 2 3 6 4 3 2 4 1 4 5 4 3 3 2 2 1 3 4 3 5 3 4 3 4 3 2 4 4 1 3 2 3 2 6
- 2 2 4 3 2 3 4 3 3 4 1 2 2 6 2 1 5 1 3 2 1 5 3 2 5 2 1 2 2 3 3 0 5 3 2 4 3
- 4 2 3 4 1 5 6 2 2 4 4 5 4 5 1 4 3 1 3 2 5 3 4 1 2 2]
+[4 4 4 3 1 0 1 5 1 4 2 3 3 2 3 4 2 0 4 2 2 6 4 1 3 3 1 3 4 2 3 2 2 2 5 4 1
+ 5 3 1 4 4 3 7 2 3 3 2 3 3 1 4 3 1 4 1 4 1 3 5 2 3 2 2 4 2 4 3 5 6 7 1 2 2
+ 5 3 3 3 0 6 4 4 3 1 1 1 3 2 3 5 4 4 4 2 4 4 4 4 2 4]
 &gt; NumPy
 [5 5 4 2 4 2 4 3 2 3 3 1 6 2 4 5 3 5 6 1 3 4 6 4 7 3 4 2 3 2 5 4 5 2 4 2 3
  3 3 5 2 4 3 2 5 2 2 2 3 1 4 2 2 2 5 4 3 3 5 1 3 4 5 4 4 5 5 2 2 2 7 1 3 2
@@ -1713,8 +1725,8 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 3.0041 vs 3.0
-分散(乱数 vs 真値): 2.10768319 vs 2.0999999999999996
+期待値(乱数 vs 真値): 3.0106 vs 3.0
+分散(乱数 vs 真値): 2.06888764 vs 2.0999999999999996
 &gt; NumPy
 期待値(乱数 vs 真値): 3.0054 vs 3.0
 分散(乱数 vs 真値): 2.14157084 vs 2.0999999999999996
@@ -1752,7 +1764,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Binomial Distribution (n = 10, p = 0.3)&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_22_1.png" src="../../_images/probability_distribution_22_1.png" />
+<img alt="../../_images/dist_22_1.png" src="../../_images/dist_22_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1773,10 +1785,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x126ddc310&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12e604760&gt;
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_23_1.png" src="../../_images/probability_distribution_23_1.png" />
+<img alt="../../_images/dist_23_1.png" src="../../_images/dist_23_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1799,10 +1811,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x126f1a100&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12e72a250&gt;
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_24_1.png" src="../../_images/probability_distribution_24_1.png" />
+<img alt="../../_images/dist_24_1.png" src="../../_images/dist_24_1.png" />
 </div>
 </div>
 </section>
@@ -1827,7 +1839,7 @@ title="Print to PDF"
     f(x) = \frac{e^{-\lambda} \lambda^{x}}{x!}
 \]</div>
 </div>
-<p>ここで<a class="reference internal" href="random_variables.html#discrete-distribution"><span class="std std-ref">離散型の確率分布の性質</span></a>を確認する.<br />
+<p>ここで<a class="reference internal" href="rvs.html#discrete-distribution"><span class="std std-ref">離散型の確率分布の性質</span></a>を確認する.<br />
 　確率質量関数の定義から <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> であることは自明. また, <span class="math notranslate nohighlight">\(e^x\)</span> について<a class="reference external" href="https://ja.wikipedia.org/wiki/%E3%83%86%E3%82%A4%E3%83%A9%E3%83%BC%E5%B1%95%E9%96%8B">マクローリン展開</a>から</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1856,7 +1868,7 @@ title="Print to PDF"
 \end{split}\]</div>
 </div>
 <p><u>証明</u><br />
-　<a class="reference internal" href="random_variables.html#expectation"><span class="std std-ref">期待値の定義</span></a>より</p>
+　<a class="reference internal" href="rvs.html#expectation"><span class="std std-ref">期待値の定義</span></a>より</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -1866,7 +1878,7 @@ title="Print to PDF"
                    &amp;= \lambda
     \end{align}
 \end{split}\]</div>
-<p>と計算できる. また分散について<a class="reference internal" href="random_variables.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から <span class="math notranslate nohighlight">\({\rm E}(X^2)\)</span> を求めることで分散も求められる.</p>
+<p>と計算できる. また分散について<a class="reference internal" href="rvs.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から <span class="math notranslate nohighlight">\({\rm E}(X^2)\)</span> を求めることで分散も求められる.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -1916,11 +1928,11 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[ 4  9  3  5  9  6  4  5  6  2  2  3  6  2  5  7  6  3  4  5  6  6  7  4
-  5  5  5  5  8  3  4  4  3  4  4  0  4  4  5  3  3  4  3  5 10  5  6  2
-  2  3  2  3  4  7  5  4  9  2  6  4  9  2  2  5  4  3  1  3  3  3  4  4
-  7  2  3  4  8 10  1  3  4  6  6  6  4  5  4 10  3  3  9  4  3  6  6  8
-  1  8  7  8]
+[ 2  5  5  5  4  2  4 10  3  4  4  8  6  3  4  4  6  4  8  4  0  9  7  2
+  5  0  2  5  3  2  2  4  6  4  4  4  3  2  6  2  5  5  4  6  6  9  7  4
+  5  4  5  6  1  4 10  6  4  3  3  5  0  5  2  3  6  2  3  4  4  7  6  7
+  3  9  5 10  9  5 13  5  6  3  6  4  8  6  3 11  4  6  2  6  4  4  7  3
+  4  3  8  8]
 &gt; NumPy
 [ 3  4 10  3  3  2 13  6  5  2  6  5  5  2  5  4  3  3  4  6  8  6  8  7
   4  5  3  4  7  7  4  3  7  6  4  4  2  5  2  7  3  4  5  4  6  5  4  8
@@ -1953,8 +1965,8 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 5.0266 vs 5.0
-分散(乱数 vs 真値): 4.984892439999999 vs 5.0
+期待値(乱数 vs 真値): 5.0115 vs 5.0
+分散(乱数 vs 真値): 5.018767749999999 vs 5.0
 &gt; NumPy
 期待値(乱数 vs 真値): 5.0234 vs 5.0
 分散(乱数 vs 真値): 4.98485244 vs 5.0
@@ -1993,7 +2005,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Poisson Distribution (lambda = 5.0)&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_32_1.png" src="../../_images/probability_distribution_32_1.png" />
+<img alt="../../_images/dist_32_1.png" src="../../_images/dist_32_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2014,10 +2026,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12709b040&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12e8a8310&gt;
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_33_1.png" src="../../_images/probability_distribution_33_1.png" />
+<img alt="../../_images/dist_33_1.png" src="../../_images/dist_33_1.png" />
 </div>
 </div>
 <p>二項分布において <span class="math notranslate nohighlight">\(n \rightarrow \infty, p \rightarrow 0\)</span> とすることでポアソン分布に近づく. ここで <span class="math notranslate nohighlight">\(\lambda = np\)</span> とすれば確率質量関数 <span class="math notranslate nohighlight">\(f(x)\)</span> は</p>
@@ -2071,10 +2083,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x126d37220&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12e899fd0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_35_1.png" src="../../_images/probability_distribution_35_1.png" />
+<img alt="../../_images/dist_35_1.png" src="../../_images/dist_35_1.png" />
 </div>
 </div>
 </section>
@@ -2107,7 +2119,7 @@ title="Print to PDF"
 \]</div>
 </div>
 <p>これは <span class="math notranslate nohighlight">\(x\)</span> に応じて幾何級数 (等比数列) 的に減じていくため幾何分布という.<br />
-　ここで<a class="reference internal" href="random_variables.html#discrete-distribution"><span class="std std-ref">離散型の確率分布の性質</span></a>を確認する.<br />
+　ここで<a class="reference internal" href="rvs.html#discrete-distribution"><span class="std std-ref">離散型の確率分布の性質</span></a>を確認する.<br />
 　確率質量関数の定義から <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> であることは自明. また, <span class="math notranslate nohighlight">\(0 \lt p \lt 1 \Rightarrow 0 \lt q \lt 1\)</span> なので無限等比級数の和から</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2127,7 +2139,7 @@ title="Print to PDF"
 \end{split}\]</div>
 </div>
 <p><u>証明</u><br />
-　<a class="reference internal" href="random_variables.html#expectation"><span class="std std-ref">期待値の定義</span></a>より</p>
+　<a class="reference internal" href="rvs.html#expectation"><span class="std std-ref">期待値の定義</span></a>より</p>
 <div class="math notranslate nohighlight">
 \[
     \begin{align}
@@ -2149,7 +2161,7 @@ title="Print to PDF"
 \[
     {\rm E}(X) = p \sum_{x=1}^{\infty}{ xq^{x-1} } = p \cdot \frac{1}{(1-q)^2} = \frac{1}{p}
 \]</div>
-<p>と求められる. また分散について<a class="reference internal" href="random_variables.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から</p>
+<p>と求められる. また分散について<a class="reference internal" href="rvs.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -2158,7 +2170,7 @@ title="Print to PDF"
                      &amp;= {\rm}E(X(X-1)) + {\rm}E(X) - ({\rm E}(X))^2
     \end{align}
 \end{split}\]</div>
-<p>第 2 式から弟 3 式への変換は<a class="reference internal" href="random_variables.html#expectation-property"><span class="std std-ref">期待値の4番目の性質</span></a>を用いている.
+<p>第 2 式から弟 3 式への変換は<a class="reference internal" href="rvs.html#expectation-property"><span class="std std-ref">期待値の4番目の性質</span></a>を用いている.
 　<span class="math notranslate nohighlight">\({\rm}E(X(X-1))\)</span> を求めれば分散が求められる. 上で用いた <span class="math notranslate nohighlight">\(g(q)\)</span> を 2 階微分すると</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2215,11 +2227,11 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[ 4  5  6  4  4  7  5 10  1  2  1  1  7  2  2  1  1  2  2  1  3  9  1  2
-  5  4  9  2  1  1  1  1  2  1 10  2  1  4  1  2  4  1  5  1  1  1  1  1
-  3  2  1  1  1  1  3  2  4  4  2  2  2  1  6  1  1  3  4  4  1  2  3  3
-  3  1  3  4  3  2  3  2  4  1  5  3  1  4  1  2  1  3  3  9  3  3  2  3
-  1  2  2  2]
+[10  5  2  4  8  1  4  3  2  6  2  9  5 12  1  4  4  2  4  1  9  4  2  1
+  6  5  2  2  3  6  4  2  1  5  6  3  1  7  3  1  3  3  1  8  9  4  2  2
+  2  1  1  2  1 13  2  6  1  2  3  7  1  3  3  1  3  2  2  1  3  2  1  8
+  1  8  8  1  4  1  1  3  7  4  1  1  2  2  1  1  2  5  2  6 10  1  4  1
+  3  6  9  3]
 &gt; NumPy
 [ 3  1  3  1  2  2  2  2  3  1  3  3  1  1  1  7  1  4  1  5  8  2  3  2
   1  3  2  5  3  1  3  7  3  1  3  5  1  4  1  1  1  1  8  4  3  1  3  4
@@ -2253,8 +2265,8 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 3.341 vs 3.3333333333333335
-分散(乱数 vs 真値): 7.867718999999998 vs 7.777777777777779
+期待値(乱数 vs 真値): 3.3794 vs 3.3333333333333335
+分散(乱数 vs 真値): 8.30605564 vs 7.777777777777779
 &gt; NumPy
 期待値(乱数 vs 真値): 3.3007 vs 3.3333333333333335
 分散(乱数 vs 真値): 7.4182795100000005 vs 7.777777777777779
@@ -2292,7 +2304,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Geometrix Distribution (p = 0.3)&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_43_1.png" src="../../_images/probability_distribution_43_1.png" />
+<img alt="../../_images/dist_43_1.png" src="../../_images/dist_43_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2313,10 +2325,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12726f640&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12ea78940&gt;
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_44_1.png" src="../../_images/probability_distribution_44_1.png" />
+<img alt="../../_images/dist_44_1.png" src="../../_images/dist_44_1.png" />
 </div>
 </div>
 </section>
@@ -2340,7 +2352,7 @@ title="Print to PDF"
 \]</div>
 </div>
 <p><span class="math notranslate nohighlight">\(n=1\)</span> の時に幾何分布となる. ちなみに, 二項分布で二項係数に負も認めれば負の二項分布が求められるため, この名称となっている.<br />
-　ここで<a class="reference internal" href="random_variables.html#discrete-distribution"><span class="std std-ref">離散型の確率分布の性質</span></a>を確認する.</p>
+　ここで<a class="reference internal" href="rvs.html#discrete-distribution"><span class="std std-ref">離散型の確率分布の性質</span></a>を確認する.</p>
 <p>確率質量関数の定義から <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> であることは自明. また確率質量関数の和が 1 となることについては, 負の二項展開式について考えるとすぐに導出できる. <span class="math notranslate nohighlight">\(n \in \mathbb{N}\)</span>, <span class="math notranslate nohighlight">\(r\)</span> <span class="math notranslate nohighlight">\((0 \leq r \leq n, r \in \mathbb{N})\)</span> として</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2376,7 +2388,7 @@ title="Print to PDF"
 \end{split}\]</div>
 </div>
 <p><u>証明</u><br />
-　<a class="reference internal" href="random_variables.html#expectation"><span class="std std-ref">期待値の定義</span></a>より</p>
+　<a class="reference internal" href="rvs.html#expectation"><span class="std std-ref">期待値の定義</span></a>より</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -2395,7 +2407,7 @@ title="Print to PDF"
                    &amp;= \frac{nq}{p}
     \end{align}
 \end{split}\]</div>
-<p>と求められる. また分散について<a class="reference internal" href="random_variables.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から</p>
+<p>と求められる. また分散について<a class="reference internal" href="rvs.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -2404,7 +2416,7 @@ title="Print to PDF"
                      &amp;= {\rm}E(X(X-1)) + {\rm}E(X) - ({\rm E}(X))^2
     \end{align}
 \end{split}\]</div>
-<p>第 2 式から弟 3 式への変換は<a class="reference internal" href="random_variables.html#expectation-property"><span class="std std-ref">期待値の4番目の性質</span></a>を用いている.<br />
+<p>第 2 式から弟 3 式への変換は<a class="reference internal" href="rvs.html#expectation-property"><span class="std std-ref">期待値の4番目の性質</span></a>を用いている.<br />
 　<span class="math notranslate nohighlight">\({\rm}E(X(X-1))\)</span> を求めれば分散が求められるので,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -2472,11 +2484,11 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[ 5 22 16 10 14 22  6 14  9  8 10 33  8 33  7 10 23 14 16 24  4 21  8  7
- 12  4 11 11  6 24 10 16 14 12 15 11  9  6  8 13 15 15 32 12 38 21 18 21
-  8 10  4 10 27 20 18 23 10 12 16 23 22 18 20 21  4  9  6 19 18 13 30  9
- 16 10 31  9 33 33 10 14 15 15 31 29 12 19  6 18 19 12 44 21 13  7 11 29
- 20 32 13 20]
+[22 17  9 22 21  5  8  8 11 17 21 41 16 21 12 18 27 19  6 24 28 17 17 25
+ 12 14 16  8 20 34 11  9  8  5 30 10 15 18  9 12 26 16 16 10  7  4 37  9
+ 25 20  8 12 13  3 13 10 13 19 25 23 15  7  9 12 13 11 16 21 25 17 24  6
+ 12 16  3 18 11 11 10 10 10  9 47 12 15 18  5 17 18 10 21 17  0 21 25 20
+ 19 28 20 43]
 &gt; NumPy
 [19 34 25  3  8 16 18 12 44 10  5 26 11 16 28 12  6 14  6 19 23 14  3 23
  22 15 16 14 10 29  6 20 16  5 25  5 10 10 21  9  9 21 25 29 13 22  4 21
@@ -2510,8 +2522,8 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 15.9363 vs｜ 16.0
-分散(乱数 vs 真値): 80.70224231 vs 79.99999999999999
+期待値(乱数 vs 真値): 15.9636 vs｜ 16.0
+分散(乱数 vs 真値): 78.89947504 vs 79.99999999999999
 &gt; NumPy
 期待値(乱数 vs 真値): 16.0454 vs 16.0
 分散(乱数 vs 真値): 82.54973884 vs 79.99999999999999
@@ -2549,7 +2561,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Negative Binomial Distribution (n = 4, p = 0.2)&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_52_1.png" src="../../_images/probability_distribution_52_1.png" />
+<img alt="../../_images/dist_52_1.png" src="../../_images/dist_52_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2569,10 +2581,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12725ff70&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12ec86910&gt;
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_53_1.png" src="../../_images/probability_distribution_53_1.png" />
+<img alt="../../_images/dist_53_1.png" src="../../_images/dist_53_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2599,10 +2611,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x127507610&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12ec8ce80&gt;
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_54_1.png" src="../../_images/probability_distribution_54_1.png" />
+<img alt="../../_images/dist_54_1.png" src="../../_images/dist_54_1.png" />
 </div>
 </div>
 </section>
@@ -2632,7 +2644,7 @@ title="Print to PDF"
     \end{align}
 \end{split}\]</div>
 </div>
-<p>ここで<a class="reference internal" href="random_variables.html#continuous-distribution"><span class="std std-ref">連続型の確率分布の性質</span></a>を確認する.<br />
+<p>ここで<a class="reference internal" href="rvs.html#continuous-distribution"><span class="std std-ref">連続型の確率分布の性質</span></a>を確認する.<br />
 　確率密度関数の定義から <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> であることは自明. また, 以下の計算から</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -2655,7 +2667,7 @@ title="Print to PDF"
 \end{split}\]</div>
 </div>
 <p><u>証明</u><br />
-　<a class="reference internal" href="random_variables.html#expectation"><span class="std std-ref">期待値の定義</span></a>より</p>
+　<a class="reference internal" href="rvs.html#expectation"><span class="std std-ref">期待値の定義</span></a>より</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -2665,7 +2677,7 @@ title="Print to PDF"
                    &amp;= \frac{(b+a)(b-a)}{2(b-a)} = \frac{a + b}{2}
     \end{align}
 \end{split}\]</div>
-<p>と求められる. また分散について<a class="reference internal" href="random_variables.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から <span class="math notranslate nohighlight">\({\rm E}(X^2)\)</span> を求めればよい.</p>
+<p>と求められる. また分散について<a class="reference internal" href="rvs.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から <span class="math notranslate nohighlight">\({\rm E}(X^2)\)</span> を求めればよい.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -2727,10 +2739,10 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[4.28992292 4.92944347 6.20687208 3.02419274 4.79672695 4.8175386
- 6.51581754 4.03099281 6.38680603 4.1603701  7.09061236 3.37638503
- 6.005762   3.87861361 4.07994681 5.43891482 7.7285334  6.77120103
- 3.76231074 3.14069272]
+[4.24204909 3.48337218 6.73710949 5.39525006 3.66437391 5.05166388
+ 6.2397864  7.41349433 6.45116105 4.36616009 6.27075247 6.66510232
+ 6.63174946 5.74728352 4.44490367 4.11268829 7.18103931 5.64939814
+ 5.16276103 4.53400757]
 &gt; NumPy
 [7.22090427 4.98426609 7.55452031 3.1926514  6.32169067 4.0104301
  7.9795091  4.4106398  7.99999312 3.92861151 6.61590431 5.92276641
@@ -2762,8 +2774,8 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 5.490720583103833 vs｜ 5.5
-分散(乱数 vs 真値): 2.079211126522556 vs 2.083333333333333
+期待値(乱数 vs 真値): 5.508768360341059 vs｜ 5.5
+分散(乱数 vs 真値): 2.068865369987975 vs 2.083333333333333
 &gt; NumPy
 期待値(乱数 vs 真値): 5.500166337412839 vs 5.5
 分散(乱数 vs 真値): 2.0828626544358886 vs 2.083333333333333
@@ -2802,7 +2814,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Uniform Distribution [3, 8]&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_63_1.png" src="../../_images/probability_distribution_63_1.png" />
+<img alt="../../_images/dist_63_1.png" src="../../_images/dist_63_1.png" />
 </div>
 </div>
 </section>
@@ -2825,7 +2837,7 @@ title="Print to PDF"
     f(x) = \frac{1}{\sqrt{2\pi} \sigma} \exp{ \biggl( - \frac{(x -\mu)^2}{2 \sigma^2} \biggr) }
 \]</div>
 </div>
-<p>ここで<a class="reference internal" href="random_variables.html#continuous-distribution"><span class="std std-ref">連続型の確率分布の性質</span></a>を確認する.<br />
+<p>ここで<a class="reference internal" href="rvs.html#continuous-distribution"><span class="std std-ref">連続型の確率分布の性質</span></a>を確認する.<br />
 　確率密度関数の定義から <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> であることは自明. また, <span class="math notranslate nohighlight">\(y = x - \mu\)</span> とすると, <span class="math notranslate nohighlight">\(dy = dx\)</span> で以下の計算のようになる.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -2886,7 +2898,7 @@ title="Print to PDF"
 \end{split}\]</div>
 </div>
 <p><u>証明</u><br />
-　<a class="reference internal" href="random_variables.html#expectation"><span class="std std-ref">期待値の定義</span></a>より</p>
+　<a class="reference internal" href="rvs.html#expectation"><span class="std std-ref">期待値の定義</span></a>より</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -2896,7 +2908,7 @@ title="Print to PDF"
                    &amp;= \frac{\mu}{\sqrt{2 \pi}} \cdot \sqrt{2 \pi} = \mu
     \end{align}
 \end{split}\]</div>
-<p>と求められる. 第 1 項は奇関数のため 0 となる. また分散について<a class="reference internal" href="random_variables.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から <span class="math notranslate nohighlight">\({\rm E}(X^2)\)</span> を求めればよい.</p>
+<p>と求められる. 第 1 項は奇関数のため 0 となる. また分散について<a class="reference internal" href="rvs.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から <span class="math notranslate nohighlight">\({\rm E}(X^2)\)</span> を求めればよい.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -2955,10 +2967,10 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[ 5.88301029 10.16459991 10.56897742 10.83248146  9.58382234  9.71533079
-  9.56715879  8.82052368  9.73869327 10.17626584 10.31262996 10.59181573
-  9.05924708 11.75521457  7.62603074 12.26395238  9.18110685  8.99625414
-  7.33861046 10.39780735]
+[11.58957882 10.40854412 11.60835077 10.11600287  8.13398674  9.98077289
+ 12.17387348  5.16318846  7.86380899 13.19542978  9.97360074  7.36119989
+ 11.63059229 12.60903822 13.01670019  8.34384787  7.64351141 10.14710261
+ 10.42753596 11.74988644]
 &gt; NumPy
 [ 8.70461874 11.39812729  8.50115066 10.33695154 10.55931471  9.32878914
   9.00163263 13.17880852 10.83535446 13.12140641  9.68146009  7.14082452
@@ -2990,8 +3002,8 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 10.008942020809503 vs 10.0
-分散(乱数 vs 真値): 4.024840108407296 vs 4.0
+期待値(乱数 vs 真値): 9.9786828283384 vs 10.0
+分散(乱数 vs 真値): 3.9641849229406128 vs 4.0
 &gt; NumPy
 期待値(乱数 vs 真値): 10.022351940478329 vs 10.0
 分散(乱数 vs 真値): 3.992217287294061 vs 4.0
@@ -3030,7 +3042,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Normal Distribution N(10, 4)&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_72_1.png" src="../../_images/probability_distribution_72_1.png" />
+<img alt="../../_images/dist_72_1.png" src="../../_images/dist_72_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3051,10 +3063,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1279192e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12ef92220&gt;
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_73_1.png" src="../../_images/probability_distribution_73_1.png" />
+<img alt="../../_images/dist_73_1.png" src="../../_images/dist_73_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3080,10 +3092,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12759b070&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12ef72760&gt;
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_74_1.png" src="../../_images/probability_distribution_74_1.png" />
+<img alt="../../_images/dist_74_1.png" src="../../_images/dist_74_1.png" />
 </div>
 </div>
 </section>
@@ -3222,7 +3234,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/probability_distribution_78_0.png" src="../../_images/probability_distribution_78_0.png" />
+<img alt="../../_images/dist_78_0.png" src="../../_images/dist_78_0.png" />
 </div>
 </div>
 </section>
@@ -3240,8 +3252,8 @@ title="Print to PDF"
     \end{align}
 \]</div>
 </div>
-<p>これは <a class="reference internal" href="random_variables.html#exmaple-normal-lognormal"><span class="std std-ref">例 4.2 (正規分布と対数正規分布)</span></a> でも説明したように, <span class="math notranslate nohighlight">\(y = \log(x)\)</span> として <span class="math notranslate nohighlight">\(y \sim N(\mu, \sigma^2)\)</span> の場合に上式の密度関数が得られる.<br />
-　ここで<a class="reference internal" href="random_variables.html#continuous-distribution"><span class="std std-ref">連続型の確率分布の性質</span></a>を確認する. 確率密度関数の定義から <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> であることは自明. また, <span class="math notranslate nohighlight">\(y = \log{x} \Leftrightarrow x = e^y\)</span> として,</p>
+<p>これは <a class="reference internal" href="rvs.html#exmaple-normal-lognormal"><span class="std std-ref">例 4.2 (正規分布と対数正規分布)</span></a> でも説明したように, <span class="math notranslate nohighlight">\(y = \log(x)\)</span> として <span class="math notranslate nohighlight">\(y \sim N(\mu, \sigma^2)\)</span> の場合に上式の密度関数が得られる.<br />
+　ここで<a class="reference internal" href="rvs.html#continuous-distribution"><span class="std std-ref">連続型の確率分布の性質</span></a>を確認する. 確率密度関数の定義から <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> であることは自明. また, <span class="math notranslate nohighlight">\(y = \log{x} \Leftrightarrow x = e^y\)</span> として,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -3264,7 +3276,7 @@ title="Print to PDF"
 \end{split}\]</div>
 </div>
 <p><u>証明</u><br />
-　<a class="reference internal" href="random_variables.html#expectation"><span class="std std-ref">期待値の定義</span></a>と <span class="math notranslate nohighlight">\(y = \log{x} \Leftrightarrow x = e^y\)</span> で <span class="math notranslate nohighlight">\(dx = e^y dy\)</span> より</p>
+　<a class="reference internal" href="rvs.html#expectation"><span class="std std-ref">期待値の定義</span></a>と <span class="math notranslate nohighlight">\(y = \log{x} \Leftrightarrow x = e^y\)</span> で <span class="math notranslate nohighlight">\(dx = e^y dy\)</span> より</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -3289,7 +3301,7 @@ title="Print to PDF"
     \end{align}
 \end{split}\]</div>
 <p>と求められる. 下線部分は <a class="reference internal" href="#gaussian-integral"><span class="std std-ref">ガウス積分</span></a> によって計算できる.
-また分散については<a class="reference internal" href="random_variables.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>より</p>
+また分散については<a class="reference internal" href="rvs.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>より</p>
 <div class="math notranslate nohighlight">
 \[
     \begin{align}
@@ -3358,15 +3370,15 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[ 8.64479558  3.53574612  4.62197768  5.01329236  3.96328381 17.10379634
-  8.16047373  6.82155567 10.70043385  4.28347174  9.45587758  3.41996032
-  2.18727541 38.08847673 21.75686539  1.62486504  8.51579415 19.92766288
- 12.59117347  8.72278593]
+[35.51456522 35.9110002   4.33332198  3.71719351 25.51181905 16.46521538
+  7.73432258  5.44347245 10.81268079  4.62301138 14.92599055 11.00435928
+  5.56296386 28.34060365 10.81330537 30.59610921 19.23902205  4.26481317
+ 30.292077    3.88928229]
 &gt; NumPy
-[ 5.84424337  1.55656067 15.90352503 18.68324316 10.3091502   1.94451092
- 15.75257261  1.88249886 16.93905849  9.49789389  5.18667853  2.44870783
-  4.79007653  5.30094155  5.95573705  1.72704152 66.40663344  6.38602871
- 16.46955355 53.15829169]
+[ 7.09412782  7.37599548 83.69621115 16.72370789  6.82668903  6.98923899
+ 56.08554405 16.04713723  2.75476561 16.74889658 18.21644833 15.4775539
+  1.56304676 15.51331652 33.54187097  4.07446574 32.54826333  8.63876637
+  4.04159761  3.64363822]
 </pre></div>
 </div>
 </div>
@@ -3393,11 +3405,11 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 12.1794589720213 vs 12.182493960703473
-分散(乱数 vs 真値): 240.28870219714875 vs 255.0156343901585
+期待値(乱数 vs 真値): 12.092311654889116 vs 12.182493960703473
+分散(乱数 vs 真値): 247.32393406919843 vs 255.0156343901585
 &gt; NumPy
-期待値(乱数 vs 真値): 12.18481577533086 vs 12.182493960703473
-分散(乱数 vs 真値): 317.59436475500127 vs 255.0156343901585
+期待値(乱数 vs 真値): 12.158685984794351 vs 12.182493960703473
+分散(乱数 vs 真値): 293.00084451291247 vs 255.0156343901585
 </pre></div>
 </div>
 </div>
@@ -3431,7 +3443,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Log-normal Distribution&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_85_1.png" src="../../_images/probability_distribution_85_1.png" />
+<img alt="../../_images/dist_85_1.png" src="../../_images/dist_85_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3453,10 +3465,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x129faa160&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x131815cd0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_86_1.png" src="../../_images/probability_distribution_86_1.png" />
+<img alt="../../_images/dist_86_1.png" src="../../_images/dist_86_1.png" />
 </div>
 </div>
 </section>
@@ -3483,7 +3495,7 @@ title="Print to PDF"
     \end{align}
 \end{split}\]</div>
 </div>
-<p>ここで<a class="reference internal" href="random_variables.html#continuous-distribution"><span class="std std-ref">連続型の確率分布の性質</span></a>を確認する. 確率密度関数の定義から <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> であることは自明. また,</p>
+<p>ここで<a class="reference internal" href="rvs.html#continuous-distribution"><span class="std std-ref">連続型の確率分布の性質</span></a>を確認する. 確率密度関数の定義から <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> であることは自明. また,</p>
 <div class="math notranslate nohighlight">
 \[
     \begin{align}
@@ -3503,7 +3515,7 @@ title="Print to PDF"
 \end{split}\]</div>
 </div>
 <p><u>証明</u><br />
-　<a class="reference internal" href="random_variables.html#expectation"><span class="std std-ref">期待値の定義</span></a>より</p>
+　<a class="reference internal" href="rvs.html#expectation"><span class="std std-ref">期待値の定義</span></a>より</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -3513,7 +3525,7 @@ title="Print to PDF"
                    &amp;= \frac{1}{\lambda}
     \end{align}
 \end{split}\]</div>
-<p>と求められる. また分散について<a class="reference internal" href="random_variables.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から <span class="math notranslate nohighlight">\({\rm E}(X^2)\)</span> を求めればよい. 部分積分を 2 回行うことで計算できる.</p>
+<p>と求められる. また分散について<a class="reference internal" href="rvs.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から <span class="math notranslate nohighlight">\({\rm E}(X^2)\)</span> を求めればよい. 部分積分を 2 回行うことで計算できる.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -3566,15 +3578,15 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[0.10721806 0.22899071 0.01641485 0.00447724 0.141184   0.1415622
- 0.07488716 0.10007688 0.06965382 0.53929684 0.13501954 0.022792
- 0.0200909  0.12124081 0.06077082 0.25061476 0.06642412 0.23776147
- 0.02948268 0.3859956 ]
+[0.02088971 0.14132111 0.07119062 0.04684511 0.03146963 0.25502711
+ 0.33559761 0.20417715 0.36510169 0.07821145 0.12527344 0.01919358
+ 0.12187542 0.13272977 0.01870772 0.24051421 0.15575665 0.45807491
+ 0.07065929 0.059501  ]
 &gt; NumPy
-[0.01233891 0.05629123 0.13609252 0.06089487 0.04834546 0.06693578
- 0.19823615 0.00266037 0.31653647 0.02013043 0.0879418  0.16353042
- 0.14251366 0.02533943 0.09350239 0.14678497 0.03149726 0.16273152
- 0.07171533 0.18433646]
+[0.12223066 0.16378913 0.07159756 0.07253235 0.14941717 0.06234756
+ 0.08128575 0.11442341 0.02931384 0.33443234 0.21805846 0.01050512
+ 0.19263473 0.09165928 0.00627504 0.41635656 0.07125977 0.25893624
+ 0.00679894 0.02804085]
 </pre></div>
 </div>
 </div>
@@ -3601,11 +3613,11 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 0.10146309382781521 vs 0.1
-分散(乱数 vs 真値): 0.01063405599533008 vs 0.010000000000000002
+期待値(乱数 vs 真値): 0.09957584328599046 vs 0.1
+分散(乱数 vs 真値): 0.009978280244573885 vs 0.010000000000000002
 &gt; NumPy
-期待値(乱数 vs 真値): 0.09968601862586472 vs 0.1
-分散(乱数 vs 真値): 0.01019613168544599 vs 0.010000000000000002
+期待値(乱数 vs 真値): 0.10033579211988258 vs 0.1
+分散(乱数 vs 真値): 0.010294984254491636 vs 0.010000000000000002
 </pre></div>
 </div>
 </div>
@@ -3641,7 +3653,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Exponential Distribution&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_94_1.png" src="../../_images/probability_distribution_94_1.png" />
+<img alt="../../_images/dist_94_1.png" src="../../_images/dist_94_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3663,10 +3675,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x129c3cbe0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1317c9580&gt;
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_95_1.png" src="../../_images/probability_distribution_95_1.png" />
+<img alt="../../_images/dist_95_1.png" src="../../_images/dist_95_1.png" />
 </div>
 </div>
 </section>
@@ -3701,7 +3713,7 @@ title="Print to PDF"
 \]</div>
 </div>
 <p><span class="math notranslate nohighlight">\(\alpha = 1\)</span> ならば指数分布になることが分かる.<br />
-　ここで<a class="reference internal" href="random_variables.html#continuous-distribution"><span class="std std-ref">連続型の確率分布の性質</span></a>を確認する. 確率密度関数の定義から <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> であることは自明. また合計和が 1 になることは以下についてまず示す.</p>
+　ここで<a class="reference internal" href="rvs.html#continuous-distribution"><span class="std std-ref">連続型の確率分布の性質</span></a>を確認する. 確率密度関数の定義から <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> であることは自明. また合計和が 1 になることは以下についてまず示す.</p>
 <div class="math notranslate nohighlight">
 \[
     \begin{align}
@@ -3740,7 +3752,7 @@ title="Print to PDF"
 \end{split}\]</div>
 </div>
 <p><u>証明</u><br />
-　<a class="reference internal" href="random_variables.html#expectation"><span class="std std-ref">期待値の定義</span></a>と<a class="reference internal" href="#gamma-function"><span class="std std-ref">ガンマ関数の性質</span></a>から <span class="math notranslate nohighlight">\(\varGamma(\alpha + 1) = \alpha \varGamma(\alpha)\)</span> となることに注意して</p>
+　<a class="reference internal" href="rvs.html#expectation"><span class="std std-ref">期待値の定義</span></a>と<a class="reference internal" href="#gamma-function"><span class="std std-ref">ガンマ関数の性質</span></a>から <span class="math notranslate nohighlight">\(\varGamma(\alpha + 1) = \alpha \varGamma(\alpha)\)</span> となることに注意して</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -3750,7 +3762,7 @@ title="Print to PDF"
                    &amp;= \frac{\alpha}{\lambda}
     \end{align}
 \end{split}\]</div>
-<p>と求められる. た分散について<a class="reference internal" href="random_variables.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から <span class="math notranslate nohighlight">\({\rm E}(X^2)\)</span> を求めればよい. <a class="reference internal" href="#gamma-function"><span class="std std-ref">ガンマ関数の性質</span></a>から <span class="math notranslate nohighlight">\(\varGamma(\alpha + 2) = (\alpha + 1)\varGamma(\alpha + 1) = (\alpha + 1)\alpha \varGamma(\alpha)\)</span> であることより</p>
+<p>と求められる. た分散について<a class="reference internal" href="rvs.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から <span class="math notranslate nohighlight">\({\rm E}(X^2)\)</span> を求めればよい. <a class="reference internal" href="#gamma-function"><span class="std std-ref">ガンマ関数の性質</span></a>から <span class="math notranslate nohighlight">\(\varGamma(\alpha + 2) = (\alpha + 1)\varGamma(\alpha + 1) = (\alpha + 1)\alpha \varGamma(\alpha)\)</span> であることより</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{align}
@@ -3861,15 +3873,15 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[2.07739549 0.85693266 3.36538005 1.08119672 0.99106073 2.07193753
- 1.35626787 2.21978789 1.26080496 1.19879207 3.21862791 2.11349697
- 0.50352579 2.24458112 1.07526078 1.13030287 1.34745    1.1981009
- 0.58679885 3.51835732]
+[1.00111812 4.34355781 1.97207184 1.17926572 2.80943975 2.2608375
+ 1.08939906 2.18110889 0.79911725 4.3346532  1.49283126 0.50815216
+ 4.43462564 0.27422974 0.6104568  0.91633504 1.12989451 2.95074319
+ 1.95200052 1.50061993]
 &gt; NumPy
-[2.17608143 2.52301158 3.6443151  1.70103064 2.06339722 1.68169499
- 3.33835889 1.96341257 2.76896087 3.3581034  1.09916518 1.60691193
- 1.46240809 2.63770576 1.4415823  1.22448234 1.39179068 2.53074954
- 0.71476405 2.70575429]
+[1.1339558  0.44124371 1.03774612 0.75623735 5.85799538 5.47878778
+ 3.61763696 0.43488064 1.15527555 0.57083845 3.57389808 1.27777719
+ 1.323246   0.96957986 0.3716161  1.39808482 1.56156855 3.64485214
+ 0.61549133 1.18818887]
 </pre></div>
 </div>
 </div>
@@ -3896,11 +3908,11 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 1.9788477895339973 vs 2.0
-分散(乱数 vs 真値): 1.9666521493430704 vs 2.0
+期待値(乱数 vs 真値): 2.0154421217072724 vs 2.0
+分散(乱数 vs 真値): 2.0127843563815224 vs 2.0
 &gt; NumPy
-期待値(乱数 vs 真値): 1.9965200421155307 vs 2.0
-分散(乱数 vs 真値): 2.0194329704959264 vs 2.0
+期待値(乱数 vs 真値): 2.0084308451523007 vs 2.0
+分散(乱数 vs 真値): 1.9947983035947892 vs 2.0
 </pre></div>
 </div>
 </div>
@@ -3936,7 +3948,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Gamma Distribution&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_104_1.png" src="../../_images/probability_distribution_104_1.png" />
+<img alt="../../_images/dist_104_1.png" src="../../_images/dist_104_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3958,10 +3970,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12a2944c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12f123a90&gt;
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_105_1.png" src="../../_images/probability_distribution_105_1.png" />
+<img alt="../../_images/dist_105_1.png" src="../../_images/dist_105_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3984,10 +3996,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x129bce820&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x131b23d30&gt;
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_106_1.png" src="../../_images/probability_distribution_106_1.png" />
+<img alt="../../_images/dist_106_1.png" src="../../_images/dist_106_1.png" />
 </div>
 </div>
 </section>
@@ -4021,7 +4033,7 @@ title="Print to PDF"
     \end{align}
 \]</div>
 </div>
-<p>ここで<a class="reference internal" href="random_variables.html#continuous-distribution"><span class="std std-ref">連続型の確率分布の性質</span></a>を確認する. 確率密度関数の定義から <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> であることは自明. また合計和が 1 になることについては</p>
+<p>ここで<a class="reference internal" href="rvs.html#continuous-distribution"><span class="std std-ref">連続型の確率分布の性質</span></a>を確認する. 確率密度関数の定義から <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> であることは自明. また合計和が 1 になることについては</p>
 <div class="math notranslate nohighlight">
 \[
     \int_{0}^{1}{ \frac{ x^{\alpha - 1}(1-x)^{\beta - 1} }{B(\alpha, \beta)} dx} = \frac{1}{B(\alpha, \beta)} \int_{0}^{1}{ x^{\alpha - 1}(1-x)^{\beta - 1} dx} = \frac{1}{B(\alpha, \beta)} \times B(\alpha, \beta) = 1
@@ -4040,7 +4052,7 @@ title="Print to PDF"
 \end{split}\]</div>
 </div>
 <p><u>証明</u><br />
-　<a class="reference internal" href="random_variables.html#expectation"><span class="std std-ref">期待値の定義</span></a>と<a class="reference internal" href="#beta-function"><span class="std std-ref">ベータ関数の性質(4)</span></a> から</p>
+　<a class="reference internal" href="rvs.html#expectation"><span class="std std-ref">期待値の定義</span></a>と<a class="reference internal" href="#beta-function"><span class="std std-ref">ベータ関数の性質(4)</span></a> から</p>
 <div class="math notranslate nohighlight">
 \[
     B(\alpha, \beta) = \frac{\alpha + \beta}{\alpha}B(\alpha + 1, \beta)
@@ -4054,7 +4066,7 @@ title="Print to PDF"
                    &amp;= \frac{\alpha}{\alpha + \beta}
     \end{align}
 \end{split}\]</div>
-<p>と求められる. また分散について<a class="reference internal" href="random_variables.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から <span class="math notranslate nohighlight">\(E(X^2)\)</span> を求めればよく, 期待値を求めるときと同じようにする. ただし<a class="reference internal" href="#beta-function"><span class="std std-ref">ベータ関数の性質(4)</span></a> から</p>
+<p>と求められる. また分散について<a class="reference internal" href="rvs.html#expect-variance"><span class="std std-ref">分散と期待値の関係式</span></a>から <span class="math notranslate nohighlight">\(E(X^2)\)</span> を求めればよく, 期待値を求めるときと同じようにする. ただし<a class="reference internal" href="#beta-function"><span class="std std-ref">ベータ関数の性質(4)</span></a> から</p>
 <div class="math notranslate nohighlight">
 \[
     B(\alpha, \beta) = \frac{\alpha + \beta}{\alpha}B(\alpha + 1, \beta) = \frac{(\alpha + \beta)(\alpha + \beta + 1)}{(\alpha)(\alpha + 1)}B(\alpha + 2, \beta) 
@@ -4204,15 +4216,15 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[0.24133844 0.75906569 0.29638837 0.57472106 0.58601697 0.02545357
- 0.31126102 0.22800907 0.69942887 0.78499327 0.34365237 0.50835161
- 0.53152188 0.53071682 0.58417261 0.76205832 0.66215562 0.75408208
- 0.05630928 0.85924974]
+[0.72832915 0.66165709 0.51062095 0.79367512 0.39220702 0.92162893
+ 0.54760667 0.36213827 0.53552152 0.76376893 0.30774158 0.80790508
+ 0.88699527 0.54818777 0.85033716 0.31405014 0.32176199 0.50690902
+ 0.59719896 0.74753615]
 &gt; NumPy
-[0.87701908 0.3549669  0.40937038 0.65647389 0.29455765 0.62211862
- 0.85056925 0.66919247 0.06798591 0.25752863 0.6253913  0.63963081
- 0.56417895 0.10746394 0.18947986 0.24527884 0.46558994 0.53751767
- 0.84189617 0.0463061 ]
+[0.27016106 0.87999613 0.79069326 0.32371258 0.18353213 0.32682151
+ 0.23379236 0.74282962 0.36997883 0.50248689 0.60674665 0.63027349
+ 0.74563037 0.44795244 0.21419054 0.4400646  0.20021711 0.20507983
+ 0.36443717 0.65885976]
 </pre></div>
 </div>
 </div>
@@ -4239,11 +4251,11 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 0.5011482050022137 vs 0.5
-分散(乱数 vs 真値): 0.04939311290690451 vs 0.05
+期待値(乱数 vs 真値): 0.5015391360793408 vs 0.5
+分散(乱数 vs 真値): 0.050502012288274875 vs 0.05
 &gt; NumPy
-期待値(乱数 vs 真値): 0.4991357813161885 vs 0.5
-分散(乱数 vs 真値): 0.049477462541504494 vs 0.05
+期待値(乱数 vs 真値): 0.5008884602257427 vs 0.5
+分散(乱数 vs 真値): 0.0496457860390695 vs 0.05
 </pre></div>
 </div>
 </div>
@@ -4277,7 +4289,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Beta Distribution&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_115_1.png" src="../../_images/probability_distribution_115_1.png" />
+<img alt="../../_images/dist_115_1.png" src="../../_images/dist_115_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4297,10 +4309,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12a5e3d00&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x131de0ee0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/probability_distribution_116_1.png" src="../../_images/probability_distribution_116_1.png" />
+<img alt="../../_images/dist_116_1.png" src="../../_images/dist_116_1.png" />
 </div>
 </div>
 </section>
@@ -4341,14 +4353,14 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="random_variables.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="rvs.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">確率変数</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="multi_probability_distribution.html" title="next page">
+    <a class='right-next' id="next-link" href="mdist.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">多変量確率分布</p>

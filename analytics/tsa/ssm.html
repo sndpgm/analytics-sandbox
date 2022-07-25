@@ -1,0 +1,1868 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>状態空間モデル &#8212; Analytics Study Blog</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="微分積分学" href="../math/calculus.html" />
+    <link rel="prev" title="ARIMAモデル系" href="arima.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Analytics Study Blog</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to my Analytics Sandbox
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  確率変数と確率分布
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../distribution/rvs.html">
+   確率変数
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../distribution/dist.html">
+   確率分布
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../distribution/mdist.html">
+   多変量確率分布
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  回帰モデル
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../regression/blm.html">
+   ベイズ線形回帰モデル
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  時系列モデル
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ts.html">
+   時系列データ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arma.html">
+   ARMAモデル系
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arima.html">
+   ARIMAモデル系
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   状態空間モデル
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  補足
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../math/calculus.html">
+   微分積分学
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../math/linear_algebra.html">
+   線形代数学
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/tsa/ssm.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/sndpgm/analytics-sandbox"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/tsa/ssm.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/analytics/tsa/ssm.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1. 一般的な状態空間モデルの定義
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.1 定義 (状態空間モデル)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#alpha-t">
+       状態
+       <span class="math notranslate nohighlight">
+        \(\alpha_t\)
+       </span>
+       はマルコフ連鎖である
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#alpha-t-y-t-y-t-alpha-t">
+       状態
+       <span class="math notranslate nohighlight">
+        \(\alpha_t\)
+       </span>
+       の条件の下で
+       <span class="math notranslate nohighlight">
+        \(y_t\)
+       </span>
+       は独立で
+       <span class="math notranslate nohighlight">
+        \(y_t\)
+       </span>
+       は
+       <span class="math notranslate nohighlight">
+        \(\alpha_t\)
+       </span>
+       のみに依存する
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     1.2 定理 (状態空間モデルの同時分布)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   2. 一般的な状態空間モデルの逐次的求解
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#theta">
+     2.1 プロシージャ (パラメータ
+     <span class="math notranslate nohighlight">
+      \(\theta\)
+     </span>
+     の推定)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       2.1.1 命題 (対数尤度関数)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       2.1.2 命題 (パラメータを確率変数とは考えない場合の推定)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       2.1.3 命題 (パラメータを確率変数として考える場合の推定)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     2.2 プロシージャ (状態の推定および観測値の予測)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       2.2.1 命題 (フィルタリング分布の推定)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       2.2.2 命題 (予測分布の予測)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id12">
+       2.2.3 命題 (平滑化分布の推定)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   3. 線形ガウス状態空間モデル (動的線形モデル)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     3.1 定義 (線形ガウス状態空間モデルの一般式)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     3.2 例 (ローカルレベルモデル)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   4. カルマンフィルタ
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tsa-ssm-kalman-filtering">
+     4.1 命題 (カルマンフィルタリング)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     4.2 例 (python によるカルマンフィルタの実装)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tsa-ssm-kalman-forecasting">
+     4.3 命題 (カルマン予測)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id19">
+     4.4 例 (python によるカルマン予測の実装)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tsa-ssm-kalman-smoothing">
+     4.5 命題 (カルマン平滑化)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id21">
+     4.6 例 (python によるカルマン平滑化の実装)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>状態空間モデル</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1. 一般的な状態空間モデルの定義
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.1 定義 (状態空間モデル)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#alpha-t">
+       状態
+       <span class="math notranslate nohighlight">
+        \(\alpha_t\)
+       </span>
+       はマルコフ連鎖である
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#alpha-t-y-t-y-t-alpha-t">
+       状態
+       <span class="math notranslate nohighlight">
+        \(\alpha_t\)
+       </span>
+       の条件の下で
+       <span class="math notranslate nohighlight">
+        \(y_t\)
+       </span>
+       は独立で
+       <span class="math notranslate nohighlight">
+        \(y_t\)
+       </span>
+       は
+       <span class="math notranslate nohighlight">
+        \(\alpha_t\)
+       </span>
+       のみに依存する
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     1.2 定理 (状態空間モデルの同時分布)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   2. 一般的な状態空間モデルの逐次的求解
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#theta">
+     2.1 プロシージャ (パラメータ
+     <span class="math notranslate nohighlight">
+      \(\theta\)
+     </span>
+     の推定)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       2.1.1 命題 (対数尤度関数)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       2.1.2 命題 (パラメータを確率変数とは考えない場合の推定)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       2.1.3 命題 (パラメータを確率変数として考える場合の推定)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     2.2 プロシージャ (状態の推定および観測値の予測)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       2.2.1 命題 (フィルタリング分布の推定)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       2.2.2 命題 (予測分布の予測)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id12">
+       2.2.3 命題 (平滑化分布の推定)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   3. 線形ガウス状態空間モデル (動的線形モデル)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     3.1 定義 (線形ガウス状態空間モデルの一般式)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     3.2 例 (ローカルレベルモデル)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   4. カルマンフィルタ
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tsa-ssm-kalman-filtering">
+     4.1 命題 (カルマンフィルタリング)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     4.2 例 (python によるカルマンフィルタの実装)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tsa-ssm-kalman-forecasting">
+     4.3 命題 (カルマン予測)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id19">
+     4.4 例 (python によるカルマン予測の実装)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tsa-ssm-kalman-smoothing">
+     4.5 命題 (カルマン平滑化)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id21">
+     4.6 例 (python によるカルマン平滑化の実装)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>状態空間モデル<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<section id="id2">
+<h2>1. 一般的な状態空間モデルの定義<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>最初に抽象的ではあるが一般的な状態空間モデルの定義を行う.</p>
+<section id="id3">
+<h3>1.1 定義 (状態空間モデル)<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<div style="background: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); padding-left: 20px;">
+    <span style="color: white; font-size: 100%;">
+        状態空間モデルの仮定
+    </span>
+</div>
+<div style="border: rgb(0, 0, 0) solid 1px; font-size: 100%; padding: 10px 10px 0 10px; margin-bottom: 10px;">
+<p><strong>状態空間モデル</strong> (state space model) とは <span class="math notranslate nohighlight">\(\mathbb{R}^m\)</span> 上の値をとる時系列 <span class="math notranslate nohighlight">\(\alpha_t \ (t=0, 1, \dots)\)</span> と <span class="math notranslate nohighlight">\(\mathbb{R}^p\)</span> 上の値をとる時系列 <span class="math notranslate nohighlight">\(y_t \ (t = 1, 2, \dots)\)</span> からなり以下の 2 仮定を満たすモデルを指す.</p>
+<ol class="simple">
+<li><p>状態 <span class="math notranslate nohighlight">\(\alpha_t\)</span> はマルコフ連鎖である.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_t\)</span> の条件の下で <span class="math notranslate nohighlight">\(y_t\)</span> は独立であり, <span class="math notranslate nohighlight">\(y_t\)</span> は <span class="math notranslate nohighlight">\(\alpha_t\)</span> のみに依存する.</p></li>
+</ol>
+</div>
+<p>方程式によって表現すると以下のように書ける.</p>
+<div style="background: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); padding-left: 20px;">
+    <span style="color: white; font-size: 100%;">
+        状態空間モデルの方程式表現
+    </span>
+</div>
+<div style="border: rgb(0, 0, 0) solid 1px; font-size: 100%; padding: 10px 10px 0 10px; margin-bottom: 10px;">
+<p><span class="math notranslate nohighlight">\(F(\cdot), G(\cdot)\)</span> を任意の関数とし, <span class="math notranslate nohighlight">\(\varepsilon_t\)</span> を観測誤差, <span class="math notranslate nohighlight">\(\eta_t\)</span> を状態誤差と呼ばれ, 以下のように表現される.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        y_t &amp;= F(\alpha_t, \varepsilon_t) \\
+        \alpha_t &amp;= G(\alpha_{t-1}, \eta_t)
+    \end{align*}
+\end{split}\]</div>
+<p>このとき上式を<strong>観測方程式</strong> (observation equation), 下式を<strong>状態方程式</strong> (state equation) または <strong>システム方程式</strong> (system equation) という.</p>
+</div>
+<p>状態空間モデルにおいて状態 <span class="math notranslate nohighlight">\(\alpha_t\)</span> と観測値 <span class="math notranslate nohighlight">\(y_t\)</span> の関係性は以下の<strong>非巡回的有向グラフ</strong> (directed acyclic graph, DAG) によって表現される関係にある.</p>
+<figure class="align-default" id="ssm-dag">
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/ssm-dag.png"><img alt="ssm-dag" class="bg-primary mb-1" src="../../_images/ssm-dag.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">状態変数と観測値の関係</span><a class="headerlink" href="#ssm-dag" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>以下では状態空間モデルの仮定をDAG並びに確率分布の観点で具体化する. 条件付分布については <a class="reference internal" href="../distribution/mdist.html#dist-mdist-marginal-conditional"><span class="std std-ref">3. 周辺分布と条件付分布</span></a> を参照のこと.</p>
+<section id="alpha-t">
+<span id="tsa-ssm-definition-definition-markov"></span><h4>状態 <span class="math notranslate nohighlight">\(\alpha_t\)</span> はマルコフ連鎖である<a class="headerlink" href="#alpha-t" title="Permalink to this headline">#</a></h4>
+<p>下記のように <span class="math notranslate nohighlight">\(\alpha_t\)</span> は <span class="math notranslate nohighlight">\(\alpha_{t-1}\)</span> が確定するとその確率分布も定まる. すなわち</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align*}
+        f(\alpha_t | \alpha_{0:t-1}, y_{1:t-1}) = f(\alpha_t | \alpha_{t-1}).
+    \end{align*}
+\]</div>
+<figure class="align-default" id="ssm-dag-markov">
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/ssm-dag-markov.png"><img alt="ssm-dag-markov" class="bg-primary mb-1" src="../../_images/ssm-dag-markov.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">DAGによるマルコフ性 (網掛けの変数が与えられると線で囲まれた変数が独立となる)</span><a class="headerlink" href="#ssm-dag-markov" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="alpha-t-y-t-y-t-alpha-t">
+<span id="tsa-ssm-definition-definition-cond-independent"></span><h4>状態 <span class="math notranslate nohighlight">\(\alpha_t\)</span> の条件の下で <span class="math notranslate nohighlight">\(y_t\)</span> は独立で <span class="math notranslate nohighlight">\(y_t\)</span> は <span class="math notranslate nohighlight">\(\alpha_t\)</span> のみに依存する<a class="headerlink" href="#alpha-t-y-t-y-t-alpha-t" title="Permalink to this headline">#</a></h4>
+<p>下記のように <span class="math notranslate nohighlight">\(\alpha_t\)</span> が確定すると <span class="math notranslate nohighlight">\(y_t\)</span> の確率分布も定まる. すなわち</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align*}
+        f(y_t | \alpha_{0:t}, y_{1:t-1}) = f(y_t | \alpha_t).
+    \end{align*}
+\]</div>
+<figure class="align-default" id="ssm-dag-cond-independent">
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/ssm-dag-cond-independent.png"><img alt="ssm-dag-cond-independent" class="bg-primary mb-1" src="../../_images/ssm-dag-cond-independent.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">DAGに観測値の条件付独立性 (網掛けの変数が与えられると線で囲まれた変数が独立となる)</span><a class="headerlink" href="#ssm-dag-cond-independent" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="id4">
+<h3>1.2 定理 (状態空間モデルの同時分布)<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<div style="background: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); padding-left: 20px;">
+    <span style="color: white; font-size: 100%;">
+        状態空間モデルの同時分布
+    </span>
+</div>
+<div style="border: rgb(0, 0, 0) solid 1px; font-size: 100%; padding: 10px 10px 0 10px; margin-bottom: 10px;">
+<p>状態空間モデルの同時分布 <span class="math notranslate nohighlight">\(f(\alpha_{0:n}, y_{1:n})\)</span> は以下のように表現できる.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align*}
+        f(\alpha_{0:n}, y_{1:n}) = f(x_0) \prod_{t=1}^{n}{f(y_t | x_t)f(x_t | x_{t-1})}
+    \end{align*}
+\]</div>
+<p>上記において初期状態に関する事前分布 <span class="math notranslate nohighlight">\(f(x_0)\)</span>, 観測方程式 (観測値と状態に関する方程式) の確率分布 <span class="math notranslate nohighlight">\(f(y_t | x_t)\)</span>, 状態方程式 (状態に関する方程式) の確率分布 <span class="math notranslate nohighlight">\(f(x_t | x_{t-1})\)</span> によって決まることが分かる.</p>
+</div>
+<p><u>証明</u></p>
+<p><a class="reference internal" href="../distribution/mdist.html#conditional-distribution"><span class="std std-ref">条件付分布による乗法定理</span></a> を用いて計算を進める.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        f(\alpha_{0:n}, y_{1:n}) 
+            &amp;= f(\alpha_{0:n}, y_n, y_{1:n-1}) \\
+            &amp;= f(y_n | \alpha_{0:n}, y_{1:n-1}) f(\alpha_{0:n}, y_{1:n-1}) \quad (\because \ \text{条件付分布の乗法定理}) \\
+            &amp;= f(y_n | \alpha_{0:n}, y_{1:n-1}) f(\alpha_n, \alpha_{0:n-1}, y_{1:n-1}) \\
+            &amp;= f(y_n | \alpha_{0:n}, y_{1:n-1}) f(\alpha_n | \alpha_{0:n-1}, y_{1:n-1}) f(\alpha_{0:n-1}, y_{1:n-1}) \quad (\because \ \text{条件付分布の乗法定理})
+    \end{align*}
+\end{split}\]</div>
+<p>つまり <span class="math notranslate nohighlight">\(f(\alpha_{0:n}, y_{1:n})\)</span> から <span class="math notranslate nohighlight">\(f(\alpha_{0:n-1}, y_{1:n-1})\)</span> に変換すると <span class="math notranslate nohighlight">\(f(y_n | \alpha_{0:n}, y_{1:n-1}) f(\alpha_n | \alpha_{0:n-1}, y_{1:n-1})\)</span> が係数部分にかけられる. このことを繰り返し <span class="math notranslate nohighlight">\(f(\alpha_{0:1}, y_1)\)</span> まで行うと</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        f(\alpha_{0:n}, y_{1:n}) 
+            &amp;= \biggl( \prod_{t=2}^{n}{ f(y_t | \alpha_{0:t}, y_{1:t-1}) f(\alpha_t | \alpha_{0:t-1}, y_{1:t-1}) } \biggr) f(\alpha_{0:1}, y_1) \\
+            &amp;= \biggl( \prod_{t=2}^{n}{ f(y_t | \alpha_{0:t}, y_{1:t-1}) f(\alpha_t | \alpha_{0:t-1}, y_{1:t-1}) } \biggr) f(y_1 | \alpha_{0:1}) f(\alpha_1 | \alpha_0) f(\alpha_0) \quad (\because \ \text{条件付分布の乗法定理})
+    \end{align*}
+\end{split}\]</div>
+<p>状態空間モデルの仮定より <span class="math notranslate nohighlight">\(f(y_t | \alpha_{0:t}, y_{1:t-1}) = f(y_t | \alpha_t)\)</span>, <span class="math notranslate nohighlight">\(f(\alpha_t | \alpha_{0:t-1}, y_{1:t-1}) = f(\alpha_t | \alpha_{t-1})\)</span> より</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        f(\alpha_{0:n}, y_{1:n}) 
+            &amp;= \biggl( \prod_{t=2}^{n}{ f(y_t | \alpha_t) f(\alpha_t | \alpha_{t-1}) } \biggr) f(y_1 | \alpha_{0:1}) f(\alpha_1 | \alpha_0) f(\alpha_0) \\
+            &amp;= f(\alpha_0) \prod_{t=1}^{n}{ f(y_t | \alpha_t) f(\alpha_t | \alpha_{t-1}) }.
+    \end{align*}
+\end{split}\]</div>
+</section>
+</section>
+<section id="id5">
+<h2>2. 一般的な状態空間モデルの逐次的求解<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<p>状態空間モデルは<a class="reference internal" href="#tsa-ssm-definition-definition-equation-expression"><span class="std std-ref">前述</span></a>した通り, 以下のように表現できる. ただし, 状態変数と観測値以外の未知パラメータ (誤差項を含む) は <span class="math notranslate nohighlight">\(\theta\)</span> にまとめている.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        y_t &amp;= F(\alpha_t, \theta) \\
+        \alpha_t &amp;= G(\alpha_{t-1}, \theta)        
+    \end{align*}
+\end{split}\]</div>
+<p>このとき状態空間モデルの逐次的解析として以下のステップで構成される.</p>
+<ol class="simple">
+<li><p>パラメータ <span class="math notranslate nohighlight">\(\theta\)</span> の推定</p></li>
+<li><p>状態の推定および観測値の予測</p></li>
+</ol>
+<section id="theta">
+<h3>2.1 プロシージャ (パラメータ <span class="math notranslate nohighlight">\(\theta\)</span> の推定)<a class="headerlink" href="#theta" title="Permalink to this headline">#</a></h3>
+<section id="id6">
+<h4>2.1.1 命題 (対数尤度関数)<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h4>
+<div style="background: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); padding-left: 20px;">
+    <span style="color: white; font-size: 100%;">
+        状態空間モデルの対数尤度関数
+    </span>
+</div>
+<div style="border: rgb(0, 0, 0) solid 1px; font-size: 100%; padding: 10px 10px 0 10px; margin-bottom: 10px;">
+<p>全体の尤度関数を <span class="math notranslate nohighlight">\(L(y_{1:n};\theta)\)</span> とすれば対数尤度関数は以下で表現される.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align*}
+        \log{L(y_{1:n};\theta)} = \sum_{t=1}^{n}{\log{L(y_t | y_{1:t-1} ; \theta)}}
+    \end{align*}
+\]</div>
+</div>
+<p><u>証明</u></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        L(y_{1:n};\theta) &amp;= L(y_n | y_{1:n-1};\theta)L(y_{1:n-1};\theta) \\
+                          &amp;= L(y_n | y_{1:n-1};\theta)L(y_{n-1} | y_{1:n-2};\theta)L(y_{1:n-2};\theta) \\
+                          &amp;\cdots \\
+                          &amp;= \prod_{t=1}^{n}{L(y_t|y_{1:t-1};\theta)} \quad (\textstyle ただし \ L(y_1|y_{1:0};\theta) = L(y_1; \theta) \ とする)
+    \end{align*}
+\end{split}\]</div>
+<p>となり上記に対数を取れば求められる.<br />
+　この対数尤度関数を用いてパラメータを推定する.</p>
+</section>
+<section id="id7">
+<h4>2.1.2 命題 (パラメータを確率変数とは考えない場合の推定)<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h4>
+<div style="background: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); padding-left: 20px;">
+    <span style="color: white; font-size: 100%;">
+        パラメータを確率変数とは考えない場合のパラメータ推定
+    </span>
+</div>
+<div style="border: rgb(0, 0, 0) solid 1px; font-size: 100%; padding: 10px 10px 0 10px; margin-bottom: 10px;">
+<p>状態空間モデルにおけるパラメータ推定値 <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> は<strong>最尤推定法</strong> (maximum likelihood estimation; MLE) によって求められる.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align*}
+        \hat{\theta} =
+            \underset{\theta}{\operatorname{argmax}} \log{L(y_{1:n};\theta)} = \underset{\theta}{\operatorname{argmax}} \sum_{t=1}^{n}{\log{L(y_t | y_{1:t-1} ; \theta)}}
+    \end{align*}
+\]</div>
+</div>
+<p>具体的な数値計算の手法としては</p>
+<ul class="simple">
+<li><p>準ニュートン法 (quasi-Newton method)</p></li>
+<li><p>EMアルゴリズム (EM; expectation maximization)</p></li>
+</ul>
+<p>で実施.</p>
+</section>
+<section id="id8">
+<h4>2.1.3 命題 (パラメータを確率変数として考える場合の推定)<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h4>
+<div style="background: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); padding-left: 20px;">
+    <span style="color: white; font-size: 100%;">
+        パラメータを確率変数として考える場合のパラメータ推定
+    </span>
+</div>
+<div style="border: rgb(0, 0, 0) solid 1px; font-size: 100%; padding: 10px 10px 0 10px; margin-bottom: 10px;">
+<p>状態空間モデルにおけるパラメータ推定値 <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> は<strong>最大事後確率推定</strong> (maximum a posteriori estimation; MAP) によって求められる.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align*}
+        \hat{\theta} =
+            \underset{\theta}{\operatorname{argmax}} \log{L(\theta | y_{1:t})} \propto 
+            \underset{\theta}{\operatorname{argmax}} \{ \log{L(y_{1:t} | \theta)} + \log{L(\theta)} \}
+    \end{align*}
+\]</div>
+</div></section>
+</section>
+<section id="id9">
+<h3>2.2 プロシージャ (状態の推定および観測値の予測)<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<p>状態の推定および観測値の予測において</p>
+<ol class="simple">
+<li><p><strong>フィルタリング</strong> (filtering) : 時点 <span class="math notranslate nohighlight">\(t\)</span> までの観測値 <span class="math notranslate nohighlight">\(y_{1:t}\)</span> に基づいて時点 <span class="math notranslate nohighlight">\(t\)</span> の状態 <span class="math notranslate nohighlight">\(\alpha_t\)</span> を推定</p></li>
+<li><p><strong>平滑化</strong> (smoothing) : 与えられたすべての観測値 <span class="math notranslate nohighlight">\(y_{1:n}\)</span> を用いて各時点の状態 <span class="math notranslate nohighlight">\(\alpha_1, \dots, \alpha_n\)</span> を推定</p></li>
+<li><p><strong>予測</strong> (forecasting) : フィルタリングの最終時点 <span class="math notranslate nohighlight">\(t=n\)</span> から先の時点へと進めた将来の状態, 観測値に対する予測</p></li>
+</ol>
+<p>の 3 問題が存在する. さらに言い換えると</p>
+<ol class="simple">
+<li><p><strong>フィルタリング</strong> (filtering) : フィルタリング分布 <span class="math notranslate nohighlight">\(f(\alpha_t | y_{1:t})\)</span> を推定</p></li>
+<li><p><strong>平滑化</strong> (smoothing) : 平滑化分布 <span class="math notranslate nohighlight">\(f(\alpha_t | y_{1:n}) \ (1 \leq t \leq n)\)</span> を推定</p></li>
+<li><p><strong>予測</strong> (forecasting) : 予測分布 <span class="math notranslate nohighlight">\(f(\alpha_{t+k} | y_{1:t})  \ (k \geq 1)\)</span> を予測</p></li>
+</ol>
+<p>とも言える.</p>
+<section id="id10">
+<h4>2.2.1 命題 (フィルタリング分布の推定)<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h4>
+<div style="background: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); padding-left: 20px;">
+    <span style="color: white; font-size: 100%;">
+        フィルタリング
+    </span>
+</div>
+<div style="border: rgb(0, 0, 0) solid 1px; font-size: 100%; padding: 10px 10px 0 10px; margin-bottom: 10px;">
+<p><strong>フィルタリング</strong> (filtering) によって分布 <span class="math notranslate nohighlight">\(f(\alpha_{t-1}|y_{1:t-1})\)</span> を用いて <span class="math notranslate nohighlight">\(f(\alpha_{t-1}|y_{1:t-1})\)</span> を取得するには以下の漸化式による計算を実施すればよい.</p>
+<p>(a) <strong>1期先予測分布</strong> (one-step ahead predict distribution) <span class="math notranslate nohighlight">\(f(\alpha_t | y_{1:t-1})\)</span> を予測.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align*}
+        f(\alpha_t | y_{1:t-1}) = \int {f(\alpha_t | \alpha_{t-1}) f(\alpha_{t-1} | y_{1:t-1}) d\alpha_{t-1} }
+    \end{align*}
+\]</div>
+<p>(b) <strong>1期先予測尤度</strong> (one-step ahead predict likelihood) <span class="math notranslate nohighlight">\(f(y_t | y_{1:t-1})\)</span> を予測.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align*}
+        f(y_t | y_{1:t-1}) = \int {f(y_t | \alpha_{t}) f(\alpha_{t} | y_{1:t-1}) d\alpha_{t} }
+    \end{align*}
+\]</div>
+<p>(c) データ <span class="math notranslate nohighlight">\(y_t\)</span> を用いて<strong>フィルタリング分布</strong> (filtering distribution) <span class="math notranslate nohighlight">\(f(x_t | y_{1:t})\)</span> を推定.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align*}
+        f(\alpha_t | y_{1:t}) = f(\alpha_t | y_{1:t-1}) \frac{f(y_t | \alpha_{t})}{f(y_t | y_{1:t-1})}
+    \end{align*}
+\]</div>
+</div>
+<p><u>証明</u></p>
+<p>(a)~(c) の数式を導出する. (c) については<a class="reference internal" href="../distribution/mdist.html#conditional-distribution"><span class="std std-ref">乗法定理</span></a>より</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        f( \alpha_{t} | y_{1:t} ) 
+            &amp;= f( \alpha_{t} | y_{t}, y_{1:t-1} ) \\
+            &amp;= \frac{ f( \alpha_{t}, y_t | y_{1:t-1} ) }{ f( y_{t} | y_{1:t-1} ) } \quad (\because \ \textstyle 乗法定理) \\
+            &amp;= \frac{ f( y_{t} | \alpha_{t}, y_{1:t-1} ) f( \alpha_{t} | y_{1:t-1} ) }{ f( y_{t} | y_{1:t-1} ) } \quad (\because \ \textstyle 乗法定理)
+    \end{align*}
+\end{split}\]</div>
+<p>上式は <a class="reference internal" href="#tsa-ssm-definition-definition-cond-independent"><span class="std std-ref"><span class="math notranslate nohighlight">\(\alpha_t\)</span> が与えられた条件の下で <span class="math notranslate nohighlight">\(y_t\)</span> と <span class="math notranslate nohighlight">\(y_{1:t-1}\)</span> は独立である</span></a>ことを利用して <span class="math notranslate nohighlight">\(f( y_{t} | \alpha_{t}, y_{1:t-1} ) = f( y_{t} | \alpha_{t} )\)</span> となり与式が導出される.</p>
+<p>(a) について<a class="reference internal" href="../distribution/mdist.html#marginal-distribution"><span class="std std-ref">周辺化</span></a>を踏まえ</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        f( \alpha_{t} | y_{1:t-1} ) 
+            &amp;= \int { f( \alpha_{t}, \alpha_{t-1} | y_{1:t-1} ) d\alpha_{t-1} } \quad (\because \ \textstyle 周辺化) \\
+            &amp;= \int { f( \alpha_{t} | \alpha_{t-1}, y_{1:t-1} ) f( \alpha_{t-1} | y_{1:t-1} )  d\alpha_{t-1} } \quad (\because \ \textstyle 乗法定理)
+    \end{align*}
+\end{split}\]</div>
+<p>上式について <a class="reference internal" href="#tsa-ssm-definition-definition-markov"><span class="std std-ref"><span class="math notranslate nohighlight">\(\alpha_t\)</span> のマルコフ性</span></a>を利用して <span class="math notranslate nohighlight">\(f( \alpha_{t} | \alpha_{t-1}, y_{1:t-1} ) = f( \alpha_{t} | \alpha_{t-1} )\)</span> となり与式が導出される.</p>
+<p>最後に (b) についても<a class="reference internal" href="../distribution/mdist.html#marginal-distribution"><span class="std std-ref">周辺化</span></a>, <a class="reference internal" href="../distribution/mdist.html#conditional-distribution"><span class="std std-ref">乗法定理</span></a>および<a class="reference internal" href="#tsa-ssm-definition-definition-cond-independent"><span class="std std-ref"><span class="math notranslate nohighlight">\(\alpha_t\)</span> が与えられた条件の下で <span class="math notranslate nohighlight">\(y_t\)</span> と <span class="math notranslate nohighlight">\(y_{1:t-1}\)</span> は独立である</span></a>ことを利用して導出ができる.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        f( y_{t} | y_{1:t-1} ) 
+            &amp;= \int { f( y_{t}, \alpha_{t} | y_{1:t-1} ) d\alpha_{t} } \quad (\because \ \textstyle 周辺化) \\
+            &amp;= \int { f( y_{t} | \alpha_{t}, y_{1:t-1} ) f( \alpha_{t} | y_{1:t-1} ) d\alpha_{t} } \quad (\because \ \textstyle 乗法定理) \\
+            &amp;= \int { f( y_{t} | \alpha_{t} ) f( \alpha_{t} | y_{1:t-1} ) d\alpha_{t} } \quad (\because \ \textstyle 条件付独立性)
+    \end{align*}
+\end{split}\]</div>
+</section>
+<section id="id11">
+<h4>2.2.2 命題 (予測分布の予測)<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h4>
+<div style="background: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); padding-left: 20px;">
+    <span style="color: white; font-size: 100%;">
+        予測
+    </span>
+</div>
+<div style="border: rgb(0, 0, 0) solid 1px; font-size: 100%; padding: 10px 10px 0 10px; margin-bottom: 10px;">
+<p><strong>予測</strong> (forecasting) によって分布 <span class="math notranslate nohighlight">\(f(\alpha_{t}|y_{1:t})\)</span> を用いて <span class="math notranslate nohighlight">\(f(\alpha_{t+k}|y_{1:t})\)</span> を取得するプロシージャは以下の漸化式を更新すればよい.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align*}
+        f(\alpha_{t+k} | y_{1:t}) = \int {f(\alpha_{t+k} | \alpha_{t+k-1}) f(\alpha_{t+k-1} | y_{1:t}) d\alpha_{t+k-1} }
+    \end{align*}
+\]</div>
+</div>
+<p><u>証明</u></p>
+<p><a class="reference internal" href="../distribution/mdist.html#marginal-distribution"><span class="std std-ref">周辺化</span></a>, <a class="reference internal" href="../distribution/mdist.html#conditional-distribution"><span class="std std-ref">乗法定理</span></a>, <a class="reference internal" href="#tsa-ssm-definition-definition-markov"><span class="std std-ref"><span class="math notranslate nohighlight">\(\alpha_t\)</span> のマルコフ性</span></a>を利用して</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        f(\alpha_{t+k} | y_{1:t}) 
+            &amp;= \int { f( \alpha_{t+k}, \alpha_{t+k-1} | y_{1:t}) d \alpha_{t+k-1} } \quad (\because \ \textstyle 周辺化) \\
+            &amp;= \int { f( \alpha_{t+k} | \alpha_{t+k-1}, y_{1:t}) f( \alpha_{t+k-1} | y_{1:t})  d \alpha_{t+k-1} } \quad (\because \ \textstyle 乗法定理) \\
+            &amp;= \int {f(\alpha_{t+k} | \alpha_{t+k-1}) f(\alpha_{t+k-1} | y_{1:t}) d\alpha_{t+k-1} }. \quad (\because \ \textstyle 状態のマルコフ性)
+    \end{align*}
+\end{split}\]</div>
+</section>
+<section id="id12">
+<h4>2.2.3 命題 (平滑化分布の推定)<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h4>
+<div style="background: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); padding-left: 20px;">
+    <span style="color: white; font-size: 100%;">
+        平滑化
+    </span>
+</div>
+<div style="border: rgb(0, 0, 0) solid 1px; font-size: 100%; padding: 10px 10px 0 10px; margin-bottom: 10px;">
+<p><strong>平滑化</strong> (smoothing) はフィルタリング分布 <span class="math notranslate nohighlight">\(f(\alpha_{t}|y_{1:n})\)</span> 1 期先のフィルタリング分布<span class="math notranslate nohighlight">\(f(\alpha_{t+1}|y_{1:n})\)</span> を用いて <span class="math notranslate nohighlight">\(f(\alpha_{t+k}|y_{1:t})\)</span> を取得するプロシージャは以下の漸化式を更新すればよい.</p>
+<div class="math notranslate nohighlight">
+\[
+    \begin{align*}
+        f(\alpha_{t} | y_{1:n}) = f( \alpha_{t} | y_{1:t} ) \int { \frac{ f(\alpha_{t+1} | \alpha_{t}) }{ f(\alpha_{t+1} | y_{1:t}) } f(\alpha_{t+1} | y_{1:n}) d\alpha_{t+1} }
+    \end{align*}
+\]</div>
+</div>
+<p><u>証明</u></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        f( \alpha_{t} | y_{1:n})
+            &amp;= \int { f( \alpha_{t}, \alpha_{t+1} | y_{1:n} ) d \alpha_{t+1} } \quad (\because \ \textstyle 周辺化) \\
+            &amp;= \int { f( \alpha_{t} | \alpha_{t+1}, y_{1:n} ) f( \alpha_{t+1} | y_{1:n} )  d \alpha_{t+1} } \quad (\because \ \textstyle 乗法定理) \\
+            &amp;= \int { f( \alpha_{t} | \alpha_{t+1}, y_{1:t} ) f( \alpha_{t+1} | y_{1:n} )  d \alpha_{t+1} } \quad (\because \ \textstyle 条件付独立性) \\
+            &amp;= \int { \frac{ f( \alpha_{t}, \alpha_{t+1} | y_{1:t} ) }{ f( \alpha_{t+1} | y_{1:t} ) } f( \alpha_{t+1} | y_{1:n} )  d \alpha_{t+1} } \quad (\because \ \textstyle 乗法定理) \\
+            &amp;= \int { \frac{ f( \alpha_{t+1} | \alpha_{t}, y_{1:t} ) f( \alpha_{t} | y_{1:t} ) }{ f( \alpha_{t+1} | y_{1:t} ) } f( \alpha_{t+1} | y_{1:n} )  d \alpha_{t+1} } \quad (\because \ \textstyle 乗法定理) \\
+            &amp;= f( \alpha_{t} | y_{1:t} ) \int { \frac{ f( \alpha_{t+1} | \alpha_{t}, y_{1:t} ) }{ f( \alpha_{t+1} | y_{1:t} ) } f( \alpha_{t+1} | y_{1:n} )  d \alpha_{t+1} } \\
+            &amp;= f( \alpha_{t} | y_{1:t} ) \int { \frac{ f(\alpha_{t+1} | \alpha_{t}) }{ f(\alpha_{t+1} | y_{1:t}) } f(\alpha_{t+1} | y_{1:n}) d\alpha_{t+1} }. \quad (\because \ \textstyle 状態のマルコフ性) 
+    \end{align*}
+\end{split}\]</div>
+</section>
+</section>
+</section>
+<section id="id13">
+<h2>3. 線形ガウス状態空間モデル (動的線形モデル)<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h2>
+<section id="id14">
+<h3>3.1 定義 (線形ガウス状態空間モデルの一般式)<a class="headerlink" href="#id14" title="Permalink to this headline">#</a></h3>
+<div style="background: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); padding-left: 20px;">
+    <span style="color: white; font-size: 100%;">
+        線形ガウス状態空間モデルの一般式
+    </span>
+</div>
+<div style="border: rgb(0, 0, 0) solid 1px; font-size: 100%; padding: 10px 10px 0 10px; margin-bottom: 10px;">
+<p>時系列ベクトル <span class="math notranslate nohighlight">\(y_t \ (t = 1, \dots, n)\)</span> について<strong>線形ガウス状態空間モデル</strong> (linear Gaussian state space model) は以下で表現できるモデルを指す.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        y_t &amp;= Z_t \alpha_t + \varepsilon_t, \ &amp;\varepsilon_t \sim N(0, H_t) \\
+        \alpha_{t} &amp;= T_t \alpha_{t-1} + R_t \eta_t, \ &amp;\eta_t \sim N(0, Q_t)
+    \end{align*}
+\end{split}\]</div>
+<p>ただし, <span class="math notranslate nohighlight">\(\alpha_0 \sim N(a_0, P_0)\)</span> である. 線形ガウス状態空間モデルは<strong>動的線形モデル</strong> (dynamic linear model) とも呼ぶ.</p>
+</div>
+<p>上記文字について</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Factor</p></th>
+<th class="text-align:left head"><p>Dimensions</p></th>
+<th class="head"><p>Explations</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(y_t\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(p\)</span> 次元列ベクトル</p></td>
+<td><p>観測値</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(Z_t\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(p \times m\)</span> 行列</p></td>
+<td><p>デザイン行列</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(\alpha_t\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(m\)</span> 次元列ベクトル</p></td>
+<td><p>状態変数ベクトル</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(T_t\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(m \times m\)</span> 行列</p></td>
+<td><p>遷移行列</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(\varepsilon_t\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(p\)</span> 次元列ベクトル</p></td>
+<td><p>観測値の誤差項</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(H_t\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(p \times p\)</span> 行列</p></td>
+<td><p>観測値の分散共分散行列</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(\eta_t\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(r\)</span> 次元列ベクトル</p></td>
+<td><p>状態方程式の誤差項</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(R_t\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(m \times r\)</span> 行列</p></td>
+<td><p>選択行列</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(Q_t\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(r \times r\)</span> 行列</p></td>
+<td><p>状態変数の分散共分散行列</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(a_0\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(p \)</span> 次元列ベクトル</p></td>
+<td><p>状態変数の初期分布平均ベクトル</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(P_0\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(p \times p\)</span> 行列</p></td>
+<td><p>状態減数の初期分布分散共分散行列</p></td>
+</tr>
+</tbody>
+</table>
+<p>であり, 誤差項と初期状態の組, <span class="math notranslate nohighlight">\(\varepsilon_t, \dots, \varepsilon_n, \eta_t, \dots, \eta_t, \alpha_1\)</span> は互いに独立と仮定され, <span class="math notranslate nohighlight">\(\varepsilon_t, \eta_t\)</span> は互いに独立であり, <span class="math notranslate nohighlight">\(\alpha_t, y_t\)</span> に対しても独立となる.</p>
+</section>
+<section id="id15">
+<h3>3.2 例 (ローカルレベルモデル)<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h3>
+<p>時系列 <span class="math notranslate nohighlight">\(\{y_1, \dots, y_t, \dots, y_n\}\)</span> について考える. 線形ガウス状態空間モデルにおいて</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        Z_t = [1], \quad \alpha_t = [\alpha_t], \quad \varepsilon_t = [\varepsilon_t], \quad H_t = [\sigma_\varepsilon^2], \\
+        T_t = [1], \quad R_t = [1], \quad \eta_t = [\eta_t], \quad Q_t = [\sigma_\eta^2], \quad a_1 = [a_1], \quad P_1 = [P_1]
+    \end{align*}
+\end{split}\]</div>
+<p>とした時</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        y_t &amp;= \alpha_t + \varepsilon_t, \ &amp;\varepsilon_t \sim N(0, \sigma_\varepsilon^2) \\
+        \alpha_{t+1} &amp;= \alpha_t + \eta_t, \ &amp;\eta_t \sim N(0, \sigma_\eta^2) \\
+    \end{align*}
+\end{split}\]</div>
+<p>ただし <span class="math notranslate nohighlight">\(\alpha_1 \sim N(a_1, P_1)\)</span> である. 上記で表現されるモデルを<strong>ローカルレベルモデル</strong> (local level model) という.<br />
+　ローカルレベルモデルに従う波形を python で再現してみる.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># プロット図の設定</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 擬似乱数生成のセットアップ</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">12345</span><span class="p">)</span>
+
+<span class="c1"># yt = Zt at + εt         εt ~ N(0, Ht)</span>
+<span class="c1"># a{t+1} = Tt at + Rt ηt  ηt ~ N(0, Qt)</span>
+<span class="c1"># 状態方程式の行列</span>
+<span class="c1"># 誤差項の分散は既知とする</span>
+<span class="n">Zt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">Tt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">Rt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">Ht</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">10</span><span class="p">]])</span>
+<span class="n">Qt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="c1"># サンプル数と状態変数の初期値</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">a0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">])</span>
+
+<span class="c1"># 誤差項</span>
+<span class="n">εt</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">Ht</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="n">k</span><span class="p">)</span>
+<span class="n">ηt</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="n">k</span><span class="p">)</span>
+
+<span class="c1"># シミュレーション的にローカルレベルモデルの状態と観測値を算出</span>
+<span class="n">at</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">k</span><span class="p">)</span>
+<span class="n">yt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">k</span><span class="p">)</span>
+
+<span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tt</span> <span class="o">@</span> <span class="n">a0</span> <span class="o">+</span> <span class="n">Rt</span> <span class="o">@</span> <span class="n">ηt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">yt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Zt</span> <span class="o">@</span> <span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">εt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">at</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tt</span> <span class="o">@</span> <span class="n">at</span><span class="p">[</span><span class="n">t</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rt</span> <span class="o">@</span> <span class="n">ηt</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+    <span class="n">yt</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">Zt</span> <span class="o">@</span> <span class="n">at</span><span class="p">[</span><span class="n">t</span> <span class="p">:</span> <span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">εt</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 観測値と状態変数の図示</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yt</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;observations&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">at</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;true state&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Local level model transition&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ssm_18_0.png" src="../../_images/ssm_18_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id16">
+<h2>4. カルマンフィルタ<a class="headerlink" href="#id16" title="Permalink to this headline">#</a></h2>
+<p>時系列 <span class="math notranslate nohighlight">\(\{y_1, \dots, y_t, \dots, y_n \}\)</span> において以下の線形ガウス状態空間モデルで議論を進める. すなわち,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        y_t &amp;= Z_t \alpha_t + \varepsilon_t, \ &amp;\varepsilon_t \sim N(0, H_t) \\
+        \alpha_{t} &amp;= T_t \alpha_{t-1} + R_t \eta_t, \ &amp;\eta_t \sim N(0, Q_t)
+    \end{align*}
+\end{split}\]</div>
+<p>である. カルマンフィルタリング, カルマン平滑化, カルマン予測によってそれぞれ以下を求める.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#tsa-ssm-kalman-filtering"><span class="std std-ref">カルマンフィルタリング</span></a></p>
+<ul>
+<li><p>フィルタリング分布 <span class="math notranslate nohighlight">\(N(a_{t|t}, P_{t|t})\)</span> :</p>
+<ul>
+<li><p>平均ベクトル <span class="math notranslate nohighlight">\(a_{t|t} = {\rm E}[\alpha_t | y_{1:t}]\)</span></p></li>
+<li><p>共分散行列 <span class="math notranslate nohighlight">\(P_{t|t} = {\rm Var}[\alpha_t | y_{1:t}]\)</span></p></li>
+</ul>
+</li>
+<li><p>1 期先予測分布 <span class="math notranslate nohighlight">\(N(a_t, P_t)\)</span> :</p>
+<ul>
+<li><p>平均ベクトル <span class="math notranslate nohighlight">\(a_t = {\rm E}[\alpha_t | y_{1:t-1}]\)</span></p></li>
+<li><p>共分散行列 <span class="math notranslate nohighlight">\(P_t = {\rm Var}[\alpha_t | y_{1:t-1}]\)</span></p></li>
+</ul>
+</li>
+<li><p>1 期先予測尤度 <span class="math notranslate nohighlight">\(N(f_t, F_t)\)</span> :</p>
+<ul>
+<li><p>平均値 <span class="math notranslate nohighlight">\(f_t = {\rm E}[y_t | y_{1:t-1}]\)</span></p></li>
+<li><p>分散 <span class="math notranslate nohighlight">\(F_t = {\rm Var}[y_t | y_{1:t-1}]\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#tsa-ssm-kalman-forecasting"><span class="std std-ref">カルマン予測</span></a></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(k\)</span> 期先予測分布 <span class="math notranslate nohighlight">\(N(a_{t+k}, P_{t+k})\)</span> :</p>
+<ul>
+<li><p>平均ベクトル <span class="math notranslate nohighlight">\(a_{t+k} = {\rm E}[\alpha_{t+k} | y_{1:t}]\)</span></p></li>
+<li><p>共分散行列 <span class="math notranslate nohighlight">\(P_{t+k} = {\rm Var}[\alpha_{t+k} | y_{1:t}]\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#tsa-ssm-kalman-smoothing"><span class="std std-ref">カルマン平滑化</span></a></p>
+<ul>
+<li><p>平滑化分布 <span class="math notranslate nohighlight">\(N(s_t, S_t)\)</span> :</p>
+<ul>
+<li><p>平均ベクトル <span class="math notranslate nohighlight">\(s_{t} = {\rm E}[\alpha_{t} | y_{1:n}]\)</span></p></li>
+<li><p>共分散行列 <span class="math notranslate nohighlight">\(S_{t} = {\rm Var}[\alpha_{t} | y_{1:n}]\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<section id="tsa-ssm-kalman-filtering">
+<span id="id17"></span><h3>4.1 命題 (カルマンフィルタリング)<a class="headerlink" href="#tsa-ssm-kalman-filtering" title="Permalink to this headline">#</a></h3>
+<div style="background: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); padding-left: 20px;">
+    <span style="color: white; font-size: 100%;">
+        カルマンフィルタリング
+    </span>
+</div>
+<div style="border: rgb(0, 0, 0) solid 1px; font-size: 100%; padding: 10px 10px 0 10px; margin-bottom: 10px;">
+<p><span class="math notranslate nohighlight">\(\alpha_{t-1} | y_{1:t-1} \sim N(a_{t-1|t-1}, P_{t-1|t-1})\)</span> が所与のときに, 以下の手順で逐次的に状態変数を更新することを<strong>カルマンフィルタリング</strong> (Kalman filtering) という.</p>
+<p>(a) <span class="math notranslate nohighlight">\(y_{1:t-1}\)</span> が与えられた下での <span class="math notranslate nohighlight">\(\alpha_t\)</span> の 1 期先予測値 <span class="math notranslate nohighlight">\(a_t\)</span>, 1 期先予測誤差分散 <span class="math notranslate nohighlight">\(P_t\)</span> は以下で求める.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        a_{t} &amp;= T_{t} a_{t-1|t-1} \\
+        P_{t} &amp;= T_{t} P_{t-1 | t-1} T_{t}' + R_{t} Q_{t} R_{t}'
+    \end{align*}
+\end{split}\]</div>
+<p>(b) <span class="math notranslate nohighlight">\(y_{1:t-1}\)</span> が与えられた下での 1 期先予測尤度平均 <span class="math notranslate nohighlight">\(f_t\)</span>, 1 期先予測誤尤度分散 <span class="math notranslate nohighlight">\(F_t\)</span> は以下で求める.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        f_{t} &amp;= Z_t a_t \\
+        F_{t} &amp;= Z_t P_t Z_t' + H_t
+    \end{align*}
+\end{split}\]</div>
+<p>(c) <span class="math notranslate nohighlight">\(y_{1:t}\)</span> が与えられた下でのフィルタリング平均 <span class="math notranslate nohighlight">\(a_{t|t}\)</span>, フィルタリング分散 <span class="math notranslate nohighlight">\(P_{t|t}\)</span> は以下で求める.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        a_{t|t} &amp;= a_t + K_t (y_t - f_t) \\
+        P_{t|t} &amp;= P_t - K_t F_t K_t'
+    \end{align*}
+\end{split}\]</div>
+<p>ただし, <span class="math notranslate nohighlight">\(K_t = P_t Z_t' F_t^{-1}\)</span> とし <strong>カルマンゲイン</strong> (Kalman gain) と呼ぶ.</p>
+</div>
+<p><u>証明</u></p>
+<p>1 期先予測分布 <span class="math notranslate nohighlight">\(N(a_t, P_t)\)</span> について<a class="reference internal" href="../distribution/mdist.html#dist-mdist-marginal-conditional-total-exp-var"><span class="std std-ref">全期待値則</span></a>, <a class="reference internal" href="#tsa-ssm-definition-definition-markov"><span class="std std-ref">状態のマルコフ性</span></a> より</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        a_{t} &amp;= {\rm E}(\alpha_{t} | y_{1:t-1}) \\
+              &amp;= {\rm E}( {\rm E} ( \alpha_{t} | \alpha_{t-1}, y_{1:t-1} ) | y_{1:t-1}) \quad (\because \ 全期待値則) \\
+              &amp;= {\rm E}( {\rm E} ( \alpha_{t} | \alpha_{t-1} ) | y_{1:t-1}) \quad (\because \ 状態のマルコフ性) \\
+              &amp;= {\rm E}( T_{t} \alpha_{t-1} | y_{1:t-1}) \\
+              &amp;= T_{t} a_{t-1|t-1}
+    \end{align*}
+\end{split}\]</div>
+<p>分散については<a class="reference internal" href="../distribution/mdist.html#dist-mdist-marginal-conditional-total-exp-var"><span class="std std-ref">全分散則</span></a>, <a class="reference internal" href="#tsa-ssm-definition-definition-markov"><span class="std std-ref">状態のマルコフ性</span></a> より</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        P_{t} &amp;= {\rm Var}(\alpha_{t} | y_{1:t-1}) \\
+              &amp;= {\rm E}( {\rm Var} ( \alpha_{t} | \alpha_{t-1}, y_{1:t-1} ) | y_{1:t-1}) + {\rm Var}( {\rm E} ( \alpha_{t} | \alpha_{t-1}, y_{1:t-1} ) | y_{1:t-1}) \quad (\because \ 全分散則) \\
+              &amp;= {\rm E}( {\rm Var} ( \alpha_{t} | \alpha_{t-1} ) | y_{1:t-1}) + {\rm Var}( {\rm E} ( \alpha_{t} | \alpha_{t-1} ) | y_{1:t-1}) \quad (\because \ 状態のマルコフ性) \\
+              &amp;= {\rm E}( R{t} Q_{t-1} R'_{t} | y_{1:t-1}) + {\rm Var}( T_{t} \alpha_{t-1} | y_{1:t-1}) \\
+              &amp;= R_{t} Q_{t} R_{t}' + T_{t} P_{t-1 | t-1} T_{t}'
+    \end{align*}
+\end{split}\]</div>
+<p>と分かる. 1 期先予測尤度について <span class="math notranslate nohighlight">\(N(f_t, F_t)\)</span> も同様に計算して導出できる.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        f_{t} &amp;= {\rm E}(y_{t} | y_{1:t-1}) \\
+              &amp;= {\rm E}( {\rm E} ( y_{t} | \alpha_{t}, y_{1:t-1} ) | y_{1:t-1}) \quad (\because \ 全期待値則) \\
+              &amp;= {\rm E}( {\rm E} ( y_{t} | \alpha_{t} ) | y_{1:t-1}) \quad (\because \ 状態空間モデルにおける条件付独立性) \\
+              &amp;= {\rm E}( Z_{t} \alpha_{t} | y_{1:t-1}) \\
+              &amp;= Z_{t} a_{t}
+    \end{align*}
+\end{split}\]</div>
+<p>および</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        F_{t} &amp;= {\rm Var}(y_{t} | y_{1:t-1}) \\
+              &amp;= {\rm E}( {\rm Var} ( y_{t} | \alpha_{t}, y_{1:t-1} ) | y_{1:t-1}) + {\rm Var}( {\rm E} ( y_{t} | \alpha_{t}, y_{1:t-1} ) | y_{1:t-1}) \quad (\because \ 全分散則) \\
+              &amp;= {\rm E}( {\rm Var} ( y_{t} | \alpha_{t} ) | y_{1:t-1}) + {\rm Var}( {\rm E} ( y_{t} | \alpha_{t} ) | y_{1:t-1}) \quad (\because \ 状態空間モデルにおける条件付独立性) \\
+              &amp;= {\rm E}( H_t | y_{1:t-1}) + {\rm Var}( Z_t \alpha_{t} | y_{1:t-1}) \\
+              &amp;= H_{t} + Z_t P_t Z_t'.
+    \end{align*}
+\end{split}\]</div>
+<p>最後にフィルタリング分布 <span class="math notranslate nohighlight">\(N(a_{t|t}, P_{t|t})\)</span> について<a class="reference internal" href="#tsa-ssm-recursive-filtering"><span class="std std-ref">一般の状態空間モデルの逐次求解におけるフィルタリング分布漸化式</span></a>から</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        f(\alpha_t | y_{1:t}) 
+            &amp;\propto f(y_t | \alpha_t) f(\alpha_t | y_{1:t-1}) \\
+            &amp;\sim N(Z_t \alpha_t, H_t) N(a_t, P_t)
+    \end{align*}
+\end{split}\]</div>
+<p>より<span class="xref myst">ベイズ線形回帰の事後分布における平均ベクトル, 分散行列</span>から <span class="math notranslate nohighlight">\(K_t = P_t Z_t' F_t^{-1}\)</span> として</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        a_{t|t} 
+            &amp;= a_t + P_t Z_t' (Z_t P_t Z'_t + H_t)^{-1} (y_t - Z_t a_t) \\
+            &amp;= a_t + P_t Z_t' F^{-1}_t (y_t - f_t) \\
+            &amp;= a_t + K_t (y_t - f_t)
+    \end{align*}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        P_{t|t} 
+            &amp;= P_t + P_t Z_t' (Z_t P_t Z'_t + H_t)^{-1} Z_t P_t \\
+            &amp;= P_t + P_t Z_t' F^{-1}_t F_t F^{-1}_t Z_t P_t \\
+            &amp;= P_t + K_t F_t K_t'.
+    \end{align*}
+\end{split}\]</div>
+</section>
+<section id="python">
+<h3>4.2 例 (python によるカルマンフィルタの実装)<a class="headerlink" href="#python" title="Permalink to this headline">#</a></h3>
+<p>上記で求めた更新式をそのままコーディングするだけで実施可能なので技術的にはかなり容易.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kalman_filter</span><span class="p">(</span><span class="n">at</span><span class="p">,</span> <span class="n">Pt</span><span class="p">,</span> <span class="n">yt</span><span class="p">,</span> <span class="n">Zt</span><span class="p">,</span> <span class="n">Tt</span><span class="p">,</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Ht</span><span class="p">,</span> <span class="n">Qt</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Kalman filter</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    at : </span>
+<span class="sd">    Pt :</span>
+<span class="sd">    yt :</span>
+<span class="sd">    Zt :</span>
+<span class="sd">    Rt :</span>
+<span class="sd">    Ht :</span>
+<span class="sd">    Qt :</span>
+<span class="sd">    </span>
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    at1 : </span>
+<span class="sd">    Pt1 :</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># (a) one-step ahead predictor of a_t, P_t</span>
+    <span class="n">a_ahead</span> <span class="o">=</span> <span class="n">Tt</span> <span class="o">@</span> <span class="n">at</span>
+    <span class="n">P_ahead</span> <span class="o">=</span> <span class="n">Tt</span> <span class="o">@</span> <span class="n">Pt</span> <span class="o">@</span> <span class="n">Tt</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">Rt</span> <span class="o">@</span> <span class="n">Qt</span> <span class="o">@</span> <span class="n">Rt</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="c1"># (b) one-step predictor on the error for y_t</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">Zt</span> <span class="o">@</span> <span class="n">a_ahead</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="n">Zt</span> <span class="o">@</span> <span class="n">P_ahead</span> <span class="o">@</span> <span class="n">Zt</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">Ht</span>
+
+    <span class="c1"># Kalman gain</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">P_ahead</span> <span class="o">@</span> <span class="n">Zt</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
+
+    <span class="c1"># (c) filtered a_{t+1}, P_{t+1}</span>
+    <span class="n">a_next</span> <span class="o">=</span> <span class="n">a_ahead</span> <span class="o">+</span> <span class="n">K</span> <span class="o">@</span> <span class="p">(</span><span class="n">yt</span> <span class="o">-</span> <span class="n">f</span><span class="p">)</span>
+    <span class="n">P_next</span> <span class="o">=</span> <span class="n">P_ahead</span> <span class="o">-</span> <span class="n">K</span> <span class="o">@</span> <span class="n">F</span> <span class="o">@</span> <span class="n">K</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">return</span> <span class="n">a_next</span><span class="p">,</span> <span class="n">P_next</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">P0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1e7</span><span class="p">])</span>
+
+<span class="n">a_filtered</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">P_filtered</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">a_filtered</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">P_filtered</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">kalman_filter</span><span class="p">(</span>
+            <span class="n">a0</span><span class="p">,</span> <span class="n">P0</span><span class="p">,</span> <span class="n">yt</span><span class="o">=</span><span class="n">yt</span><span class="p">[</span><span class="n">t</span> <span class="p">:</span> <span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">Zt</span><span class="o">=</span><span class="n">Zt</span><span class="p">,</span> <span class="n">Tt</span><span class="o">=</span><span class="n">Tt</span><span class="p">,</span> <span class="n">Rt</span><span class="o">=</span><span class="n">Rt</span><span class="p">,</span> <span class="n">Ht</span><span class="o">=</span><span class="n">Ht</span><span class="p">,</span> <span class="n">Qt</span><span class="o">=</span><span class="n">Qt</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">a_filtered</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">P_filtered</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">kalman_filter</span><span class="p">(</span>
+            <span class="n">a_filtered</span><span class="p">[</span><span class="n">t</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">t</span><span class="p">],</span>
+            <span class="n">P_filtered</span><span class="p">[</span><span class="n">t</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">t</span><span class="p">],</span>
+            <span class="n">yt</span><span class="o">=</span><span class="n">yt</span><span class="p">[</span><span class="n">t</span> <span class="p">:</span> <span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="n">Zt</span><span class="o">=</span><span class="n">Zt</span><span class="p">,</span>
+            <span class="n">Tt</span><span class="o">=</span><span class="n">Tt</span><span class="p">,</span>
+            <span class="n">Rt</span><span class="o">=</span><span class="n">Rt</span><span class="p">,</span>
+            <span class="n">Ht</span><span class="o">=</span><span class="n">Ht</span><span class="p">,</span>
+            <span class="n">Qt</span><span class="o">=</span><span class="n">Qt</span><span class="p">,</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 観測値と状態変数の図示</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yt</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;observations&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">at</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;true state&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a_filtered</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;filtered state&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Local level model transition&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ssm_24_0.png" src="../../_images/ssm_24_0.png" />
+</div>
+</div>
+</section>
+<section id="tsa-ssm-kalman-forecasting">
+<span id="id18"></span><h3>4.3 命題 (カルマン予測)<a class="headerlink" href="#tsa-ssm-kalman-forecasting" title="Permalink to this headline">#</a></h3>
+<div style="background: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); padding-left: 20px;">
+    <span style="color: white; font-size: 100%;">
+        カルマン予測
+    </span>
+</div>
+<div style="border: rgb(0, 0, 0) solid 1px; font-size: 100%; padding: 10px 10px 0 10px; margin-bottom: 10px;">
+<p><span class="math notranslate nohighlight">\(k-1\)</span> 期先予測分布 <span class="math notranslate nohighlight">\(N(a_{t+k-1}, P_{t+k-1})\)</span> が所与のときに, 以下の手順で逐次的に状態変数を更新することを<strong>カルマン予測</strong> (Kalman forecasting) という.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        a_{t+k} &amp;= T_{t+k} a_{t+k-1} \\
+        P_{t+k} &amp;= R_{t+k} Q_{t+k} R_{t+k}' + T_{t+k} P_{t+k-1} T_{t+k}'
+    \end{align*}
+\end{split}\]</div>
+</div>
+<p><u>証明</u></p>
+<p><span class="math notranslate nohighlight">\(k\)</span> 期先予測分布 <span class="math notranslate nohighlight">\(N(a_{t+k}, P_{t+k})\)</span> について<a class="reference internal" href="../distribution/mdist.html#dist-mdist-marginal-conditional-total-exp-var"><span class="std std-ref">全期待値則</span></a>, <a class="reference internal" href="#tsa-ssm-definition-definition-markov"><span class="std std-ref">状態のマルコフ性</span></a> より</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        a_{t+k} 
+            &amp;= {\rm E}(\alpha_{t+k} | y_{1:t}) \\
+            &amp;= {\rm E}( {\rm E} ( \alpha_{t+k} | \alpha_{t+k-1}, y_{1:t} ) | y_{1:t}) \quad (\because \ 全期待値則) \\
+            &amp;= {\rm E}( {\rm E} ( \alpha_{t+k} | \alpha_{t+k-1} ) | y_{1:t}) \quad (\because \ 状態のマルコフ性) \\
+            &amp;= {\rm E}( T_{t+k} \alpha_{t+k-1} | y_{1:t}) \\
+            &amp;= T_{t+k} a_{t+k-1}
+    \end{align*}
+\end{split}\]</div>
+<p>分散については<a class="reference internal" href="../distribution/mdist.html#dist-mdist-marginal-conditional-total-exp-var"><span class="std std-ref">全分散則</span></a>, <a class="reference internal" href="#tsa-ssm-definition-definition-markov"><span class="std std-ref">状態のマルコフ性</span></a> より</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        P_{t+k} 
+            &amp;= {\rm Var}(\alpha_{t+k} | y_{1:t}) \\
+            &amp;= {\rm E}( {\rm Var} ( \alpha_{t+k} | \alpha_{t+k-1}, y_{1:t} ) | y_{1:t}) + {\rm Var}( {\rm E} ( \alpha_{t+k} | \alpha_{t+k-1}, y_{1:t} ) | y_{1:t}) \quad (\because \ 全分散則) \\
+            &amp;= {\rm E}( {\rm Var} ( \alpha_{t+k} | \alpha_{t+k-1} ) | y_{1:t}) + {\rm Var}( {\rm E} ( \alpha_{t+k} | \alpha_{t+k-1} ) | y_{1:t}) \quad (\because \ 状態のマルコフ性) \\
+            &amp;= {\rm E}( R{t+k} Q_{t+k-1} R'_{t+k} | y_{1:t}) + {\rm Var}( T_{t+k} \alpha_{t+k-1} | y_{1:t}) \\
+            &amp;= R_{t+k} Q_{t+k} R_{t+k}' + T_{t+k} P_{t+k-1} T_{t+k}'.
+    \end{align*}
+\end{split}\]</div>
+</section>
+<section id="id19">
+<h3>4.4 例 (python によるカルマン予測の実装)<a class="headerlink" href="#id19" title="Permalink to this headline">#</a></h3>
+<p>上記で求めた更新式を実装する.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kalman_forecastor</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">Tt</span><span class="p">,</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Qt</span><span class="p">):</span>
+    <span class="n">a_ahead</span> <span class="o">=</span> <span class="n">Tt</span> <span class="o">@</span> <span class="n">a</span>
+    <span class="n">P_ahead</span> <span class="o">=</span> <span class="n">Rt</span> <span class="o">@</span> <span class="n">Qt</span> <span class="o">@</span> <span class="n">Rt</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">Tt</span> <span class="o">@</span> <span class="n">P</span> <span class="o">@</span> <span class="n">Tt</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">return</span> <span class="n">a_ahead</span><span class="p">,</span> <span class="n">P_ahead</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">P_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">Tt</span> <span class="o">@</span> <span class="n">a_filtered</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span><span class="p">]</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="n">Tt</span> <span class="o">@</span> <span class="n">P_filtered</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span><span class="p">]</span> <span class="o">@</span> <span class="n">Tt</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">Rt</span> <span class="o">@</span> <span class="n">Qt</span> <span class="o">@</span> <span class="n">Rt</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">a_pred</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="n">P_pred</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">a_pred</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">P_pred</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">kalman_forecastor</span><span class="p">(</span>
+            <span class="n">a_pred</span><span class="p">[</span><span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">P_pred</span><span class="p">[</span><span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">Tt</span><span class="o">=</span><span class="n">Tt</span><span class="p">,</span> <span class="n">Rt</span><span class="o">=</span><span class="n">Rt</span><span class="p">,</span> <span class="n">Qt</span><span class="o">=</span><span class="n">Qt</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 観測値と状態変数の図示</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yt</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;observations&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">at</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;true state&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a_filtered</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;filtered state&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="n">k</span><span class="p">),</span> <span class="n">a_pred</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;forecasted state&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Local level model transition&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ssm_29_0.png" src="../../_images/ssm_29_0.png" />
+</div>
+</div>
+</section>
+<section id="tsa-ssm-kalman-smoothing">
+<span id="id20"></span><h3>4.5 命題 (カルマン平滑化)<a class="headerlink" href="#tsa-ssm-kalman-smoothing" title="Permalink to this headline">#</a></h3>
+<div style="background: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); padding-left: 20px;">
+    <span style="color: white; font-size: 100%;">
+        カルマン平滑化
+    </span>
+</div>
+<div style="border: rgb(0, 0, 0) solid 1px; font-size: 100%; padding: 10px 10px 0 10px; margin-bottom: 10px;">
+<p><span class="math notranslate nohighlight">\(t+1\)</span> 期先予測分布 <span class="math notranslate nohighlight">\(N(s_{t+1}, S_{t+1})\)</span> が所与のときに, 以下の手順で逐次的に状態変数を更新することを<strong>カルマン平滑化</strong> (Kalman smoothing) という.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        s_{t} &amp;= a_{t|t} + A_{t} (s_{t+1} - a_{t+1}) \\
+        S_{t} &amp;= P_{t|t} + A_t (S_{t+1} - P_{t+1}) A_t'
+    \end{align*}
+\end{split}\]</div>
+<p>ただし, <span class="math notranslate nohighlight">\(A_t = P_{t|t}T_{t+1}'P_{t+1}^{-1}\)</span> とし<strong>平滑化利得</strong> (smoothing gain) と呼ぶ.</p>
+</div>
+<p><u>証明</u></p>
+<p>平滑化分布 <span class="math notranslate nohighlight">\(N(s_{t}, S_{t})\)</span> について<a class="reference internal" href="../distribution/mdist.html#dist-mdist-marginal-conditional-total-exp-var"><span class="std std-ref">全期待値則</span></a>, <a class="reference internal" href="#tsa-ssm-definition-definition-cond-independent"><span class="std std-ref">状態空間モデルの条件付独立性</span></a> より</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        s_{t} 
+            &amp;= {\rm E}(\alpha_{t} | y_{1:n}) \\
+            &amp;= {\rm E}( {\rm E} ( \alpha_{t} | \alpha_{t+1}, y_{1:n} ) | y_{1:n}) \quad (\because \ 全期待値則) \\
+            &amp;= {\rm E}( {\rm E} ( \alpha_{t} | \alpha_{t+1}, y_{1:t} ) | y_{1:n}) \quad (\because \ 条件付独立性)
+    \end{align*}
+\end{split}\]</div>
+<p>となる. ここで <span class="math notranslate nohighlight">\(\alpha_{t} | \alpha_{t+1}, y_{1:t}\)</span> の分布を考えると, <a class="reference internal" href="../distribution/mdist.html#conditional-distribution"><span class="std std-ref">乗法定理</span></a>, <a class="reference internal" href="#tsa-ssm-definition-definition-markov"><span class="std std-ref">状態のマルコフ連鎖性</span></a> から</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        f(\alpha_{t} | \alpha_{t+1}, y_{1:t})
+            &amp;= \frac{ f(\alpha_{t}, \alpha_{t+1} | y_{1:t}) }{ f(\alpha_{t+1} | y_{1:t}) } \quad (\because \ 乗法定理) \\
+            &amp;\propto f(\alpha_{t}, \alpha_{t+1} | y_{1:t}) \\
+            &amp;= f(\alpha_{t+1} | \alpha_{t}, y_{1:t} ) f(\alpha_{t} | y_{1:t}) \quad (\because \ 乗法定理) \\
+            &amp;= f(\alpha_{t+1} | \alpha_{t} ) f(\alpha_{t} | y_{1:t}) \quad (\because \ 状態のマルコフ性) \\
+            &amp;\sim N(T_{t+1} \alpha_{t}, R_{t+1}Q_{t+1}R_{t+1}' ) N(a_{t|t}, P_{t|t})
+    \end{align*}
+\end{split}\]</div>
+<p>となるので<span class="xref myst">ベイズ線形回帰の事後分布における平均ベクトル, 分散行列</span>から <span class="math notranslate nohighlight">\(A_t = P_{t+1} T_{t+1}' P_{t+1}^{-1}\)</span> として</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        {\rm E} ( \alpha_{t} | \alpha_{t+1}, y_{1:t} )
+            &amp;= a_{t|t} + P_{t|t} T_{t+1}' (T_{t+1} P_{t|t} T_{t+1}' + R_{t+1}Q_{t+1}R_{t+1}' )^{-1}(\alpha_{t+1} - T_{t+1} a_{t|t} ) \\
+            &amp;= a_{t|t} + P_{t|t} T_{t+1}' P_{t+1}^{-1}(\alpha_{t+1} - T_{t+1} a_{t|t} ) \\
+            &amp;= a_{t|t} + A_{t} (\alpha_{t+1} - T_{t+1} a_{t|t} )
+    \end{align*}
+\end{split}\]</div>
+<p>ゆえに</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        s_{t}
+            &amp;= {\rm E}( {\rm E} ( \alpha_{t} | \alpha_{t+1}, y_{1:t} ) | y_{1:n}) \\
+            &amp;= {\rm E}( a_{t|t} + A_{t} (\alpha_{t+1} - T_{t+1} a_{t|t} ) | y_{1:n}) \\
+            &amp;= a_{t|t} + A_{t} (s_{t+1} - a_{t+1} ).
+    \end{align*}
+\end{split}\]</div>
+<p>また <span class="math notranslate nohighlight">\(S_t\)</span> について</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        S_{t} 
+            &amp;= {\rm Var}(\alpha_{t} | y_{1:n}) \\
+            &amp;= {\rm E}( {\rm Var} ( \alpha_{t} | \alpha_{t+1}, y_{1:n} ) | y_{1:n}) + {\rm Var}( {\rm E} ( \alpha_{t} | \alpha_{t+1}, y_{1:n} ) | y_{1:n}) \quad (\because \ 全分散則) \\
+            &amp;= {\rm E}( {\rm Var} ( \alpha_{t} | \alpha_{t+1}, y_{1:t} ) | y_{1:n}) + {\rm Var}( {\rm E} ( \alpha_{t} | \alpha_{t+1}, y_{1:t} ) | y_{1:n}) \quad (\because \ 条件付独立性)
+    \end{align*}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\({\rm Var} ( \alpha_{t} | \alpha_{t+1}, y_{1:t} )\)</span> について <span class="math notranslate nohighlight">\(s_t\)</span> で行った分布の議論より</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        {\rm Var} ( \alpha_{t} | \alpha_{t+1}, y_{1:t} )
+            &amp;= P_{t|t} + P_{t|t} T_{t+1}' (T_{t+1} P_{t|t} T_{t+1}' + R_{t+1}Q_{t+1}R_{t+1}' )^{-1} T_{t+1} P_{t|t}' \\
+            &amp;= P_{t|t} + P_{t|t} T_{t+1}' P_{t+1}^{-1} T_{t+1} P_{t|t}' \\
+            &amp;= P_{t|t} + A_t P_{t+1} A_t'
+    \end{align*}
+\end{split}\]</div>
+<p>となるので</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+        S_{t} 
+            &amp;= {\rm E}( {\rm Var} ( \alpha_{t} | \alpha_{t+1}, y_{1:t} ) | y_{1:n}) + {\rm Var}( {\rm E} ( \alpha_{t} | \alpha_{t+1}, y_{1:t} ) | y_{1:n}) \\
+            &amp;= {\rm E}( P_{t|t} + A_t P_{t+1} A_t' | y_{1:n}) + {\rm Var}( a_{t|t} + A_{t} (\alpha_{t+1} - T_{t+1} a_{t|t} ) | y_{1:n}) \\
+            &amp;= P_{t|t} - A_t P_{t+1} A_t' + A_t S_{t+1} A_t' \\
+            &amp;= P_{t|t} + A_t (S_{t+1} - P_{t+1}) A_t'.
+    \end{align*}
+\end{split}\]</div>
+</section>
+<section id="id21">
+<h3>4.6 例 (python によるカルマン平滑化の実装)<a class="headerlink" href="#id21" title="Permalink to this headline">#</a></h3>
+<p>上記で求めた更新式を実装する.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kalman_smoother</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">at</span><span class="p">,</span> <span class="n">Pt</span><span class="p">,</span> <span class="n">Tt</span><span class="p">,</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Qt</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">Tt</span> <span class="o">@</span> <span class="n">at</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">Rt</span> <span class="o">@</span> <span class="n">Qt</span> <span class="o">@</span> <span class="n">Rt</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">Tt</span> <span class="o">@</span> <span class="n">Pt</span> <span class="o">@</span> <span class="n">Tt</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="n">Pt</span> <span class="o">@</span> <span class="n">Tt</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+
+    <span class="n">s_back</span> <span class="o">=</span> <span class="n">at</span> <span class="o">+</span> <span class="n">A</span> <span class="o">@</span> <span class="p">(</span><span class="n">s</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span>
+    <span class="n">S_back</span> <span class="o">=</span> <span class="n">Pt</span> <span class="o">+</span> <span class="n">A</span> <span class="o">@</span> <span class="p">(</span><span class="n">S</span> <span class="o">-</span> <span class="n">P</span><span class="p">)</span> <span class="o">@</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="k">return</span> <span class="n">s_back</span><span class="p">,</span> <span class="n">S_back</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">t</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">s</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">a_filtered</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+        <span class="n">S</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">P_filtered</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">s</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">S</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">kalman_smoother</span><span class="p">(</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">S</span><span class="p">[</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">a_filtered</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">P_filtered</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">Tt</span><span class="o">=</span><span class="n">Tt</span><span class="p">,</span> <span class="n">Rt</span><span class="o">=</span><span class="n">Rt</span><span class="p">,</span> <span class="n">Qt</span><span class="o">=</span><span class="n">Qt</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 観測値と状態変数の図示</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yt</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;observations&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">at</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;true state&quot;</span><span class="p">)</span>
+<span class="c1"># ax.plot(a_filtered, color=&quot;red&quot;, label=&quot;filtered state&quot;)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;smoothed state&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Local level model transition&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ssm_34_0.png" src="../../_images/ssm_34_0.png" />
+</div>
+</div>
+<p>今まで書いたカルマンフィルタを一つに集約する.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># in progress</span>
+<span class="k">class</span> <span class="nc">KalmanFilter</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">a0</span><span class="p">,</span> <span class="n">P0</span><span class="p">,</span> <span class="n">Zt</span><span class="p">,</span> <span class="n">Tt</span><span class="p">,</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Ht</span><span class="p">,</span> <span class="n">Qt</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a0</span> <span class="o">=</span> <span class="n">a0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">P0</span> <span class="o">=</span> <span class="n">P0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Zt</span> <span class="o">=</span> <span class="n">Zt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Tt</span> <span class="o">=</span> <span class="n">Tt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Rt</span> <span class="o">=</span> <span class="n">Rt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Ht</span> <span class="o">=</span> <span class="n">Ht</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Qt</span> <span class="o">=</span> <span class="n">Qt</span>
+
+    <span class="k">def</span> <span class="nf">_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">_smoother</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">_forecastor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./analytics/tsa"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="arima.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">ARIMAモデル系</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../math/calculus.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">微分積分学</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By sndpgm<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
