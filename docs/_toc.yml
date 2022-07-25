@@ -6,16 +6,20 @@ root: intro
 parts:
   - caption: 確率変数と確率分布
     chapters:
-    - file: analytics/distribution/random_variables
-    - file: analytics/distribution/probability_distribution
-    - file: analytics/distribution/multi_probability_distribution
+    - file: analytics/distribution/rvs
+    - file: analytics/distribution/dist
+    - file: analytics/distribution/mdist
 
-  - caption: 時系列モデリング
+  - caption: 回帰モデル
     chapters:
-    - file: analytics/tsa/time_series
+    - file: analytics/regression/blm
+
+  - caption: 時系列モデル
+    chapters:
+    - file: analytics/tsa/ts
     - file: analytics/tsa/arma
     - file: analytics/tsa/arima
-    - file: analytics/tsa/state_space_model
+    - file: analytics/tsa/ssm
 
   - caption: 補足
     chapters:
