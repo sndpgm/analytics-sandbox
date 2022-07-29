@@ -572,27 +572,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id22">
-     5.2 例 (MLEModelでのカスタム構築: MLEModel の基本説明)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#mlemodel">
-     5.3 例 (MLEModelでのカスタム構築: ローカル線形トレンドモデル)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id23">
-     5.2 例 (MLEModelでのカスタム構築: MLEModel の基本説明)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id24">
-     5.3 例 (MLEModelでのカスタム構築: ローカル線形トレンドモデル)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id25">
      5.3 例 (MLEModelでのカスタム構築: ローカル線形トレンドモデル)
     </a>
    </li>
@@ -796,27 +776,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id22">
-     5.2 例 (MLEModelでのカスタム構築: MLEModel の基本説明)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#mlemodel">
-     5.3 例 (MLEModelでのカスタム構築: ローカル線形トレンドモデル)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id23">
-     5.2 例 (MLEModelでのカスタム構築: MLEModel の基本説明)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id24">
-     5.3 例 (MLEModelでのカスタム構築: ローカル線形トレンドモデル)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id25">
      5.3 例 (MLEModelでのカスタム構築: ローカル線形トレンドモデル)
     </a>
    </li>
@@ -1291,9 +1251,13 @@ title="Print to PDF"
 　ローカルレベルモデルに従う波形を python で再現してみる.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 
 <span class="c1"># プロット図の設定</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
@@ -1940,7 +1904,11 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.tsa.statespace.structural</span> <span class="kn">import</span> <span class="n">UnobservedComponents</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.statespace.structural</span> <span class="kn">import</span> <span class="n">UnobservedComponents</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 
 <span class="n">ret</span><span class="o">.</span><span class="n">convert_ndarray</span><span class="p">()</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">UnobservedComponents</span><span class="p">(</span>
@@ -1951,7 +1919,7 @@ title="Print to PDF"
     <span class="n">exog</span><span class="o">=</span><span class="n">ret</span><span class="o">.</span><span class="n">exog</span><span class="p">,</span>
     <span class="n">stochastic_level</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">stochastic_trend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">stochastic_freq_seasonal</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
+    <span class="n">stochastic_freq_seasonal</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span>
 <span class="p">)</span>
 
 <span class="n">ret_ssm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
@@ -1973,22 +1941,24 @@ Machine precision = 2.220D-16
 At X0         0 variables are exactly at the bounds
 
 At iterate    0    f=  3.39664D+00    |proj g|=  1.56735D-01
-
-At iterate    5    f=  1.01591D+00    |proj g|=  1.44373D+00
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   10    f=  2.62900D-01    |proj g|=  2.00037D+00
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate    5    f=  1.01591D+00    |proj g|=  1.44373D+00
 
-At iterate   15    f= -7.45997D-01    |proj g|=  1.81921D+01
+At iterate   10    f=  2.62900D-01    |proj g|=  2.00037D+00
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   20    f= -1.38754D+00    |proj g|=  1.68847D+00
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   15    f= -7.45997D-01    |proj g|=  1.81921D+01
 
-At iterate   25    f= -1.39574D+00    |proj g|=  2.57964D+00
+At iterate   20    f= -1.38754D+00    |proj g|=  1.68847D+00
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   25    f= -1.39574D+00    |proj g|=  2.57964D+00
 
 At iterate   30    f= -1.39690D+00    |proj g|=  2.45095D+00
-
-At iterate   35    f= -1.39705D+00    |proj g|=  1.50381D-03
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   35    f= -1.39705D+00    |proj g|=  1.50381D-03
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   40    f= -1.39705D+00    |proj g|=  4.79069D-02
@@ -2035,7 +2005,7 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
   <th>Date:</th>                     <td>Fri, 29 Jul 2022</td>          <th>  HQIC               </th> <td>-820.954</td>
 </tr>
 <tr>
-  <th>Time:</th>                         <td>04:32:04</td>              <th>                     </th>     <td> </td>   
+  <th>Time:</th>                         <td>05:04:59</td>              <th>                     </th>     <td> </td>   
 </tr>
 <tr>
   <th>Sample:</th>                           <td>0</td>                 <th>                     </th>     <td> </td>   
@@ -2097,272 +2067,9 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 <img alt="../../_images/ssm_40_0.png" src="../../_images/ssm_40_0.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.tsa.statespace.structural</span> <span class="kn">import</span> <span class="n">UnobservedComponents</span>
-
-<span class="n">ret</span><span class="o">.</span><span class="n">convert_ndarray</span><span class="p">()</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">UnobservedComponents</span><span class="p">(</span>
-    <span class="n">ret</span><span class="o">.</span><span class="n">endog</span><span class="p">,</span>
-    <span class="n">level</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">trend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">freq_seasonal</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;period&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="s2">&quot;harmonics&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;period&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;harmonics&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}],</span>
-    <span class="n">exog</span><span class="o">=</span><span class="n">ret</span><span class="o">.</span><span class="n">exog</span><span class="p">,</span>
-    <span class="n">stochastic_level</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">stochastic_trend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">stochastic_freq_seasonal</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
-<span class="p">)</span>
-
-<span class="n">ret_ssm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="n">ret_ssm</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
-
-           * * *
-
-Machine precision = 2.220D-16
- N =            5     M =           10
-
-At X0         0 variables are exactly at the bounds
-
-At iterate    0    f=  3.39664D+00    |proj g|=  1.56735D-01
-
-At iterate    5    f=  1.01591D+00    |proj g|=  1.44373D+00
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   10    f=  2.62900D-01    |proj g|=  2.00037D+00
-
-At iterate   15    f= -7.45997D-01    |proj g|=  1.81921D+01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   20    f= -1.38754D+00    |proj g|=  1.68847D+00
-
-At iterate   25    f= -1.39574D+00    |proj g|=  2.57964D+00
-
-At iterate   30    f= -1.39690D+00    |proj g|=  2.45095D+00
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   35    f= -1.39705D+00    |proj g|=  1.50381D-03
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   40    f= -1.39705D+00    |proj g|=  4.79069D-02
-
-           * * *
-
-Tit   = total number of iterations
-Tnf   = total number of function evaluations
-Tnint = total number of segments explored during Cauchy searches
-Skip  = number of BFGS updates skipped
-Nact  = number of active bounds at final generalized Cauchy point
-Projg = norm of the final projected gradient
-F     = final function value
-
-           * * *
-
-   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
-    5     40    103      1     0     0   4.791D-02  -1.397D+00
-  F =  -1.3970515694210084     
-
-CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Warning:  more than 10 function and gradient
-   evaluations in the last line search.  Termination
-   may possibly be caused by a bad search direction.
-</pre></div>
-</div>
-<div class="output text_html"><table class="simpletable">
-<caption>Unobserved Components Results</caption>
-<tr>
-  <th>Dep. Variable:</th>                    <td>y</td>                 <th>  No. Observations:  </th>    <td>300</td>  
-</tr>
-<tr>
-  <th>Model:</th>                          <td>None</td>                <th>  Log Likelihood     </th>  <td>419.115</td>
-</tr>
-<tr>
-  <th></th>                  <td>+ stochastic freq_seasonal(50(4))</td> <th>  AIC                </th> <td>-828.231</td>
-</tr>
-<tr>
-  <th></th>                 <td>+ stochastic freq_seasonal(100(6))</td> <th>  BIC                </th> <td>-810.093</td>
-</tr>
-<tr>
-  <th>Date:</th>                     <td>Fri, 29 Jul 2022</td>          <th>  HQIC               </th> <td>-820.954</td>
-</tr>
-<tr>
-  <th>Time:</th>                         <td>04:32:06</td>              <th>                     </th>     <td> </td>   
-</tr>
-<tr>
-  <th>Sample:</th>                           <td>0</td>                 <th>                     </th>     <td> </td>   
-</tr>
-<tr>
-  <th></th>                               <td> - 300</td>               <th>                     </th>     <td> </td>   
-</tr>
-<tr>
-  <th>Covariance Type:</th>                 <td>opg</td>                <th>                     </th>     <td> </td>   
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-               <td></td>                  <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
-</tr>
-<tr>
-  <th>sigma2.level</th>                <td> 3.159e-10</td> <td>    0.000</td> <td> 1.44e-06</td> <td> 1.000</td> <td>   -0.000</td> <td>    0.000</td>
-</tr>
-<tr>
-  <th>sigma2.trend</th>                <td> 2.401e-11</td> <td> 2.91e-08</td> <td>    0.001</td> <td> 0.999</td> <td> -5.7e-08</td> <td>  5.7e-08</td>
-</tr>
-<tr>
-  <th>sigma2.freq_seasonal_50(4)</th>  <td> 8.387e-05</td> <td> 3.79e-05</td> <td>    2.214</td> <td> 0.027</td> <td> 9.61e-06</td> <td>    0.000</td>
-</tr>
-<tr>
-  <th>sigma2.freq_seasonal_100(6)</th> <td> 9.713e-05</td> <td> 3.99e-05</td> <td>    2.432</td> <td> 0.015</td> <td> 1.88e-05</td> <td>    0.000</td>
-</tr>
-<tr>
-  <th>beta.x1</th>                     <td>    4.9979</td> <td>    0.003</td> <td> 1704.902</td> <td> 0.000</td> <td>    4.992</td> <td>    5.004</td>
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-  <th>Ljung-Box (L1) (Q):</th>     <td>1.21</td> <th>  Jarque-Bera (JB):  </th> <td>0.34</td>
-</tr>
-<tr>
-  <th>Prob(Q):</th>                <td>0.27</td> <th>  Prob(JB):          </th> <td>0.84</td>
-</tr>
-<tr>
-  <th>Heteroskedasticity (H):</th> <td>1.17</td> <th>  Skew:              </th> <td>0.02</td>
-</tr>
-<tr>
-  <th>Prob(H) (two-sided):</th>    <td>0.46</td> <th>  Kurtosis:          </th> <td>2.83</td>
-</tr>
-</table><br/><br/>Warnings:<br/>[1] Covariance matrix calculated using the outer product of gradients (complex-step).</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">common_index</span><span class="p">,</span> <span class="n">ret</span><span class="o">.</span><span class="n">endog</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Observations&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ret_ssm</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Smoothing values&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;State Space Models using UnobservedComponents&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/ssm_42_0.png" src="../../_images/ssm_42_0.png" />
-</div>
-</div>
 </section>
 <section id="mlemodel-mlemodel">
 <h3>5.2 例 (MLEModelでのカスタム構築: MLEModel の基本説明)<a class="headerlink" href="#mlemodel-mlemodel" title="Permalink to this headline">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> で任意の線形ガウス状態空間モデルを構築するクラスとして <a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.mlemodel.MLEModel.html"><code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.statespace.mlemodel.MLEModel</span></code></a> があるが, 以下の状態空間モデル一般式を想定している.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-    y_t &amp;= Z_t + \alpha_t + d_t + \varepsilon_t \quad &amp;\varepsilon_t \sim N(0, H_t) \\
-    \alpha_t &amp;= T_t \alpha_{t-1} + c_t + R_t \eta_t \quad &amp;\eta_t \sim N(0, Q_t) 
-\end{align*}
-\end{split}\]</div>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="text-align:center head"><p>数式</p></th>
-<th class="head"><p><code class="docutils literal notranslate"><span class="pre">MLEModels</span></code> における表現</p></th>
-<th class="head"><p><code class="docutils literal notranslate"><span class="pre">MLEModels</span></code> における次元表現</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(Z_t\)</span></p></td>
-<td><p>design</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">k_endog</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">k_states</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">nobs</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(d_t\)</span></p></td>
-<td><p>obs_intercept</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">k_endog</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">nobs</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(H_t\)</span></p></td>
-<td><p>obs_cov</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">k_endog</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">k_endog</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">nobs</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(T_t\)</span></p></td>
-<td><p>transition</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">k_states</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">k_states</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">nobs</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(c_t\)</span></p></td>
-<td><p>state_intercept</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">k_states</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">nobs</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(R_t\)</span></p></td>
-<td><p>selection</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">k_states</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">k_posdef</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">nobs</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(Q_t\)</span></p></td>
-<td><p>state_cov</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">k_posdef</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">k_posdef</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">nobs</span></code></p></td>
-</tr>
-</tbody>
-</table>
-<p>カスタムで構築する際には以下をコーディングする必要がある. 具体例は以下で作成しているモデルプログラムを参照のこと.<br />
-　以下の説明は<a class="reference external" href="https://www.statsmodels.org/stable/examples/notebooks/generated/statespace_local_linear_trend.html">公式ドキュメント</a>にも記載.</p>
-<ol class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">k_states</span></code>, <code class="docutils literal notranslate"><span class="pre">k_posdef</span></code> の設定:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">__init__</span></code> の中で定義し, それぞれ状態変数の数, 状態変数の未知分散パラメータ数を指す.</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">update</span></code> メソッドの定義:</p>
-<ul class="simple">
-<li><p>XXXX</p></li>
-</ul>
-</li>
-<li><p>statespace matrices ( <code class="docutils literal notranslate"><span class="pre">ssm</span></code> ) の指定:</p>
-<ul class="simple">
-<li><p>XXXX</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">params</span></code> メソッドの定義:</p>
-<ul class="simple">
-<li><p>XXXX</p></li>
-</ul>
-</li>
-<li><p>initialization 系メソッドの定義:</p>
-<ul class="simple">
-<li><p>XXXX</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">transform_params</span></code> / <code class="docutils literal notranslate"><span class="pre">transform_params</span></code> メソッドの設定:</p>
-<ul class="simple">
-<li><p>XXXX</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">param_names</span></code> メソッドの定義:</p>
-<ul class="simple">
-<li><p>XXXX</p></li>
-</ul>
-</li>
-</ol>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">common_index</span><span class="p">,</span> <span class="n">ret</span><span class="o">.</span><span class="n">endog</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Observations&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ret_ssm</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Smoothing values&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;State Space Models using UnobservedComponents&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/ssm_44_0.png" src="../../_images/ssm_44_0.png" />
-</div>
-</div>
-</section>
-<section id="id22">
-<h3>5.2 例 (MLEModelでのカスタム構築: MLEModel の基本説明)<a class="headerlink" href="#id22" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> で任意の線形ガウス状態空間モデルを構築するクラスとして <a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.mlemodel.MLEModel.html"><code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.statespace.mlemodel.MLEModel</span></code></a> があるが, 以下の状態空間モデル一般式を想定している.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -2506,281 +2213,6 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 <li><p><code class="docutils literal notranslate"><span class="pre">ssm[&quot;selection&quot;]</span></code> <span class="math notranslate nohighlight">\( = R_t = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}\)</span></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">params</span></code> <span class="math notranslate nohighlight">\(=\begin{bmatrix} \sigma_\varepsilon^2 &amp; \sigma_\xi^2 &amp; \sigma_\zeta^2 \end{bmatrix}\)</span></p></li>
 </ul>
-</section>
-<section id="id23">
-<h3>5.2 例 (MLEModelでのカスタム構築: MLEModel の基本説明)<a class="headerlink" href="#id23" title="Permalink to this headline">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> で任意の線形ガウス状態空間モデルを構築するクラスとして <a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.mlemodel.MLEModel.html"><code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.statespace.mlemodel.MLEModel</span></code></a> があるが, 以下の状態空間モデル一般式を想定している.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-    y_t &amp;= Z_t + \alpha_t + d_t + \varepsilon_t \quad &amp;\varepsilon_t \sim N(0, H_t) \\
-    \alpha_t &amp;= T_t \alpha_{t-1} + c_t + R_t \eta_t \quad &amp;\eta_t \sim N(0, Q_t) 
-\end{align*}
-\end{split}\]</div>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="text-align:center head"><p>数式</p></th>
-<th class="head"><p><code class="docutils literal notranslate"><span class="pre">MLEModels</span></code> における表現</p></th>
-<th class="head"><p><code class="docutils literal notranslate"><span class="pre">MLEModels</span></code> における次元表現</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(Z_t\)</span></p></td>
-<td><p>design</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">k_endog</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">k_states</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">nobs</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(d_t\)</span></p></td>
-<td><p>obs_intercept</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">k_endog</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">nobs</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(H_t\)</span></p></td>
-<td><p>obs_cov</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">k_endog</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">k_endog</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">nobs</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(T_t\)</span></p></td>
-<td><p>transition</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">k_states</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">k_states</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">nobs</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(c_t\)</span></p></td>
-<td><p>state_intercept</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">k_states</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">nobs</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(R_t\)</span></p></td>
-<td><p>selection</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">k_states</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">k_posdef</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">nobs</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(Q_t\)</span></p></td>
-<td><p>state_cov</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">k_posdef</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">k_posdef</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">nobs</span></code></p></td>
-</tr>
-</tbody>
-</table>
-<p>カスタムで構築する際には以下をコーディングする必要がある. 具体例は以下で作成しているモデルプログラムを参照のこと.<br />
-　以下の説明は<a class="reference external" href="https://www.statsmodels.org/stable/examples/notebooks/generated/statespace_local_linear_trend.html">公式ドキュメント</a>にも記載.</p>
-<ol class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">k_states</span></code>, <code class="docutils literal notranslate"><span class="pre">k_posdef</span></code> の設定:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">__init__</span></code> の中で定義し, それぞれ状態変数の数, 状態変数の未知分散パラメータ数を指す.</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">update</span></code> メソッドの定義:</p>
-<ul class="simple">
-<li><p>XXXX</p></li>
-</ul>
-</li>
-<li><p>statespace matrices ( <code class="docutils literal notranslate"><span class="pre">ssm</span></code> ) の指定:</p>
-<ul class="simple">
-<li><p>XXXX</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">params</span></code> メソッドの定義:</p>
-<ul class="simple">
-<li><p>XXXX</p></li>
-</ul>
-</li>
-<li><p>initialization 系メソッドの定義:</p>
-<ul class="simple">
-<li><p>XXXX</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">transform_params</span></code> / <code class="docutils literal notranslate"><span class="pre">transform_params</span></code> メソッドの設定:</p>
-<ul class="simple">
-<li><p>XXXX</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">param_names</span></code> メソッドの定義:</p>
-<ul class="simple">
-<li><p>XXXX</p></li>
-</ul>
-</li>
-</ol>
-</section>
-<section id="id24">
-<h3>5.3 例 (MLEModelでのカスタム構築: ローカル線形トレンドモデル)<a class="headerlink" href="#id24" title="Permalink to this headline">#</a></h3>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-    y_t &amp;= 
-        \begin{bmatrix}
-            1 &amp; 0
-        \end{bmatrix}
-        \begin{bmatrix}
-            \mu_t \\
-            \nu_t
-        \end{bmatrix} + \varepsilon_t \quad \varepsilon_t \sim N(0, \sigma_\varepsilon^2) \\
-    \begin{bmatrix}
-        \mu_t \\
-        \nu_t
-    \end{bmatrix} &amp;=
-        \begin{bmatrix}
-            1 &amp; 1 \\
-            0 &amp; 1
-        \end{bmatrix}
-        \begin{bmatrix}
-            \mu_{t-1} \\
-            \nu_{t-1}
-        \end{bmatrix} +
-        \begin{bmatrix}
-            1 &amp; 0 \\
-            0 &amp; 1
-        \end{bmatrix}
-        \begin{bmatrix}
-            \xi_t \\
-            \zeta_t
-        \end{bmatrix} \quad
-        \begin{bmatrix}
-            \xi_t \\
-            \zeta_t
-        \end{bmatrix} \sim
-        N \biggl( 
-            \begin{bmatrix}
-                0 \\
-                0
-            \end{bmatrix},
-            \begin{bmatrix}
-                \sigma_\xi^2 &amp; 0 \\
-                0            &amp; \sigma_\zeta^2
-            \end{bmatrix}
-        \biggr)
-\end{align*}
-\end{split}\]</div>
-<p>より</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">k_states</span></code>, <code class="docutils literal notranslate"><span class="pre">k_posdef</span></code> は 2</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ssm[&quot;design&quot;]</span></code> <span class="math notranslate nohighlight">\( = Z_t = \begin{bmatrix} 1 &amp; 0 \end{bmatrix}\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ssm[&quot;transition&quot;]</span></code> <span class="math notranslate nohighlight">\( = T_t = \begin{bmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{bmatrix}\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ssm[&quot;selection&quot;]</span></code> <span class="math notranslate nohighlight">\( = R_t = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">params</span></code> <span class="math notranslate nohighlight">\(=\begin{bmatrix} \sigma_\varepsilon^2 &amp; \sigma_\xi^2 &amp; \sigma_\zeta^2 \end{bmatrix}\)</span></p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sandbox.datasets</span> <span class="kn">import</span> <span class="n">rtf</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">rtf</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="id25">
-<h3>5.3 例 (MLEModelでのカスタム構築: ローカル線形トレンドモデル)<a class="headerlink" href="#id25" title="Permalink to this headline">#</a></h3>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-    y_t &amp;= 
-        \begin{bmatrix}
-            1 &amp; 0
-        \end{bmatrix}
-        \begin{bmatrix}
-            \mu_t \\
-            \nu_t
-        \end{bmatrix} + \varepsilon_t \quad \varepsilon_t \sim N(0, \sigma_\varepsilon^2) \\
-    \begin{bmatrix}
-        \mu_t \\
-        \nu_t
-    \end{bmatrix} &amp;=
-        \begin{bmatrix}
-            1 &amp; 1 \\
-            0 &amp; 1
-        \end{bmatrix}
-        \begin{bmatrix}
-            \mu_{t-1} \\
-            \nu_{t-1}
-        \end{bmatrix} +
-        \begin{bmatrix}
-            1 &amp; 0 \\
-            0 &amp; 1
-        \end{bmatrix}
-        \begin{bmatrix}
-            \xi_t \\
-            \zeta_t
-        \end{bmatrix} \quad
-        \begin{bmatrix}
-            \xi_t \\
-            \zeta_t
-        \end{bmatrix} \sim
-        N \biggl( 
-            \begin{bmatrix}
-                0 \\
-                0
-            \end{bmatrix},
-            \begin{bmatrix}
-                \sigma_\xi^2 &amp; 0 \\
-                0            &amp; \sigma_\zeta^2
-            \end{bmatrix}
-        \biggr)
-\end{align*}
-\end{split}\]</div>
-<p>より</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">k_states</span></code>, <code class="docutils literal notranslate"><span class="pre">k_posdef</span></code> は 2</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ssm[&quot;design&quot;]</span></code> <span class="math notranslate nohighlight">\( = Z_t = \begin{bmatrix} 1 &amp; 0 \end{bmatrix}\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ssm[&quot;transition&quot;]</span></code> <span class="math notranslate nohighlight">\( = T_t = \begin{bmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{bmatrix}\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ssm[&quot;selection&quot;]</span></code> <span class="math notranslate nohighlight">\( = R_t = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">params</span></code> <span class="math notranslate nohighlight">\(=\begin{bmatrix} \sigma_\varepsilon^2 &amp; \sigma_\xi^2 &amp; \sigma_\zeta^2 \end{bmatrix}\)</span></p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sandbox.datasets</span> <span class="kn">import</span> <span class="n">rtf</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">rtf</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-
-
-<span class="k">class</span> <span class="nc">LocalLinearTrend</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">statespace</span><span class="o">.</span><span class="n">MLEModel</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endog</span><span class="p">,</span> <span class="n">initialization</span><span class="o">=</span><span class="s2">&quot;approximate_diffuse&quot;</span><span class="p">):</span>
-        <span class="c1"># 状態変数がローカル成分とそのトレンド成分の2つ.</span>
-        <span class="c1"># 推定されるべき状態変数の分散の数は2つ.</span>
-        <span class="n">k_states</span> <span class="o">=</span> <span class="n">k_posdef</span> <span class="o">=</span> <span class="mi">2</span>
-
-        <span class="nb">super</span><span class="p">(</span><span class="n">LocalLinearTrend</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="n">endog</span><span class="p">,</span> <span class="n">k_states</span><span class="o">=</span><span class="n">k_states</span><span class="p">,</span> <span class="n">k_posdef</span><span class="o">=</span><span class="n">k_posdef</span><span class="p">,</span> <span class="n">initialization</span><span class="o">=</span><span class="n">initialization</span><span class="p">,</span>
-        <span class="p">)</span>
-
-        <span class="c1"># statespace matricesの設定.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="p">[</span><span class="s2">&quot;design&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="p">[</span><span class="s2">&quot;transition&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="p">[</span><span class="s2">&quot;selection&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">k_states</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">param_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;sigma2.observation&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma2.level&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma2.trend&quot;</span><span class="p">]</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">start_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endog</span><span class="p">)]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="o">.</span><span class="n">k_posdef</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">state_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">names</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&quot;level&quot;</span><span class="p">,</span> <span class="s2">&quot;trend&quot;</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">names</span>
-
-    <span class="c1"># 分散は必ず正となるのでパラメータを2乗して制約化.</span>
-    <span class="k">def</span> <span class="nf">transform_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unconstrained</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">unconstrained</span> <span class="o">**</span> <span class="mi">2</span>
-
-    <span class="c1"># transformで2乗したので元に戻す.</span>
-    <span class="k">def</span> <span class="nf">untransform_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constrained</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">constrained</span> <span class="o">**</span> <span class="mf">0.5</span>
-
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">params</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">LocalLinearTrend</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="p">[</span><span class="s2">&quot;obs_cov&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="p">[(</span><span class="s2">&quot;state_cov&quot;</span><span class="p">,)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diag_indices</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="o">.</span><span class="n">k_posdef</span><span class="p">)]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sandbox.datasets</span> <span class="kn">import</span> <span class="n">rtf</span>
@@ -2869,127 +2301,7 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
   <th>Date:</th>            <td>Fri, 29 Jul 2022</td> <th>  AIC                </th> <td>-17.713</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>04:32:08</td>     <th>  BIC                </th> <td>-13.134</td>
-</tr>
-<tr>
-  <th>Sample:</th>             <td>12-31-1970</td>    <th>  HQIC               </th> <td>-16.152</td>
-</tr>
-<tr>
-  <th></th>                   <td>- 12-31-2003</td>   <th>                     </th>    <td> </td>   
-</tr>
-<tr>
-  <th>Covariance Type:</th>        <td>opg</td>       <th>                     </th>    <td> </td>   
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-           <td></td>             <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
-</tr>
-<tr>
-  <th>sigma2.observation</th> <td>    0.0010</td> <td>    0.003</td> <td>    0.346</td> <td> 0.730</td> <td>   -0.005</td> <td>    0.007</td>
-</tr>
-<tr>
-  <th>sigma2.level</th>       <td>    0.0074</td> <td>    0.005</td> <td>    1.564</td> <td> 0.118</td> <td>   -0.002</td> <td>    0.017</td>
-</tr>
-<tr>
-  <th>sigma2.trend</th>       <td> 2.498e-11</td> <td>    0.000</td> <td> 1.67e-07</td> <td> 1.000</td> <td>   -0.000</td> <td>    0.000</td>
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-  <th>Ljung-Box (L1) (Q):</th>     <td>0.00</td> <th>  Jarque-Bera (JB):  </th> <td>0.46</td> 
-</tr>
-<tr>
-  <th>Prob(Q):</th>                <td>0.95</td> <th>  Prob(JB):          </th> <td>0.79</td> 
-</tr>
-<tr>
-  <th>Heteroskedasticity (H):</th> <td>0.83</td> <th>  Skew:              </th> <td>-0.02</td>
-</tr>
-<tr>
-  <th>Prob(H) (two-sided):</th>    <td>0.77</td> <th>  Kurtosis:          </th> <td>2.43</td> 
-</tr>
-</table><br/><br/>Warnings:<br/>[1] Covariance matrix calculated using the outer product of gradients (complex-step).</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-
-
-<span class="k">class</span> <span class="nc">LocalLinearTrend</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">statespace</span><span class="o">.</span><span class="n">MLEModel</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endog</span><span class="p">,</span> <span class="n">initialization</span><span class="o">=</span><span class="s2">&quot;approximate_diffuse&quot;</span><span class="p">):</span>
-        <span class="c1"># 状態変数がローカル成分とそのトレンド成分の2つ.</span>
-        <span class="c1"># 推定されるべき状態変数の分散の数は2つ.</span>
-        <span class="n">k_states</span> <span class="o">=</span> <span class="n">k_posdef</span> <span class="o">=</span> <span class="mi">2</span>
-
-        <span class="nb">super</span><span class="p">(</span><span class="n">LocalLinearTrend</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="n">endog</span><span class="p">,</span> <span class="n">k_states</span><span class="o">=</span><span class="n">k_states</span><span class="p">,</span> <span class="n">k_posdef</span><span class="o">=</span><span class="n">k_posdef</span><span class="p">,</span> <span class="n">initialization</span><span class="o">=</span><span class="n">initialization</span><span class="p">,</span>
-        <span class="p">)</span>
-
-        <span class="c1"># statespace matricesの設定.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="p">[</span><span class="s2">&quot;design&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="p">[</span><span class="s2">&quot;transition&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="p">[</span><span class="s2">&quot;selection&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">k_states</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">param_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;sigma2.observation&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma2.level&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma2.trend&quot;</span><span class="p">]</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">start_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endog</span><span class="p">)]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="o">.</span><span class="n">k_posdef</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">state_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">names</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&quot;level&quot;</span><span class="p">,</span> <span class="s2">&quot;trend&quot;</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">names</span>
-
-    <span class="c1"># 分散は必ず正となるのでパラメータを2乗して制約化.</span>
-    <span class="k">def</span> <span class="nf">transform_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unconstrained</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">unconstrained</span> <span class="o">**</span> <span class="mi">2</span>
-
-    <span class="c1"># transformで2乗したので元に戻す.</span>
-    <span class="k">def</span> <span class="nf">untransform_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constrained</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">constrained</span> <span class="o">**</span> <span class="mf">0.5</span>
-
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">params</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">LocalLinearTrend</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="p">[</span><span class="s2">&quot;obs_cov&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="p">[(</span><span class="s2">&quot;state_cov&quot;</span><span class="p">,)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diag_indices</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="o">.</span><span class="n">k_posdef</span><span class="p">)]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">endog</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Finland&quot;</span><span class="p">])</span>
-
-<span class="c1"># モデリング</span>
-<span class="n">mod</span> <span class="o">=</span> <span class="n">LocalLinearTrend</span><span class="p">(</span><span class="n">endog</span><span class="p">)</span>
-
-<span class="c1"># fittingと結果のサマリ表示.</span>
-<span class="n">mod_ret</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">disp</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">mod_ret</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="simpletable">
-<caption>Statespace Model Results</caption>
-<tr>
-  <th>Dep. Variable:</th>        <td>Finland</td>     <th>  No. Observations:  </th>   <td>34</td>   
-</tr>
-<tr>
-  <th>Model:</th>           <td>LocalLinearTrend</td> <th>  Log Likelihood     </th> <td>11.857</td> 
-</tr>
-<tr>
-  <th>Date:</th>            <td>Fri, 29 Jul 2022</td> <th>  AIC                </th> <td>-17.713</td>
-</tr>
-<tr>
-  <th>Time:</th>                <td>04:32:08</td>     <th>  BIC                </th> <td>-13.134</td>
+  <th>Time:</th>                <td>05:05:00</td>     <th>  BIC                </th> <td>-13.134</td>
 </tr>
 <tr>
   <th>Sample:</th>             <td>12-31-1970</td>    <th>  HQIC               </th> <td>-16.152</td>
@@ -3065,170 +2377,7 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ssm_58_0.png" src="../../_images/ssm_58_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">endog</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Finland&quot;</span><span class="p">])</span>
-
-<span class="c1"># モデリング</span>
-<span class="n">mod</span> <span class="o">=</span> <span class="n">LocalLinearTrend</span><span class="p">(</span><span class="n">endog</span><span class="p">)</span>
-
-<span class="c1"># fittingと結果のサマリ表示.</span>
-<span class="n">mod_ret</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">disp</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">mod_ret</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="simpletable">
-<caption>Statespace Model Results</caption>
-<tr>
-  <th>Dep. Variable:</th>        <td>Finland</td>     <th>  No. Observations:  </th>   <td>34</td>   
-</tr>
-<tr>
-  <th>Model:</th>           <td>LocalLinearTrend</td> <th>  Log Likelihood     </th> <td>11.857</td> 
-</tr>
-<tr>
-  <th>Date:</th>            <td>Fri, 29 Jul 2022</td> <th>  AIC                </th> <td>-17.713</td>
-</tr>
-<tr>
-  <th>Time:</th>                <td>04:32:09</td>     <th>  BIC                </th> <td>-13.134</td>
-</tr>
-<tr>
-  <th>Sample:</th>             <td>12-31-1970</td>    <th>  HQIC               </th> <td>-16.152</td>
-</tr>
-<tr>
-  <th></th>                   <td>- 12-31-2003</td>   <th>                     </th>    <td> </td>   
-</tr>
-<tr>
-  <th>Covariance Type:</th>        <td>opg</td>       <th>                     </th>    <td> </td>   
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-           <td></td>             <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
-</tr>
-<tr>
-  <th>sigma2.observation</th> <td>    0.0010</td> <td>    0.003</td> <td>    0.346</td> <td> 0.730</td> <td>   -0.005</td> <td>    0.007</td>
-</tr>
-<tr>
-  <th>sigma2.level</th>       <td>    0.0074</td> <td>    0.005</td> <td>    1.564</td> <td> 0.118</td> <td>   -0.002</td> <td>    0.017</td>
-</tr>
-<tr>
-  <th>sigma2.trend</th>       <td> 2.498e-11</td> <td>    0.000</td> <td> 1.67e-07</td> <td> 1.000</td> <td>   -0.000</td> <td>    0.000</td>
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-  <th>Ljung-Box (L1) (Q):</th>     <td>0.00</td> <th>  Jarque-Bera (JB):  </th> <td>0.46</td> 
-</tr>
-<tr>
-  <th>Prob(Q):</th>                <td>0.95</td> <th>  Prob(JB):          </th> <td>0.79</td> 
-</tr>
-<tr>
-  <th>Heteroskedasticity (H):</th> <td>0.83</td> <th>  Skew:              </th> <td>-0.02</td>
-</tr>
-<tr>
-  <th>Prob(H) (two-sided):</th>    <td>0.77</td> <th>  Kurtosis:          </th> <td>2.43</td> 
-</tr>
-</table><br/><br/>Warnings:<br/>[1] Covariance matrix calculated using the outer product of gradients (complex-step).</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 観測値, 状態変数 (ローカル・トレンド) のプロット.</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-
-<span class="c1"># 観測値・スムージング値</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">311</span><span class="p">)</span>
-<span class="n">mod_ret</span><span class="o">.</span><span class="n">fittedvalues</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Fitted values&quot;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">endog</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Observations&quot;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span>
-    <span class="n">bottom</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">mod_ret</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">[</span><span class="n">mod_ret</span><span class="o">.</span><span class="n">fittedvalues</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">endog</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">*</span> <span class="mf">0.9</span>
-<span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
-
-<span class="c1"># ローカル値 (フィルタリング値とスムージング値)</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">312</span><span class="p">)</span>
-<span class="n">mod_ret</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">filtered</span><span class="o">.</span><span class="n">level</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Filterd level&quot;</span>
-<span class="p">)</span>
-<span class="n">mod_ret</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">smoothed</span><span class="o">.</span><span class="n">level</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Smoothed level&quot;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
-
-<span class="c1"># トレンド値 (フィルタリング値とスムージング値)</span>
-<span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">313</span><span class="p">)</span>
-<span class="n">mod_ret</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">filtered</span><span class="o">.</span><span class="n">trend</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Filterd trend&quot;</span>
-<span class="p">)</span>
-<span class="n">mod_ret</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">smoothed</span><span class="o">.</span><span class="n">trend</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Smoothed trend&quot;</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/ssm_60_0.png" src="../../_images/ssm_60_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 予測期間 (in-sample / out-of-sample問わず)および回帰成分がある場合はそれとセットで引数にする.</span>
-<span class="c1"># 予測結果インスタンスがリターン。</span>
-<span class="n">pred_ret</span> <span class="o">=</span> <span class="n">mod_ret</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span>
-    <span class="n">start</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2004-12-31&quot;</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2014-12-31&quot;</span><span class="p">),</span> <span class="n">exog</span><span class="o">=</span><span class="kc">None</span>
-<span class="p">)</span>
-
-<span class="c1"># 予測値のデータフレーム.</span>
-<span class="n">df_predict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pred_ret</span><span class="o">.</span><span class="n">predicted_mean</span><span class="p">)</span>
-
-<span class="c1"># 信頼区間のデータフレーム.</span>
-<span class="n">predict_ci</span> <span class="o">=</span> <span class="n">pred_ret</span><span class="o">.</span><span class="n">conf_int</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-
-<span class="c1"># 予測値と信頼区間を格納したデータフレーム.</span>
-<span class="n">df_predict</span> <span class="o">=</span> <span class="n">df_predict</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">predict_ci</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 観測値, 状態変数 (ローカル・トレンド) のプロット.</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-
-<span class="c1"># 観測値・スムージング値</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">311</span><span class="p">)</span>
-<span class="n">mod_ret</span><span class="o">.</span><span class="n">fittedvalues</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Fitted values&quot;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">endog</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Observations&quot;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span>
-    <span class="n">bottom</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">mod_ret</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">[</span><span class="n">mod_ret</span><span class="o">.</span><span class="n">fittedvalues</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">endog</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">*</span> <span class="mf">0.9</span>
-<span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
-
-<span class="c1"># ローカル値 (フィルタリング値とスムージング値)</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">312</span><span class="p">)</span>
-<span class="n">mod_ret</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">filtered</span><span class="o">.</span><span class="n">level</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Filterd level&quot;</span>
-<span class="p">)</span>
-<span class="n">mod_ret</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">smoothed</span><span class="o">.</span><span class="n">level</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Smoothed level&quot;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
-
-<span class="c1"># トレンド値 (フィルタリング値とスムージング値)</span>
-<span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">313</span><span class="p">)</span>
-<span class="n">mod_ret</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">filtered</span><span class="o">.</span><span class="n">trend</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Filterd trend&quot;</span>
-<span class="p">)</span>
-<span class="n">mod_ret</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">smoothed</span><span class="o">.</span><span class="n">trend</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Smoothed trend&quot;</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/ssm_62_0.png" src="../../_images/ssm_62_0.png" />
+<img alt="../../_images/ssm_46_0.png" src="../../_images/ssm_46_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3290,69 +2439,7 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ssm_64_0.png" src="../../_images/ssm_64_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 予測期間 (in-sample / out-of-sample問わず)および回帰成分がある場合はそれとセットで引数にする.</span>
-<span class="c1"># 予測結果インスタンスがリターン。</span>
-<span class="n">pred_ret</span> <span class="o">=</span> <span class="n">mod_ret</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span>
-    <span class="n">start</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2004-12-31&quot;</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2014-12-31&quot;</span><span class="p">),</span> <span class="n">exog</span><span class="o">=</span><span class="kc">None</span>
-<span class="p">)</span>
-
-<span class="c1"># 予測値のデータフレーム.</span>
-<span class="n">df_predict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pred_ret</span><span class="o">.</span><span class="n">predicted_mean</span><span class="p">)</span>
-
-<span class="c1"># 信頼区間のデータフレーム.</span>
-<span class="n">predict_ci</span> <span class="o">=</span> <span class="n">pred_ret</span><span class="o">.</span><span class="n">conf_int</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-
-<span class="c1"># 予測値と信頼区間を格納したデータフレーム.</span>
-<span class="n">df_predict</span> <span class="o">=</span> <span class="n">df_predict</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">predict_ci</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 学習期間, 予測期間のプロット.</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-
-<span class="c1"># 学習期間のスムージング値</span>
-<span class="n">mod_ret</span><span class="o">.</span><span class="n">fittedvalues</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Fitted values&quot;</span><span class="p">)</span>
-
-<span class="c1"># 実績の散布</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">endog</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Observations&quot;</span><span class="p">)</span>
-
-<span class="c1"># 予測期間の信頼区間</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
-    <span class="n">df_predict</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
-    <span class="n">df_predict</span><span class="p">[</span><span class="s2">&quot;lower Finland&quot;</span><span class="p">],</span>
-    <span class="n">df_predict</span><span class="p">[</span><span class="s2">&quot;upper Finland&quot;</span><span class="p">],</span>
-    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="c1"># 予測値</span>
-<span class="n">pred_ret</span><span class="o">.</span><span class="n">predicted_mean</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-
-<span class="c1"># y軸の範囲をちょうど良い範囲に絞る.</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span>
-    <span class="n">bottom</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span>
-        <span class="n">mod_ret</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">[</span><span class="n">mod_ret</span><span class="o">.</span><span class="n">fittedvalues</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
-        <span class="n">endog</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
-        <span class="n">df_predict</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
-    <span class="p">)</span>
-    <span class="o">*</span> <span class="mf">0.9</span>
-<span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/ssm_66_0.png" src="../../_images/ssm_66_0.png" />
+<img alt="../../_images/ssm_48_0.png" src="../../_images/ssm_48_0.png" />
 </div>
 </div>
 </section>
@@ -3475,7 +2562,7 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ssm_69_0.png" src="../../_images/ssm_69_0.png" />
+<img alt="../../_images/ssm_51_0.png" src="../../_images/ssm_51_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3637,7 +2724,7 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
   <th>Date:</th>            <td>Fri, 29 Jul 2022</td> <th>  AIC                </th>  <td>746.427</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>04:32:15</td>     <th>  BIC                </th>  <td>775.241</td>
+  <th>Time:</th>                <td>05:05:04</td>     <th>  BIC                </th>  <td>775.241</td>
 </tr>
 <tr>
   <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th>  <td>757.434</td>
@@ -3728,7 +2815,7 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ssm_73_0.png" src="../../_images/ssm_73_0.png" />
+<img alt="../../_images/ssm_55_0.png" src="../../_images/ssm_55_0.png" />
 </div>
 </div>
 </section>
