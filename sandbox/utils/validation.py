@@ -2,6 +2,14 @@ from numpy import ndarray
 from pandas import DataFrame, Series
 
 
+def is_dataframe(obj):
+    return isinstance(obj, DataFrame)
+
+
+def is_series(obj):
+    return isinstance(obj, Series)
+
+
 def is_dataframe_or_series(obj):
     """Check whether object is pd.DataFrame or pd.Series.
 
@@ -24,6 +32,22 @@ def is_dataframe_or_series(obj):
     True
     """
     return isinstance(obj, (DataFrame, Series))
+
+
+def is_using_padnas(X, y):
+    return (is_dataframe_or_series(y) and (is_dataframe_or_series(X) or X is None)) or (
+        is_dataframe_or_series(X) and (is_dataframe_or_series(y) or y is None)
+    )
+
+
+def is_ndarray(obj):
+    return isinstance(obj, ndarray)
+
+
+def is_using_ndarray(X, y):
+    return (is_ndarray(y) and (is_ndarray(X) or X is None)) or (
+        is_ndarray(X) and (is_ndarray(y) or y is None)
+    )
 
 
 def is_arraylike(obj):
