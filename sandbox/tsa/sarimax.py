@@ -1,15 +1,178 @@
-""""""
-import numpy as np
+"""SARIMAX (Seasonal AutoRegressive Integrated Moving Average with eXogenous variables)."""
 import pandas as pd
-import pmdarima as pm
 
+from sandbox.datamodel.ts_datamodel import TimeSeriesModelData
 from sandbox.tsa.base import BaseTimeSeriesModel
-from sandbox.utils.validation import check_2d_dataframe
 
 
-# ToDo: in case of existence of regressors and set the parameters in fit method.
-# ToDo: test script
 class SARIMAXModel(BaseTimeSeriesModel):
+    r"""Linear Gaussian state space model.
+
+    Parameters
+    ----------
+    trend : str{'n','c','t','ct'} or iterable, optional
+        Parameter controlling the deterministic trend polynomial :math:`A(t)`.
+        Can be specified as a string where 'c' indicates a constant (i.e. a
+        degree zero component of the trend polynomial), 't' indicates a
+        linear trend with time, and 'ct' is both. Can also be specified as an
+        iterable defining the non-zero polynomial exponents to include, in
+        increasing order. For example, `[1,1,0,1]` denotes
+        :math:`a + bt + ct^3`. Default is to not include a trend component.
+    s : int, optional
+        The period for seasonal differencing, ``s`` refers to the number of
+        periods in each season. For example, ``s`` is 4 for quarterly data, 12
+        for monthly data, or 1 for annual (non-seasonal) data. Default is 1.
+        Note that if ``s`` == 1 (i.e., is non-seasonal), ``seasonal`` will be
+        set to False.
+    seasonal : bool, optional
+        Whether to fit a seasonal ARIMA. Default is True. Note that if
+        ``seasonal`` is True and ``s`` == 1, ``seasonal`` will be set to False.
+    method : str, optional
+        The ``method`` determines which solver from ``scipy.optimize``
+        is used, and it can be chosen from among the following strings:
+        - 'newton' for Newton-Raphson
+        - 'nm' for Nelder-Mead
+        - 'bfgs' for Broyden-Fletcher-Goldfarb-Shanno (BFGS)
+        - 'lbfgs' for limited-memory BFGS with optional box constraints
+        - 'powell' for modified Powell's method
+        - 'cg' for conjugate gradient
+        - 'ncg' for Newton-conjugate gradient
+        - 'basinhopping' for global basin-hopping solver
+        The explicit arguments in ``fit`` are passed to the solver,
+        with the exception of the basin-hopping solver. Each
+        solver has several optional arguments that are not the same across
+        solvers. These can be passed as **fit_kwargs
+    start_p : int, optional
+        The starting value of ``p``, the order (or number of time lags)
+        of the auto-regressive ("AR") model. Must be a positive integer.
+    d : int, optional
+        The order of first-differencing. If None (by default), the value
+        will automatically be selected based on the results of the ``test``
+        (i.e., either the Kwiatkowski–Phillips–Schmidt–Shin, Augmented
+        Dickey-Fuller or the Phillips–Perron test will be conducted to find
+        the most probable value). Must be a positive integer or None. Note
+        that if ``d`` is None, the runtime could be significantly longer.
+    start_q : int, optional
+        The starting value of ``q``, the order of the moving-average
+        ("MA") model. Must be a positive integer.
+    max_p : int, optional
+        The maximum value of ``p``, inclusive. Must be a positive integer
+        greater than or equal to ``start_p``.
+    max_d : int, optional
+        The maximum value of ``d``, or the maximum number of non-seasonal
+        differences. Must be a positive integer greater than or equal to ``d``.
+    max_q : int, optional
+        The maximum value of ``q``, inclusive. Must be a positive integer
+        greater than ``start_q``.
+    start_P : int, optional
+        The starting value of ``P``, the order of the auto-regressive portion
+        of the seasonal model.
+    D : int, optional
+        The order of the seasonal differencing. If None (by default, the value
+        will automatically be selected. Must be a positive integer or None.
+    start_Q : int, optional
+        The starting value of ``Q``, the order of the moving-average portion
+        of the seasonal model.
+    max_P : int, optional
+        The maximum value of ``P``, inclusive. Must be a positive integer
+        greater than ``start_P``.
+    max_D : int, optional
+        The maximum value of ``D``. Must be a positive integer greater
+        than ``D``.
+    max_Q : int, optional
+        The maximum value of ``Q``, inclusive. Must be a positive integer
+        greater than ``start_Q``.
+    stepwise : bool, optional
+        Whether to use the stepwise algorithm outlined in [1]_ Hyndman and Khandakar
+        (2008) to identify the optimal model parameters. The stepwise algorithm
+        can be significantly faster than fitting all hyper-parameter combinations
+        and is less likely to over-fit the model.
+    max_order : int, optional
+        Maximum value of :math:`p+q+P+Q` if model selection is not stepwise.
+        If the sum of ``p`` and ``q`` is >= ``max_order``, a model will
+        *not* be fit with those parameters, but will progress to the next
+        combination. Default is 5. If ``max_order`` is None, it means there
+        are no constraints on maximum order.
+    n_jobs : int, optional
+        The number of models to fit in parallel in the case of a grid search
+        (``stepwise=False``). Default is 1, but -1 can be used to designate
+        "as many as possible".
+    trace : {bool, int}, optional
+        Whether to print status on the fits. A value of False will print no
+        debugging information. A value of True will print some. Integer values
+        exceeding 1 will print increasing amounts of debug information at each
+        fit.
+
+    Examples
+    --------
+    >>> from sklearn.model_selection import train_test_split
+    >>> from sandbox.datasets import air_passengers
+    >>> from sandbox.tsa.sarimax import SARIMAXModel
+    >>> # Get test data
+    >>> y = air_passengers.load().data
+    >>> y_train, y_test = train_test_split(y, test_size=0.20, shuffle=False)
+    >>> # Build model and fitting
+    >>> sarimax = SARIMAXModel(trend="c", s=12, trace=True)
+    >>> sarimax.fit(y_train)
+    Out[1]: SARIMAXModel(s=12, trace=True, trend='c')
+    >>> # Predict
+    >>> sarimax.predict(y_test.index)
+    Out[2]:
+    array([490.57261133, 428.30635863, 371.39237605, 329.61111601,
+           360.80266057, 364.99977758, 343.19575277, 387.39196193,
+           373.58812314, 388.78429418, 460.98046321, 517.17663265,
+           516.94541333, 454.87533   , 398.15751679, 356.57242612,
+           387.96014005, 392.35342643, 370.74557099, 415.13794951,
+           401.5302801 , 416.9226205 , 489.3149589 , 545.70729771,
+           545.67224776, 483.7983338 , 427.27668995, 385.88776865,
+           417.47165195])
+
+    Notes
+    -----
+    The SARIMA model is specified :math:`(p, d, q) \times (P, D, Q)_s`.
+
+    .. math::
+
+        \phi_p (L) \tilde \phi_P (L^s) \Delta^d \Delta_s^D y_t = A(t) +
+            \theta_q (L) \tilde \theta_Q (L^s) \zeta_t
+
+    In terms of a univariate structural model, this can be represented as
+
+    .. math::
+
+        y_t & = u_t + \eta_t \\
+        \phi_p (L) \tilde \phi_P (L^s) \Delta^d \Delta_s^D u_t & = A(t) +
+            \theta_q (L) \tilde \theta_Q (L^s) \zeta_t
+
+    where :math:`\eta_t` is only applicable in the case of measurement error
+    (although it is also used in the case of a pure regression model, i.e. if
+    p=q=0).
+
+    In terms of this model, regression with SARIMA errors can be represented
+    easily as
+
+    .. math::
+
+        y_t & = \beta_t x_t + u_t \\
+        \phi_p (L) \tilde \phi_P (L^s) \Delta^d \Delta_s^D u_t & = A(t) +
+            \theta_q (L) \tilde \theta_Q (L^s) \zeta_t
+
+    this model is the one used when exogenous regressors are provided.
+    Note that the reduced form lag polynomials will be written as:
+
+    .. math::
+
+        \Phi (L) \equiv \phi_p (L) \tilde \phi_P (L^s) \\
+        \Theta (L) \equiv \theta_q (L) \tilde \theta_Q (L^s)
+
+    References
+    ----------
+    .. [1] Hyndman, R. J., & Khandakar, Y. (2008).
+           Automatic time series forecasting: the forecast package for R.
+           Journal of statistical software, 27, 1-22.
+
+    """
+
     def __init__(
         self,
         trend=None,
@@ -33,7 +196,6 @@ class SARIMAXModel(BaseTimeSeriesModel):
         n_jobs=1,
         trace=False,
     ):
-        super(SARIMAXModel, self).__init__()
         self.trend = trend
         self.s = s
         self.seasonal = seasonal
@@ -60,17 +222,45 @@ class SARIMAXModel(BaseTimeSeriesModel):
         self.params_ = None
 
     def fit(self, X, y=None, **kwargs):
+        """Fit the model.
 
-        self.X_train_ = X
-        self.y_train_ = y
+        Parameters
+        ----------
+        X : array_like
+            Training data on regressions. If no regression is defined,
+            just y is to be defined.
+        y : {array_like, None}, default
+            Target values. If no regression is defined, just y is to be
+            defined in the place of X.
 
+        Returns
+        -------
+        self : object
+            Returns the instance itself.
+        """
+        # このモジュールで提供しているデータクラスに変換.
+        self.data_ = TimeSeriesModelData(X, y)
+        self.model_result_ = self._get_model_result(
+            endog=self.data_.y, exog=self.data_.X
+        )
+        self.params_ = dict(
+            zip(
+                self.model_result_.param_names,
+                self.model_result_.params,
+            )
+        )
+        return self
+
+    def _get_model_result(self, endog, exog):
         import warnings
+
+        import pmdarima as pm
 
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
-            model = pm.auto_arima(
-                y=self.y_train_,
-                X=self.X_train_,
+            model_result = pm.auto_arima(
+                y=endog,
+                X=exog,
                 start_p=self.start_p,
                 d=self.d,
                 start_q=self.start_q,
@@ -93,142 +283,105 @@ class SARIMAXModel(BaseTimeSeriesModel):
                 trace=self.trace,
             )
 
-        self.model_fitted_ = model.arima_res_
-        self.params_ = dict(
-            zip(
-                self.model_fitted_.param_names,
-                self.model_fitted_.params,
+        return model_result.arima_res_
+
+    def predict(self, X, is_pandas=False):
+        """Predict using the model.
+
+        Parameters
+        ----------
+        X : {array-like, int}
+            Design matrix expressing the regression dummies or variables in
+            the period to be predicted. If no regression is defined in the model,
+            the index expressing the period or the period steps to be predicted
+            must be set.
+        is_pandas: bool, optional
+            If True, the return data type is pandas.Series. Otherwise, numpy.ndarray.
+
+        Returns
+        -------
+        predicted_mean : array-like
+            Mean of predictive distribution of query points.
+        """
+        index, exog = self.data_.split_index_and_X_from_X_pred(X)
+        start = self.data_.nobs
+        end = self.data_.nobs + len(index) - 1
+        pred = self._get_prediction(start=start, end=end, exog=exog)
+        if is_pandas:
+            return pd.DataFrame(
+                pred.predicted_mean, index=index, columns=["predicted_mean"]
             )
-        )
-
-        return self
-
-    def predict(self, X, return_conf_int=False, alpha=0.95):
-        if isinstance(X, (pd.DataFrame, pd.Series)):
-            X = check_2d_dataframe(X)
         else:
-            if not isinstance(X, pd.Index):
-                msg = "X must be pd.Index, pd.DataFrame or pd.Series."
-                raise TypeError(msg)
+            return pred.predicted_mean
 
-        pred_is, conf_int_is = self._in_sample_predict(
-            X=X, return_conf_int=return_conf_int, alpha=alpha
-        )
-        pred_oos, conf_int_oos = self._out_of_sample_forecast(
-            X=X, return_conf_int=return_conf_int, alpha=alpha
-        )
+    def conf_int(self, X, alpha=0.95, is_pandas=False):
+        """
+        Compute the confidence interval.
 
-        is_in_sample = pred_is is not None
-        out_of_sample = pred_oos is not None
+        Parameters
+        ----------
+        X : {array-like, int}
+            Design matrix expressing the regression dummies or variables in
+            the period to be predicted. If no regression is defined in the model,
+            the index expressing the period or the period steps to be predicted
+            must be set.
+        alpha : float, optional
+            The `alpha` level for the confidence interval. The default
+            `alpha` = .95 returns a 95% confidence interval.
+        is_pandas: bool, optional
+            If True, the return data type is pandas.Series. Otherwise, numpy.ndarray.
 
-        if is_in_sample and out_of_sample:
-            pred = pd.concat([pred_is, pred_oos])
-            conf_int = (
-                pd.concat([conf_int_is, conf_int_oos]) if return_conf_int else None
+        Returns
+        -------
+        array_like
+            The confidence intervals.
+        """
+        index, exog = self.data_.split_index_and_X_from_X_pred(X)
+        start = self.data_.nobs
+        end = self.data_.nobs + len(index) - 1
+        pred = self._get_prediction(start=start, end=end, exog=exog)
+        if is_pandas:
+            a = int(round(alpha * 100, 0))
+            return pd.DataFrame(
+                pred.conf_int(alpha=1 - alpha),
+                index=index,
+                columns=[f"lower_{a}", f"upper_{a}"],
             )
-        elif is_in_sample:
-            pred = pred_is.copy()
-            conf_int = conf_int_is.copy() if return_conf_int else None
         else:
-            pred = pred_oos.copy()
-            conf_int = conf_int_oos.copy() if return_conf_int else None
+            return pred.conf_int(alpha=1 - alpha)
 
-        if return_conf_int:
-            pred = pd.DataFrame(pred).join(conf_int)
+    def _get_prediction(self, start, end, exog):
+        return self.model_result_.get_prediction(start=start, end=end, exog=exog)
 
-        return pred
+    def score(self, X, y, scorer="r2"):
+        """Return the coefficient of determination of the prediction.
 
-    @classmethod
-    def _get_exog(cls, X, index=None):
-        if isinstance(X, pd.Index):
-            exog = None
-        elif isinstance(X, (pd.DataFrame, pd.Series)):
-            exog = check_2d_dataframe(X)
-            if index:
-                exog = exog[exog.index.isin(index)]
-        else:
-            msg = "X must be pd.Index, pd.DataFrame or pd.Series."
-            raise TypeError(msg)
-        return exog
+        The default coefficient of determination :math:`R^2` is defined as
+        :math:`(1 - \\frac{u}{v})`, where :math:`u` is the residual
+        sum of squares ``((y_true - y_pred)** 2).sum()`` and :math:`v`
+        is the total sum of squares ``((y_true - y_true.mean()) ** 2).sum()``.
+        The best possible score is 1.0 and it can be negative (because the
+        model can be arbitrarily worse). A constant model that always predicts
+        the expected value of `y`, disregarding the input features, would get
+        a :math:`R^2` score of 0.0.
 
-    def _out_of_sample_forecast(self, X, return_conf_int=False, alpha=0.95):
-        pred_oos = None
-        conf_int_oos = None
+        Parameters
+        ----------
+        X : {array-like, int}
+            Design matrix expressing the regression dummies or variables in
+            the period to be predicted. If no regression is defined in the model,
+            the index expressing the period or the period steps to be predicted
+            must be set.
+        y : array-like
+            True values for `X`.
+        scorer : str, optional
+            Expressing the type of the coefficient of determination.
 
-        index_oos = self._in_out_of_sample_index(X)[1]
-        if len(index_oos) > 0:
-            start = len(self.y_train_)
-            end = start + len(index_oos) - 1
-            exog = self._get_exog(X, index=index_oos)
-            predict_result_oos = self.model_fitted_.get_prediction(
-                start=start, end=end, exog=exog
-            )
-            pred_oos = pd.Series(
-                predict_result_oos.predicted_mean,
-                index=index_oos,
-                name="predicted_mean",
-            )
+        Returns
+        -------
+        score : float
+            :math:`R^2` of ``self.predict(X)``.
 
-            conf_int_oos = None
-            if return_conf_int:
-                conf_int_oos = pd.DataFrame(
-                    predict_result_oos.conf_int(alpha=1 - alpha),
-                    index=index_oos,
-                    columns=["lower", "upper"],
-                )
-
-        return pred_oos, conf_int_oos
-
-    def _in_sample_predict(self, X, return_conf_int=False, alpha=0.95):
-        pred_is = None
-        conf_int_is = None
-
-        index_oos = self._in_out_of_sample_index(X)[0]
-        if len(index_oos) > 0:
-            predict_result_is = self.model_fitted_.get_prediction()
-            pred_is = pd.Series(
-                predict_result_is.predicted_mean,
-                index=self.y_train_.index,
-                name="predicted_mean",
-            )
-            pred_is = pred_is[pred_is.index.isin(index_oos)]
-
-            conf_int_is = None
-            if return_conf_int:
-                conf_int_is = pd.DataFrame(
-                    predict_result_is.conf_int(alpha=1 - alpha),
-                    index=self.y_train_.index,
-                    columns=["lower", "upper"],
-                )
-                conf_int_is = conf_int_is[conf_int_is.index.isin(index_oos)]
-
-        return pred_is, conf_int_is
-
-    def _in_out_of_sample_index(self, X):
-        """入力されたXにおいてどこまでがin-sampleでどこからがout-of-sampleのindexかを返す."""
-        if self.model_fitted_ is None:
-            return None
-
-        if isinstance(X, pd.Index):
-            _index = X.copy()
-        elif isinstance(X, (pd.DataFrame, pd.Series)):
-            _index = X.index.copy()
-        else:
-            msg = "X must be pd.Index, pd.DataFrame or pd.Series."
-            raise TypeError(msg)
-
-        arr_is = np.intersect1d(self.y_train_.index.to_numpy(), _index.to_numpy())
-        arr_oos = np.setdiff1d(_index.to_numpy(), arr_is)
-
-        index_is = pd.Index(arr_is)
-        index_is.name = self.y_train_.index.name
-        index_oos = pd.Index(arr_oos)
-        index_oos.name = self.y_train_.index.name
-
-        return index_is, index_oos
-
-    def score(self, X, y, type="mape"):
-        from sklearn.metrics import mean_absolute_percentage_error
-
-        y_pred = self.predict(X)
-        return 1 - mean_absolute_percentage_error(y, y_pred)
+        """
+        score = super(SARIMAXModel, self).score(X, y, scorer=scorer)
+        return score
