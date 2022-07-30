@@ -25,6 +25,8 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-codeautolink.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -188,6 +190,431 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  API Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="api/sandbox/index.html">
+   <code class="xref py py-mod docutils literal notranslate">
+    <span class="pre">
+     sandbox
+    </span>
+   </code>
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="api/sandbox/datamodel/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.datamodel
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="api/sandbox/datamodel/base/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datamodel.base
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="api/sandbox/datamodel/ts_datamodel/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datamodel.ts_datamodel
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="api/sandbox/datamodel/ts_simulator/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datamodel.ts_simulator
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="api/sandbox/datasets/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.datasets
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="api/sandbox/datasets/air_passengers/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.air_passengers
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+      <label for="toctree-checkbox-4">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="api/sandbox/datasets/air_passengers/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.air_passengers.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="api/sandbox/datasets/blsallfood/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.blsallfood
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+      <label for="toctree-checkbox-5">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="api/sandbox/datasets/blsallfood/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.blsallfood.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="api/sandbox/datasets/hakusan/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.hakusan
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+      <label for="toctree-checkbox-6">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="api/sandbox/datasets/hakusan/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.hakusan.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="api/sandbox/datasets/maxtemp/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.maxtemp
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+      <label for="toctree-checkbox-7">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="api/sandbox/datasets/maxtemp/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.maxtemp.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="api/sandbox/datasets/mye1f/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.mye1f
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+      <label for="toctree-checkbox-8">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="api/sandbox/datasets/mye1f/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.mye1f.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="api/sandbox/datasets/nikkei225/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.nikkei225
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+      <label for="toctree-checkbox-9">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="api/sandbox/datasets/nikkei225/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.nikkei225.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="api/sandbox/datasets/rtf/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.rtf
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+      <label for="toctree-checkbox-10">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="api/sandbox/datasets/rtf/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.rtf.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="api/sandbox/datasets/whard/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.whard
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="api/sandbox/datasets/whard/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.whard.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="api/sandbox/datasets/utils/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.utils
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="api/sandbox/metrics/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.metrics
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="api/sandbox/metrics/score/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.metrics.score
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="api/sandbox/tests/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.tests
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="api/sandbox/tests/datasets/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.tests.datasets
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="api/sandbox/tests/datasets/test_utils/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.tests.datasets.test_utils
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="api/sandbox/tsa/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.tsa
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="api/sandbox/tsa/base/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.tsa.base
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="api/sandbox/tsa/sarimax/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.tsa.sarimax
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="api/sandbox/tsa/ssm/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.tsa.ssm
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="api/sandbox/utils/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.utils
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="api/sandbox/utils/validation/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.utils.validation
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
 
     </div>
 </nav></div>
@@ -324,8 +751,927 @@ title="Open an issue"
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ | <a href="#X"><strong>X</strong></a>
+ | <a href="#Y"><strong>Y</strong></a>
  
 </div>
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseData._as_ndarray_from_pandas">_as_ndarray_from_pandas() (sandbox.datamodel.base.BaseData static method)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseData._as_pandas_from_ndarray">_as_pandas_from_ndarray() (sandbox.datamodel.base.BaseData static method)</a>
+</li>
+      <li><a href="api/sandbox/tsa/base/index.html#sandbox.tsa.base._BaseModelMeta">_BaseModelMeta (class in sandbox.tsa.base)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData._both_X_y_are_none">_both_X_y_are_none() (sandbox.datamodel.base.BaseModelData static method)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData._check_X_or_y_is_not_none">_check_X_or_y_is_not_none() (sandbox.datamodel.base.BaseModelData method)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData._check_X_y_length">_check_X_y_length() (sandbox.datamodel.base.BaseModelData static method)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData._convert_ndarray">_convert_ndarray() (sandbox.datamodel.base.BaseModelData method)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData._convert_pandas">_convert_pandas() (sandbox.datamodel.base.BaseModelData method)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._endog">_endog (sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult attribute)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._exog">_exog (sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult attribute)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._freq_seasonal">_freq_seasonal (sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult attribute)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base._get_1d_arr">_get_1d_arr() (in module sandbox.datamodel.base)</a>
+
+      <ul>
+        <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseData._get_1d_arr">(sandbox.datamodel.base.BaseData static method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base._get_2d_arr">_get_2d_arr() (in module sandbox.datamodel.base)</a>
+
+      <ul>
+        <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseData._get_2d_arr">(sandbox.datamodel.base.BaseData static method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/sandbox/datasets/air_passengers/data/index.html#sandbox.datasets.air_passengers.data._get_data">_get_data() (in module sandbox.datasets.air_passengers.data)</a>
+
+      <ul>
+        <li><a href="api/sandbox/datasets/blsallfood/data/index.html#sandbox.datasets.blsallfood.data._get_data">(in module sandbox.datasets.blsallfood.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/hakusan/data/index.html#sandbox.datasets.hakusan.data._get_data">(in module sandbox.datasets.hakusan.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/maxtemp/data/index.html#sandbox.datasets.maxtemp.data._get_data">(in module sandbox.datasets.maxtemp.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/mye1f/data/index.html#sandbox.datasets.mye1f.data._get_data">(in module sandbox.datasets.mye1f.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/nikkei225/data/index.html#sandbox.datasets.nikkei225.data._get_data">(in module sandbox.datasets.nikkei225.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/rtf/data/index.html#sandbox.datasets.rtf.data._get_data">(in module sandbox.datasets.rtf.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/whard/data/index.html#sandbox.datasets.whard.data._get_data">(in module sandbox.datasets.whard.data)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseData._get_index">_get_index() (sandbox.datamodel.base.BaseData static method)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData._get_index_from_X_and_y">_get_index_from_X_and_y() (sandbox.datamodel.base.BaseModelData method)</a>
+</li>
+      <li><a href="api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel._get_model_result">_get_model_result() (sandbox.tsa.sarimax.SARIMAXModel method)</a>
+
+      <ul>
+        <li><a href="api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel._get_model_result">(sandbox.tsa.ssm.LinearGaussianStateSpaceModel method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel._get_prediction">_get_prediction() (sandbox.tsa.sarimax.SARIMAXModel method)</a>
+
+      <ul>
+        <li><a href="api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel._get_prediction">(sandbox.tsa.ssm.LinearGaussianStateSpaceModel method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/sandbox/datasets/air_passengers/data/index.html#sandbox.datasets.air_passengers.data._process_data">_process_data() (in module sandbox.datasets.air_passengers.data)</a>
+
+      <ul>
+        <li><a href="api/sandbox/datasets/blsallfood/data/index.html#sandbox.datasets.blsallfood.data._process_data">(in module sandbox.datasets.blsallfood.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/hakusan/data/index.html#sandbox.datasets.hakusan.data._process_data">(in module sandbox.datasets.hakusan.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/maxtemp/data/index.html#sandbox.datasets.maxtemp.data._process_data">(in module sandbox.datasets.maxtemp.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/mye1f/data/index.html#sandbox.datasets.mye1f.data._process_data">(in module sandbox.datasets.mye1f.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/nikkei225/data/index.html#sandbox.datasets.nikkei225.data._process_data">(in module sandbox.datasets.nikkei225.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/rtf/data/index.html#sandbox.datasets.rtf.data._process_data">(in module sandbox.datasets.rtf.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/whard/data/index.html#sandbox.datasets.whard.data._process_data">(in module sandbox.datasets.whard.data)</a>
+</li>
+      </ul></li>
+      <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._reg">_reg (sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult attribute)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate">_simulate() (sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator method)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_exog">_simulate_exog() (sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator method)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_seasonal_term">_simulate_seasonal_term() (sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator method)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_trend_term">_simulate_trend_term() (sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator method)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._trend">_trend (sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseData">BaseData (class in sandbox.datamodel.base)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseDataSimulator">BaseDataSimulator (class in sandbox.datamodel.base)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData">BaseModelData (class in sandbox.datamodel.base)</a>
+</li>
+      <li><a href="api/sandbox/tsa/base/index.html#sandbox.tsa.base.BaseTimeSeriesModel">BaseTimeSeriesModel (class in sandbox.tsa.base)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.check_for_compatible_data">check_for_compatible_data() (in module sandbox.datamodel.base)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData.common_index">common_index (sandbox.datamodel.base.BaseModelData property)</a>
+
+      <ul>
+        <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.common_index">(sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult property)</a>
+</li>
+      </ul></li>
+      <li><a href="api/sandbox/tsa/base/index.html#sandbox.tsa.base.BaseTimeSeriesModel.conf_int">conf_int() (sandbox.tsa.base.BaseTimeSeriesModel method)</a>
+
+      <ul>
+        <li><a href="api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel.conf_int">(sandbox.tsa.sarimax.SARIMAXModel method)</a>
+</li>
+        <li><a href="api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.conf_int">(sandbox.tsa.ssm.LinearGaussianStateSpaceModel method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData.convert_ndarray">convert_ndarray() (sandbox.datamodel.base.BaseModelData method)</a>
+
+      <ul>
+        <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.convert_ndarray">(sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData.convert_pandas">convert_pandas() (sandbox.datamodel.base.BaseModelData method)</a>
+
+      <ul>
+        <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.convert_pandas">(sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/sandbox/datasets/air_passengers/index.html#sandbox.datasets.air_passengers.COPYRIGHT">COPYRIGHT (in module sandbox.datasets.air_passengers)</a>
+
+      <ul>
+        <li><a href="api/sandbox/datasets/air_passengers/data/index.html#sandbox.datasets.air_passengers.data.COPYRIGHT">(in module sandbox.datasets.air_passengers.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/blsallfood/index.html#sandbox.datasets.blsallfood.COPYRIGHT">(in module sandbox.datasets.blsallfood)</a>
+</li>
+        <li><a href="api/sandbox/datasets/blsallfood/data/index.html#sandbox.datasets.blsallfood.data.COPYRIGHT">(in module sandbox.datasets.blsallfood.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/hakusan/index.html#sandbox.datasets.hakusan.COPYRIGHT">(in module sandbox.datasets.hakusan)</a>
+</li>
+        <li><a href="api/sandbox/datasets/hakusan/data/index.html#sandbox.datasets.hakusan.data.COPYRIGHT">(in module sandbox.datasets.hakusan.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/maxtemp/index.html#sandbox.datasets.maxtemp.COPYRIGHT">(in module sandbox.datasets.maxtemp)</a>
+</li>
+        <li><a href="api/sandbox/datasets/maxtemp/data/index.html#sandbox.datasets.maxtemp.data.COPYRIGHT">(in module sandbox.datasets.maxtemp.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/mye1f/index.html#sandbox.datasets.mye1f.COPYRIGHT">(in module sandbox.datasets.mye1f)</a>
+</li>
+        <li><a href="api/sandbox/datasets/mye1f/data/index.html#sandbox.datasets.mye1f.data.COPYRIGHT">(in module sandbox.datasets.mye1f.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/nikkei225/index.html#sandbox.datasets.nikkei225.COPYRIGHT">(in module sandbox.datasets.nikkei225)</a>
+</li>
+        <li><a href="api/sandbox/datasets/nikkei225/data/index.html#sandbox.datasets.nikkei225.data.COPYRIGHT">(in module sandbox.datasets.nikkei225.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/rtf/index.html#sandbox.datasets.rtf.COPYRIGHT">(in module sandbox.datasets.rtf)</a>
+</li>
+        <li><a href="api/sandbox/datasets/rtf/data/index.html#sandbox.datasets.rtf.data.COPYRIGHT">(in module sandbox.datasets.rtf.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/whard/index.html#sandbox.datasets.whard.COPYRIGHT">(in module sandbox.datasets.whard)</a>
+</li>
+        <li><a href="api/sandbox/datasets/whard/data/index.html#sandbox.datasets.whard.data.COPYRIGHT">(in module sandbox.datasets.whard.data)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/tests/datasets/test_utils/index.html#sandbox.tests.datasets.test_utils.data">data (in module sandbox.tests.datasets.test_utils)</a>
+</li>
+      <li><a href="api/sandbox/datasets/utils/index.html#sandbox.datasets.utils.Dataset">Dataset (class in sandbox.datasets.utils)</a>
+</li>
+      <li><a href="api/sandbox/datasets/air_passengers/index.html#sandbox.datasets.air_passengers.DESCRIPTION">DESCRIPTION (in module sandbox.datasets.air_passengers)</a>
+
+      <ul>
+        <li><a href="api/sandbox/datasets/air_passengers/data/index.html#sandbox.datasets.air_passengers.data.DESCRIPTION">(in module sandbox.datasets.air_passengers.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/blsallfood/index.html#sandbox.datasets.blsallfood.DESCRIPTION">(in module sandbox.datasets.blsallfood)</a>
+</li>
+        <li><a href="api/sandbox/datasets/blsallfood/data/index.html#sandbox.datasets.blsallfood.data.DESCRIPTION">(in module sandbox.datasets.blsallfood.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/hakusan/index.html#sandbox.datasets.hakusan.DESCRIPTION">(in module sandbox.datasets.hakusan)</a>
+</li>
+        <li><a href="api/sandbox/datasets/hakusan/data/index.html#sandbox.datasets.hakusan.data.DESCRIPTION">(in module sandbox.datasets.hakusan.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/maxtemp/index.html#sandbox.datasets.maxtemp.DESCRIPTION">(in module sandbox.datasets.maxtemp)</a>
+</li>
+        <li><a href="api/sandbox/datasets/maxtemp/data/index.html#sandbox.datasets.maxtemp.data.DESCRIPTION">(in module sandbox.datasets.maxtemp.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/mye1f/index.html#sandbox.datasets.mye1f.DESCRIPTION">(in module sandbox.datasets.mye1f)</a>
+</li>
+        <li><a href="api/sandbox/datasets/mye1f/data/index.html#sandbox.datasets.mye1f.data.DESCRIPTION">(in module sandbox.datasets.mye1f.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/nikkei225/index.html#sandbox.datasets.nikkei225.DESCRIPTION">(in module sandbox.datasets.nikkei225)</a>
+</li>
+        <li><a href="api/sandbox/datasets/nikkei225/data/index.html#sandbox.datasets.nikkei225.data.DESCRIPTION">(in module sandbox.datasets.nikkei225.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/rtf/index.html#sandbox.datasets.rtf.DESCRIPTION">(in module sandbox.datasets.rtf)</a>
+</li>
+        <li><a href="api/sandbox/datasets/rtf/data/index.html#sandbox.datasets.rtf.data.DESCRIPTION">(in module sandbox.datasets.rtf.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/whard/index.html#sandbox.datasets.whard.DESCRIPTION">(in module sandbox.datasets.whard)</a>
+</li>
+        <li><a href="api/sandbox/datasets/whard/data/index.html#sandbox.datasets.whard.data.DESCRIPTION">(in module sandbox.datasets.whard.data)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/tests/datasets/test_utils/index.html#sandbox.tests.datasets.test_utils.endog">endog (in module sandbox.tests.datasets.test_utils)</a>
+
+      <ul>
+        <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.endog">(sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult property)</a>
+</li>
+      </ul></li>
+      <li><a href="api/sandbox/tests/datasets/test_utils/index.html#sandbox.tests.datasets.test_utils.endog_name">endog_name (in module sandbox.tests.datasets.test_utils)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/tests/datasets/test_utils/index.html#sandbox.tests.datasets.test_utils.exog">exog (in module sandbox.tests.datasets.test_utils)</a>
+
+      <ul>
+        <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.exog">(sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult property)</a>
+</li>
+      </ul></li>
+      <li><a href="api/sandbox/tests/datasets/test_utils/index.html#sandbox.tests.datasets.test_utils.exog_name">exog_name (in module sandbox.tests.datasets.test_utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/tsa/base/index.html#sandbox.tsa.base.BaseTimeSeriesModel.fit">fit() (sandbox.tsa.base.BaseTimeSeriesModel method)</a>
+
+      <ul>
+        <li><a href="api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel.fit">(sandbox.tsa.sarimax.SARIMAXModel method)</a>
+</li>
+        <li><a href="api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.fit">(sandbox.tsa.ssm.LinearGaussianStateSpaceModel method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.freq_seasonal">freq_seasonal (sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/utils/validation/index.html#sandbox.utils.validation.is_arraylike">is_arraylike() (in module sandbox.utils.validation)</a>
+</li>
+      <li><a href="api/sandbox/utils/validation/index.html#sandbox.utils.validation.is_dataframe">is_dataframe() (in module sandbox.utils.validation)</a>
+</li>
+      <li><a href="api/sandbox/utils/validation/index.html#sandbox.utils.validation.is_dataframe_or_series">is_dataframe_or_series() (in module sandbox.utils.validation)</a>
+</li>
+      <li><a href="api/sandbox/utils/validation/index.html#sandbox.utils.validation.is_index">is_index() (in module sandbox.utils.validation)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/utils/validation/index.html#sandbox.utils.validation.is_ndarray">is_ndarray() (in module sandbox.utils.validation)</a>
+</li>
+      <li><a href="api/sandbox/utils/validation/index.html#sandbox.utils.validation.is_series">is_series() (in module sandbox.utils.validation)</a>
+</li>
+      <li><a href="api/sandbox/utils/validation/index.html#sandbox.utils.validation.is_using_ndarray">is_using_ndarray() (in module sandbox.utils.validation)</a>
+</li>
+      <li><a href="api/sandbox/utils/validation/index.html#sandbox.utils.validation.is_using_padnas">is_using_padnas() (in module sandbox.utils.validation)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel">LinearGaussianStateSpaceModel (class in sandbox.tsa.ssm)</a>
+</li>
+      <li><a href="api/sandbox/datasets/air_passengers/index.html#sandbox.datasets.air_passengers.load">load() (in module sandbox.datasets.air_passengers)</a>
+
+      <ul>
+        <li><a href="api/sandbox/datasets/air_passengers/data/index.html#sandbox.datasets.air_passengers.data.load">(in module sandbox.datasets.air_passengers.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/blsallfood/index.html#sandbox.datasets.blsallfood.load">(in module sandbox.datasets.blsallfood)</a>
+</li>
+        <li><a href="api/sandbox/datasets/blsallfood/data/index.html#sandbox.datasets.blsallfood.data.load">(in module sandbox.datasets.blsallfood.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/hakusan/index.html#sandbox.datasets.hakusan.load">(in module sandbox.datasets.hakusan)</a>
+</li>
+        <li><a href="api/sandbox/datasets/hakusan/data/index.html#sandbox.datasets.hakusan.data.load">(in module sandbox.datasets.hakusan.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/maxtemp/index.html#sandbox.datasets.maxtemp.load">(in module sandbox.datasets.maxtemp)</a>
+</li>
+        <li><a href="api/sandbox/datasets/maxtemp/data/index.html#sandbox.datasets.maxtemp.data.load">(in module sandbox.datasets.maxtemp.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/mye1f/index.html#sandbox.datasets.mye1f.load">(in module sandbox.datasets.mye1f)</a>
+</li>
+        <li><a href="api/sandbox/datasets/mye1f/data/index.html#sandbox.datasets.mye1f.data.load">(in module sandbox.datasets.mye1f.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/nikkei225/index.html#sandbox.datasets.nikkei225.load">(in module sandbox.datasets.nikkei225)</a>
+</li>
+        <li><a href="api/sandbox/datasets/nikkei225/data/index.html#sandbox.datasets.nikkei225.data.load">(in module sandbox.datasets.nikkei225.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/rtf/index.html#sandbox.datasets.rtf.load">(in module sandbox.datasets.rtf)</a>
+</li>
+        <li><a href="api/sandbox/datasets/rtf/data/index.html#sandbox.datasets.rtf.data.load">(in module sandbox.datasets.rtf.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/whard/index.html#sandbox.datasets.whard.load">(in module sandbox.datasets.whard)</a>
+</li>
+        <li><a href="api/sandbox/datasets/whard/data/index.html#sandbox.datasets.whard.data.load">(in module sandbox.datasets.whard.data)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/datasets/utils/index.html#sandbox.datasets.utils.load_csv">load_csv() (in module sandbox.datasets.utils)</a>
+</li>
+      <li><a href="api/sandbox/datasets/utils/index.html#sandbox.datasets.utils.load_dataset">load_dataset() (in module sandbox.datasets.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/metrics/score/index.html#sandbox.metrics.score.mape_score">mape_score() (in module sandbox.metrics.score)</a>
+</li>
+      <li><a href="api/sandbox/metrics/score/index.html#sandbox.metrics.score.mean_absolute_percentage_error">mean_absolute_percentage_error() (in module sandbox.metrics.score)</a>
+</li>
+      <li>
+    module
+
+      <ul>
+        <li><a href="api/sandbox/index.html#module-sandbox">sandbox</a>
+</li>
+        <li><a href="api/sandbox/datamodel/index.html#module-sandbox.datamodel">sandbox.datamodel</a>
+</li>
+        <li><a href="api/sandbox/datamodel/base/index.html#module-sandbox.datamodel.base">sandbox.datamodel.base</a>
+</li>
+        <li><a href="api/sandbox/datamodel/ts_datamodel/index.html#module-sandbox.datamodel.ts_datamodel">sandbox.datamodel.ts_datamodel</a>
+</li>
+        <li><a href="api/sandbox/datamodel/ts_simulator/index.html#module-sandbox.datamodel.ts_simulator">sandbox.datamodel.ts_simulator</a>
+</li>
+        <li><a href="api/sandbox/datasets/index.html#module-sandbox.datasets">sandbox.datasets</a>
+</li>
+        <li><a href="api/sandbox/datasets/air_passengers/index.html#module-sandbox.datasets.air_passengers">sandbox.datasets.air_passengers</a>
+</li>
+        <li><a href="api/sandbox/datasets/air_passengers/data/index.html#module-sandbox.datasets.air_passengers.data">sandbox.datasets.air_passengers.data</a>
+</li>
+        <li><a href="api/sandbox/datasets/blsallfood/index.html#module-sandbox.datasets.blsallfood">sandbox.datasets.blsallfood</a>
+</li>
+        <li><a href="api/sandbox/datasets/blsallfood/data/index.html#module-sandbox.datasets.blsallfood.data">sandbox.datasets.blsallfood.data</a>
+</li>
+        <li><a href="api/sandbox/datasets/hakusan/index.html#module-sandbox.datasets.hakusan">sandbox.datasets.hakusan</a>
+</li>
+        <li><a href="api/sandbox/datasets/hakusan/data/index.html#module-sandbox.datasets.hakusan.data">sandbox.datasets.hakusan.data</a>
+</li>
+        <li><a href="api/sandbox/datasets/maxtemp/index.html#module-sandbox.datasets.maxtemp">sandbox.datasets.maxtemp</a>
+</li>
+        <li><a href="api/sandbox/datasets/maxtemp/data/index.html#module-sandbox.datasets.maxtemp.data">sandbox.datasets.maxtemp.data</a>
+</li>
+        <li><a href="api/sandbox/datasets/mye1f/index.html#module-sandbox.datasets.mye1f">sandbox.datasets.mye1f</a>
+</li>
+        <li><a href="api/sandbox/datasets/mye1f/data/index.html#module-sandbox.datasets.mye1f.data">sandbox.datasets.mye1f.data</a>
+</li>
+        <li><a href="api/sandbox/datasets/nikkei225/index.html#module-sandbox.datasets.nikkei225">sandbox.datasets.nikkei225</a>
+</li>
+        <li><a href="api/sandbox/datasets/nikkei225/data/index.html#module-sandbox.datasets.nikkei225.data">sandbox.datasets.nikkei225.data</a>
+</li>
+        <li><a href="api/sandbox/datasets/rtf/index.html#module-sandbox.datasets.rtf">sandbox.datasets.rtf</a>
+</li>
+        <li><a href="api/sandbox/datasets/rtf/data/index.html#module-sandbox.datasets.rtf.data">sandbox.datasets.rtf.data</a>
+</li>
+        <li><a href="api/sandbox/datasets/utils/index.html#module-sandbox.datasets.utils">sandbox.datasets.utils</a>
+</li>
+        <li><a href="api/sandbox/datasets/whard/index.html#module-sandbox.datasets.whard">sandbox.datasets.whard</a>
+</li>
+        <li><a href="api/sandbox/datasets/whard/data/index.html#module-sandbox.datasets.whard.data">sandbox.datasets.whard.data</a>
+</li>
+        <li><a href="api/sandbox/metrics/index.html#module-sandbox.metrics">sandbox.metrics</a>
+</li>
+        <li><a href="api/sandbox/metrics/score/index.html#module-sandbox.metrics.score">sandbox.metrics.score</a>
+</li>
+        <li><a href="api/sandbox/tests/index.html#module-sandbox.tests">sandbox.tests</a>
+</li>
+        <li><a href="api/sandbox/tests/datasets/index.html#module-sandbox.tests.datasets">sandbox.tests.datasets</a>
+</li>
+        <li><a href="api/sandbox/tests/datasets/test_utils/index.html#module-sandbox.tests.datasets.test_utils">sandbox.tests.datasets.test_utils</a>
+</li>
+        <li><a href="api/sandbox/tsa/index.html#module-sandbox.tsa">sandbox.tsa</a>
+</li>
+        <li><a href="api/sandbox/tsa/base/index.html#module-sandbox.tsa.base">sandbox.tsa.base</a>
+</li>
+        <li><a href="api/sandbox/tsa/sarimax/index.html#module-sandbox.tsa.sarimax">sandbox.tsa.sarimax</a>
+</li>
+        <li><a href="api/sandbox/tsa/ssm/index.html#module-sandbox.tsa.ssm">sandbox.tsa.ssm</a>
+</li>
+        <li><a href="api/sandbox/utils/index.html#module-sandbox.utils">sandbox.utils</a>
+</li>
+        <li><a href="api/sandbox/utils/validation/index.html#module-sandbox.utils.validation">sandbox.utils.validation</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/tests/datasets/test_utils/index.html#sandbox.tests.datasets.test_utils.names">names (in module sandbox.tests.datasets.test_utils)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData.nobs">nobs (sandbox.datamodel.base.BaseModelData property)</a>
+
+      <ul>
+        <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.nobs">(sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult property)</a>
+</li>
+      </ul></li>
+      <li><a href="api/sandbox/datasets/air_passengers/index.html#sandbox.datasets.air_passengers.NOTE">NOTE (in module sandbox.datasets.air_passengers)</a>
+
+      <ul>
+        <li><a href="api/sandbox/datasets/air_passengers/data/index.html#sandbox.datasets.air_passengers.data.NOTE">(in module sandbox.datasets.air_passengers.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/blsallfood/index.html#sandbox.datasets.blsallfood.NOTE">(in module sandbox.datasets.blsallfood)</a>
+</li>
+        <li><a href="api/sandbox/datasets/blsallfood/data/index.html#sandbox.datasets.blsallfood.data.NOTE">(in module sandbox.datasets.blsallfood.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/hakusan/index.html#sandbox.datasets.hakusan.NOTE">(in module sandbox.datasets.hakusan)</a>
+</li>
+        <li><a href="api/sandbox/datasets/hakusan/data/index.html#sandbox.datasets.hakusan.data.NOTE">(in module sandbox.datasets.hakusan.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/maxtemp/index.html#sandbox.datasets.maxtemp.NOTE">(in module sandbox.datasets.maxtemp)</a>
+</li>
+        <li><a href="api/sandbox/datasets/maxtemp/data/index.html#sandbox.datasets.maxtemp.data.NOTE">(in module sandbox.datasets.maxtemp.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/mye1f/index.html#sandbox.datasets.mye1f.NOTE">(in module sandbox.datasets.mye1f)</a>
+</li>
+        <li><a href="api/sandbox/datasets/mye1f/data/index.html#sandbox.datasets.mye1f.data.NOTE">(in module sandbox.datasets.mye1f.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/nikkei225/index.html#sandbox.datasets.nikkei225.NOTE">(in module sandbox.datasets.nikkei225)</a>
+</li>
+        <li><a href="api/sandbox/datasets/nikkei225/data/index.html#sandbox.datasets.nikkei225.data.NOTE">(in module sandbox.datasets.nikkei225.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/rtf/index.html#sandbox.datasets.rtf.NOTE">(in module sandbox.datasets.rtf)</a>
+</li>
+        <li><a href="api/sandbox/datasets/rtf/data/index.html#sandbox.datasets.rtf.data.NOTE">(in module sandbox.datasets.rtf.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/whard/index.html#sandbox.datasets.whard.NOTE">(in module sandbox.datasets.whard)</a>
+</li>
+        <li><a href="api/sandbox/datasets/whard/data/index.html#sandbox.datasets.whard.data.NOTE">(in module sandbox.datasets.whard.data)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/tsa/base/index.html#sandbox.tsa.base.BaseTimeSeriesModel.predict">predict() (sandbox.tsa.base.BaseTimeSeriesModel method)</a>
+
+      <ul>
+        <li><a href="api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel.predict">(sandbox.tsa.sarimax.SARIMAXModel method)</a>
+</li>
+        <li><a href="api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.predict">(sandbox.tsa.ssm.LinearGaussianStateSpaceModel method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/metrics/score/index.html#sandbox.metrics.score.r2_score">r2_score() (in module sandbox.metrics.score)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.reg">reg (sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    sandbox
+
+      <ul>
+        <li><a href="api/sandbox/index.html#module-sandbox">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datamodel
+
+      <ul>
+        <li><a href="api/sandbox/datamodel/index.html#module-sandbox.datamodel">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datamodel.base
+
+      <ul>
+        <li><a href="api/sandbox/datamodel/base/index.html#module-sandbox.datamodel.base">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datamodel.ts_datamodel
+
+      <ul>
+        <li><a href="api/sandbox/datamodel/ts_datamodel/index.html#module-sandbox.datamodel.ts_datamodel">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datamodel.ts_simulator
+
+      <ul>
+        <li><a href="api/sandbox/datamodel/ts_simulator/index.html#module-sandbox.datamodel.ts_simulator">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets
+
+      <ul>
+        <li><a href="api/sandbox/datasets/index.html#module-sandbox.datasets">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets.air_passengers
+
+      <ul>
+        <li><a href="api/sandbox/datasets/air_passengers/index.html#module-sandbox.datasets.air_passengers">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets.air_passengers.data
+
+      <ul>
+        <li><a href="api/sandbox/datasets/air_passengers/data/index.html#module-sandbox.datasets.air_passengers.data">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets.blsallfood
+
+      <ul>
+        <li><a href="api/sandbox/datasets/blsallfood/index.html#module-sandbox.datasets.blsallfood">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets.blsallfood.data
+
+      <ul>
+        <li><a href="api/sandbox/datasets/blsallfood/data/index.html#module-sandbox.datasets.blsallfood.data">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets.hakusan
+
+      <ul>
+        <li><a href="api/sandbox/datasets/hakusan/index.html#module-sandbox.datasets.hakusan">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets.hakusan.data
+
+      <ul>
+        <li><a href="api/sandbox/datasets/hakusan/data/index.html#module-sandbox.datasets.hakusan.data">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets.maxtemp
+
+      <ul>
+        <li><a href="api/sandbox/datasets/maxtemp/index.html#module-sandbox.datasets.maxtemp">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets.maxtemp.data
+
+      <ul>
+        <li><a href="api/sandbox/datasets/maxtemp/data/index.html#module-sandbox.datasets.maxtemp.data">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets.mye1f
+
+      <ul>
+        <li><a href="api/sandbox/datasets/mye1f/index.html#module-sandbox.datasets.mye1f">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets.mye1f.data
+
+      <ul>
+        <li><a href="api/sandbox/datasets/mye1f/data/index.html#module-sandbox.datasets.mye1f.data">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets.nikkei225
+
+      <ul>
+        <li><a href="api/sandbox/datasets/nikkei225/index.html#module-sandbox.datasets.nikkei225">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets.nikkei225.data
+
+      <ul>
+        <li><a href="api/sandbox/datasets/nikkei225/data/index.html#module-sandbox.datasets.nikkei225.data">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets.rtf
+
+      <ul>
+        <li><a href="api/sandbox/datasets/rtf/index.html#module-sandbox.datasets.rtf">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets.rtf.data
+
+      <ul>
+        <li><a href="api/sandbox/datasets/rtf/data/index.html#module-sandbox.datasets.rtf.data">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets.utils
+
+      <ul>
+        <li><a href="api/sandbox/datasets/utils/index.html#module-sandbox.datasets.utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets.whard
+
+      <ul>
+        <li><a href="api/sandbox/datasets/whard/index.html#module-sandbox.datasets.whard">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.datasets.whard.data
+
+      <ul>
+        <li><a href="api/sandbox/datasets/whard/data/index.html#module-sandbox.datasets.whard.data">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    sandbox.metrics
+
+      <ul>
+        <li><a href="api/sandbox/metrics/index.html#module-sandbox.metrics">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.metrics.score
+
+      <ul>
+        <li><a href="api/sandbox/metrics/score/index.html#module-sandbox.metrics.score">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.tests
+
+      <ul>
+        <li><a href="api/sandbox/tests/index.html#module-sandbox.tests">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.tests.datasets
+
+      <ul>
+        <li><a href="api/sandbox/tests/datasets/index.html#module-sandbox.tests.datasets">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.tests.datasets.test_utils
+
+      <ul>
+        <li><a href="api/sandbox/tests/datasets/test_utils/index.html#module-sandbox.tests.datasets.test_utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.tsa
+
+      <ul>
+        <li><a href="api/sandbox/tsa/index.html#module-sandbox.tsa">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.tsa.base
+
+      <ul>
+        <li><a href="api/sandbox/tsa/base/index.html#module-sandbox.tsa.base">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.tsa.sarimax
+
+      <ul>
+        <li><a href="api/sandbox/tsa/sarimax/index.html#module-sandbox.tsa.sarimax">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.tsa.ssm
+
+      <ul>
+        <li><a href="api/sandbox/tsa/ssm/index.html#module-sandbox.tsa.ssm">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.utils
+
+      <ul>
+        <li><a href="api/sandbox/utils/index.html#module-sandbox.utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.utils.validation
+
+      <ul>
+        <li><a href="api/sandbox/utils/validation/index.html#module-sandbox.utils.validation">module</a>
+</li>
+      </ul></li>
+      <li><a href="api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel">SARIMAXModel (class in sandbox.tsa.sarimax)</a>
+</li>
+      <li><a href="api/sandbox/tsa/base/index.html#sandbox.tsa.base.BaseTimeSeriesModel.score">score() (sandbox.tsa.base.BaseTimeSeriesModel method)</a>
+
+      <ul>
+        <li><a href="api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel.score">(sandbox.tsa.sarimax.SARIMAXModel method)</a>
+</li>
+        <li><a href="api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.score">(sandbox.tsa.ssm.LinearGaussianStateSpaceModel method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator.simulate">simulate() (sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator method)</a>
+</li>
+      <li><a href="api/sandbox/datasets/air_passengers/index.html#sandbox.datasets.air_passengers.SOURCE">SOURCE (in module sandbox.datasets.air_passengers)</a>
+
+      <ul>
+        <li><a href="api/sandbox/datasets/air_passengers/data/index.html#sandbox.datasets.air_passengers.data.SOURCE">(in module sandbox.datasets.air_passengers.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/blsallfood/index.html#sandbox.datasets.blsallfood.SOURCE">(in module sandbox.datasets.blsallfood)</a>
+</li>
+        <li><a href="api/sandbox/datasets/blsallfood/data/index.html#sandbox.datasets.blsallfood.data.SOURCE">(in module sandbox.datasets.blsallfood.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/hakusan/index.html#sandbox.datasets.hakusan.SOURCE">(in module sandbox.datasets.hakusan)</a>
+</li>
+        <li><a href="api/sandbox/datasets/hakusan/data/index.html#sandbox.datasets.hakusan.data.SOURCE">(in module sandbox.datasets.hakusan.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/maxtemp/index.html#sandbox.datasets.maxtemp.SOURCE">(in module sandbox.datasets.maxtemp)</a>
+</li>
+        <li><a href="api/sandbox/datasets/maxtemp/data/index.html#sandbox.datasets.maxtemp.data.SOURCE">(in module sandbox.datasets.maxtemp.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/mye1f/index.html#sandbox.datasets.mye1f.SOURCE">(in module sandbox.datasets.mye1f)</a>
+</li>
+        <li><a href="api/sandbox/datasets/mye1f/data/index.html#sandbox.datasets.mye1f.data.SOURCE">(in module sandbox.datasets.mye1f.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/nikkei225/index.html#sandbox.datasets.nikkei225.SOURCE">(in module sandbox.datasets.nikkei225)</a>
+</li>
+        <li><a href="api/sandbox/datasets/nikkei225/data/index.html#sandbox.datasets.nikkei225.data.SOURCE">(in module sandbox.datasets.nikkei225.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/rtf/index.html#sandbox.datasets.rtf.SOURCE">(in module sandbox.datasets.rtf)</a>
+</li>
+        <li><a href="api/sandbox/datasets/rtf/data/index.html#sandbox.datasets.rtf.data.SOURCE">(in module sandbox.datasets.rtf.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/whard/index.html#sandbox.datasets.whard.SOURCE">(in module sandbox.datasets.whard)</a>
+</li>
+        <li><a href="api/sandbox/datasets/whard/data/index.html#sandbox.datasets.whard.data.SOURCE">(in module sandbox.datasets.whard.data)</a>
+</li>
+      </ul></li>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.SupervisedModelData.split_index_and_X_from_X_pred">split_index_and_X_from_X_pred() (sandbox.datamodel.base.SupervisedModelData method)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.SupervisedModelData">SupervisedModelData (class in sandbox.datamodel.base)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/tests/datasets/test_utils/index.html#sandbox.tests.datasets.test_utils.test_base_file">test_base_file (in module sandbox.tests.datasets.test_utils)</a>
+</li>
+      <li><a href="api/sandbox/tests/datasets/test_utils/index.html#sandbox.tests.datasets.test_utils.test_csv_name">test_csv_name (in module sandbox.tests.datasets.test_utils)</a>
+</li>
+      <li><a href="api/sandbox/tests/datasets/test_utils/index.html#sandbox.tests.datasets.test_utils.TestUtils.test_dataset">test_dataset() (sandbox.tests.datasets.test_utils.TestUtils method)</a>
+</li>
+      <li><a href="api/sandbox/tests/datasets/test_utils/index.html#sandbox.tests.datasets.test_utils.TestUtils.test_load_csv">test_load_csv() (sandbox.tests.datasets.test_utils.TestUtils method)</a>
+</li>
+      <li><a href="api/sandbox/tests/datasets/test_utils/index.html#sandbox.tests.datasets.test_utils.TestUtils.test_load_dataset">test_load_dataset() (sandbox.tests.datasets.test_utils.TestUtils method)</a>
+</li>
+      <li><a href="api/sandbox/tests/datasets/test_utils/index.html#sandbox.tests.datasets.test_utils.TestUtils">TestUtils (class in sandbox.tests.datasets.test_utils)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/ts_datamodel/index.html#sandbox.datamodel.ts_datamodel.TimeSeriesModelData">TimeSeriesModelData (class in sandbox.datamodel.ts_datamodel)</a>
+</li>
+      <li><a href="api/sandbox/datasets/air_passengers/index.html#sandbox.datasets.air_passengers.TITLE">TITLE (in module sandbox.datasets.air_passengers)</a>
+
+      <ul>
+        <li><a href="api/sandbox/datasets/air_passengers/data/index.html#sandbox.datasets.air_passengers.data.TITLE">(in module sandbox.datasets.air_passengers.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/blsallfood/index.html#sandbox.datasets.blsallfood.TITLE">(in module sandbox.datasets.blsallfood)</a>
+</li>
+        <li><a href="api/sandbox/datasets/blsallfood/data/index.html#sandbox.datasets.blsallfood.data.TITLE">(in module sandbox.datasets.blsallfood.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/hakusan/index.html#sandbox.datasets.hakusan.TITLE">(in module sandbox.datasets.hakusan)</a>
+</li>
+        <li><a href="api/sandbox/datasets/hakusan/data/index.html#sandbox.datasets.hakusan.data.TITLE">(in module sandbox.datasets.hakusan.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/maxtemp/index.html#sandbox.datasets.maxtemp.TITLE">(in module sandbox.datasets.maxtemp)</a>
+</li>
+        <li><a href="api/sandbox/datasets/maxtemp/data/index.html#sandbox.datasets.maxtemp.data.TITLE">(in module sandbox.datasets.maxtemp.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/mye1f/index.html#sandbox.datasets.mye1f.TITLE">(in module sandbox.datasets.mye1f)</a>
+</li>
+        <li><a href="api/sandbox/datasets/mye1f/data/index.html#sandbox.datasets.mye1f.data.TITLE">(in module sandbox.datasets.mye1f.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/nikkei225/index.html#sandbox.datasets.nikkei225.TITLE">(in module sandbox.datasets.nikkei225)</a>
+</li>
+        <li><a href="api/sandbox/datasets/nikkei225/data/index.html#sandbox.datasets.nikkei225.data.TITLE">(in module sandbox.datasets.nikkei225.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/rtf/index.html#sandbox.datasets.rtf.TITLE">(in module sandbox.datasets.rtf)</a>
+</li>
+        <li><a href="api/sandbox/datasets/rtf/data/index.html#sandbox.datasets.rtf.data.TITLE">(in module sandbox.datasets.rtf.data)</a>
+</li>
+        <li><a href="api/sandbox/datasets/whard/index.html#sandbox.datasets.whard.TITLE">(in module sandbox.datasets.whard)</a>
+</li>
+        <li><a href="api/sandbox/datasets/whard/data/index.html#sandbox.datasets.whard.data.TITLE">(in module sandbox.datasets.whard.data)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.trend">trend (sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator">UnobservedComponentsSimulator (class in sandbox.datamodel.ts_simulator)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult">UnobservedComponentsSimulatorResult (class in sandbox.datamodel.ts_simulator)</a>
+</li>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.UnsupervisedModelData">UnsupervisedModelData (class in sandbox.datamodel.base)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/tsa/base/index.html#sandbox.tsa.base._BaseModelMeta.wrapper_fit">wrapper_fit() (sandbox.tsa.base._BaseModelMeta class method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/tsa/base/index.html#sandbox.tsa.base._BaseModelMeta.wrapper_predict">wrapper_predict() (sandbox.tsa.base._BaseModelMeta class method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="X">X</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData.X_name">X_name (sandbox.datamodel.base.BaseModelData property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Y">Y</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData.y_name">y_name (sandbox.datamodel.base.BaseModelData property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 
 
               </div>

@@ -2,776 +2,1077 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-    <title>ARMAモデル系 &#8212; Analytics Study Blog</title>
-    
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
-    <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>ARMAモデル系 — Analytics Study Blog</title>
+<!-- Loaded before other Sphinx assets -->
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" rel="stylesheet" type="text/css">
+<link href="../../_static/togglebutton.css" rel="stylesheet" type="text/css">
+<link href="../../_static/copybutton.css" rel="stylesheet" type="text/css">
+<link href="../../_static/mystnb.css" rel="stylesheet" type="text/css">
+<link href="../../_static/sphinx-thebe.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/graphviz.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/sphinx-codeautolink.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" rel="stylesheet" type="text/css"/>
+<!-- Pre-loaded scripts that we'll load fully later -->
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="../../_static/clipboard.min.js"></script>
+<script src="../../_static/copybutton.js"></script>
+<script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+<script>let toggleHintShow = 'Click to show';</script>
+<script>let toggleHintHide = 'Click to hide';</script>
+<script>let toggleOpenOnPrint = 'true';</script>
+<script src="../../_static/togglebutton.js"></script>
+<script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+<script src="../../_static/design-tabs.js"></script>
+<script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="ARIMAモデル系" href="arima.html" />
-    <link rel="prev" title="時系列データ" href="ts.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-  </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<script async="async" src="../../_static/sphinx-thebe.js"></script>
+<script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link href="../../genindex.html" rel="index" title="Index">
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="arima.html" rel="next" title="ARIMAモデル系"/>
+<link href="ts.html" rel="prev" title="時系列データ"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="None" name="docsearch:language"/>
+<!-- Google Analytics -->
+</link></link></link></link></link></link></head>
+<body data-offset="60" data-spy="scroll" data-target="#bd-toc-nav">
 <!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<input aria-label="Toggle navigation sidebar" class="sidebar-toggle" id="__navigation" name="__navigation" type="checkbox"/>
 <label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
+<div class="visually-hidden">Toggle navigation sidebar</div>
 </label>
 <!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<input aria-label="Toggle in-page Table of Contents" class="sidebar-toggle" id="__page-toc" name="__page-toc" type="checkbox"/>
 <label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+<div class="visually-hidden">Toggle in-page Table of Contents</div>
 </label>
 <!-- Headers at the top -->
 <div class="announcement header-item noprint"></div>
 <div class="header header-item noprint"></div>
-
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
+<div class="container-fluid" id="banner"></div>
+<div class="container-xl">
+<div class="row">
 <!-- Sidebar -->
 <div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
-      
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
-      <img src="../../_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Analytics Study Blog</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../../intro.html">
+<div class="bd-sidebar__content">
+<div class="bd-sidebar__top"><div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+<!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+<img alt="logo" class="logo" src="../../_static/logo.png"/>
+<h1 class="site-logo" id="site-title">Analytics Study Blog</h1>
+</a>
+</div><form action="../../search.html" class="bd-search d-flex align-items-center" method="get">
+<i class="icon fas fa-search"></i>
+<input aria-label="Search this book..." autocomplete="off" class="form-control" id="search-input" name="q" placeholder="Search this book..." type="search"/>
+</form><nav aria-label="Main" class="bd-links" id="bd-docs-nav">
+<div class="bd-toc-item active">
+<ul class="nav bd-sidenav bd-sidenav__home-link">
+<li class="toctree-l1">
+<a class="reference internal" href="../../intro.html">
                     Welcome to my Analytics Sandbox
                 </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+<span class="caption-text">
   確率変数と確率分布
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../distribution/rvs.html">
+<li class="toctree-l1">
+<a class="reference internal" href="../distribution/rvs.html">
    確率変数
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../distribution/dist.html">
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="../distribution/dist.html">
    確率分布
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../distribution/mdist.html">
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="../distribution/mdist.html">
    多変量確率分布
   </a>
- </li>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
+<span class="caption-text">
   回帰モデル
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../regression/blm.html">
+<li class="toctree-l1">
+<a class="reference internal" href="../regression/blm.html">
    ベイズ線形回帰モデル
   </a>
- </li>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
+<span class="caption-text">
   時系列モデル
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="ts.html">
+<li class="toctree-l1">
+<a class="reference internal" href="ts.html">
    時系列データ
   </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+</li>
+<li class="toctree-l1 current active">
+<a class="current reference internal" href="#">
    ARMAモデル系
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="arima.html">
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="arima.html">
    ARIMAモデル系
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ssm.html">
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="ssm.html">
    状態空間モデル
   </a>
- </li>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
+<span class="caption-text">
   補足
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../math/calculus.html">
+<li class="toctree-l1">
+<a class="reference internal" href="../math/calculus.html">
    微分積分学
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../math/linear_algebra.html">
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="../math/linear_algebra.html">
    線形代数学
   </a>
- </li>
+</li>
 </ul>
-
-    </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+<p aria-level="2" class="caption" role="heading">
+<span class="caption-text">
+  API Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children">
+<a class="reference internal" href="../../api/sandbox/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+     sandbox
+    </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox">
+<label for="toctree-checkbox-1">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/datamodel/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.datamodel
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox">
+<label for="toctree-checkbox-2">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/datamodel/base/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datamodel.base
+        </span>
+</code>
+</a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/datamodel/ts_datamodel/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datamodel.ts_datamodel
+        </span>
+</code>
+</a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/datamodel/ts_simulator/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datamodel.ts_simulator
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</input></li>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.datasets
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox">
+<label for="toctree-checkbox-3">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/air_passengers/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.air_passengers
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+<label for="toctree-checkbox-4">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/air_passengers/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.air_passengers.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/blsallfood/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.blsallfood
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+<label for="toctree-checkbox-5">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/blsallfood/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.blsallfood.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/hakusan/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.hakusan
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+<label for="toctree-checkbox-6">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/hakusan/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.hakusan.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/maxtemp/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.maxtemp
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+<label for="toctree-checkbox-7">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/maxtemp/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.maxtemp.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/mye1f/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.mye1f
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+<label for="toctree-checkbox-8">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/mye1f/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.mye1f.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/nikkei225/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.nikkei225
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+<label for="toctree-checkbox-9">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/nikkei225/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.nikkei225.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/rtf/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.rtf
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+<label for="toctree-checkbox-10">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/rtf/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.rtf.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/whard/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.whard
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+<label for="toctree-checkbox-11">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/whard/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.whard.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/datasets/utils/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.utils
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</input></li>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/metrics/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.metrics
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+<label for="toctree-checkbox-12">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/metrics/score/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.metrics.score
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/tests/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.tests
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+<label for="toctree-checkbox-13">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/tests/datasets/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.tests.datasets
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+<label for="toctree-checkbox-14">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/tests/datasets/test_utils/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.tests.datasets.test_utils
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/tsa/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.tsa
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+<label for="toctree-checkbox-15">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/tsa/base/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.tsa.base
+        </span>
+</code>
+</a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/tsa/sarimax/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.tsa.sarimax
+        </span>
+</code>
+</a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/tsa/ssm/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.tsa.ssm
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/utils/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.utils
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+<label for="toctree-checkbox-16">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/utils/validation/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.utils.validation
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</input></li>
+</ul>
 </div>
-
-
-          
-
-
-          
+</nav></div>
+<div class="bd-sidebar__bottom">
+<!-- To handle the deprecated key -->
+<div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+</div>
+</div>
+<div id="rtd-footer-container"></div>
+</div>
 <!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
 <!-- Main content -->
 <div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
+<div class="header-article row sticky-top noprint">
 <div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
+<div class="header-article__left">
+<label class="headerbtn" data-placement="right" data-toggle="tooltip" for="__navigation" title="Toggle navigation">
 <span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
+<i class="fas fa-bars"></i>
+</span>
 </label>
-
-        
-    </div>
-    <div class="header-article__right">
+</div>
+<div class="header-article__right">
 <div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/tsa/arma.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
+<button aria-label="Launch interactive content" class="headerbtn menu-dropdown__trigger">
+<i class="fas fa-rocket"></i>
+</button>
+<div class="menu-dropdown__content">
+<ul>
+<li>
+<a class="headerbtn" data-placement="left" data-toggle="tooltip" href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/tsa/arma.ipynb" title="Launch on Binder">
 <span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_binder.svg">
-  </span>
+<img src="../../_static/images/logo_binder.svg"/>
+</span>
 <span class="headerbtn__text-container">Binder</span>
 </a>
-
-      </li>
-      
-    </ul>
-  </div>
+</li>
+</ul>
 </div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
+</div>
+<button class="headerbtn" data-placement="bottom" data-toggle="tooltip" onclick="toggleFullScreen()" title="Fullscreen mode">
 <span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
+<i class="fas fa-expand"></i>
+</span>
 </button>
-
 <div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/sndpgm/analytics-sandbox"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
+<button aria-label="Source repositories" class="headerbtn menu-dropdown__trigger">
+<i class="fab fa-github"></i>
+</button>
+<div class="menu-dropdown__content">
+<ul>
+<li>
+<a class="headerbtn" data-placement="left" data-toggle="tooltip" href="https://github.com/sndpgm/analytics-sandbox" title="Source repository">
 <span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
+<i class="fab fa-github"></i>
+</span>
 <span class="headerbtn__text-container">repository</span>
 </a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/tsa/arma.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
+</li>
+<li>
+<a class="headerbtn" data-placement="left" data-toggle="tooltip" href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/tsa/arma.html&amp;body=Your%20issue%20content%20here." title="Open an issue">
 <span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
+<i class="fas fa-lightbulb"></i>
+</span>
 <span class="headerbtn__text-container">open issue</span>
 </a>
-
-      </li>
-      
-    </ul>
-  </div>
+</li>
+</ul>
 </div>
-
+</div>
 <div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/analytics/tsa/arma.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
+<button aria-label="Download this page" class="headerbtn menu-dropdown__trigger">
+<i class="fas fa-download"></i>
+</button>
+<div class="menu-dropdown__content">
+<ul>
+<li>
+<a class="headerbtn" data-placement="left" data-toggle="tooltip" href="../../_sources/analytics/tsa/arma.ipynb" title="Download source file">
 <span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
+<i class="fas fa-file"></i>
+</span>
 <span class="headerbtn__text-container">.ipynb</span>
 </a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
+</li>
+<li>
+<button class="headerbtn" data-placement="left" data-toggle="tooltip" onclick="printPdf(this)" title="Print to PDF">
 <span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
+<i class="fas fa-file-pdf"></i>
+</span>
 <span class="headerbtn__text-container">.pdf</span>
 </button>
-
-      </li>
-      
-    </ul>
-  </div>
+</li>
+</ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
+</div>
+<label class="headerbtn headerbtn-page-toc" for="__page-toc">
 <span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+<i class="fas fa-list"></i>
+</span>
 </label>
-
-    </div>
 </div>
-
+</div>
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+<div class="tocsection onthispage pt-5 pb-3">
+<i class="fas fa-list"></i> Contents
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
+<nav aria-label="Page" id="bd-toc-nav">
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id1">
    1. ラグ演算子
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id2">
      定義 1.1 (差分作用子)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id3">
      定義 1.2 (ラグ演算子)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id4">
      定義 1.3 (ラグ多項式)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id5">
      命題 1.4 (ラグ代数)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tsa-arma-lag-operator-difference-relations">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#tsa-arma-lag-operator-difference-relations">
      命題 1.5 (ラグ演算子と差分作用子の関係)
     </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ar">
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#ar">
    2. ARモデル
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rm-ar-p">
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#rm-ar-p">
      定義 2.1 (
      <span class="math notranslate nohighlight">
       \({\rm AR}(p)\)
      </span>
      モデル)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id7">
      定理 2.2 (
      <span class="math notranslate nohighlight">
       \({\rm AR}(p)\)
      </span>
      モデルの期待値・分散・自己相関関数)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tsa-arma-ar-model-stationarity">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#tsa-arma-ar-model-stationarity">
      定理 2.3 (
      <span class="math notranslate nohighlight">
       \({\rm AR}(p)\)
      </span>
      モデルの定常性条件)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#statsmodels-ar">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#statsmodels-ar">
      例 2.4 (statsmodels による AR モデル)
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id9">
+<ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id9">
        ドキュメント
       </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id10">
+</li>
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id10">
        具体例
       </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ma">
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#ma">
    3. MAモデル
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rm-ma-q">
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#rm-ma-q">
      定義 3.1 (
      <span class="math notranslate nohighlight">
       \({\rm MA}(q)\)
      </span>
      モデル)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id11">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id11">
      定理 3.2 (
      <span class="math notranslate nohighlight">
       \({\rm MA}(q)\)
      </span>
      モデルの期待値・分散・自己相関関数)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tsa-arma-ma-model-stationarity">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#tsa-arma-ma-model-stationarity">
      定理 3.3 (
      <span class="math notranslate nohighlight">
       \({\rm MA}(q)\)
      </span>
      モデルの反転可能性)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#statsmodels-ma">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#statsmodels-ma">
      例 3.4 (statsmodels による MA モデル)
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id13">
+<ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id13">
        ドキュメント
       </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id14">
+</li>
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id14">
        具体例
       </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id15">
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id15">
    4. ARMAモデル
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rm-arma-p-q">
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#rm-arma-p-q">
      定義 4.1 (
      <span class="math notranslate nohighlight">
       \({\rm ARMA}(p, q)\)
      </span>
      モデル)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#statsmodels-arma">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#statsmodels-arma">
      例 4.2 (statsmodels による ARMA モデル)
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id16">
+<ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id16">
        ドキュメント
       </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id17">
+</li>
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id17">
        具体例
       </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id18">
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id18">
    参考文献
   </a>
- </li>
+</li>
 </ul>
-
-    </nav>
+</nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>ARMAモデル系</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
+</div>
+<div class="article row">
+<div class="col pl-md-3 pl-lg-5 content-container">
+<!-- Table of contents that is only displayed when printing the page -->
+<div class="onlyprint" id="jb-print-docs-body">
+<h1>ARMAモデル系</h1>
+<!-- Table of contents -->
+<div id="print-main-content">
+<div id="jb-print-toc">
+<div>
+<h2> Contents </h2>
+</div>
+<nav aria-label="Page">
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id1">
    1. ラグ演算子
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id2">
      定義 1.1 (差分作用子)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id3">
      定義 1.2 (ラグ演算子)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id4">
      定義 1.3 (ラグ多項式)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id5">
      命題 1.4 (ラグ代数)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tsa-arma-lag-operator-difference-relations">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#tsa-arma-lag-operator-difference-relations">
      命題 1.5 (ラグ演算子と差分作用子の関係)
     </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ar">
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#ar">
    2. ARモデル
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rm-ar-p">
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#rm-ar-p">
      定義 2.1 (
      <span class="math notranslate nohighlight">
       \({\rm AR}(p)\)
      </span>
      モデル)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id7">
      定理 2.2 (
      <span class="math notranslate nohighlight">
       \({\rm AR}(p)\)
      </span>
      モデルの期待値・分散・自己相関関数)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tsa-arma-ar-model-stationarity">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#tsa-arma-ar-model-stationarity">
      定理 2.3 (
      <span class="math notranslate nohighlight">
       \({\rm AR}(p)\)
      </span>
      モデルの定常性条件)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#statsmodels-ar">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#statsmodels-ar">
      例 2.4 (statsmodels による AR モデル)
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id9">
+<ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id9">
        ドキュメント
       </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id10">
+</li>
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id10">
        具体例
       </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ma">
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#ma">
    3. MAモデル
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rm-ma-q">
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#rm-ma-q">
      定義 3.1 (
      <span class="math notranslate nohighlight">
       \({\rm MA}(q)\)
      </span>
      モデル)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id11">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id11">
      定理 3.2 (
      <span class="math notranslate nohighlight">
       \({\rm MA}(q)\)
      </span>
      モデルの期待値・分散・自己相関関数)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tsa-arma-ma-model-stationarity">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#tsa-arma-ma-model-stationarity">
      定理 3.3 (
      <span class="math notranslate nohighlight">
       \({\rm MA}(q)\)
      </span>
      モデルの反転可能性)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#statsmodels-ma">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#statsmodels-ma">
      例 3.4 (statsmodels による MA モデル)
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id13">
+<ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id13">
        ドキュメント
       </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id14">
+</li>
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id14">
        具体例
       </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id15">
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id15">
    4. ARMAモデル
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rm-arma-p-q">
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#rm-arma-p-q">
      定義 4.1 (
      <span class="math notranslate nohighlight">
       \({\rm ARMA}(p, q)\)
      </span>
      モデル)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#statsmodels-arma">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#statsmodels-arma">
      例 4.2 (statsmodels による ARMA モデル)
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id16">
+<ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id16">
        ドキュメント
       </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id17">
+</li>
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id17">
        具体例
       </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id18">
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id18">
    参考文献
   </a>
- </li>
+</li>
 </ul>
-
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <main id="main-content" role="main">
-                
-              <div>
-                
-  <section class="tex2jax_ignore mathjax_ignore" id="arma">
+</nav>
+</div>
+</div>
+</div>
+<main id="main-content" role="main">
+<div>
+<section class="tex2jax_ignore mathjax_ignore" id="arma">
 <h1>ARMAモデル系<a class="headerlink" href="#arma" title="Permalink to this headline">#</a></h1>
 <p>定常時系列モデルとして以下のモデルについて見ていく.</p>
 <ul class="simple">
@@ -984,17 +1285,17 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 必要ライブラリを一括してインポートし図示の設定を実行.</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.html#module-matplotlib.pyplot" title="matplotlib.pyplot"><span class="nn">matplotlib.pyplot</span></a> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://pandas.pydata.org/pandas-docs/stable/index.html#module-pandas" title="pandas"><span class="nn">pandas</span></a> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
-<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">boxcox</span><span class="p">,</span> <span class="n">inv_boxcox</span>
-<span class="kn">from</span> <span class="nn">statsmodels.tsa.arima.model</span> <span class="kn">import</span> <span class="n">ARIMA</span>
-<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">adfuller</span>
+<span class="kn">from</span> <a class="sphinx-codeautolink-a" href="https://docs.scipy.org/doc/scipy/index.html#module-scipy" title="scipy"><span class="nn">scipy</span></a> <span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://docs.scipy.org/doc/scipy/reference/stats.html#module-scipy.stats" title="scipy.stats"><span class="n">stats</span></a>
+<span class="kn">from</span> <a class="sphinx-codeautolink-a" href="https://docs.scipy.org/doc/scipy/reference/special.html#module-scipy.special" title="scipy.special"><span class="nn">scipy.special</span></a> <span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.boxcox.html#scipy.special.boxcox" title="scipy.special.boxcox"><span class="n">boxcox</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.inv_boxcox.html#scipy.special.inv_boxcox" title="scipy.special.inv_boxcox"><span class="n">inv_boxcox</span></a>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.arima.model</span> <span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMA.html#statsmodels.tsa.arima.model.ARIMA" title="statsmodels.tsa.arima.model.ARIMA"><span class="n">ARIMA</span></a>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.stattools.adfuller.html#statsmodels.tsa.stattools.adfuller" title="statsmodels.tsa.stattools.adfuller"><span class="n">adfuller</span></a>
 
-<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">register_matplotlib_converters</span><span class="p">()</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s2">&quot;font&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<a class="sphinx-codeautolink-a" href="https://seaborn.pydata.org/generated/seaborn.set.html#seaborn.set" title="seaborn.set"><span class="n">sns</span><span class="o">.</span><span class="n">set</span></a><span class="p">()</span>
+<a class="sphinx-codeautolink-a" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.plotting.register_matplotlib_converters.html#pandas.plotting.register_matplotlib_converters" title="pandas.plotting.register_matplotlib_converters"><span class="n">pd</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">register_matplotlib_converters</span></a><span class="p">()</span>
+<a class="sphinx-codeautolink-a" href="https://matplotlib.org/stable/api/matplotlib_configuration_api.html#matplotlib.rc" title="matplotlib.rc"><span class="n">sns</span><span class="o">.</span><span class="n">mpl</span><span class="o">.</span><span class="n">rc</span></a><span class="p">(</span><span class="s2">"font"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1002,30 +1303,30 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># analytics-sandbox にあるテストデータをインポート.</span>
-<span class="kn">from</span> <span class="nn">sandbox.datasets</span> <span class="kn">import</span> <span class="n">air_passengers</span>
+<span class="kn">from</span> <a class="sphinx-codeautolink-a" href="../../api/sandbox/datasets/index.html#module-sandbox.datasets" title="sandbox.datasets"><span class="nn">sandbox.datasets</span></a> <span class="kn">import</span> <a class="sphinx-codeautolink-a" href="../../api/sandbox/datasets/air_passengers/index.html#module-sandbox.datasets.air_passengers" title="sandbox.datasets.air_passengers"><span class="n">air_passengers</span></a>
 
 <span class="c1"># データの読み込み</span>
-<span class="n">psgr</span> <span class="o">=</span> <span class="n">air_passengers</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+<span class="n">psgr</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="../../api/sandbox/datasets/air_passengers/index.html#sandbox.datasets.air_passengers.load" title="sandbox.datasets.air_passengers.load"><span class="n">air_passengers</span><span class="o">.</span><span class="n">load</span></a><span class="p">()</span><span class="o">.</span><span class="n">data</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">psgr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">air_passengers</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">psgr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><a class="sphinx-codeautolink-a" href="../../api/sandbox/datasets/air_passengers/index.html#sandbox.datasets.air_passengers.TITLE" title="sandbox.datasets.air_passengers.TITLE"><span class="n">air_passengers</span><span class="o">.</span><span class="n">TITLE</span></a><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/arma_15_0.png" src="../../_images/arma_15_0.png" />
-</div>
+<img alt="../../_images/arma_15_0.png" src="../../_images/arma_15_0.png">
+</img></div>
 </div>
 <p>もし <code class="docutils literal notranslate"><span class="pre">sandbox</span></code> をインストールしていない場合は GitHub でクローンした後に <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code> を行うか, URL をして直接取得するかを行えばよい.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/sndpgm/analytics-sandbox/main/sandbox/datasets/air_passengers/air_passengers.csv&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">"https://raw.githubusercontent.com/sndpgm/analytics-sandbox/main/sandbox/datasets/air_passengers/air_passengers.csv"</span>
 
 <span class="n">psgr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="n">psgr</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">psgr</span><span class="p">[</span><span class="s2">&quot;Month&quot;</span><span class="p">])</span>
-<span class="n">psgr</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Month&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">psgr</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">freq</span> <span class="o">=</span> <span class="s2">&quot;MS&quot;</span>
+<span class="n">psgr</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">psgr</span><span class="p">[</span><span class="s2">"Month"</span><span class="p">])</span>
+<span class="n">psgr</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"Month"</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">psgr</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">freq</span> <span class="o">=</span> <span class="s2">"MS"</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">psgr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
@@ -1034,8 +1335,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/arma_17_0.png" src="../../_images/arma_17_0.png" />
-</div>
+<img alt="../../_images/arma_17_0.png" src="../../_images/arma_17_0.png">
+</img></div>
 </div>
 <p>波形を見ると <code class="docutils literal notranslate"><span class="pre">air_passengers</span></code> データは非定常な時系列データのため定常時系列に近づけていく. 定常性については<a class="reference internal" href="ts.html#tsa-time-series-stationarity"><span class="std std-ref">時系列データ &gt; 2.定常性</span></a> を参照のこと.
 　定常時系列に近づけるために以下を勘案することが必要.</p>
@@ -1047,14 +1348,14 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># scikit-learn でMAPE算出モジュールとデータを訓練用とテスト用に分割するモジュールを import</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <a class="sphinx-codeautolink-a" href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics" title="sklearn.metrics"><span class="nn">sklearn.metrics</span></a> <span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_absolute_percentage_error.html#sklearn.metrics.mean_absolute_percentage_error" title="sklearn.metrics.mean_absolute_percentage_error"><span class="n">mean_absolute_percentage_error</span></a>
+<span class="kn">from</span> <a class="sphinx-codeautolink-a" href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.model_selection" title="sklearn.model_selection"><span class="nn">sklearn.model_selection</span></a> <span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split" title="sklearn.model_selection.train_test_split"><span class="n">train_test_split</span></a>
 
 <span class="c1"># テストデータを 20% ととしてデータを分割する.</span>
 <span class="c1"># ただし, 時系列データのためデータ順序がシャッフルされないように設定する.</span>
 <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.20</span>
 <span class="n">shuffle</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">psgr_train</span><span class="p">,</span> <span class="n">psgr_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">psgr</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="n">test_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">)</span>
+<span class="n">psgr_train</span><span class="p">,</span> <span class="n">psgr_test</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split" title="sklearn.model_selection.train_test_split"><span class="n">train_test_split</span></a><span class="p">(</span><span class="n">psgr</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="n">test_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1063,9 +1364,9 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># trainデータについて加工し定常時系列に近づける</span>
 <span class="c1"># Box-Cox 変換</span>
-<span class="n">boxcox_fitted</span><span class="p">,</span> <span class="n">lam</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">boxcox</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">[</span><span class="s2">&quot;#Passengers&quot;</span><span class="p">])</span>
+<span class="n">boxcox_fitted</span><span class="p">,</span> <span class="n">lam</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">boxcox</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">[</span><span class="s2">"#Passengers"</span><span class="p">])</span>
 <span class="n">psgr_train_boxcox</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="n">boxcox</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">[</span><span class="s2">&quot;#Passengers&quot;</span><span class="p">],</span> <span class="n">lam</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">psgr_train</span><span class="o">.</span><span class="n">index</span>
+    <span class="n">boxcox</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">[</span><span class="s2">"#Passengers"</span><span class="p">],</span> <span class="n">lam</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">psgr_train</span><span class="o">.</span><span class="n">index</span>
 <span class="p">)</span>
 
 <span class="c1"># 階差</span>
@@ -1075,13 +1376,13 @@ title="Print to PDF"
 
 <span class="c1"># 図示</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">psgr_train_boxcox_diff</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Box-Cox and Differencing&quot;</span><span class="p">)</span>
+<span class="n">psgr_train_boxcox_diff</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Box-Cox and Differencing"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/arma_20_0.png" src="../../_images/arma_20_0.png" />
+<img alt="../../_images/arma_20_0.png" src="../../_images/arma_20_0.png"/>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1089,10 +1390,10 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ADF検定で定常性が確認できるかチェック.</span>
 <span class="c1"># pvalue &lt; 0.1 より定常性があるとして次に進める.</span>
 <span class="n">ret_</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">psgr_train_boxcox_diff</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
-<span class="n">ret_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;adfstat&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">,</span> <span class="s2">&quot;usedlag&quot;</span><span class="p">,</span> <span class="s2">&quot;nobs&quot;</span><span class="p">,</span> <span class="s2">&quot;critvalues&quot;</span><span class="p">,</span> <span class="s2">&quot;icbest&quot;</span><span class="p">]</span>
+<span class="n">ret_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"adfstat"</span><span class="p">,</span> <span class="s2">"pvalue"</span><span class="p">,</span> <span class="s2">"usedlag"</span><span class="p">,</span> <span class="s2">"nobs"</span><span class="p">,</span> <span class="s2">"critvalues"</span><span class="p">,</span> <span class="s2">"icbest"</span><span class="p">]</span>
 
 <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">ret</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">ret</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/stdtypes.html#dict" title="dict"><span class="nb">dict</span></a><span class="p">()</span>
 <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">ret_keys</span><span class="p">:</span>
     <span class="n">ret</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -1102,14 +1403,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;adfstat&#39;: -2.6441219334501214,
- &#39;pvalue&#39;: 0.08421665282428503,
- &#39;usedlag&#39;: 12,
- &#39;nobs&#39;: 101,
- &#39;critvalues&#39;: {&#39;1%&#39;: -3.4968181663902103,
-  &#39;5%&#39;: -2.8906107514600103,
-  &#39;10%&#39;: -2.5822770483285953},
- &#39;icbest&#39;: -286.9590455026572}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'adfstat': -2.6441219334501214,
+ 'pvalue': 0.08421665282428503,
+ 'usedlag': 12,
+ 'nobs': 101,
+ 'critvalues': {'1%': -3.4968181663902103,
+  '5%': -2.8906107514600103,
+  '10%': -2.5822770483285953},
+ 'icbest': -286.9590455026572}
 </pre></div>
 </div>
 </div>
@@ -1120,7 +1421,7 @@ title="Print to PDF"
 <span class="n">p</span> <span class="o">=</span> <span class="mi">11</span>
 <span class="n">model_ar</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">psgr_train_boxcox_diff</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
 <span class="n">model_ar_fitted</span> <span class="o">=</span> <span class="n">model_ar</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">model_ar_fitted</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#print" title="print"><span class="nb">print</span></a><span class="p">(</span><span class="n">model_ar_fitted</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1129,8 +1430,8 @@ title="Print to PDF"
 ==============================================================================
 Dep. Variable:            #Passengers   No. Observations:                  115
 Model:                ARIMA(11, 0, 0)   Log Likelihood                 144.389
-Date:                Fri, 29 Jul 2022   AIC                           -262.778
-Time:                        05:04:22   BIC                           -227.094
+Date:                Sat, 30 Jul 2022   AIC                           -262.778
+Time:                        22:23:40   BIC                           -227.094
 Sample:                    01-01-1949   HQIC                          -248.294
                          - 07-01-1958                                         
 Covariance Type:                  opg                                         
@@ -1162,7 +1463,7 @@ Warnings:
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/statsmodels/base/model.py:604: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
-  warnings.warn(&quot;Maximum Likelihood optimization failed to &quot;
+  warnings.warn("Maximum Likelihood optimization failed to "
 </pre></div>
 </div>
 </div>
@@ -1197,7 +1498,7 @@ Warnings:
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
-<style scoped>
+<style scoped="">
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -1211,106 +1512,106 @@ Warnings:
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>predicted_mean</th>
-      <th>lower #Passengers</th>
-      <th>upper #Passengers</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1958-08-01</th>
-      <td>0.061468</td>
-      <td>-0.063019</td>
-      <td>0.185956</td>
-    </tr>
-    <tr>
-      <th>1958-09-01</th>
-      <td>-0.097149</td>
-      <td>-0.238661</td>
-      <td>0.044362</td>
-    </tr>
-    <tr>
-      <th>1958-10-01</th>
-      <td>-0.200657</td>
-      <td>-0.351271</td>
-      <td>-0.050043</td>
-    </tr>
-    <tr>
-      <th>1958-11-01</th>
-      <td>-0.168210</td>
-      <td>-0.318869</td>
-      <td>-0.017552</td>
-    </tr>
-    <tr>
-      <th>1958-12-01</th>
-      <td>0.073074</td>
-      <td>-0.079194</td>
-      <td>0.225341</td>
-    </tr>
-    <tr>
-      <th>1959-01-01</th>
-      <td>0.007338</td>
-      <td>-0.146245</td>
-      <td>0.160921</td>
-    </tr>
-    <tr>
-      <th>1959-02-01</th>
-      <td>-0.048462</td>
-      <td>-0.202053</td>
-      <td>0.105128</td>
-    </tr>
-    <tr>
-      <th>1959-03-01</th>
-      <td>0.075137</td>
-      <td>-0.078743</td>
-      <td>0.229018</td>
-    </tr>
-    <tr>
-      <th>1959-04-01</th>
-      <td>-0.022695</td>
-      <td>-0.177494</td>
-      <td>0.132105</td>
-    </tr>
-    <tr>
-      <th>1959-05-01</th>
-      <td>0.074158</td>
-      <td>-0.081979</td>
-      <td>0.230295</td>
-    </tr>
-    <tr>
-      <th>1959-06-01</th>
-      <td>0.216081</td>
-      <td>0.059841</td>
-      <td>0.372321</td>
-    </tr>
-    <tr>
-      <th>1959-07-01</th>
-      <td>0.163306</td>
-      <td>0.006214</td>
-      <td>0.320397</td>
-    </tr>
-    <tr>
-      <th>1959-08-01</th>
-      <td>0.068040</td>
-      <td>-0.107154</td>
-      <td>0.243234</td>
-    </tr>
-    <tr>
-      <th>1959-09-01</th>
-      <td>-0.047724</td>
-      <td>-0.225311</td>
-      <td>0.129862</td>
-    </tr>
-    <tr>
-      <th>1959-10-01</th>
-      <td>-0.176792</td>
-      <td>-0.358408</td>
-      <td>0.004824</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>predicted_mean</th>
+<th>lower #Passengers</th>
+<th>upper #Passengers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>1958-08-01</th>
+<td>0.061468</td>
+<td>-0.063019</td>
+<td>0.185956</td>
+</tr>
+<tr>
+<th>1958-09-01</th>
+<td>-0.097149</td>
+<td>-0.238661</td>
+<td>0.044362</td>
+</tr>
+<tr>
+<th>1958-10-01</th>
+<td>-0.200657</td>
+<td>-0.351271</td>
+<td>-0.050043</td>
+</tr>
+<tr>
+<th>1958-11-01</th>
+<td>-0.168210</td>
+<td>-0.318869</td>
+<td>-0.017552</td>
+</tr>
+<tr>
+<th>1958-12-01</th>
+<td>0.073074</td>
+<td>-0.079194</td>
+<td>0.225341</td>
+</tr>
+<tr>
+<th>1959-01-01</th>
+<td>0.007338</td>
+<td>-0.146245</td>
+<td>0.160921</td>
+</tr>
+<tr>
+<th>1959-02-01</th>
+<td>-0.048462</td>
+<td>-0.202053</td>
+<td>0.105128</td>
+</tr>
+<tr>
+<th>1959-03-01</th>
+<td>0.075137</td>
+<td>-0.078743</td>
+<td>0.229018</td>
+</tr>
+<tr>
+<th>1959-04-01</th>
+<td>-0.022695</td>
+<td>-0.177494</td>
+<td>0.132105</td>
+</tr>
+<tr>
+<th>1959-05-01</th>
+<td>0.074158</td>
+<td>-0.081979</td>
+<td>0.230295</td>
+</tr>
+<tr>
+<th>1959-06-01</th>
+<td>0.216081</td>
+<td>0.059841</td>
+<td>0.372321</td>
+</tr>
+<tr>
+<th>1959-07-01</th>
+<td>0.163306</td>
+<td>0.006214</td>
+<td>0.320397</td>
+</tr>
+<tr>
+<th>1959-08-01</th>
+<td>0.068040</td>
+<td>-0.107154</td>
+<td>0.243234</td>
+</tr>
+<tr>
+<th>1959-09-01</th>
+<td>-0.047724</td>
+<td>-0.225311</td>
+<td>0.129862</td>
+</tr>
+<tr>
+<th>1959-10-01</th>
+<td>-0.176792</td>
+<td>-0.358408</td>
+<td>0.004824</td>
+</tr>
+</tbody>
 </table>
 </div></div></div>
 </div>
@@ -1324,7 +1625,7 @@ Warnings:
 \[
     Y_t = \nabla y'_t = {\rm BoxCox}(y_t) - {\rm BoxCox}(y_{t-1})
 \]</div>
-<p>を学習し予測値を算出した. ゆえに予測値を <span class="math notranslate nohighlight">\(\{ y_t \}\)</span> スケールに戻すためには階差の逆の処理をする必要がある. 予測開始時点を <span class="math notranslate nohighlight">\(t = T_s\)</span>, 予測終了時点を <span class="math notranslate nohighlight">\(t = T_e\)</span> とする. また算出した予測値を <span class="math notranslate nohighlight">\(\hat{Y}_t\)</span> とすれば, <span class="math notranslate nohighlight">\(\{ \hat{Y}_{T_s}, \hat{Y}_{T_s + 1}, \dots, \hat{Y}_{T_e} \}\)</span> が予測された列となる.<br />
+<p>を学習し予測値を算出した. ゆえに予測値を <span class="math notranslate nohighlight">\(\{ y_t \}\)</span> スケールに戻すためには階差の逆の処理をする必要がある. 予測開始時点を <span class="math notranslate nohighlight">\(t = T_s\)</span>, 予測終了時点を <span class="math notranslate nohighlight">\(t = T_e\)</span> とする. また算出した予測値を <span class="math notranslate nohighlight">\(\hat{Y}_t\)</span> とすれば, <span class="math notranslate nohighlight">\(\{ \hat{Y}_{T_s}, \hat{Y}_{T_s + 1}, \dots, \hat{Y}_{T_e} \}\)</span> が予測された列となる.<br/>
 　<span class="math notranslate nohighlight">\(T_s \leq i \leq T_e\)</span> とすれば,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1354,7 +1655,7 @@ Warnings:
 <p>ここで <span class="math notranslate nohighlight">\({\rm BoxCox}(\hat{y}_{T_s-1})\)</span> は学習データから取得でき, <span class="math notranslate nohighlight">\(\displaystyle \sum_{k=T_s}^{i}{\hat{Y}_{k}}\)</span> は <code class="docutils literal notranslate"><span class="pre">cumsum</span></code> メソッドで求めた予測値を足していけば良い.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">init</span> <span class="o">=</span> <span class="n">psgr_train_boxcox</span><span class="p">[</span><span class="s2">&quot;#Passengers&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">init</span> <span class="o">=</span> <span class="n">psgr_train_boxcox</span><span class="p">[</span><span class="s2">"#Passengers"</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">df_predict_ar_cumsum</span> <span class="o">=</span> <span class="n">df_predict_ar</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">+</span> <span class="n">init</span>
 <span class="n">df_predict_ar_cumsum_inv_boxcox</span> <span class="o">=</span> <span class="n">inv_boxcox</span><span class="p">(</span><span class="n">df_predict_ar_cumsum</span><span class="p">,</span> <span class="n">lam</span><span class="p">)</span>
 <span class="n">df_predict_ar_cumsum_inv_boxcox</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -1363,7 +1664,7 @@ Warnings:
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
-<style scoped>
+<style scoped="">
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -1377,86 +1678,86 @@ Warnings:
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>predicted_mean</th>
-      <th>lower #Passengers</th>
-      <th>upper #Passengers</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1958-08-01</th>
-      <td>514.371324</td>
-      <td>468.093896</td>
-      <td>564.999510</td>
-    </tr>
-    <tr>
-      <th>1958-09-01</th>
-      <td>477.902487</td>
-      <td>390.256449</td>
-      <td>584.165496</td>
-    </tr>
-    <tr>
-      <th>1958-10-01</th>
-      <td>410.240501</td>
-      <td>297.793186</td>
-      <td>562.588842</td>
-    </tr>
-    <tr>
-      <th>1958-11-01</th>
-      <td>360.667320</td>
-      <td>232.307983</td>
-      <td>555.203231</td>
-    </tr>
-    <tr>
-      <th>1958-12-01</th>
-      <td>381.455852</td>
-      <td>218.318851</td>
-      <td>657.472610</td>
-    </tr>
-    <tr>
-      <th>1959-01-01</th>
-      <td>383.605625</td>
-      <td>194.573069</td>
-      <td>741.265726</td>
-    </tr>
-    <tr>
-      <th>1959-02-01</th>
-      <td>369.619861</td>
-      <td>165.791730</td>
-      <td>801.414142</td>
-    </tr>
-    <tr>
-      <th>1959-03-01</th>
-      <td>391.518009</td>
-      <td>155.716272</td>
-      <td>948.991068</td>
-    </tr>
-    <tr>
-      <th>1959-04-01</th>
-      <td>384.776558</td>
-      <td>135.106256</td>
-      <td>1045.569429</td>
-    </tr>
-    <tr>
-      <th>1959-05-01</th>
-      <td>407.225714</td>
-      <td>126.492290</td>
-      <td>1236.783122</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>predicted_mean</th>
+<th>lower #Passengers</th>
+<th>upper #Passengers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>1958-08-01</th>
+<td>514.371324</td>
+<td>468.093896</td>
+<td>564.999510</td>
+</tr>
+<tr>
+<th>1958-09-01</th>
+<td>477.902487</td>
+<td>390.256449</td>
+<td>584.165496</td>
+</tr>
+<tr>
+<th>1958-10-01</th>
+<td>410.240501</td>
+<td>297.793186</td>
+<td>562.588842</td>
+</tr>
+<tr>
+<th>1958-11-01</th>
+<td>360.667320</td>
+<td>232.307983</td>
+<td>555.203231</td>
+</tr>
+<tr>
+<th>1958-12-01</th>
+<td>381.455852</td>
+<td>218.318851</td>
+<td>657.472610</td>
+</tr>
+<tr>
+<th>1959-01-01</th>
+<td>383.605625</td>
+<td>194.573069</td>
+<td>741.265726</td>
+</tr>
+<tr>
+<th>1959-02-01</th>
+<td>369.619861</td>
+<td>165.791730</td>
+<td>801.414142</td>
+</tr>
+<tr>
+<th>1959-03-01</th>
+<td>391.518009</td>
+<td>155.716272</td>
+<td>948.991068</td>
+</tr>
+<tr>
+<th>1959-04-01</th>
+<td>384.776558</td>
+<td>135.106256</td>
+<td>1045.569429</td>
+</tr>
+<tr>
+<th>1959-05-01</th>
+<td>407.225714</td>
+<td>126.492290</td>
+<td>1236.783122</td>
+</tr>
+</tbody>
 </table>
 </div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mape_ar</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span>
-    <span class="n">psgr_test</span><span class="p">,</span> <span class="n">df_predict_ar_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">]</span>
+    <span class="n">psgr_test</span><span class="p">,</span> <span class="n">df_predict_ar_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">"predicted_mean"</span><span class="p">]</span>
 <span class="p">)</span>
-<span class="n">mape_ar_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;MAPE: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mape_ar</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">mape_ar_msg</span><span class="p">)</span>
+<span class="n">mape_ar_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"MAPE: </span><span class="si">{</span><a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#round" title="round"><span class="nb">round</span></a><span class="p">(</span><span class="n">mape_ar</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#print" title="print"><span class="nb">print</span></a><span class="p">(</span><span class="n">mape_ar_msg</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1469,12 +1770,12 @@ Warnings:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Train&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_test</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Train"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_test</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Test"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">df_predict_ar_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">],</span>
-    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;p=</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">mape_ar_msg</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+    <span class="n">df_predict_ar_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">"predicted_mean"</span><span class="p">],</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"p=</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">mape_ar_msg</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -1483,7 +1784,7 @@ Warnings:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/arma_27_0.png" src="../../_images/arma_27_0.png" />
+<img alt="../../_images/arma_27_0.png" src="../../_images/arma_27_0.png"/>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1494,7 +1795,7 @@ Warnings:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/arma_28_0.png" src="../../_images/arma_28_0.png" />
+<img alt="../../_images/arma_28_0.png" src="../../_images/arma_28_0.png"/>
 </div>
 </div>
 </section>
@@ -1624,7 +1925,7 @@ Warnings:
     \end{align}
 \]</div>
 <p>であり, <span class="math notranslate nohighlight">\(k \gt q\)</span> のとき添字が一致する誤差項どうしの掛け算は存在せず 0 となる.</p>
-<br>
+<br/>
 <p>上記の期待値, 分散, 自己相関関数の結果から <span class="math notranslate nohighlight">\({\rm MA}(q)\)</span> モデルは<strong>常に弱定常性を満たす</strong>ことが分かる.</p>
 </section>
 <section id="tsa-arma-ma-model-stationarity">
@@ -1666,13 +1967,13 @@ Warnings:
 
 <span class="c1"># Box-Cox変換を行なったデータ時系列に階差をとったデータ</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">psgr_train_boxcox_diff</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Box-Cox and Differencing&quot;</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">psgr_train_boxcox_diff</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Box-Cox and Differencing"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/arma_36_0.png" src="../../_images/arma_36_0.png" />
+<img alt="../../_images/arma_36_0.png" src="../../_images/arma_36_0.png"/>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1681,21 +1982,21 @@ Warnings:
 <span class="n">q</span> <span class="o">=</span> <span class="mi">11</span>
 <span class="n">model_ma</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">psgr_train_boxcox_diff</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">q</span><span class="p">))</span>
 <span class="n">model_ma_fitted</span> <span class="o">=</span> <span class="n">model_ma</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">model_ma_fitted</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#print" title="print"><span class="nb">print</span></a><span class="p">(</span><span class="n">model_ma_fitted</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/statsmodels/tsa/statespace/sarimax.py:978: UserWarning: Non-invertible starting MA parameters found. Using zeros as starting parameters.
-  warn(&#39;Non-invertible starting MA parameters found.&#39;
+  warn('Non-invertible starting MA parameters found.'
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                               SARIMAX Results                                
 ==============================================================================
 Dep. Variable:            #Passengers   No. Observations:                  115
 Model:                ARIMA(0, 0, 11)   Log Likelihood                  95.962
-Date:                Fri, 29 Jul 2022   AIC                           -165.924
-Time:                        05:04:26   BIC                           -130.240
+Date:                Sat, 30 Jul 2022   AIC                           -165.924
+Time:                        22:23:44   BIC                           -130.240
 Sample:                    01-01-1949   HQIC                          -151.440
                          - 07-01-1958                                         
 Covariance Type:                  opg                                         
@@ -1727,7 +2028,7 @@ Warnings:
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/statsmodels/base/model.py:604: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
-  warnings.warn(&quot;Maximum Likelihood optimization failed to &quot;
+  warnings.warn("Maximum Likelihood optimization failed to "
 </pre></div>
 </div>
 </div>
@@ -1749,7 +2050,7 @@ Warnings:
 <span class="n">df_predict_ma</span> <span class="o">=</span> <span class="n">df_predict_ma</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_ci_ma</span><span class="p">)</span>
 
 <span class="c1"># 予測値に対して階差の逆変換, Box-Cox変換の逆変換を実施.</span>
-<span class="n">init</span> <span class="o">=</span> <span class="n">psgr_train_boxcox</span><span class="p">[</span><span class="s2">&quot;#Passengers&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">init</span> <span class="o">=</span> <span class="n">psgr_train_boxcox</span><span class="p">[</span><span class="s2">"#Passengers"</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">df_predict_ma_cumsum</span> <span class="o">=</span> <span class="n">df_predict_ma</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">+</span> <span class="n">init</span>
 <span class="n">df_predict_ma_cumsum_inv_boxcox</span> <span class="o">=</span> <span class="n">inv_boxcox</span><span class="p">(</span><span class="n">df_predict_ma_cumsum</span><span class="p">,</span> <span class="n">lam</span><span class="p">)</span>
 <span class="n">df_predict_ma_cumsum_inv_boxcox</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -1758,7 +2059,7 @@ Warnings:
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
-<style scoped>
+<style scoped="">
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -1772,86 +2073,86 @@ Warnings:
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>predicted_mean</th>
-      <th>lower #Passengers</th>
-      <th>upper #Passengers</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1958-08-01</th>
-      <td>506.856681</td>
-      <td>437.741809</td>
-      <td>586.322166</td>
-    </tr>
-    <tr>
-      <th>1958-09-01</th>
-      <td>519.995951</td>
-      <td>386.113332</td>
-      <td>697.559354</td>
-    </tr>
-    <tr>
-      <th>1958-10-01</th>
-      <td>489.815619</td>
-      <td>308.806387</td>
-      <td>769.691048</td>
-    </tr>
-    <tr>
-      <th>1958-11-01</th>
-      <td>463.761126</td>
-      <td>247.645296</td>
-      <td>853.687888</td>
-    </tr>
-    <tr>
-      <th>1958-12-01</th>
-      <td>480.825495</td>
-      <td>217.747884</td>
-      <td>1033.266933</td>
-    </tr>
-    <tr>
-      <th>1959-01-01</th>
-      <td>483.947817</td>
-      <td>185.404940</td>
-      <td>1214.165405</td>
-    </tr>
-    <tr>
-      <th>1959-02-01</th>
-      <td>474.496128</td>
-      <td>153.367700</td>
-      <td>1390.181969</td>
-    </tr>
-    <tr>
-      <th>1959-03-01</th>
-      <td>492.286036</td>
-      <td>134.446181</td>
-      <td>1678.273440</td>
-    </tr>
-    <tr>
-      <th>1959-04-01</th>
-      <td>470.884115</td>
-      <td>106.437875</td>
-      <td>1898.135971</td>
-    </tr>
-    <tr>
-      <th>1959-05-01</th>
-      <td>471.371193</td>
-      <td>88.280266</td>
-      <td>2238.665718</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>predicted_mean</th>
+<th>lower #Passengers</th>
+<th>upper #Passengers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>1958-08-01</th>
+<td>506.856681</td>
+<td>437.741809</td>
+<td>586.322166</td>
+</tr>
+<tr>
+<th>1958-09-01</th>
+<td>519.995951</td>
+<td>386.113332</td>
+<td>697.559354</td>
+</tr>
+<tr>
+<th>1958-10-01</th>
+<td>489.815619</td>
+<td>308.806387</td>
+<td>769.691048</td>
+</tr>
+<tr>
+<th>1958-11-01</th>
+<td>463.761126</td>
+<td>247.645296</td>
+<td>853.687888</td>
+</tr>
+<tr>
+<th>1958-12-01</th>
+<td>480.825495</td>
+<td>217.747884</td>
+<td>1033.266933</td>
+</tr>
+<tr>
+<th>1959-01-01</th>
+<td>483.947817</td>
+<td>185.404940</td>
+<td>1214.165405</td>
+</tr>
+<tr>
+<th>1959-02-01</th>
+<td>474.496128</td>
+<td>153.367700</td>
+<td>1390.181969</td>
+</tr>
+<tr>
+<th>1959-03-01</th>
+<td>492.286036</td>
+<td>134.446181</td>
+<td>1678.273440</td>
+</tr>
+<tr>
+<th>1959-04-01</th>
+<td>470.884115</td>
+<td>106.437875</td>
+<td>1898.135971</td>
+</tr>
+<tr>
+<th>1959-05-01</th>
+<td>471.371193</td>
+<td>88.280266</td>
+<td>2238.665718</td>
+</tr>
+</tbody>
 </table>
 </div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mape_ma</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span>
-    <span class="n">psgr_test</span><span class="p">,</span> <span class="n">df_predict_ma_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">]</span>
+    <span class="n">psgr_test</span><span class="p">,</span> <span class="n">df_predict_ma_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">"predicted_mean"</span><span class="p">]</span>
 <span class="p">)</span>
-<span class="n">mape_ma_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;MAPE: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mape_ma</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">mape_ma_msg</span><span class="p">)</span>
+<span class="n">mape_ma_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"MAPE: </span><span class="si">{</span><a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#round" title="round"><span class="nb">round</span></a><span class="p">(</span><span class="n">mape_ma</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#print" title="print"><span class="nb">print</span></a><span class="p">(</span><span class="n">mape_ma_msg</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1864,12 +2165,12 @@ Warnings:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Train&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_test</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Train"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_test</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Test"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">df_predict_ma_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">],</span>
-    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;q=</span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">mape_ma_msg</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+    <span class="n">df_predict_ma_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">"predicted_mean"</span><span class="p">],</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"q=</span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">mape_ma_msg</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -1878,7 +2179,7 @@ Warnings:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/arma_40_0.png" src="../../_images/arma_40_0.png" />
+<img alt="../../_images/arma_40_0.png" src="../../_images/arma_40_0.png"/>
 </div>
 </div>
 </section>
@@ -1941,21 +2242,21 @@ Warnings:
 <span class="n">q</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">model_arma</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">psgr_train_boxcox_diff</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">q</span><span class="p">))</span>
 <span class="n">model_arma_fitted</span> <span class="o">=</span> <span class="n">model_arma</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">model_arma_fitted</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#print" title="print"><span class="nb">print</span></a><span class="p">(</span><span class="n">model_arma_fitted</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/statsmodels/tsa/statespace/sarimax.py:966: UserWarning: Non-stationary starting autoregressive parameters found. Using zeros as starting parameters.
-  warn(&#39;Non-stationary starting autoregressive parameters&#39;
+  warn('Non-stationary starting autoregressive parameters'
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                               SARIMAX Results                                
 ==============================================================================
 Dep. Variable:            #Passengers   No. Observations:                  115
 Model:                ARIMA(11, 0, 1)   Log Likelihood                 143.637
-Date:                Fri, 29 Jul 2022   AIC                           -259.275
-Time:                        05:04:27   BIC                           -220.845
+Date:                Sat, 30 Jul 2022   AIC                           -259.275
+Time:                        22:23:45   BIC                           -220.845
 Sample:                    01-01-1949   HQIC                          -243.676
                          - 07-01-1958                                         
 Covariance Type:                  opg                                         
@@ -1988,7 +2289,7 @@ Warnings:
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/statsmodels/base/model.py:604: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
-  warnings.warn(&quot;Maximum Likelihood optimization failed to &quot;
+  warnings.warn("Maximum Likelihood optimization failed to "
 </pre></div>
 </div>
 </div>
@@ -2010,7 +2311,7 @@ Warnings:
 <span class="n">df_predict_arma</span> <span class="o">=</span> <span class="n">df_predict_arma</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_ci_arma</span><span class="p">)</span>
 
 <span class="c1"># 予測値に対して階差の逆変換, Box-Cox変換の逆変換を実施.</span>
-<span class="n">init</span> <span class="o">=</span> <span class="n">psgr_train_boxcox</span><span class="p">[</span><span class="s2">&quot;#Passengers&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">init</span> <span class="o">=</span> <span class="n">psgr_train_boxcox</span><span class="p">[</span><span class="s2">"#Passengers"</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">df_predict_arma_cumsum</span> <span class="o">=</span> <span class="n">df_predict_arma</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">+</span> <span class="n">init</span>
 <span class="n">df_predict_arma_cumsum_inv_boxcox</span> <span class="o">=</span> <span class="n">inv_boxcox</span><span class="p">(</span><span class="n">df_predict_arma_cumsum</span><span class="p">,</span> <span class="n">lam</span><span class="p">)</span>
 <span class="n">df_predict_arma_cumsum_inv_boxcox</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -2019,7 +2320,7 @@ Warnings:
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
-<style scoped>
+<style scoped="">
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -2033,86 +2334,86 @@ Warnings:
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>predicted_mean</th>
-      <th>lower #Passengers</th>
-      <th>upper #Passengers</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1958-08-01</th>
-      <td>509.977054</td>
-      <td>464.196863</td>
-      <td>560.050801</td>
-    </tr>
-    <tr>
-      <th>1958-09-01</th>
-      <td>476.409020</td>
-      <td>391.240894</td>
-      <td>579.117265</td>
-    </tr>
-    <tr>
-      <th>1958-10-01</th>
-      <td>404.780398</td>
-      <td>295.910402</td>
-      <td>551.306121</td>
-    </tr>
-    <tr>
-      <th>1958-11-01</th>
-      <td>360.065211</td>
-      <td>233.971624</td>
-      <td>549.600174</td>
-    </tr>
-    <tr>
-      <th>1958-12-01</th>
-      <td>390.174276</td>
-      <td>225.777599</td>
-      <td>665.495322</td>
-    </tr>
-    <tr>
-      <th>1959-01-01</th>
-      <td>380.656429</td>
-      <td>195.479394</td>
-      <td>727.046376</td>
-    </tr>
-    <tr>
-      <th>1959-02-01</th>
-      <td>372.046730</td>
-      <td>169.403370</td>
-      <td>795.468588</td>
-    </tr>
-    <tr>
-      <th>1959-03-01</th>
-      <td>394.218302</td>
-      <td>159.524126</td>
-      <td>940.414634</td>
-    </tr>
-    <tr>
-      <th>1959-04-01</th>
-      <td>378.563574</td>
-      <td>135.344257</td>
-      <td>1011.883666</td>
-    </tr>
-    <tr>
-      <th>1959-05-01</th>
-      <td>404.752474</td>
-      <td>128.268944</td>
-      <td>1207.213993</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>predicted_mean</th>
+<th>lower #Passengers</th>
+<th>upper #Passengers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>1958-08-01</th>
+<td>509.977054</td>
+<td>464.196863</td>
+<td>560.050801</td>
+</tr>
+<tr>
+<th>1958-09-01</th>
+<td>476.409020</td>
+<td>391.240894</td>
+<td>579.117265</td>
+</tr>
+<tr>
+<th>1958-10-01</th>
+<td>404.780398</td>
+<td>295.910402</td>
+<td>551.306121</td>
+</tr>
+<tr>
+<th>1958-11-01</th>
+<td>360.065211</td>
+<td>233.971624</td>
+<td>549.600174</td>
+</tr>
+<tr>
+<th>1958-12-01</th>
+<td>390.174276</td>
+<td>225.777599</td>
+<td>665.495322</td>
+</tr>
+<tr>
+<th>1959-01-01</th>
+<td>380.656429</td>
+<td>195.479394</td>
+<td>727.046376</td>
+</tr>
+<tr>
+<th>1959-02-01</th>
+<td>372.046730</td>
+<td>169.403370</td>
+<td>795.468588</td>
+</tr>
+<tr>
+<th>1959-03-01</th>
+<td>394.218302</td>
+<td>159.524126</td>
+<td>940.414634</td>
+</tr>
+<tr>
+<th>1959-04-01</th>
+<td>378.563574</td>
+<td>135.344257</td>
+<td>1011.883666</td>
+</tr>
+<tr>
+<th>1959-05-01</th>
+<td>404.752474</td>
+<td>128.268944</td>
+<td>1207.213993</td>
+</tr>
+</tbody>
 </table>
 </div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mape_arma</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span>
-    <span class="n">psgr_test</span><span class="p">,</span> <span class="n">df_predict_arma_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">]</span>
+    <span class="n">psgr_test</span><span class="p">,</span> <span class="n">df_predict_arma_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">"predicted_mean"</span><span class="p">]</span>
 <span class="p">)</span>
-<span class="n">mape_arma_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;MAPE: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mape_arma</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">mape_arma_msg</span><span class="p">)</span>
+<span class="n">mape_arma_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"MAPE: </span><span class="si">{</span><a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#round" title="round"><span class="nb">round</span></a><span class="p">(</span><span class="n">mape_arma</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#print" title="print"><span class="nb">print</span></a><span class="p">(</span><span class="n">mape_arma_msg</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2125,12 +2426,12 @@ Warnings:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Train&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_test</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Train"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_test</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Test"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">df_predict_arma_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">],</span>
-    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;ARMA(</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2">) (</span><span class="si">{</span><span class="n">mape_arma_msg</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+    <span class="n">df_predict_arma_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">"predicted_mean"</span><span class="p">],</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"ARMA(</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2">) (</span><span class="si">{</span><span class="n">mape_arma_msg</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -2139,29 +2440,29 @@ Warnings:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/arma_49_0.png" src="../../_images/arma_49_0.png" />
+<img alt="../../_images/arma_49_0.png" src="../../_images/arma_49_0.png"/>
 </div>
 </div>
 <p>次に <code class="docutils literal notranslate"><span class="pre">statsmodels.tsa.stattools.arma_order_select_ic</span></code> を用いて情報量基準から最適な <span class="math notranslate nohighlight">\(p, q\)</span> を求めてモデリングする.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/warnings.html#module-warnings" title="warnings"><span class="nn">warnings</span></a>
 
-<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">arma_order_select_ic</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.stattools.arma_order_select_ic.html#statsmodels.tsa.stattools.arma_order_select_ic" title="statsmodels.tsa.stattools.arma_order_select_ic"><span class="n">arma_order_select_ic</span></a>
 
 <span class="c1"># 次数選定において最尤推定の際に warning が多く発生するので, 見た目上 warning を非表示する.</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/warnings.html#warnings.simplefilter" title="warnings.simplefilter"><span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span></a><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
 
 <span class="n">max_ar</span> <span class="o">=</span> <span class="mi">12</span>
 <span class="n">max_ma</span> <span class="o">=</span> <span class="mi">2</span>
 
-<span class="n">res</span> <span class="o">=</span> <span class="n">arma_order_select_ic</span><span class="p">(</span><span class="n">psgr_train_boxcox_diff</span><span class="p">,</span> <span class="n">max_ar</span><span class="o">=</span><span class="n">max_ar</span><span class="p">,</span> <span class="n">max_ma</span><span class="o">=</span><span class="n">max_ma</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.stattools.arma_order_select_ic.html#statsmodels.tsa.stattools.arma_order_select_ic" title="statsmodels.tsa.stattools.arma_order_select_ic"><span class="n">arma_order_select_ic</span></a><span class="p">(</span><span class="n">psgr_train_boxcox_diff</span><span class="p">,</span> <span class="n">max_ar</span><span class="o">=</span><span class="n">max_ar</span><span class="p">,</span> <span class="n">max_ma</span><span class="o">=</span><span class="n">max_ma</span><span class="p">)</span>
+<a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#print" title="print"><span class="nb">print</span></a><span class="p">(</span><span class="n">res</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;bic&#39;:              0           1           2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'bic':              0           1           2
 0  -128.830141 -129.255008 -130.693682
 1  -127.564617 -130.688738 -147.048373
 2  -126.642656 -148.734036 -142.445931
@@ -2174,7 +2475,7 @@ Warnings:
 9  -153.495700 -172.442303 -166.812336
 10 -200.595191 -206.364897 -173.147287
 11 -227.094097 -220.845468 -158.875556
-12 -268.110965 -268.504419 -260.904618, &#39;bic_min_order&#39;: (12, 1)}
+12 -268.110965 -268.504419 -260.904618, 'bic_min_order': (12, 1)}
 </pre></div>
 </div>
 </div>
@@ -2186,7 +2487,7 @@ Warnings:
 <span class="n">q</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">bic_min_order</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">model_armaic</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">psgr_train_boxcox_diff</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">q</span><span class="p">))</span>
 <span class="n">model_armaic_fitted</span> <span class="o">=</span> <span class="n">model_armaic</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">model_armaic_fitted</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#print" title="print"><span class="nb">print</span></a><span class="p">(</span><span class="n">model_armaic_fitted</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -2195,8 +2496,8 @@ Warnings:
 ==============================================================================
 Dep. Variable:            #Passengers   No. Observations:                  115
 Model:                ARIMA(12, 0, 1)   Log Likelihood                 169.839
-Date:                Fri, 29 Jul 2022   AIC                           -309.678
-Time:                        05:04:46   BIC                           -268.504
+Date:                Sat, 30 Jul 2022   AIC                           -309.678
+Time:                        22:24:06   BIC                           -268.504
 Sample:                    01-01-1949   HQIC                          -292.966
                          - 07-01-1958                                         
 Covariance Type:                  opg                                         
@@ -2248,16 +2549,16 @@ Warnings:
 <span class="n">df_predict_armaic</span> <span class="o">=</span> <span class="n">df_predict_armaic</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_ci_armaic</span><span class="p">)</span>
 
 <span class="c1"># 予測値に対して階差の逆変換, Box-Cox変換の逆変換を実施.</span>
-<span class="n">init</span> <span class="o">=</span> <span class="n">psgr_train_boxcox</span><span class="p">[</span><span class="s2">&quot;#Passengers&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">init</span> <span class="o">=</span> <span class="n">psgr_train_boxcox</span><span class="p">[</span><span class="s2">"#Passengers"</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">df_predict_armaic_cumsum</span> <span class="o">=</span> <span class="n">df_predict_armaic</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">+</span> <span class="n">init</span>
 <span class="n">df_predict_armaic_cumsum_inv_boxcox</span> <span class="o">=</span> <span class="n">inv_boxcox</span><span class="p">(</span><span class="n">df_predict_armaic_cumsum</span><span class="p">,</span> <span class="n">lam</span><span class="p">)</span>
 
 <span class="c1"># 精度の確認</span>
 <span class="n">mape_armaic</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span>
-    <span class="n">psgr_test</span><span class="p">,</span> <span class="n">df_predict_armaic_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">]</span>
+    <span class="n">psgr_test</span><span class="p">,</span> <span class="n">df_predict_armaic_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">"predicted_mean"</span><span class="p">]</span>
 <span class="p">)</span>
-<span class="n">mape_armaic_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;MAPE: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mape_armaic</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">mape_armaic_msg</span><span class="p">)</span>
+<span class="n">mape_armaic_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"MAPE: </span><span class="si">{</span><a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#round" title="round"><span class="nb">round</span></a><span class="p">(</span><span class="n">mape_armaic</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#print" title="print"><span class="nb">print</span></a><span class="p">(</span><span class="n">mape_armaic_msg</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2270,12 +2571,12 @@ Warnings:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Train&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_test</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_train</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Train"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psgr_test</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Test"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">df_predict_armaic_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">],</span>
-    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;ARMA(</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2">) (</span><span class="si">{</span><span class="n">mape_armaic_msg</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+    <span class="n">df_predict_armaic_cumsum_inv_boxcox</span><span class="p">[</span><span class="s2">"predicted_mean"</span><span class="p">],</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"ARMA(</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2">) (</span><span class="si">{</span><span class="n">mape_armaic_msg</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -2284,7 +2585,7 @@ Warnings:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/arma_54_0.png" src="../../_images/arma_54_0.png" />
+<img alt="../../_images/arma_54_0.png" src="../../_images/arma_54_0.png"/>
 </div>
 </div>
 </section>
@@ -2310,8 +2611,7 @@ Warnings:
 </ul>
 </section>
 </section>
-
-    <script type="text/x-thebe-config">
+<script type="text/x-thebe-config">
     {
         requestKernel: true,
         binderOptions: {
@@ -2329,52 +2629,43 @@ Warnings:
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
-
-              </div>
-              
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="ts.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">時系列データ</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="arima.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ARIMAモデル系</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<script>kernelName = 'python3'</script>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By sndpgm<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
+</main>
+<footer class="footer-article noprint">
+<!-- Previous / next buttons -->
+<div class="prev-next-area">
+<a class="left-prev" href="ts.html" id="prev-link" title="previous page">
+<i class="fas fa-angle-left"></i>
+<div class="prev-next-info">
+<p class="prev-next-subtitle">previous</p>
+<p class="prev-next-title">時系列データ</p>
 </div>
-
-
-      </div>
-    </div>
+</a>
+<a class="right-next" href="arima.html" id="next-link" title="next page">
+<div class="prev-next-info">
+<p class="prev-next-subtitle">next</p>
+<p class="prev-next-title">ARIMAモデル系</p>
+</div>
+<i class="fas fa-angle-right"></i>
+</a>
+</div>
+</footer>
+</div>
+</div>
+<div class="footer-content row">
+<footer class="col footer"><p>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
-
-  </body>
+    By sndpgm<br>
+  
+      © Copyright 2022.<br/>
+</br></p>
+</footer>
+</div>
+</div>
+</div>
+</div>
+<!-- Scripts loaded after <body> so the DOM is not blocked -->
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+</body>
 </html>

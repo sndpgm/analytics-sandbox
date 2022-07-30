@@ -1,0 +1,1172 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sandbox.tsa.sarimax &#8212; Analytics Study Blog</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-codeautolink.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Analytics Study Blog</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Welcome to my Analytics Sandbox
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  確率変数と確率分布
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../analytics/distribution/rvs.html">
+   確率変数
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../analytics/distribution/dist.html">
+   確率分布
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../analytics/distribution/mdist.html">
+   多変量確率分布
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  回帰モデル
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../analytics/regression/blm.html">
+   ベイズ線形回帰モデル
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  時系列モデル
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../analytics/tsa/ts.html">
+   時系列データ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../analytics/tsa/arma.html">
+   ARMAモデル系
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../analytics/tsa/arima.html">
+   ARIMAモデル系
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../analytics/tsa/ssm.html">
+   状態空間モデル
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  補足
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../analytics/math/calculus.html">
+   微分積分学
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../analytics/math/linear_algebra.html">
+   線形代数学
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  API Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../api/sandbox/index.html">
+   <code class="xref py py-mod docutils literal notranslate">
+    <span class="pre">
+     sandbox
+    </span>
+   </code>
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../api/sandbox/datamodel/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.datamodel
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/sandbox/datamodel/base/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datamodel.base
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/sandbox/datamodel/ts_datamodel/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datamodel.ts_datamodel
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/sandbox/datamodel/ts_simulator/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datamodel.ts_simulator
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../api/sandbox/datasets/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.datasets
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../../api/sandbox/datasets/air_passengers/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.air_passengers
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+      <label for="toctree-checkbox-4">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/sandbox/datasets/air_passengers/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.air_passengers.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../../api/sandbox/datasets/blsallfood/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.blsallfood
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+      <label for="toctree-checkbox-5">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/sandbox/datasets/blsallfood/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.blsallfood.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../../api/sandbox/datasets/hakusan/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.hakusan
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+      <label for="toctree-checkbox-6">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/sandbox/datasets/hakusan/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.hakusan.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../../api/sandbox/datasets/maxtemp/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.maxtemp
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+      <label for="toctree-checkbox-7">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/sandbox/datasets/maxtemp/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.maxtemp.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../../api/sandbox/datasets/mye1f/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.mye1f
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+      <label for="toctree-checkbox-8">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/sandbox/datasets/mye1f/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.mye1f.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../../api/sandbox/datasets/nikkei225/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.nikkei225
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+      <label for="toctree-checkbox-9">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/sandbox/datasets/nikkei225/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.nikkei225.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../../api/sandbox/datasets/rtf/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.rtf
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+      <label for="toctree-checkbox-10">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/sandbox/datasets/rtf/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.rtf.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../../api/sandbox/datasets/whard/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.whard
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/sandbox/datasets/whard/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.whard.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/sandbox/datasets/utils/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.utils
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../api/sandbox/metrics/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.metrics
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/sandbox/metrics/score/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.metrics.score
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../api/sandbox/tests/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.tests
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../../api/sandbox/tests/datasets/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.tests.datasets
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/sandbox/tests/datasets/test_utils/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.tests.datasets.test_utils
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../api/sandbox/tsa/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.tsa
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/sandbox/tsa/base/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.tsa.base
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/sandbox/tsa/sarimax/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.tsa.sarimax
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/sandbox/tsa/ssm/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.tsa.ssm
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../api/sandbox/utils/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.utils
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/sandbox/utils/validation/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.utils.validation
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/sndpgm/analytics-sandbox"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2F_modules/sandbox/tsa/sarimax.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <h1>Source code for sandbox.tsa.sarimax</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;SARIMAX (Seasonal AutoRegressive Integrated Moving Average with eXogenous variables).&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">sandbox.datamodel.ts_datamodel</span> <span class="kn">import</span> <span class="n">TimeSeriesModelData</span>
+<span class="kn">from</span> <span class="nn">sandbox.tsa.base</span> <span class="kn">import</span> <span class="n">BaseTimeSeriesModel</span>
+
+
+<div class="viewcode-block" id="SARIMAXModel"><a class="viewcode-back" href="../../../api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel">[docs]</a><span class="k">class</span> <span class="nc">SARIMAXModel</span><span class="p">(</span><span class="n">BaseTimeSeriesModel</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Linear Gaussian state space model.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    trend : str{&#39;n&#39;,&#39;c&#39;,&#39;t&#39;,&#39;ct&#39;} or iterable, optional</span>
+<span class="sd">        Parameter controlling the deterministic trend polynomial :math:`A(t)`.</span>
+<span class="sd">        Can be specified as a string where &#39;c&#39; indicates a constant (i.e. a</span>
+<span class="sd">        degree zero component of the trend polynomial), &#39;t&#39; indicates a</span>
+<span class="sd">        linear trend with time, and &#39;ct&#39; is both. Can also be specified as an</span>
+<span class="sd">        iterable defining the non-zero polynomial exponents to include, in</span>
+<span class="sd">        increasing order. For example, `[1,1,0,1]` denotes</span>
+<span class="sd">        :math:`a + bt + ct^3`. Default is to not include a trend component.</span>
+<span class="sd">    s : int, optional</span>
+<span class="sd">        The period for seasonal differencing, ``s`` refers to the number of</span>
+<span class="sd">        periods in each season. For example, ``s`` is 4 for quarterly data, 12</span>
+<span class="sd">        for monthly data, or 1 for annual (non-seasonal) data. Default is 1.</span>
+<span class="sd">        Note that if ``s`` == 1 (i.e., is non-seasonal), ``seasonal`` will be</span>
+<span class="sd">        set to False.</span>
+<span class="sd">    seasonal : bool, optional</span>
+<span class="sd">        Whether to fit a seasonal ARIMA. Default is True. Note that if</span>
+<span class="sd">        ``seasonal`` is True and ``s`` == 1, ``seasonal`` will be set to False.</span>
+<span class="sd">    method : str, optional</span>
+<span class="sd">        The ``method`` determines which solver from ``scipy.optimize``</span>
+<span class="sd">        is used, and it can be chosen from among the following strings:</span>
+<span class="sd">        - &#39;newton&#39; for Newton-Raphson</span>
+<span class="sd">        - &#39;nm&#39; for Nelder-Mead</span>
+<span class="sd">        - &#39;bfgs&#39; for Broyden-Fletcher-Goldfarb-Shanno (BFGS)</span>
+<span class="sd">        - &#39;lbfgs&#39; for limited-memory BFGS with optional box constraints</span>
+<span class="sd">        - &#39;powell&#39; for modified Powell&#39;s method</span>
+<span class="sd">        - &#39;cg&#39; for conjugate gradient</span>
+<span class="sd">        - &#39;ncg&#39; for Newton-conjugate gradient</span>
+<span class="sd">        - &#39;basinhopping&#39; for global basin-hopping solver</span>
+<span class="sd">        The explicit arguments in ``fit`` are passed to the solver,</span>
+<span class="sd">        with the exception of the basin-hopping solver. Each</span>
+<span class="sd">        solver has several optional arguments that are not the same across</span>
+<span class="sd">        solvers. These can be passed as **fit_kwargs</span>
+<span class="sd">    start_p : int, optional</span>
+<span class="sd">        The starting value of ``p``, the order (or number of time lags)</span>
+<span class="sd">        of the auto-regressive (&quot;AR&quot;) model. Must be a positive integer.</span>
+<span class="sd">    d : int, optional</span>
+<span class="sd">        The order of first-differencing. If None (by default), the value</span>
+<span class="sd">        will automatically be selected based on the results of the ``test``</span>
+<span class="sd">        (i.e., either the Kwiatkowski–Phillips–Schmidt–Shin, Augmented</span>
+<span class="sd">        Dickey-Fuller or the Phillips–Perron test will be conducted to find</span>
+<span class="sd">        the most probable value). Must be a positive integer or None. Note</span>
+<span class="sd">        that if ``d`` is None, the runtime could be significantly longer.</span>
+<span class="sd">    start_q : int, optional</span>
+<span class="sd">        The starting value of ``q``, the order of the moving-average</span>
+<span class="sd">        (&quot;MA&quot;) model. Must be a positive integer.</span>
+<span class="sd">    max_p : int, optional</span>
+<span class="sd">        The maximum value of ``p``, inclusive. Must be a positive integer</span>
+<span class="sd">        greater than or equal to ``start_p``.</span>
+<span class="sd">    max_d : int, optional</span>
+<span class="sd">        The maximum value of ``d``, or the maximum number of non-seasonal</span>
+<span class="sd">        differences. Must be a positive integer greater than or equal to ``d``.</span>
+<span class="sd">    max_q : int, optional</span>
+<span class="sd">        The maximum value of ``q``, inclusive. Must be a positive integer</span>
+<span class="sd">        greater than ``start_q``.</span>
+<span class="sd">    start_P : int, optional</span>
+<span class="sd">        The starting value of ``P``, the order of the auto-regressive portion</span>
+<span class="sd">        of the seasonal model.</span>
+<span class="sd">    D : int, optional</span>
+<span class="sd">        The order of the seasonal differencing. If None (by default, the value</span>
+<span class="sd">        will automatically be selected. Must be a positive integer or None.</span>
+<span class="sd">    start_Q : int, optional</span>
+<span class="sd">        The starting value of ``Q``, the order of the moving-average portion</span>
+<span class="sd">        of the seasonal model.</span>
+<span class="sd">    max_P : int, optional</span>
+<span class="sd">        The maximum value of ``P``, inclusive. Must be a positive integer</span>
+<span class="sd">        greater than ``start_P``.</span>
+<span class="sd">    max_D : int, optional</span>
+<span class="sd">        The maximum value of ``D``. Must be a positive integer greater</span>
+<span class="sd">        than ``D``.</span>
+<span class="sd">    max_Q : int, optional</span>
+<span class="sd">        The maximum value of ``Q``, inclusive. Must be a positive integer</span>
+<span class="sd">        greater than ``start_Q``.</span>
+<span class="sd">    stepwise : bool, optional</span>
+<span class="sd">        Whether to use the stepwise algorithm outlined in [1]_ Hyndman and Khandakar</span>
+<span class="sd">        (2008) to identify the optimal model parameters. The stepwise algorithm</span>
+<span class="sd">        can be significantly faster than fitting all hyper-parameter combinations</span>
+<span class="sd">        and is less likely to over-fit the model.</span>
+<span class="sd">    max_order : int, optional</span>
+<span class="sd">        Maximum value of :math:`p+q+P+Q` if model selection is not stepwise.</span>
+<span class="sd">        If the sum of ``p`` and ``q`` is &gt;= ``max_order``, a model will</span>
+<span class="sd">        *not* be fit with those parameters, but will progress to the next</span>
+<span class="sd">        combination. Default is 5. If ``max_order`` is None, it means there</span>
+<span class="sd">        are no constraints on maximum order.</span>
+<span class="sd">    n_jobs : int, optional</span>
+<span class="sd">        The number of models to fit in parallel in the case of a grid search</span>
+<span class="sd">        (``stepwise=False``). Default is 1, but -1 can be used to designate</span>
+<span class="sd">        &quot;as many as possible&quot;.</span>
+<span class="sd">    trace : {bool, int}, optional</span>
+<span class="sd">        Whether to print status on the fits. A value of False will print no</span>
+<span class="sd">        debugging information. A value of True will print some. Integer values</span>
+<span class="sd">        exceeding 1 will print increasing amounts of debug information at each</span>
+<span class="sd">        fit.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.model_selection import train_test_split</span>
+<span class="sd">    &gt;&gt;&gt; from sandbox.datasets import air_passengers</span>
+<span class="sd">    &gt;&gt;&gt; from sandbox.tsa.sarimax import SARIMAXModel</span>
+<span class="sd">    &gt;&gt;&gt; # Get test data</span>
+<span class="sd">    &gt;&gt;&gt; y = air_passengers.load().data</span>
+<span class="sd">    &gt;&gt;&gt; y_train, y_test = train_test_split(y, test_size=0.20, shuffle=False)</span>
+<span class="sd">    &gt;&gt;&gt; # Build model and fitting</span>
+<span class="sd">    &gt;&gt;&gt; sarimax = SARIMAXModel(trend=&quot;c&quot;, s=12, trace=True)</span>
+<span class="sd">    &gt;&gt;&gt; sarimax.fit(y_train)</span>
+<span class="sd">    Out[1]: SARIMAXModel(s=12, trace=True, trend=&#39;c&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; # Predict</span>
+<span class="sd">    &gt;&gt;&gt; sarimax.predict(y_test.index)</span>
+<span class="sd">    Out[2]:</span>
+<span class="sd">    array([490.57261133, 428.30635863, 371.39237605, 329.61111601,</span>
+<span class="sd">           360.80266057, 364.99977758, 343.19575277, 387.39196193,</span>
+<span class="sd">           373.58812314, 388.78429418, 460.98046321, 517.17663265,</span>
+<span class="sd">           516.94541333, 454.87533   , 398.15751679, 356.57242612,</span>
+<span class="sd">           387.96014005, 392.35342643, 370.74557099, 415.13794951,</span>
+<span class="sd">           401.5302801 , 416.9226205 , 489.3149589 , 545.70729771,</span>
+<span class="sd">           545.67224776, 483.7983338 , 427.27668995, 385.88776865,</span>
+<span class="sd">           417.47165195])</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The SARIMA model is specified :math:`(p, d, q) \times (P, D, Q)_s`.</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        \phi_p (L) \tilde \phi_P (L^s) \Delta^d \Delta_s^D y_t = A(t) +</span>
+<span class="sd">            \theta_q (L) \tilde \theta_Q (L^s) \zeta_t</span>
+
+<span class="sd">    In terms of a univariate structural model, this can be represented as</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        y_t &amp; = u_t + \eta_t \\</span>
+<span class="sd">        \phi_p (L) \tilde \phi_P (L^s) \Delta^d \Delta_s^D u_t &amp; = A(t) +</span>
+<span class="sd">            \theta_q (L) \tilde \theta_Q (L^s) \zeta_t</span>
+
+<span class="sd">    where :math:`\eta_t` is only applicable in the case of measurement error</span>
+<span class="sd">    (although it is also used in the case of a pure regression model, i.e. if</span>
+<span class="sd">    p=q=0).</span>
+
+<span class="sd">    In terms of this model, regression with SARIMA errors can be represented</span>
+<span class="sd">    easily as</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        y_t &amp; = \beta_t x_t + u_t \\</span>
+<span class="sd">        \phi_p (L) \tilde \phi_P (L^s) \Delta^d \Delta_s^D u_t &amp; = A(t) +</span>
+<span class="sd">            \theta_q (L) \tilde \theta_Q (L^s) \zeta_t</span>
+
+<span class="sd">    this model is the one used when exogenous regressors are provided.</span>
+<span class="sd">    Note that the reduced form lag polynomials will be written as:</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        \Phi (L) \equiv \phi_p (L) \tilde \phi_P (L^s) \\</span>
+<span class="sd">        \Theta (L) \equiv \theta_q (L) \tilde \theta_Q (L^s)</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] Hyndman, R. J., &amp; Khandakar, Y. (2008).</span>
+<span class="sd">           Automatic time series forecasting: the forecast package for R.</span>
+<span class="sd">           Journal of statistical software, 27, 1-22.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">trend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">seasonal</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;lbfgs&quot;</span><span class="p">,</span>
+        <span class="n">start_p</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">d</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">start_q</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">max_p</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">max_d</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">max_q</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">start_P</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">D</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">start_Q</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">max_P</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">max_D</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">max_Q</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">stepwise</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">max_order</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">trace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trend</span> <span class="o">=</span> <span class="n">trend</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s</span> <span class="o">=</span> <span class="n">s</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seasonal</span> <span class="o">=</span> <span class="n">seasonal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_p</span> <span class="o">=</span> <span class="n">start_p</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">d</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_q</span> <span class="o">=</span> <span class="n">start_q</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_p</span> <span class="o">=</span> <span class="n">max_p</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_d</span> <span class="o">=</span> <span class="n">max_d</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_q</span> <span class="o">=</span> <span class="n">max_q</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_P</span> <span class="o">=</span> <span class="n">start_P</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">D</span> <span class="o">=</span> <span class="n">D</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_Q</span> <span class="o">=</span> <span class="n">start_Q</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_P</span> <span class="o">=</span> <span class="n">max_P</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_D</span> <span class="o">=</span> <span class="n">max_D</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_Q</span> <span class="o">=</span> <span class="n">max_Q</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stepwise</span> <span class="o">=</span> <span class="n">stepwise</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_order</span> <span class="o">=</span> <span class="n">max_order</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trace</span> <span class="o">=</span> <span class="n">trace</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X_train_</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_train_</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_fitted_</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params_</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="SARIMAXModel.fit"><a class="viewcode-back" href="../../../api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit the model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array_like</span>
+<span class="sd">            Training data on regressions. If no regression is defined,</span>
+<span class="sd">            just y is to be defined.</span>
+<span class="sd">        y : {array_like, None}, default</span>
+<span class="sd">            Target values. If no regression is defined, just y is to be</span>
+<span class="sd">            defined in the place of X.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : object</span>
+<span class="sd">            Returns the instance itself.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># このモジュールで提供しているデータクラスに変換.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_</span> <span class="o">=</span> <span class="n">TimeSeriesModelData</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_model_result</span><span class="p">(</span>
+            <span class="n">endog</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">X</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params_</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="nb">zip</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">param_names</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="SARIMAXModel._get_model_result"><a class="viewcode-back" href="../../../api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel._get_model_result">[docs]</a>    <span class="k">def</span> <span class="nf">_get_model_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endog</span><span class="p">,</span> <span class="n">exog</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">warnings</span>
+
+        <span class="kn">import</span> <span class="nn">pmdarima</span> <span class="k">as</span> <span class="nn">pm</span>
+
+        <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+            <span class="n">model_result</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">auto_arima</span><span class="p">(</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">endog</span><span class="p">,</span>
+                <span class="n">X</span><span class="o">=</span><span class="n">exog</span><span class="p">,</span>
+                <span class="n">start_p</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">start_p</span><span class="p">,</span>
+                <span class="n">d</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">,</span>
+                <span class="n">start_q</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">start_q</span><span class="p">,</span>
+                <span class="n">max_p</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_p</span><span class="p">,</span>
+                <span class="n">max_d</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_d</span><span class="p">,</span>
+                <span class="n">max_q</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_q</span><span class="p">,</span>
+                <span class="n">start_P</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">start_P</span><span class="p">,</span>
+                <span class="n">D</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">,</span>
+                <span class="n">start_Q</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">start_Q</span><span class="p">,</span>
+                <span class="n">max_P</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_P</span><span class="p">,</span>
+                <span class="n">max_D</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_D</span><span class="p">,</span>
+                <span class="n">max_Q</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_Q</span><span class="p">,</span>
+                <span class="n">max_order</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_order</span><span class="p">,</span>
+                <span class="n">m</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="p">,</span>
+                <span class="n">seasonal</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">seasonal</span><span class="p">,</span>
+                <span class="n">stepwise</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stepwise</span><span class="p">,</span>
+                <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
+                <span class="n">trend</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">trend</span><span class="p">,</span>
+                <span class="n">method</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+                <span class="n">trace</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">trace</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">model_result</span><span class="o">.</span><span class="n">arima_res_</span></div>
+
+<div class="viewcode-block" id="SARIMAXModel.predict"><a class="viewcode-back" href="../../../api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">is_pandas</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Predict using the model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : {array-like, int}</span>
+<span class="sd">            Design matrix expressing the regression dummies or variables in</span>
+<span class="sd">            the period to be predicted. If no regression is defined in the model,</span>
+<span class="sd">            the index expressing the period or the period steps to be predicted</span>
+<span class="sd">            must be set.</span>
+<span class="sd">        is_pandas: bool, optional</span>
+<span class="sd">            If True, the return data type is pandas.Series. Otherwise, numpy.ndarray.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        predicted_mean : array-like</span>
+<span class="sd">            Mean of predictive distribution of query points.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">index</span><span class="p">,</span> <span class="n">exog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">split_index_and_X_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">nobs</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">nobs</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">exog</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">is_pandas</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+                <span class="n">pred</span><span class="o">.</span><span class="n">predicted_mean</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pred</span><span class="o">.</span><span class="n">predicted_mean</span></div>
+
+<div class="viewcode-block" id="SARIMAXModel.conf_int"><a class="viewcode-back" href="../../../api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel.conf_int">[docs]</a>    <span class="k">def</span> <span class="nf">conf_int</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">is_pandas</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the confidence interval.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : {array-like, int}</span>
+<span class="sd">            Design matrix expressing the regression dummies or variables in</span>
+<span class="sd">            the period to be predicted. If no regression is defined in the model,</span>
+<span class="sd">            the index expressing the period or the period steps to be predicted</span>
+<span class="sd">            must be set.</span>
+<span class="sd">        alpha : float, optional</span>
+<span class="sd">            The `alpha` level for the confidence interval. The default</span>
+<span class="sd">            `alpha` = .95 returns a 95% confidence interval.</span>
+<span class="sd">        is_pandas: bool, optional</span>
+<span class="sd">            If True, the return data type is pandas.Series. Otherwise, numpy.ndarray.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        array_like</span>
+<span class="sd">            The confidence intervals.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">index</span><span class="p">,</span> <span class="n">exog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">split_index_and_X_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">nobs</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">nobs</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">exog</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">is_pandas</span><span class="p">:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">alpha</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+                <span class="n">pred</span><span class="o">.</span><span class="n">conf_int</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">),</span>
+                <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span>
+                <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;lower_</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;upper_</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pred</span><span class="o">.</span><span class="n">conf_int</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SARIMAXModel._get_prediction"><a class="viewcode-back" href="../../../api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel._get_prediction">[docs]</a>    <span class="k">def</span> <span class="nf">_get_prediction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">exog</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">exog</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SARIMAXModel.score"><a class="viewcode-back" href="../../../api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel.score">[docs]</a>    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scorer</span><span class="o">=</span><span class="s2">&quot;r2&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the coefficient of determination of the prediction.</span>
+
+<span class="sd">        The default coefficient of determination :math:`R^2` is defined as</span>
+<span class="sd">        :math:`(1 - \\frac{u}{v})`, where :math:`u` is the residual</span>
+<span class="sd">        sum of squares ``((y_true - y_pred)** 2).sum()`` and :math:`v`</span>
+<span class="sd">        is the total sum of squares ``((y_true - y_true.mean()) ** 2).sum()``.</span>
+<span class="sd">        The best possible score is 1.0 and it can be negative (because the</span>
+<span class="sd">        model can be arbitrarily worse). A constant model that always predicts</span>
+<span class="sd">        the expected value of `y`, disregarding the input features, would get</span>
+<span class="sd">        a :math:`R^2` score of 0.0.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : {array-like, int}</span>
+<span class="sd">            Design matrix expressing the regression dummies or variables in</span>
+<span class="sd">            the period to be predicted. If no regression is defined in the model,</span>
+<span class="sd">            the index expressing the period or the period steps to be predicted</span>
+<span class="sd">            must be set.</span>
+<span class="sd">        y : array-like</span>
+<span class="sd">            True values for `X`.</span>
+<span class="sd">        scorer : str, optional</span>
+<span class="sd">            Expressing the type of the coefficient of determination.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        score : float</span>
+<span class="sd">            :math:`R^2` of ``self.predict(X)``.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">SARIMAXModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scorer</span><span class="o">=</span><span class="n">scorer</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">score</span></div></div>
+</pre></div>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By sndpgm<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

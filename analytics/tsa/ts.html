@@ -2,708 +2,1009 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-    <title>時系列データ &#8212; Analytics Study Blog</title>
-    
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
-    <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>時系列データ — Analytics Study Blog</title>
+<!-- Loaded before other Sphinx assets -->
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" rel="stylesheet" type="text/css">
+<link href="../../_static/togglebutton.css" rel="stylesheet" type="text/css">
+<link href="../../_static/copybutton.css" rel="stylesheet" type="text/css">
+<link href="../../_static/mystnb.css" rel="stylesheet" type="text/css">
+<link href="../../_static/sphinx-thebe.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/graphviz.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/sphinx-codeautolink.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" rel="stylesheet" type="text/css"/>
+<!-- Pre-loaded scripts that we'll load fully later -->
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="../../_static/clipboard.min.js"></script>
+<script src="../../_static/copybutton.js"></script>
+<script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+<script>let toggleHintShow = 'Click to show';</script>
+<script>let toggleHintHide = 'Click to hide';</script>
+<script>let toggleOpenOnPrint = 'true';</script>
+<script src="../../_static/togglebutton.js"></script>
+<script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+<script src="../../_static/design-tabs.js"></script>
+<script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="ARMAモデル系" href="arma.html" />
-    <link rel="prev" title="ベイズ線形回帰モデル" href="../regression/blm.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-  </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<script async="async" src="../../_static/sphinx-thebe.js"></script>
+<script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link href="../../genindex.html" rel="index" title="Index">
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="arma.html" rel="next" title="ARMAモデル系"/>
+<link href="../regression/blm.html" rel="prev" title="ベイズ線形回帰モデル"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="None" name="docsearch:language"/>
+<!-- Google Analytics -->
+</link></link></link></link></link></link></head>
+<body data-offset="60" data-spy="scroll" data-target="#bd-toc-nav">
 <!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<input aria-label="Toggle navigation sidebar" class="sidebar-toggle" id="__navigation" name="__navigation" type="checkbox"/>
 <label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
+<div class="visually-hidden">Toggle navigation sidebar</div>
 </label>
 <!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<input aria-label="Toggle in-page Table of Contents" class="sidebar-toggle" id="__page-toc" name="__page-toc" type="checkbox"/>
 <label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+<div class="visually-hidden">Toggle in-page Table of Contents</div>
 </label>
 <!-- Headers at the top -->
 <div class="announcement header-item noprint"></div>
 <div class="header header-item noprint"></div>
-
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
+<div class="container-fluid" id="banner"></div>
+<div class="container-xl">
+<div class="row">
 <!-- Sidebar -->
 <div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
-      
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
-      <img src="../../_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Analytics Study Blog</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../../intro.html">
+<div class="bd-sidebar__content">
+<div class="bd-sidebar__top"><div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+<!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+<img alt="logo" class="logo" src="../../_static/logo.png"/>
+<h1 class="site-logo" id="site-title">Analytics Study Blog</h1>
+</a>
+</div><form action="../../search.html" class="bd-search d-flex align-items-center" method="get">
+<i class="icon fas fa-search"></i>
+<input aria-label="Search this book..." autocomplete="off" class="form-control" id="search-input" name="q" placeholder="Search this book..." type="search"/>
+</form><nav aria-label="Main" class="bd-links" id="bd-docs-nav">
+<div class="bd-toc-item active">
+<ul class="nav bd-sidenav bd-sidenav__home-link">
+<li class="toctree-l1">
+<a class="reference internal" href="../../intro.html">
                     Welcome to my Analytics Sandbox
                 </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+<span class="caption-text">
   確率変数と確率分布
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../distribution/rvs.html">
+<li class="toctree-l1">
+<a class="reference internal" href="../distribution/rvs.html">
    確率変数
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../distribution/dist.html">
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="../distribution/dist.html">
    確率分布
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../distribution/mdist.html">
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="../distribution/mdist.html">
    多変量確率分布
   </a>
- </li>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
+<span class="caption-text">
   回帰モデル
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../regression/blm.html">
+<li class="toctree-l1">
+<a class="reference internal" href="../regression/blm.html">
    ベイズ線形回帰モデル
   </a>
- </li>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
+<span class="caption-text">
   時系列モデル
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<li class="toctree-l1 current active">
+<a class="current reference internal" href="#">
    時系列データ
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="arma.html">
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="arma.html">
    ARMAモデル系
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="arima.html">
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="arima.html">
    ARIMAモデル系
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ssm.html">
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="ssm.html">
    状態空間モデル
   </a>
- </li>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
+<span class="caption-text">
   補足
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../math/calculus.html">
+<li class="toctree-l1">
+<a class="reference internal" href="../math/calculus.html">
    微分積分学
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../math/linear_algebra.html">
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="../math/linear_algebra.html">
    線形代数学
   </a>
- </li>
+</li>
 </ul>
-
-    </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+<p aria-level="2" class="caption" role="heading">
+<span class="caption-text">
+  API Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children">
+<a class="reference internal" href="../../api/sandbox/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+     sandbox
+    </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox">
+<label for="toctree-checkbox-1">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/datamodel/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.datamodel
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox">
+<label for="toctree-checkbox-2">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/datamodel/base/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datamodel.base
+        </span>
+</code>
+</a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/datamodel/ts_datamodel/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datamodel.ts_datamodel
+        </span>
+</code>
+</a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/datamodel/ts_simulator/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datamodel.ts_simulator
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</input></li>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.datasets
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox">
+<label for="toctree-checkbox-3">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/air_passengers/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.air_passengers
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+<label for="toctree-checkbox-4">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/air_passengers/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.air_passengers.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/blsallfood/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.blsallfood
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+<label for="toctree-checkbox-5">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/blsallfood/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.blsallfood.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/hakusan/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.hakusan
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+<label for="toctree-checkbox-6">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/hakusan/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.hakusan.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/maxtemp/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.maxtemp
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+<label for="toctree-checkbox-7">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/maxtemp/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.maxtemp.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/mye1f/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.mye1f
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+<label for="toctree-checkbox-8">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/mye1f/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.mye1f.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/nikkei225/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.nikkei225
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+<label for="toctree-checkbox-9">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/nikkei225/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.nikkei225.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/rtf/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.rtf
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+<label for="toctree-checkbox-10">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/rtf/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.rtf.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/whard/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.whard
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+<label for="toctree-checkbox-11">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/whard/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.whard.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/datasets/utils/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.utils
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</input></li>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/metrics/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.metrics
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+<label for="toctree-checkbox-12">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/metrics/score/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.metrics.score
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/tests/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.tests
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+<label for="toctree-checkbox-13">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/tests/datasets/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.tests.datasets
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+<label for="toctree-checkbox-14">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/tests/datasets/test_utils/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.tests.datasets.test_utils
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/tsa/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.tsa
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+<label for="toctree-checkbox-15">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/tsa/base/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.tsa.base
+        </span>
+</code>
+</a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/tsa/sarimax/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.tsa.sarimax
+        </span>
+</code>
+</a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/tsa/ssm/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.tsa.ssm
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/utils/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.utils
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+<label for="toctree-checkbox-16">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/utils/validation/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.utils.validation
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</input></li>
+</ul>
 </div>
-
-
-          
-
-
-          
+</nav></div>
+<div class="bd-sidebar__bottom">
+<!-- To handle the deprecated key -->
+<div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+</div>
+</div>
+<div id="rtd-footer-container"></div>
+</div>
 <!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
 <!-- Main content -->
 <div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
+<div class="header-article row sticky-top noprint">
 <div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
+<div class="header-article__left">
+<label class="headerbtn" data-placement="right" data-toggle="tooltip" for="__navigation" title="Toggle navigation">
 <span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
+<i class="fas fa-bars"></i>
+</span>
 </label>
-
-        
-    </div>
-    <div class="header-article__right">
+</div>
+<div class="header-article__right">
 <div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/tsa/ts.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
+<button aria-label="Launch interactive content" class="headerbtn menu-dropdown__trigger">
+<i class="fas fa-rocket"></i>
+</button>
+<div class="menu-dropdown__content">
+<ul>
+<li>
+<a class="headerbtn" data-placement="left" data-toggle="tooltip" href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=tree/docs/analytics/tsa/ts.ipynb" title="Launch on Binder">
 <span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_binder.svg">
-  </span>
+<img src="../../_static/images/logo_binder.svg"/>
+</span>
 <span class="headerbtn__text-container">Binder</span>
 </a>
-
-      </li>
-      
-    </ul>
-  </div>
+</li>
+</ul>
 </div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
+</div>
+<button class="headerbtn" data-placement="bottom" data-toggle="tooltip" onclick="toggleFullScreen()" title="Fullscreen mode">
 <span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
+<i class="fas fa-expand"></i>
+</span>
 </button>
-
 <div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/sndpgm/analytics-sandbox"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
+<button aria-label="Source repositories" class="headerbtn menu-dropdown__trigger">
+<i class="fab fa-github"></i>
+</button>
+<div class="menu-dropdown__content">
+<ul>
+<li>
+<a class="headerbtn" data-placement="left" data-toggle="tooltip" href="https://github.com/sndpgm/analytics-sandbox" title="Source repository">
 <span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
+<i class="fab fa-github"></i>
+</span>
 <span class="headerbtn__text-container">repository</span>
 </a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/tsa/ts.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
+</li>
+<li>
+<a class="headerbtn" data-placement="left" data-toggle="tooltip" href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/tsa/ts.html&amp;body=Your%20issue%20content%20here." title="Open an issue">
 <span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
+<i class="fas fa-lightbulb"></i>
+</span>
 <span class="headerbtn__text-container">open issue</span>
 </a>
-
-      </li>
-      
-    </ul>
-  </div>
+</li>
+</ul>
 </div>
-
+</div>
 <div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/analytics/tsa/ts.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
+<button aria-label="Download this page" class="headerbtn menu-dropdown__trigger">
+<i class="fas fa-download"></i>
+</button>
+<div class="menu-dropdown__content">
+<ul>
+<li>
+<a class="headerbtn" data-placement="left" data-toggle="tooltip" href="../../_sources/analytics/tsa/ts.ipynb" title="Download source file">
 <span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
+<i class="fas fa-file"></i>
+</span>
 <span class="headerbtn__text-container">.ipynb</span>
 </a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
+</li>
+<li>
+<button class="headerbtn" data-placement="left" data-toggle="tooltip" onclick="printPdf(this)" title="Print to PDF">
 <span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
+<i class="fas fa-file-pdf"></i>
+</span>
 <span class="headerbtn__text-container">.pdf</span>
 </button>
-
-      </li>
-      
-    </ul>
-  </div>
+</li>
+</ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
+</div>
+<label class="headerbtn headerbtn-page-toc" for="__page-toc">
 <span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+<i class="fas fa-list"></i>
+</span>
 </label>
-
-    </div>
 </div>
-
+</div>
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+<div class="tocsection onthispage pt-5 pb-3">
+<i class="fas fa-list"></i> Contents
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
+<nav aria-label="Page" id="bd-toc-nav">
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id2">
    1. 時系列データ
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#air-passengers">
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#air-passengers">
      例 1.1 (air_passengers)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hakusan">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#hakusan">
      例 1.2 (hakusan)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sunspots">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#sunspots">
      例 1.3 (sunspots)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#maxtemp">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#maxtemp">
      例 1.4 (maxtemp)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#blsallfood">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#blsallfood">
      例 1.5 (blsallfood)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#whard">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#whard">
      例 1.6 (whard)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mye1f">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#mye1f">
      例 1.7 (mye1f)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#nikkei225">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#nikkei225">
      例 1.8 (nikkei225)
     </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tsa-time-series-stationarity">
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#tsa-time-series-stationarity">
    2. 定常性
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id4">
      定義 2.1 (弱定常性)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id5">
      定義 2.2 (強定常性)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id6">
      定義 2.3 (非定常性)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id7">
      例 2.4 (ホワイトノイズ)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id8">
      例 2.5 (ランダムウォークの非定常性)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ar-1">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#ar-1">
      例 2.5 (AR(1) の定常性)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adf">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#adf">
      検定 2.6 (ADF検定)
     </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id9">
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id9">
    3. コレログラム
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id10">
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id10">
      定義 3.1 (自己相関関数)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id11">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id11">
      定義 3.2 (偏自己相関関数)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id12">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id12">
      例 3.3 (コレログラム)
     </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id13">
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id13">
    4. 時系列モデリングと定常性
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id14">
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id14">
    5. データの前処理による定常化
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id15">
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id15">
      例 5.1 (対数変換)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#box-cox">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#box-cox">
      例 5.2 (Box-Cox 変換)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tsa-time-series-preprocess-difference">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#tsa-time-series-preprocess-difference">
      例 5.3 (階差)
     </a>
-   </li>
-  </ul>
- </li>
+</li>
 </ul>
-
-    </nav>
+</li>
+</ul>
+</nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>時系列データ</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
+</div>
+<div class="article row">
+<div class="col pl-md-3 pl-lg-5 content-container">
+<!-- Table of contents that is only displayed when printing the page -->
+<div class="onlyprint" id="jb-print-docs-body">
+<h1>時系列データ</h1>
+<!-- Table of contents -->
+<div id="print-main-content">
+<div id="jb-print-toc">
+<div>
+<h2> Contents </h2>
+</div>
+<nav aria-label="Page">
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id2">
    1. 時系列データ
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#air-passengers">
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#air-passengers">
      例 1.1 (air_passengers)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hakusan">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#hakusan">
      例 1.2 (hakusan)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sunspots">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#sunspots">
      例 1.3 (sunspots)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#maxtemp">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#maxtemp">
      例 1.4 (maxtemp)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#blsallfood">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#blsallfood">
      例 1.5 (blsallfood)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#whard">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#whard">
      例 1.6 (whard)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mye1f">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#mye1f">
      例 1.7 (mye1f)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#nikkei225">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#nikkei225">
      例 1.8 (nikkei225)
     </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tsa-time-series-stationarity">
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#tsa-time-series-stationarity">
    2. 定常性
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id4">
      定義 2.1 (弱定常性)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id5">
      定義 2.2 (強定常性)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id6">
      定義 2.3 (非定常性)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id7">
      例 2.4 (ホワイトノイズ)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id8">
      例 2.5 (ランダムウォークの非定常性)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ar-1">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#ar-1">
      例 2.5 (AR(1) の定常性)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adf">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#adf">
      検定 2.6 (ADF検定)
     </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id9">
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id9">
    3. コレログラム
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id10">
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id10">
      定義 3.1 (自己相関関数)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id11">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id11">
      定義 3.2 (偏自己相関関数)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id12">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id12">
      例 3.3 (コレログラム)
     </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id13">
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id13">
    4. 時系列モデリングと定常性
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id14">
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id14">
    5. データの前処理による定常化
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id15">
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id15">
      例 5.1 (対数変換)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#box-cox">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#box-cox">
      例 5.2 (Box-Cox 変換)
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tsa-time-series-preprocess-difference">
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#tsa-time-series-preprocess-difference">
      例 5.3 (階差)
     </a>
-   </li>
-  </ul>
- </li>
+</li>
 </ul>
-
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <main id="main-content" role="main">
-                
-              <div>
-                
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<main id="main-content" role="main">
+<div>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>時系列データ<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
 <section id="id2">
 <h2>1. 時系列データ<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
@@ -715,8 +1016,8 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># グラフ図示に必要なモジュール</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.html#module-matplotlib.pyplot" title="matplotlib.pyplot"><span class="nn">matplotlib.pyplot</span></a> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://pandas.pydata.org/pandas-docs/stable/index.html#module-pandas" title="pandas"><span class="nn">pandas</span></a> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
 <span class="c1"># 一部 statsmodels から取得</span>
@@ -724,10 +1025,10 @@ title="Print to PDF"
 
 <span class="c1"># sandbox.datasets にテストデータが保存されている</span>
 <span class="c1"># sandbox.datasets.{dataset_name}.{dataset_name}.csv に生データ csv が配置</span>
-<span class="kn">from</span> <span class="nn">sandbox</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">from</span> <a class="sphinx-codeautolink-a" href="../../api/sandbox/index.html#module-sandbox" title="sandbox"><span class="nn">sandbox</span></a> <span class="kn">import</span> <a class="sphinx-codeautolink-a" href="../../api/sandbox/datasets/index.html#module-sandbox.datasets" title="sandbox.datasets"><span class="n">datasets</span></a>
 
-<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s2">&quot;font&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<a class="sphinx-codeautolink-a" href="https://seaborn.pydata.org/generated/seaborn.set.html#seaborn.set" title="seaborn.set"><span class="n">sns</span><span class="o">.</span><span class="n">set</span></a><span class="p">()</span>
+<a class="sphinx-codeautolink-a" href="https://matplotlib.org/stable/api/matplotlib_configuration_api.html#matplotlib.rc" title="matplotlib.rc"><span class="n">sns</span><span class="o">.</span><span class="n">mpl</span><span class="o">.</span><span class="n">rc</span></a><span class="p">(</span><span class="s2">"font"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -742,8 +1043,8 @@ title="Print to PDF"
 
 <span class="c1"># 毎年の太陽黒点数 (wolfer sunspot number) を記録した時系列</span>
 <span class="n">sunspot</span> <span class="o">=</span> <span class="n">sunspots</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
-<span class="n">sunspot</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">sunspot</span><span class="o">.</span><span class="n">YEAR</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">sunspot</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;YEAR&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sunspot</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">sunspot</span><span class="o">.</span><span class="n">YEAR</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#int" title="int"><span class="nb">int</span></a><span class="p">),</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sunspot</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"YEAR"</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># 東京の毎日の最高気温を16ヶ月にわたって記録したデータ</span>
 <span class="n">maxtemp</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">maxtemp</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
@@ -777,14 +1078,14 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">psgr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(a) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">air_passengers</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">psgr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">"(a) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">air_passengers</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_5_0.png" src="../../_images/ts_5_0.png" />
-</div>
+<img alt="../../_images/ts_5_0.png" src="../../_images/ts_5_0.png">
+</img></div>
 </div>
 </section>
 <section id="hakusan">
@@ -799,14 +1100,14 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">hakusan</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;YawRate&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(b) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">hakusan</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">hakusan</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">"YawRate"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">"(b) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">hakusan</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_7_0.png" src="../../_images/ts_7_0.png" />
-</div>
+<img alt="../../_images/ts_7_0.png" src="../../_images/ts_7_0.png">
+</img></div>
 </div>
 </section>
 <section id="sunspots">
@@ -823,13 +1124,13 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">sunspot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(c) </span><span class="si">{</span><span class="n">sunspots</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">sunspot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">"(c) </span><span class="si">{</span><span class="n">sunspots</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_9_0.png" src="../../_images/ts_9_0.png" />
+<img alt="../../_images/ts_9_0.png" src="../../_images/ts_9_0.png"/>
 </div>
 </div>
 </section>
@@ -846,13 +1147,13 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">maxtemp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(d) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">maxtemp</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">maxtemp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">"(d) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">maxtemp</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_11_0.png" src="../../_images/ts_11_0.png" />
+<img alt="../../_images/ts_11_0.png" src="../../_images/ts_11_0.png"/>
 </div>
 </div>
 </section>
@@ -869,13 +1170,13 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">blsallfood</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(e) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">blsallfood</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">blsallfood</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">"(e) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">blsallfood</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_13_0.png" src="../../_images/ts_13_0.png" />
+<img alt="../../_images/ts_13_0.png" src="../../_images/ts_13_0.png"/>
 </div>
 </div>
 </section>
@@ -892,13 +1193,13 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">whard</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(f) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">whard</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">whard</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">"(f) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">whard</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_15_0.png" src="../../_images/ts_15_0.png" />
+<img alt="../../_images/ts_15_0.png" src="../../_images/ts_15_0.png"/>
 </div>
 </div>
 </section>
@@ -916,13 +1217,13 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">mye1f</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(g) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">mye1f</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">mye1f</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">"(g) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">mye1f</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_17_0.png" src="../../_images/ts_17_0.png" />
+<img alt="../../_images/ts_17_0.png" src="../../_images/ts_17_0.png"/>
 </div>
 </div>
 </section>
@@ -939,13 +1240,13 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">nikkei225</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(h) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">nikkei225</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">nikkei225</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">"(h) </span><span class="si">{</span><span class="n">datasets</span><span class="o">.</span><span class="n">nikkei225</span><span class="o">.</span><span class="n">TITLE</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_19_0.png" src="../../_images/ts_19_0.png" />
+<img alt="../../_images/ts_19_0.png" src="../../_images/ts_19_0.png"/>
 </div>
 </div>
 </section>
@@ -1008,27 +1309,27 @@ title="Print to PDF"
         {\rm Cov}(\eta_s, \eta_t) = 0 \quad (s \neq t)
     \end{align}
 \]</div>
-<p>を示す. 時系列 <span class="math notranslate nohighlight">\(\{ \varepsilon_t \}\)</span> が正規分布 <span class="math notranslate nohighlight">\(N(\mu, \sigma^2)\)</span> に従うホワイトノイズの時 <span class="math notranslate nohighlight">\(\varepsilon_t \sim \text{WN}(\mu, \sigma^2)\)</span> と書く.<br />
+<p>を示す. 時系列 <span class="math notranslate nohighlight">\(\{ \varepsilon_t \}\)</span> が正規分布 <span class="math notranslate nohighlight">\(N(\mu, \sigma^2)\)</span> に従うホワイトノイズの時 <span class="math notranslate nohighlight">\(\varepsilon_t \sim \text{WN}(\mu, \sigma^2)\)</span> と書く.<br/>
 　ここでは時系列 <span class="math notranslate nohighlight">\(\eta_1, \dots, \eta_n\)</span> が互いに独立した正規分布 <span class="math notranslate nohighlight">\(N(0, 1)\)</span> に従うホワイトノイズを考えてみる.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/index.html#module-numpy" title="numpy"><span class="nn">numpy</span></a> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># 標準正規分布を1000だけ生起</span>
 <span class="n">size</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">12345</span><span class="p">)</span>
+<span class="n">rng</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.default_rng" title="numpy.random.default_rng"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span></a><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">12345</span><span class="p">)</span>
 <span class="n">wn</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
 
-<span class="n">df_wn</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">wn</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;white_noise&quot;</span><span class="p">])</span>
+<span class="n">df_wn</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">wn</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"white_noise"</span><span class="p">])</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">df_wn</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;White Noise&quot;</span><span class="p">)</span>
+<span class="n">df_wn</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"White Noise"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_25_0.png" src="../../_images/ts_25_0.png" />
+<img alt="../../_images/ts_25_0.png" src="../../_images/ts_25_0.png"/>
 </div>
 </div>
 </section>
@@ -1039,7 +1340,7 @@ title="Print to PDF"
 \[
     y_t = y_{t-1} + \eta_t, \quad t = 1, \dots, n, \quad \{\eta_t\} \sim \text{i.i.d} \ N(0, \sigma_{\eta}^2)
 \]</div>
-<p>と表せられる.<br />
+<p>と表せられる.<br/>
 　ランダムウォーク <span class="math notranslate nohighlight">\(\{ y_t \}\)</span> は <span class="math notranslate nohighlight">\(\nabla y_t = y_t - y_{t-1} = \eta_t\)</span> と変形したときに, 時系列 <span class="math notranslate nohighlight">\(\{ \nabla y_t \}\)</span> はホワイトノイズとなり定常となる. このように一階の階差を取ることで定常過程となる時系列を <strong>一次の和分過程</strong> (integrated process of order one) に従っているといい, <span class="math notranslate nohighlight">\(I(1)\)</span> 過程と表現される. <span class="math notranslate nohighlight">\(I(0)\)</span> は定常過程として表現される.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1047,19 +1348,19 @@ title="Print to PDF"
 <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
 
 <span class="c1"># 先ほど生成したホワイトノイズを利用</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/stdtypes.html#range" title="range"><span class="nb">range</span></a><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
     <span class="n">y</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">wn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
-<span class="n">df_y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;random_walk&quot;</span><span class="p">])</span>
+<span class="n">df_y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"random_walk"</span><span class="p">])</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">df_y</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Random Walk&quot;</span><span class="p">)</span>
+<span class="n">df_y</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Random Walk"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_27_0.png" src="../../_images/ts_27_0.png" />
+<img alt="../../_images/ts_27_0.png" src="../../_images/ts_27_0.png"/>
 </div>
 </div>
 <p>ランダムウォークは以下のように書ける.</p>
@@ -1096,7 +1397,7 @@ title="Print to PDF"
                             &amp;= s \sigma_{\eta}^{2}
     \end{align}
 \end{split}\]</div>
-<p>ゆえに, <span class="math notranslate nohighlight">\({\rm Cov}(y_{s+k}, y_{t+k}) = (s+k) \sigma_{\eta}^{2}\)</span> より <span class="math notranslate nohighlight">\({\rm Cov}(y_{s+k}, y_{t+k}) \neq {\rm Cov}(y_{s}, y_{t})\)</span> で弱定常性条件を満たさない.<br />
+<p>ゆえに, <span class="math notranslate nohighlight">\({\rm Cov}(y_{s+k}, y_{t+k}) = (s+k) \sigma_{\eta}^{2}\)</span> より <span class="math notranslate nohighlight">\({\rm Cov}(y_{s+k}, y_{t+k}) \neq {\rm Cov}(y_{s}, y_{t})\)</span> で弱定常性条件を満たさない.<br/>
 　また, <span class="math notranslate nohighlight">\(y_1, \dots, y_t\)</span> の同時確率密度関数 <span class="math notranslate nohighlight">\(f(y_1, \dots, y_t)\)</span> は</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1141,19 +1442,19 @@ title="Print to PDF"
 <span class="n">phi</span> <span class="o">=</span> <span class="mf">0.5</span>
 
 <span class="c1"># 先ほど生成したホワイトノイズを利用</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/stdtypes.html#range" title="range"><span class="nb">range</span></a><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
     <span class="n">ar1</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">phi</span> <span class="o">*</span> <span class="n">ar1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">wn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
-<span class="n">df_ar1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ar1</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AR(1)&quot;</span><span class="p">])</span>
+<span class="n">df_ar1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ar1</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"AR(1)"</span><span class="p">])</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">df_ar1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;AR(1)&quot;</span><span class="p">)</span>
+<span class="n">df_ar1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"AR(1)"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_30_0.png" src="../../_images/ts_30_0.png" />
+<img alt="../../_images/ts_30_0.png" src="../../_images/ts_30_0.png"/>
 </div>
 </div>
 <p>また <span class="math notranslate nohighlight">\(|\phi| &gt; 1\)</span> の時は時系列が発散してしまう.</p>
@@ -1164,19 +1465,19 @@ title="Print to PDF"
 <span class="n">phi</span> <span class="o">=</span> <span class="mf">1.1</span>
 
 <span class="c1"># 先ほど生成したホワイトノイズを利用</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/stdtypes.html#range" title="range"><span class="nb">range</span></a><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
     <span class="n">ar1_</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">phi</span> <span class="o">*</span> <span class="n">ar1_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">wn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
-<span class="n">df_ar1_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ar1_</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AR(1)&quot;</span><span class="p">])</span>
+<span class="n">df_ar1_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ar1_</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"AR(1)"</span><span class="p">])</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">df_ar1_</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;AR(1) (Divergence)&quot;</span><span class="p">)</span>
+<span class="n">df_ar1_</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"AR(1) (Divergence)"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_32_0.png" src="../../_images/ts_32_0.png" />
+<img alt="../../_images/ts_32_0.png" src="../../_images/ts_32_0.png"/>
 </div>
 </div>
 </section>
@@ -1193,14 +1494,14 @@ title="Print to PDF"
 <p>ゆえに簡易的に定常性を確認できるが, 仮に帰無仮説が棄却できなかったとしても, <span class="math notranslate nohighlight">\(\nabla^2 y_t = (y_t - y_{t-1}) - (y_{t-1} - y_{t-2})\)</span> が <span class="math notranslate nohighlight">\(I(0)\)</span> に従う, すなわち <span class="math notranslate nohighlight">\(y_t \sim I(2)\)</span> の可能性があるので, 棄却できなかった場合には階差をとったデータで検定を行うことも検討するとよい.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">adfuller</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.stattools.adfuller.html#statsmodels.tsa.stattools.adfuller" title="statsmodels.tsa.stattools.adfuller"><span class="n">adfuller</span></a>
 
-<span class="n">ret_</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">hakusan</span><span class="p">[</span><span class="s2">&quot;YawRate&quot;</span><span class="p">])</span>
+<span class="n">ret_</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.stattools.adfuller.html#statsmodels.tsa.stattools.adfuller" title="statsmodels.tsa.stattools.adfuller"><span class="n">adfuller</span></a><span class="p">(</span><span class="n">hakusan</span><span class="p">[</span><span class="s2">"YawRate"</span><span class="p">])</span>
 
-<span class="n">ret_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;adfstat&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">,</span> <span class="s2">&quot;usedlag&quot;</span><span class="p">,</span> <span class="s2">&quot;nobs&quot;</span><span class="p">,</span> <span class="s2">&quot;critvalues&quot;</span><span class="p">,</span> <span class="s2">&quot;icbest&quot;</span><span class="p">]</span>
+<span class="n">ret_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"adfstat"</span><span class="p">,</span> <span class="s2">"pvalue"</span><span class="p">,</span> <span class="s2">"usedlag"</span><span class="p">,</span> <span class="s2">"nobs"</span><span class="p">,</span> <span class="s2">"critvalues"</span><span class="p">,</span> <span class="s2">"icbest"</span><span class="p">]</span>
 
 <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">ret</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">ret</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/stdtypes.html#dict" title="dict"><span class="nb">dict</span></a><span class="p">()</span>
 <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">ret_keys</span><span class="p">:</span>
     <span class="n">ret</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -1210,19 +1511,19 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;adfstat&#39;: -6.1193416637984015,
- &#39;pvalue&#39;: 8.933551221207623e-08,
- &#39;usedlag&#39;: 16,
- &#39;nobs&#39;: 983,
- &#39;critvalues&#39;: {&#39;1%&#39;: -3.4370198458812156,
-  &#39;5%&#39;: -2.864484708707697,
-  &#39;10%&#39;: -2.568337912084273},
- &#39;icbest&#39;: 2119.0840225668217}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'adfstat': -6.1193416637984015,
+ 'pvalue': 8.933551221207623e-08,
+ 'usedlag': 16,
+ 'nobs': 983,
+ 'critvalues': {'1%': -3.4370198458812156,
+  '5%': -2.864484708707697,
+  '10%': -2.568337912084273},
+ 'icbest': 2119.0840225668217}
 </pre></div>
 </div>
 </div>
 </div>
-<p>上記の結果から <code class="docutils literal notranslate"><span class="pre">hakusan[&quot;YawRate&quot;]</span></code><span class="math notranslate nohighlight">\(\sim I(0)\)</span> と見なしても問題ない.</p>
+<p>上記の結果から <code class="docutils literal notranslate"><span class="pre">hakusan["YawRate"]</span></code><span class="math notranslate nohighlight">\(\sim I(0)\)</span> と見なしても問題ない.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">adfstat</span></code> : 検定統計量</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pvalue</span></code> : <span class="math notranslate nohighlight">\(p\)</span> 値</p></li>
@@ -1236,10 +1537,10 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ret_</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">nikkei225</span><span class="p">)</span>
 
-<span class="n">ret_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;adfstat&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">,</span> <span class="s2">&quot;usedlag&quot;</span><span class="p">,</span> <span class="s2">&quot;nobs&quot;</span><span class="p">,</span> <span class="s2">&quot;critvalues&quot;</span><span class="p">,</span> <span class="s2">&quot;icbest&quot;</span><span class="p">]</span>
+<span class="n">ret_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"adfstat"</span><span class="p">,</span> <span class="s2">"pvalue"</span><span class="p">,</span> <span class="s2">"usedlag"</span><span class="p">,</span> <span class="s2">"nobs"</span><span class="p">,</span> <span class="s2">"critvalues"</span><span class="p">,</span> <span class="s2">"icbest"</span><span class="p">]</span>
 
 <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">ret</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">ret</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/stdtypes.html#dict" title="dict"><span class="nb">dict</span></a><span class="p">()</span>
 <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">ret_keys</span><span class="p">:</span>
     <span class="n">ret</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -1249,14 +1550,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;adfstat&#39;: -0.8863644520571672,
- &#39;pvalue&#39;: 0.7924296279527006,
- &#39;usedlag&#39;: 10,
- &#39;nobs&#39;: 1469,
- &#39;critvalues&#39;: {&#39;1%&#39;: -3.4348093353507494,
-  &#39;5%&#39;: -2.863509503599295,
-  &#39;10%&#39;: -2.5678185447142},
- &#39;icbest&#39;: 20958.594912460438}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'adfstat': -0.8863644520571672,
+ 'pvalue': 0.7924296279527006,
+ 'usedlag': 10,
+ 'nobs': 1469,
+ 'critvalues': {'1%': -3.4348093353507494,
+  '5%': -2.863509503599295,
+  '10%': -2.5678185447142},
+ 'icbest': 20958.594912460438}
 </pre></div>
 </div>
 </div>
@@ -1264,13 +1565,13 @@ title="Print to PDF"
 <p><code class="docutils literal notranslate"><span class="pre">nikkei225</span></code> に対して階差をとったデータに対してもう一度ADF検定を取ると帰無仮説が棄却され, グラフ化すると定常的な推移を示す.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nikkei225_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">nikkei225</span><span class="p">[</span><span class="s2">&quot;nikkei225&quot;</span><span class="p">]),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;diff_nikkei225&quot;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nikkei225_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">nikkei225</span><span class="p">[</span><span class="s2">"nikkei225"</span><span class="p">]),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"diff_nikkei225"</span><span class="p">])</span>
 
 <span class="n">ret_</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">nikkei225_</span><span class="p">)</span>
-<span class="n">ret_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;adfstat&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">,</span> <span class="s2">&quot;usedlag&quot;</span><span class="p">,</span> <span class="s2">&quot;nobs&quot;</span><span class="p">,</span> <span class="s2">&quot;critvalues&quot;</span><span class="p">,</span> <span class="s2">&quot;icbest&quot;</span><span class="p">]</span>
+<span class="n">ret_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"adfstat"</span><span class="p">,</span> <span class="s2">"pvalue"</span><span class="p">,</span> <span class="s2">"usedlag"</span><span class="p">,</span> <span class="s2">"nobs"</span><span class="p">,</span> <span class="s2">"critvalues"</span><span class="p">,</span> <span class="s2">"icbest"</span><span class="p">]</span>
 
 <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">ret</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">ret</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/stdtypes.html#dict" title="dict"><span class="nb">dict</span></a><span class="p">()</span>
 <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">ret_keys</span><span class="p">:</span>
     <span class="n">ret</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -1280,14 +1581,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;adfstat&#39;: -10.217930348147535,
- &#39;pvalue&#39;: 5.419565541031902e-18,
- &#39;usedlag&#39;: 9,
- &#39;nobs&#39;: 1469,
- &#39;critvalues&#39;: {&#39;1%&#39;: -3.4348093353507494,
-  &#39;5%&#39;: -2.863509503599295,
-  &#39;10%&#39;: -2.5678185447142},
- &#39;icbest&#39;: 20943.788988444103}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'adfstat': -10.217930348147535,
+ 'pvalue': 5.419565541031902e-18,
+ 'usedlag': 9,
+ 'nobs': 1469,
+ 'critvalues': {'1%': -3.4348093353507494,
+  '5%': -2.863509503599295,
+  '10%': -2.5678185447142},
+ 'icbest': 20943.788988444103}
 </pre></div>
 </div>
 </div>
@@ -1301,7 +1602,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_40_0.png" src="../../_images/ts_40_0.png" />
+<img alt="../../_images/ts_40_0.png" src="../../_images/ts_40_0.png"/>
 </div>
 </div>
 </section>
@@ -1405,22 +1706,22 @@ title="Print to PDF"
 </div></section>
 <section id="id12">
 <h3>例 3.3 (コレログラム)<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h3>
-<p>今まで定義した自己相関関数, 偏自己相関関数をプロットしたグラフのことを<strong>コレログラフ</strong> (correlogram) と言い時系列データで試してみる.<br />
+<p>今まで定義した自己相関関数, 偏自己相関関数をプロットしたグラフのことを<strong>コレログラフ</strong> (correlogram) と言い時系列データで試してみる.<br/>
 　<code class="docutils literal notranslate"><span class="pre">hakusan</span></code> データは比較的定常的な時系列データだが, コレログラムにおいても大きく相関のあるラグは確認されない.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.graphics.tsaplots</span> <span class="kn">import</span> <span class="n">plot_acf</span><span class="p">,</span> <span class="n">plot_pacf</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.graphics.tsaplots</span> <span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://www.statsmodels.org/stable/generated/statsmodels.graphics.tsaplots.plot_acf.html#statsmodels.graphics.tsaplots.plot_acf" title="statsmodels.graphics.tsaplots.plot_acf"><span class="n">plot_acf</span></a><span class="p">,</span> <a class="sphinx-codeautolink-a" href="https://www.statsmodels.org/stable/generated/statsmodels.graphics.tsaplots.plot_pacf.html#statsmodels.graphics.tsaplots.plot_pacf" title="statsmodels.graphics.tsaplots.plot_pacf"><span class="n">plot_pacf</span></a>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_acf</span><span class="p">(</span><span class="n">hakusan</span><span class="p">[</span><span class="s2">&quot;YawRate&quot;</span><span class="p">],</span> <span class="n">lags</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://www.statsmodels.org/stable/generated/statsmodels.graphics.tsaplots.plot_acf.html#statsmodels.graphics.tsaplots.plot_acf" title="statsmodels.graphics.tsaplots.plot_acf"><span class="n">plot_acf</span></a><span class="p">(</span><span class="n">hakusan</span><span class="p">[</span><span class="s2">"YawRate"</span><span class="p">],</span> <span class="n">lags</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_pacf</span><span class="p">(</span><span class="n">hakusan</span><span class="p">[</span><span class="s2">&quot;YawRate&quot;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;ywm&quot;</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://www.statsmodels.org/stable/generated/statsmodels.graphics.tsaplots.plot_pacf.html#statsmodels.graphics.tsaplots.plot_pacf" title="statsmodels.graphics.tsaplots.plot_pacf"><span class="n">plot_pacf</span></a><span class="p">(</span><span class="n">hakusan</span><span class="p">[</span><span class="s2">"YawRate"</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s2">"ywm"</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_45_0.png" src="../../_images/ts_45_0.png" />
+<img alt="../../_images/ts_45_0.png" src="../../_images/ts_45_0.png"/>
 </div>
 </div>
 <p>一方で <code class="docutils literal notranslate"><span class="pre">blsallfood</span></code> データは12ヶ月周期が波形から見えるが, 実際にラグが11の時の ACF, PACF の相関が大きいことが分かる.</p>
@@ -1430,12 +1731,12 @@ title="Print to PDF"
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plot_acf</span><span class="p">(</span><span class="n">blsallfood</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_pacf</span><span class="p">(</span><span class="n">blsallfood</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;ywm&quot;</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_pacf</span><span class="p">(</span><span class="n">blsallfood</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"ywm"</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_47_0.png" src="../../_images/ts_47_0.png" />
+<img alt="../../_images/ts_47_0.png" src="../../_images/ts_47_0.png"/>
 </div>
 </div>
 </section>
@@ -1503,20 +1804,20 @@ title="Print to PDF"
 
 <span class="c1"># 対数変換を行う前</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
-<span class="n">whard</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Original&quot;</span><span class="p">)</span>
+<span class="n">whard</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Original"</span><span class="p">)</span>
 
 <span class="c1"># 対数変換後</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
 <span class="n">whard_transformed</span> <span class="o">=</span> <span class="n">whard</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">whard_transformed</span><span class="p">[</span><span class="s2">&quot;whard&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">whard</span><span class="p">[</span><span class="s2">&quot;whard&quot;</span><span class="p">])</span>
-<span class="n">whard_transformed</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Log-transformed&quot;</span><span class="p">)</span>
+<span class="n">whard_transformed</span><span class="p">[</span><span class="s2">"whard"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">whard</span><span class="p">[</span><span class="s2">"whard"</span><span class="p">])</span>
+<span class="n">whard_transformed</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Log-transformed"</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_51_0.png" src="../../_images/ts_51_0.png" />
+<img alt="../../_images/ts_51_0.png" src="../../_images/ts_51_0.png"/>
 </div>
 </div>
 </section>
@@ -1535,17 +1836,17 @@ title="Print to PDF"
 <p>従って問題になるのは, <span class="math notranslate nohighlight">\(\lambda\)</span> をどう決めるかだが, <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.boxcox.html"> <code class="docutils literal notranslate"><span class="pre">SciPy</span></code> </a> では対数尤度関数の値が最大となるような値を決定する.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">boxcox</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <a class="sphinx-codeautolink-a" href="https://docs.scipy.org/doc/scipy/reference/stats.html#module-scipy.stats" title="scipy.stats"><span class="nn">scipy.stats</span></a> <span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.boxcox.html#scipy.stats.boxcox" title="scipy.stats.boxcox"><span class="n">boxcox</span></a>
 
-<span class="n">boxcox</span><span class="p">,</span> <span class="n">lam</span> <span class="o">=</span> <span class="n">boxcox</span><span class="p">(</span><span class="n">psgr</span><span class="p">[</span><span class="s2">&quot;#Passengers&quot;</span><span class="p">])</span>
-<span class="n">psgr_boxcox</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">boxcox</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;#Passengers_Boxcox&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">psgr</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">boxcox</span><span class="p">,</span> <span class="n">lam</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.boxcox.html#scipy.stats.boxcox" title="scipy.stats.boxcox"><span class="n">boxcox</span></a><span class="p">(</span><span class="n">psgr</span><span class="p">[</span><span class="s2">"#Passengers"</span><span class="p">])</span>
+<span class="n">psgr_boxcox</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">boxcox</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"#Passengers_Boxcox"</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">psgr</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 <span class="n">psgr_boxcox</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
-<style scoped>
+<style scoped="">
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -1559,62 +1860,62 @@ title="Print to PDF"
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>#Passengers_Boxcox</th>
-    </tr>
-    <tr>
-      <th>Month</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1949-01-01</th>
-      <td>6.827490</td>
-    </tr>
-    <tr>
-      <th>1949-02-01</th>
-      <td>6.932822</td>
-    </tr>
-    <tr>
-      <th>1949-03-01</th>
-      <td>7.161892</td>
-    </tr>
-    <tr>
-      <th>1949-04-01</th>
-      <td>7.114611</td>
-    </tr>
-    <tr>
-      <th>1949-05-01</th>
-      <td>6.983787</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1960-08-01</th>
-      <td>10.684049</td>
-    </tr>
-    <tr>
-      <th>1960-09-01</th>
-      <td>10.234573</td>
-    </tr>
-    <tr>
-      <th>1960-10-01</th>
-      <td>9.992159</td>
-    </tr>
-    <tr>
-      <th>1960-11-01</th>
-      <td>9.582623</td>
-    </tr>
-    <tr>
-      <th>1960-12-01</th>
-      <td>9.831860</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>#Passengers_Boxcox</th>
+</tr>
+<tr>
+<th>Month</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>1949-01-01</th>
+<td>6.827490</td>
+</tr>
+<tr>
+<th>1949-02-01</th>
+<td>6.932822</td>
+</tr>
+<tr>
+<th>1949-03-01</th>
+<td>7.161892</td>
+</tr>
+<tr>
+<th>1949-04-01</th>
+<td>7.114611</td>
+</tr>
+<tr>
+<th>1949-05-01</th>
+<td>6.983787</td>
+</tr>
+<tr>
+<th>...</th>
+<td>...</td>
+</tr>
+<tr>
+<th>1960-08-01</th>
+<td>10.684049</td>
+</tr>
+<tr>
+<th>1960-09-01</th>
+<td>10.234573</td>
+</tr>
+<tr>
+<th>1960-10-01</th>
+<td>9.992159</td>
+</tr>
+<tr>
+<th>1960-11-01</th>
+<td>9.582623</td>
+</tr>
+<tr>
+<th>1960-12-01</th>
+<td>9.831860</td>
+</tr>
+</tbody>
 </table>
 <p>144 rows × 1 columns</p>
 </div></div></div>
@@ -1622,13 +1923,13 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">psgr_boxcox</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Box-Cox transformation (lambda = </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">psgr_boxcox</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Box-Cox transformation (lambda = </span><span class="si">{</span><a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#round" title="round"><span class="nb">round</span></a><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_54_0.png" src="../../_images/ts_54_0.png" />
+<img alt="../../_images/ts_54_0.png" src="../../_images/ts_54_0.png"/>
 </div>
 </div>
 </section>
@@ -1662,30 +1963,30 @@ title="Print to PDF"
                      &amp;= 2c
     \end{align}
 \end{split}\]</div>
-<p>より 1 次成分, 2 次成分いずれも打ち消されることが分かる.<br />
+<p>より 1 次成分, 2 次成分いずれも打ち消されることが分かる.<br/>
 　<code class="docutils literal notranslate"><span class="pre">air_passengers</span></code> データにはまだ線形トレンドが見られていたので, 階差によって打ち消してみる.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psgr_boxcox_diff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">psgr_boxcox</span> <span class="o">-</span> <span class="n">psgr_boxcox</span><span class="o">.</span><span class="n">shift</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">psgr</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">psgr_boxcox_diff</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Box-Cox and Differencing&quot;</span><span class="p">)</span>
+<span class="n">psgr_boxcox_diff</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Box-Cox and Differencing"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ts_57_0.png" src="../../_images/ts_57_0.png" />
+<img alt="../../_images/ts_57_0.png" src="../../_images/ts_57_0.png"/>
 </div>
 </div>
 <p>ADF検定により実際に <span class="math notranslate nohighlight">\(I(0)\)</span> 過程であると見なすことができる.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ret_</span> <span class="o">=</span> <span class="n">adfuller</span><span class="p">(</span><span class="n">psgr_boxcox_diff</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
-<span class="n">ret_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;adfstat&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">,</span> <span class="s2">&quot;usedlag&quot;</span><span class="p">,</span> <span class="s2">&quot;nobs&quot;</span><span class="p">,</span> <span class="s2">&quot;critvalues&quot;</span><span class="p">,</span> <span class="s2">&quot;icbest&quot;</span><span class="p">]</span>
+<span class="n">ret_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"adfstat"</span><span class="p">,</span> <span class="s2">"pvalue"</span><span class="p">,</span> <span class="s2">"usedlag"</span><span class="p">,</span> <span class="s2">"nobs"</span><span class="p">,</span> <span class="s2">"critvalues"</span><span class="p">,</span> <span class="s2">"icbest"</span><span class="p">]</span>
 
 <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">ret</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">ret</span> <span class="o">=</span> <a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/stdtypes.html#dict" title="dict"><span class="nb">dict</span></a><span class="p">()</span>
 <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">ret_keys</span><span class="p">:</span>
     <span class="n">ret</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -1695,14 +1996,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;adfstat&#39;: -2.8717075283173945,
- &#39;pvalue&#39;: 0.048738333926618124,
- &#39;usedlag&#39;: 14,
- &#39;nobs&#39;: 128,
- &#39;critvalues&#39;: {&#39;1%&#39;: -3.4825006939887997,
-  &#39;5%&#39;: -2.884397984161377,
-  &#39;10%&#39;: -2.578960197753906},
- &#39;icbest&#39;: -234.74315733709795}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'adfstat': -2.8717075283173945,
+ 'pvalue': 0.048738333926618124,
+ 'usedlag': 14,
+ 'nobs': 128,
+ 'critvalues': {'1%': -3.4825006939887997,
+  '5%': -2.884397984161377,
+  '10%': -2.578960197753906},
+ 'icbest': -234.74315733709795}
 </pre></div>
 </div>
 </div>
@@ -1710,8 +2011,7 @@ title="Print to PDF"
 </section>
 </section>
 </section>
-
-    <script type="text/x-thebe-config">
+<script type="text/x-thebe-config">
     {
         requestKernel: true,
         binderOptions: {
@@ -1729,52 +2029,43 @@ title="Print to PDF"
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
-
-              </div>
-              
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../regression/blm.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">ベイズ線形回帰モデル</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="arma.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ARMAモデル系</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<script>kernelName = 'python3'</script>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+</main>
+<footer class="footer-article noprint">
+<!-- Previous / next buttons -->
+<div class="prev-next-area">
+<a class="left-prev" href="../regression/blm.html" id="prev-link" title="previous page">
+<i class="fas fa-angle-left"></i>
+<div class="prev-next-info">
+<p class="prev-next-subtitle">previous</p>
+<p class="prev-next-title">ベイズ線形回帰モデル</p>
+</div>
+</a>
+<a class="right-next" href="arma.html" id="next-link" title="next page">
+<div class="prev-next-info">
+<p class="prev-next-subtitle">next</p>
+<p class="prev-next-title">ARMAモデル系</p>
+</div>
+<i class="fas fa-angle-right"></i>
+</a>
+</div>
+</footer>
+</div>
+</div>
+<div class="footer-content row">
+<footer class="col footer"><p>
   
     By sndpgm<br/>
   
-      &copy; Copyright 2022.<br/>
+      © Copyright 2022.<br/>
 </p>
-        </footer>
-    </div>
-    
+</footer>
 </div>
-
-
-      </div>
-    </div>
-  
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
-
-  </body>
+</div>
+</div>
+</div>
+<!-- Scripts loaded after <body> so the DOM is not blocked -->
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+</body>
 </html>

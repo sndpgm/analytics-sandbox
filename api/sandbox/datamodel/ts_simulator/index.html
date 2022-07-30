@@ -1,0 +1,1255 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>sandbox.datamodel.ts_simulator &#8212; Analytics Study Blog</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-codeautolink.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="sandbox.datasets" href="../../datasets/index.html" />
+    <link rel="prev" title="sandbox.datamodel.ts_datamodel" href="../ts_datamodel/index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Analytics Study Blog</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../intro.html">
+                    Welcome to my Analytics Sandbox
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  確率変数と確率分布
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../analytics/distribution/rvs.html">
+   確率変数
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../analytics/distribution/dist.html">
+   確率分布
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../analytics/distribution/mdist.html">
+   多変量確率分布
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  回帰モデル
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../analytics/regression/blm.html">
+   ベイズ線形回帰モデル
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  時系列モデル
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../analytics/tsa/ts.html">
+   時系列データ
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../analytics/tsa/arma.html">
+   ARMAモデル系
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../analytics/tsa/arima.html">
+   ARIMAモデル系
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../analytics/tsa/ssm.html">
+   状態空間モデル
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  補足
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../analytics/math/calculus.html">
+   微分積分学
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../analytics/math/linear_algebra.html">
+   線形代数学
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  API Documentation
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../../index.html">
+   <code class="xref py py-mod docutils literal notranslate">
+    <span class="pre">
+     sandbox
+    </span>
+   </code>
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.datamodel
+      </span>
+     </code>
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../base/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datamodel.base
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ts_datamodel/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datamodel.ts_datamodel
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datamodel.ts_simulator
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../datasets/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.datasets
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../datasets/air_passengers/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.air_passengers
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+      <label for="toctree-checkbox-4">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../datasets/air_passengers/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.air_passengers.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../datasets/blsallfood/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.blsallfood
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+      <label for="toctree-checkbox-5">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../datasets/blsallfood/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.blsallfood.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../datasets/hakusan/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.hakusan
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+      <label for="toctree-checkbox-6">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../datasets/hakusan/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.hakusan.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../datasets/maxtemp/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.maxtemp
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+      <label for="toctree-checkbox-7">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../datasets/maxtemp/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.maxtemp.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../datasets/mye1f/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.mye1f
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+      <label for="toctree-checkbox-8">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../datasets/mye1f/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.mye1f.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../datasets/nikkei225/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.nikkei225
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+      <label for="toctree-checkbox-9">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../datasets/nikkei225/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.nikkei225.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../datasets/rtf/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.rtf
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+      <label for="toctree-checkbox-10">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../datasets/rtf/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.rtf.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../datasets/whard/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.whard
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../datasets/whard/data/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.datasets.whard.data
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../datasets/utils/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.datasets.utils
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../metrics/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.metrics
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../metrics/score/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.metrics.score
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../tests/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.tests
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../tests/datasets/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.tests.datasets
+        </span>
+       </code>
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../tests/datasets/test_utils/index.html">
+         <code class="xref py py-mod docutils literal notranslate">
+          <span class="pre">
+           sandbox.tests.datasets.test_utils
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../tsa/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.tsa
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../tsa/base/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.tsa.base
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../tsa/sarimax/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.tsa.sarimax
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../tsa/ssm/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.tsa.ssm
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../utils/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.utils
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../utils/validation/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.utils.validation
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/sndpgm/analytics-sandbox"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fapi/sandbox/datamodel/ts_simulator/index.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../../_sources/api/sandbox/datamodel/ts_simulator/index.rst"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-contents">
+   Module Contents
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator">
+     UnobservedComponentsSimulator
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator.simulate">
+       simulate
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate">
+       _simulate
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_trend_term">
+       _simulate_trend_term
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_seasonal_term">
+       _simulate_seasonal_term
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_exog">
+       _simulate_exog
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult">
+     UnobservedComponentsSimulatorResult
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._trend">
+       _trend
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._freq_seasonal">
+       _freq_seasonal
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._exog">
+       _exog
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._reg">
+       _reg
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._endog">
+       _endog
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.trend">
+       trend
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.freq_seasonal">
+       freq_seasonal
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.exog">
+       exog
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.reg">
+       reg
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.endog">
+       endog
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.common_index">
+       common_index
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.nobs">
+       nobs
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.convert_pandas">
+       convert_pandas
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.convert_ndarray">
+       convert_ndarray
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>sandbox.datamodel.ts_simulator</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-contents">
+   Module Contents
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator">
+     UnobservedComponentsSimulator
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator.simulate">
+       simulate
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate">
+       _simulate
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_trend_term">
+       _simulate_trend_term
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_seasonal_term">
+       _simulate_seasonal_term
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_exog">
+       _simulate_exog
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult">
+     UnobservedComponentsSimulatorResult
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._trend">
+       _trend
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._freq_seasonal">
+       _freq_seasonal
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._exog">
+       _exog
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._reg">
+       _reg
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._endog">
+       _endog
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.trend">
+       trend
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.freq_seasonal">
+       freq_seasonal
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.exog">
+       exog
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.reg">
+       reg
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.endog">
+       endog
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.common_index">
+       common_index
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.nobs">
+       nobs
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.convert_pandas">
+       convert_pandas
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.convert_ndarray">
+       convert_ndarray
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="module-sandbox.datamodel.ts_simulator">
+<span id="sandbox-datamodel-ts-simulator"></span><h1><a class="reference internal" href="#module-sandbox.datamodel.ts_simulator" title="sandbox.datamodel.ts_simulator"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datamodel.ts_simulator</span></code></a><a class="headerlink" href="#module-sandbox.datamodel.ts_simulator" title="Permalink to this headline">#</a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sandbox.datamodel.ts_simulator.</span></span><span class="sig-name descname"><span class="pre">UnobservedComponentsSimulator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_seasonal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exog_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_param_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stddev_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stddev_trend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stddev_freq_seasonal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">123456789</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../base/index.html#sandbox.datamodel.base.BaseDataSimulator" title="sandbox.datamodel.base.BaseDataSimulator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sandbox.datamodel.base.BaseDataSimulator</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator.simulate">
+<span class="sig-name descname"><span class="pre">simulate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulator.simulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator.simulate" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate">
+<span class="sig-name descname"><span class="pre">_simulate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulator._simulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_trend_term">
+<span class="sig-name descname"><span class="pre">_simulate_trend_term</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stddev_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stddev_trend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulator._simulate_trend_term"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_trend_term" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_seasonal_term">
+<span class="sig-name descname"><span class="pre">_simulate_seasonal_term</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">periodicity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_cycles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stddev_freq_seasonal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">harmonics</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulator._simulate_seasonal_term"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_seasonal_term" title="Permalink to this definition">#</a></dt>
+<dd><p>Simulate seasonality component data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>periodicity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Base cycle.</p></li>
+<li><p><strong>total_cycles</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Number of cycles.</p></li>
+<li><p><strong>stddev_freq_seasonal</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – Standard deviation on seasonality component noise.</p></li>
+<li><p><strong>harmonics</strong> (<em>{int</em><em>, </em><em>None}</em>) – The numbers of harmonics</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>series</strong> – Simulated data array.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_exog">
+<span class="sig-name descname"><span class="pre">_simulate_exog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exog_params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulator._simulate_exog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_exog" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sandbox.datamodel.ts_simulator.</span></span><span class="sig-name descname"><span class="pre">UnobservedComponentsSimulatorResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulatorResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../base/index.html#sandbox.datamodel.base.BaseData" title="sandbox.datamodel.base.BaseData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sandbox.datamodel.base.BaseData</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._trend">
+<span class="sig-name descname"><span class="pre">_trend</span></span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulatorResult._trend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._trend" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._freq_seasonal">
+<span class="sig-name descname"><span class="pre">_freq_seasonal</span></span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulatorResult._freq_seasonal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._freq_seasonal" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._exog">
+<span class="sig-name descname"><span class="pre">_exog</span></span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulatorResult._exog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._exog" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._reg">
+<span class="sig-name descname"><span class="pre">_reg</span></span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulatorResult._reg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._reg" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._endog">
+<span class="sig-name descname"><span class="pre">_endog</span></span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulatorResult._endog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._endog" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.trend">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">trend</span></span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulatorResult.trend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.trend" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.freq_seasonal">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">freq_seasonal</span></span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulatorResult.freq_seasonal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.freq_seasonal" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.exog">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exog</span></span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulatorResult.exog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.exog" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.reg">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reg</span></span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulatorResult.reg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.reg" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.endog">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">endog</span></span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulatorResult.endog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.endog" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.common_index">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">common_index</span></span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulatorResult.common_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.common_index" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.nobs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nobs</span></span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulatorResult.nobs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.nobs" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.convert_pandas">
+<span class="sig-name descname"><span class="pre">convert_pandas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulatorResult.convert_pandas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.convert_pandas" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.convert_ndarray">
+<span class="sig-name descname"><span class="pre">convert_ndarray</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_simulator.html#UnobservedComponentsSimulatorResult.convert_ndarray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.convert_ndarray" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./api/sandbox/datamodel/ts_simulator"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../ts_datamodel/index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datamodel.ts_datamodel</span></code></p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../../datasets/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets</span></code></p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By sndpgm<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
