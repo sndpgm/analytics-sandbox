@@ -1,0 +1,7 @@
+jupyter-book
+sphinx
+IPython
+numpydoc
+sphinx-rtd-theme
+pyment
+sphinx_codeautolink

@@ -1,17 +1,85 @@
+"""The validation module."""
 from numpy import ndarray
-from pandas import DataFrame, Series
+from pandas import DataFrame, Index, Series
 
 
 def is_dataframe(obj):
+    """Check whether object is pandas.DataFrame.
+
+    Parameters
+    ----------
+    obj : pandas.DataFrame
+        Input data
+
+    Returns
+    -------
+    is_dataframe : bool
+        If True, input is pandas.DataFrame.
+
+    Examples
+    --------
+    >>> from sandbox.utils.validation import is_dataframe
+    >>> import pandas as pd
+    >>> obj1 = pd.DataFrame({"col1": [1] * 10})
+    >>> is_dataframe_or_series(obj1)
+    True
+    >>> obj2 = 10
+    >>> is_dataframe_or_series(obj2)
+    False
+    """
     return isinstance(obj, DataFrame)
 
 
 def is_series(obj):
+    """Check whether object is pandas.Series.
+
+    Parameters
+    ----------
+    obj : pandas.Series
+        Input data
+
+    Returns
+    -------
+    is_series : bool
+        If True, input is pandas.Series.
+
+    Examples
+    --------
+    >>> from sandbox.utils.validation import is_series
+    >>> import pandas as pd
+    >>> obj1 = pd.Series({"col1": [1] * 10})
+    >>> is_series(obj1)
+    True
+    """
     return isinstance(obj, Series)
 
 
+def is_index(obj):
+    """Check whether object is pandas.Index.
+
+    Parameters
+    ----------
+    obj : pd.Index
+        Input data
+
+    Returns
+    -------
+    is_index : bool
+        Whether the object was pandas.Index.
+
+    Examples
+    --------
+    >>> from sandbox.utils.validation import is_index
+    >>> import pandas as pd
+    >>> obj1 = pd.pd.RangeIndex(start=0, stop=10, step=1)
+    >>> is_index(obj1)
+    True
+    """
+    return isinstance(obj, Index)
+
+
 def is_dataframe_or_series(obj):
-    """Check whether object is pd.DataFrame or pd.Series.
+    """Check whether object is pandas.DataFrame or pandas.Series.
 
     Parameters
     ----------
@@ -21,7 +89,7 @@ def is_dataframe_or_series(obj):
     Returns
     -------
     is_dataframe_or_series : bool
-        Whether the object was pd.DataFrame or pd.Series.
+        Whether the object was pandas.DataFrame or pd.Series.
 
     Examples
     --------
@@ -30,21 +98,74 @@ def is_dataframe_or_series(obj):
     >>> obj1 = pd.DataFrame({"col1": [1] * 10})
     >>> is_dataframe_or_series(obj1)
     True
+    >>> obj2 = pd.Series({"col1": [1] * 10})
+    >>> is_dataframe_or_series(obj2)
+    True
+    >>> obj3 = [1, 1, 1]
+    >>> is_dataframe_or_series(obj3)
+    False
     """
     return isinstance(obj, (DataFrame, Series))
 
 
 def is_using_padnas(X, y):
+    """Whether both X and y are the class of pandas (DataFrame, Series).
+
+    Parameters
+    ----------
+    X : pd.DataFrame or pd.Series
+        Input data for X
+    y : pd.DataFrame or pd.Series
+        Input data for y
+
+    Returns
+    -------
+    is_using_pandas : bool
+        If True, both X and y are the class of pandas (DataFrame, Series).
+    """
     return (is_dataframe_or_series(y) and (is_dataframe_or_series(X) or X is None)) or (
         is_dataframe_or_series(X) and (is_dataframe_or_series(y) or y is None)
     )
 
 
 def is_ndarray(obj):
+    """Check whether object is numpy.ndarray.
+    Parameters
+    ----------
+    obj : numpy.ndarray
+        Input data
+
+    Returns
+    -------
+    is_series : bool
+        If True, input is numpy.ndarray.
+
+    Examples
+    --------
+    >>> from sandbox.utils.validation import is_ndarray
+    >>> import numpy as np
+    >>> obj1 = np.array([[1, 0], [0, 1]])
+    >>> is_ndarray(obj1)
+    True
+    """
     return isinstance(obj, ndarray)
 
 
 def is_using_ndarray(X, y):
+    """Whether both X and y are the class of numpy (ndarray).
+
+    Parameters
+    ----------
+    X : numpy.ndarray
+        Input data for X
+    y : numpy.ndarray
+        Input data for y
+
+    Returns
+    -------
+    is_using_numpy : bool
+        If True, both X and y are the class of numpy (ndarray).
+    """
     return (is_ndarray(y) and (is_ndarray(X) or X is None)) or (
         is_ndarray(X) and (is_ndarray(y) or y is None)
     )
@@ -72,60 +193,4 @@ def is_arraylike(obj):
     >>> is_arraylike("cc")
     False
     """
-    return isinstance(obj, (list, set, ndarray, Series))
-
-
-def check_1d_series(y):
-    if not is_dataframe_or_series(y):
-        msg = "y must be DataFrame or Series of pandas."
-        raise TypeError(msg)
-    if isinstance(y, DataFrame):
-        if y.shape[1] != 1:
-            msg = "y must be Series or DataFrame having just one column."
-            raise ValueError(msg)
-        name = y.columns[0]
-        return Series(y[name].copy())
-    else:
-        return y.copy()
-
-
-def check_2d_dataframe(X, name=None):
-    if not is_dataframe_or_series(X):
-        msg = "X must be DataFrame or Series of pandas."
-        raise TypeError(msg)
-
-    if name is not None and not is_arraylike(name):
-        msg = "Specified name is not array-like."
-        raise TypeError(msg)
-
-    # If name is defined, that is used as generated DataFrame column name.
-    if isinstance(X, Series):
-        if name is not None and len(name) == 1:
-            return DataFrame(X.copy().values, columns=name)
-        else:
-            return DataFrame(X.copy())
-    else:
-        _X = X.copy()
-
-        if name is not None and len(X.columns) == len(name):
-            _X.columns = name
-
-        return _X
-
-
-def check_X_y(X, y):
-    if y is None:
-        msg = "y must be not None."
-        raise ValueError(msg)
-
-    y = check_1d_series(y)
-
-    if X is not None:
-        X = check_2d_dataframe(X)
-        if not X.index.equals(y.index):
-            msg = "X and Y must have the same index, given: {}, {}".format(
-                X.index, y.index
-            )
-            raise ValueError(msg)
-
-    return X, y
+    return isinstance(obj, (list, tuple, ndarray, Series))

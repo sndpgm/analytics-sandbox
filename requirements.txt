@@ -1,8 +1,5 @@
-jupyter-book
 pandas>=1.3.0
-pandas_datareader
 statsmodels>=0.12.0
-jupyterlab
 matplotlib
 seaborn
 scipy>=1.6.0
