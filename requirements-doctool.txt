@@ -4,4 +4,5 @@ IPython
 numpydoc
 sphinx-rtd-theme
 pyment
+sphinx-autoapi
 sphinx_codeautolink
