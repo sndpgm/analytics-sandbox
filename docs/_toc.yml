@@ -25,3 +25,7 @@ parts:
     chapters:
     - file: analytics/math/calculus
     - file: analytics/math/linear_algebra
+
+  - caption: API Documentation
+    chapters:
+      - file: api/sandbox/index
