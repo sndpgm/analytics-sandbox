@@ -31,3 +31,54 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+
+#######################################################################################
+# Advanced and power-user settings
+sphinx:
+  extra_extensions:   # A list of extra extensions to load by Sphinx (added to those already used by JB).
+    - 'sphinx.ext.autodoc'
+    - 'sphinx.ext.napoleon'
+    - 'sphinx.ext.viewcode'
+    - 'sphinx.ext.intersphinx'
+    - 'autoapi.extension'
+    - 'myst_nb'
+    - 'sphinx_codeautolink'
+  config:   # key-value pairs to directly over-ride the Sphinx configuration
+    bibtex_reference_style: author_year
+    autoapi_dirs:
+      - '../sandbox'
+    autoapi_root: 'api'
+    autoapi_add_toctree_entry: false
+    autoapi_keep_files: false
+    autoapi_options:
+      - 'members'
+      - 'undoc-members'
+      - 'private-members'
+      - 'show-inheritance'
+      - 'special-members'
+      - 'imported-members'
+    intersphinx_mapping:
+      matplotlib:
+        - 'https://matplotlib.org/stable/'
+        - null
+      numpy:
+        - 'https://docs.scipy.org/doc/numpy/'
+        - null
+      pandas:
+        - 'https://pandas.pydata.org/pandas-docs/stable/'
+        - null
+      python:
+        - 'https://docs.python.org/3'
+        - null
+      scipy:
+        - 'https://docs.scipy.org/doc/scipy/reference/'
+        - null
+      seaborn:
+        - 'https://seaborn.pydata.org/'
+        - null
+      sklearn:
+        - 'https://scikit-learn.org/stable/'
+        - null
+      statsmodels:
+        - 'https://www.statsmodels.org/stable/'
+        - null
