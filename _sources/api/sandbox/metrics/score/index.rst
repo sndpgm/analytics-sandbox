@@ -7,6 +7,18 @@
 Module Contents
 ---------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.metrics.score.mean_absolute_percentage_error
+   sandbox.metrics.score.mape_score
+   sandbox.metrics.score.r2_score
+
+
+
 .. py:function:: mean_absolute_percentage_error(y_true, y_pred, sample_weight=None, multioutput='uniform_average')
 
    Mean absolute percentage error (MAPE) regression loss from ``scikit-learn``

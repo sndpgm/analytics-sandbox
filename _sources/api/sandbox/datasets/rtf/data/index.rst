@@ -7,6 +7,28 @@
 Module Contents
 ---------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.rtf.data.load
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.rtf.data.COPYRIGHT
+   sandbox.datasets.rtf.data.TITLE
+   sandbox.datasets.rtf.data.DESCRIPTION
+   sandbox.datasets.rtf.data.SOURCE
+   sandbox.datasets.rtf.data.NOTE
+
+
 .. py:data:: COPYRIGHT
    :annotation: = This data is public domain.
 
@@ -82,11 +104,5 @@ Module Contents
    
 
 .. py:function:: load()
-
-
-.. py:function:: _get_data()
-
-
-.. py:function:: _process_data()
 
 

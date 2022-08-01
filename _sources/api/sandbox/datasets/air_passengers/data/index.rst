@@ -7,6 +7,28 @@
 Module Contents
 ---------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.air_passengers.data.load
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.air_passengers.data.COPYRIGHT
+   sandbox.datasets.air_passengers.data.TITLE
+   sandbox.datasets.air_passengers.data.DESCRIPTION
+   sandbox.datasets.air_passengers.data.SOURCE
+   sandbox.datasets.air_passengers.data.NOTE
+
+
 .. py:data:: COPYRIGHT
    :annotation: = This data is public domain.
 
@@ -81,11 +103,5 @@ Module Contents
    
 
 .. py:function:: load()
-
-
-.. py:function:: _get_data()
-
-
-.. py:function:: _process_data()
 
 

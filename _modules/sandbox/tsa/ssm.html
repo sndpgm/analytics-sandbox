@@ -1106,7 +1106,7 @@ title="Open an issue"
         <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel._get_model_result"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel._get_model_result">[docs]</a>    <span class="k">def</span> <span class="nf">_get_model_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endog</span><span class="p">,</span> <span class="n">exog</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_model_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endog</span><span class="p">,</span> <span class="n">exog</span><span class="p">):</span>
         <span class="c1"># ToDo: util関数でimportしていなければエラー (または自動でインストール?) を返すメソッドを用意.</span>
         <span class="kn">from</span> <span class="nn">statsmodels.tsa.statespace.structural</span> <span class="kn">import</span> <span class="n">UnobservedComponents</span>
 
@@ -1132,7 +1132,7 @@ title="Open an issue"
             <span class="n">use_exact_diffuse</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">use_exact_diffuse</span><span class="p">,</span>
         <span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="n">model_result</span></div>
+        <span class="k">return</span> <span class="n">model_result</span>
 
 <div class="viewcode-block" id="LinearGaussianStateSpaceModel.has_model_result"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.has_model_result">[docs]</a>    <span class="k">def</span> <span class="nf">has_model_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Whether an instance has ``model_result_``.</span>
@@ -1417,11 +1417,11 @@ title="Open an issue"
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">pred</span><span class="o">.</span><span class="n">conf_int</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel._get_prediction"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel._get_prediction">[docs]</a>    <span class="k">def</span> <span class="nf">_get_prediction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_prediction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="n">index</span><span class="p">,</span> <span class="n">exog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">split_index_and_X_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">nobs</span>
         <span class="n">end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">nobs</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">exog</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">exog</span><span class="p">)</span>
 
 <div class="viewcode-block" id="LinearGaussianStateSpaceModel.score"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.score">[docs]</a>    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scorer</span><span class="o">=</span><span class="s2">&quot;r2&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the coefficient of determination of the prediction.</span>
@@ -1458,13 +1458,13 @@ title="Open an issue"
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">score</span></div>
 
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel._predicted_state"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel._predicted_state">[docs]</a>    <span class="k">def</span> <span class="nf">_predicted_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_predicted_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="n">predicted_state</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model_result</span><span class="p">():</span>
             <span class="n">predicted_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_prediction</span><span class="p">(</span>
                 <span class="n">X</span>
             <span class="p">)</span><span class="o">.</span><span class="n">_results</span><span class="o">.</span><span class="n">prediction_results</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">predicted_state</span>
-        <span class="k">return</span> <span class="n">predicted_state</span></div>
+        <span class="k">return</span> <span class="n">predicted_state</span>
 
 <div class="viewcode-block" id="LinearGaussianStateSpaceModel.level_predicted_"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.level_predicted_">[docs]</a>    <span class="k">def</span> <span class="nf">level_predicted_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Predicted level component.</span>
@@ -1592,7 +1592,7 @@ title="Open an issue"
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_regression</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">&quot;predicted&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel._level"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel._level">[docs]</a>    <span class="k">def</span> <span class="nf">_level</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;smoothed&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_level</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;smoothed&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">out</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model_result</span><span class="p">():</span>
             <span class="n">spec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">specification</span>
@@ -1603,9 +1603,9 @@ title="Open an issue"
                     <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
                     <span class="n">predicted_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_predicted_state</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
                     <span class="n">out</span> <span class="o">=</span> <span class="n">predicted_state</span><span class="p">[</span><span class="n">offset</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">out</span></div>
+        <span class="k">return</span> <span class="n">out</span>
 
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel._trend"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel._trend">[docs]</a>    <span class="k">def</span> <span class="nf">_trend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;smoothed&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_trend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;smoothed&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">out</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model_result</span><span class="p">():</span>
             <span class="n">spec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">specification</span>
@@ -1616,9 +1616,9 @@ title="Open an issue"
                     <span class="n">offset</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">spec</span><span class="o">.</span><span class="n">level</span><span class="p">)</span>
                     <span class="n">predicted_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_predicted_state</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
                     <span class="n">out</span> <span class="o">=</span> <span class="n">predicted_state</span><span class="p">[</span><span class="n">offset</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">out</span></div>
+        <span class="k">return</span> <span class="n">out</span>
 
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel._seasonal"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel._seasonal">[docs]</a>    <span class="k">def</span> <span class="nf">_seasonal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;smoothed&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_seasonal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;smoothed&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">out</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model_result</span><span class="p">():</span>
             <span class="n">spec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">specification</span>
@@ -1629,9 +1629,9 @@ title="Open an issue"
                     <span class="n">offset</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">spec</span><span class="o">.</span><span class="n">trend</span> <span class="o">+</span> <span class="n">spec</span><span class="o">.</span><span class="n">level</span><span class="p">)</span>
                     <span class="n">predicted_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_predicted_state</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
                     <span class="n">out</span> <span class="o">=</span> <span class="n">predicted_state</span><span class="p">[</span><span class="n">offset</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">out</span></div>
+        <span class="k">return</span> <span class="n">out</span>
 
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel._freq_seasonal"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel._freq_seasonal">[docs]</a>    <span class="k">def</span> <span class="nf">_freq_seasonal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;smoothed&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_freq_seasonal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;smoothed&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model_result</span><span class="p">():</span>
             <span class="n">spec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">specification</span>
@@ -1657,9 +1657,9 @@ title="Open an issue"
                         <span class="p">)</span>
                         <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
                         <span class="n">previous_f_seas_offset</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">h</span>
-        <span class="k">return</span> <span class="n">out</span></div>
+        <span class="k">return</span> <span class="n">out</span>
 
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel._cycle"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel._cycle">[docs]</a>    <span class="k">def</span> <span class="nf">_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;smoothed&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;smoothed&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">out</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model_result</span><span class="p">():</span>
             <span class="n">spec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">specification</span>
@@ -1675,9 +1675,9 @@ title="Open an issue"
                     <span class="p">)</span>
                     <span class="n">predicted_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_predicted_state</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
                     <span class="n">out</span> <span class="o">=</span> <span class="n">predicted_state</span><span class="p">[</span><span class="n">offset</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">out</span></div>
+        <span class="k">return</span> <span class="n">out</span>
 
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel._autoregressive"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel._autoregressive">[docs]</a>    <span class="k">def</span> <span class="nf">_autoregressive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;smoothed&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_autoregressive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;smoothed&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">out</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model_result</span><span class="p">():</span>
             <span class="n">spec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">specification</span>
@@ -1694,9 +1694,9 @@ title="Open an issue"
                     <span class="p">)</span>
                     <span class="n">predicted_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_predicted_state</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
                     <span class="n">out</span> <span class="o">=</span> <span class="n">predicted_state</span><span class="p">[</span><span class="n">offset</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">out</span></div>
+        <span class="k">return</span> <span class="n">out</span>
 
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel._regression"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel._regression">[docs]</a>    <span class="k">def</span> <span class="nf">_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;smoothed&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;smoothed&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">out</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model_result</span><span class="p">():</span>
             <span class="n">spec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">specification</span>
@@ -1734,7 +1734,7 @@ title="Open an issue"
                     <span class="k">if</span> <span class="n">which</span> <span class="o">==</span> <span class="s2">&quot;predicted&quot;</span><span class="p">:</span>
                         <span class="n">exog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">split_index_and_X_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
                         <span class="n">out</span> <span class="o">=</span> <span class="p">(</span><span class="n">exog</span> <span class="o">*</span> <span class="n">coefficient</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-        <span class="k">return</span> <span class="n">out</span></div></div>
+        <span class="k">return</span> <span class="n">out</span></div>
 </pre></div>
 
               </div>

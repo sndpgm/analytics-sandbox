@@ -21,6 +21,28 @@ Submodules
 Package Contents
 ----------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.hakusan.load
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.hakusan.COPYRIGHT
+   sandbox.datasets.hakusan.DESCRIPTION
+   sandbox.datasets.hakusan.NOTE
+   sandbox.datasets.hakusan.SOURCE
+   sandbox.datasets.hakusan.TITLE
+
+
 .. py:data:: COPYRIGHT
    :annotation: = This data is public domain.
 

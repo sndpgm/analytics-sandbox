@@ -21,6 +21,28 @@ Submodules
 Package Contents
 ----------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.nikkei225.load
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.nikkei225.COPYRIGHT
+   sandbox.datasets.nikkei225.DESCRIPTION
+   sandbox.datasets.nikkei225.NOTE
+   sandbox.datasets.nikkei225.SOURCE
+   sandbox.datasets.nikkei225.TITLE
+
+
 .. py:data:: COPYRIGHT
    :annotation: = This data is public domain.
 

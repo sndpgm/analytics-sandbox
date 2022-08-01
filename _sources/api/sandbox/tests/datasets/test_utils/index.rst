@@ -7,6 +7,31 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.tests.datasets.test_utils.TestUtils
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.tests.datasets.test_utils.test_base_file
+   sandbox.tests.datasets.test_utils.test_csv_name
+   sandbox.tests.datasets.test_utils.data
+   sandbox.tests.datasets.test_utils.endog_name
+   sandbox.tests.datasets.test_utils.exog_name
+   sandbox.tests.datasets.test_utils.endog
+   sandbox.tests.datasets.test_utils.exog
+   sandbox.tests.datasets.test_utils.names
+
+
 .. py:data:: test_base_file
    :annotation: = sandbox/datasets/air_passengers/air_passengers.csv
 

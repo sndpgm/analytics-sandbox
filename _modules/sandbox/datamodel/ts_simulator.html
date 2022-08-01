@@ -823,7 +823,7 @@ title="Open an issue"
 <div class="viewcode-block" id="UnobservedComponentsSimulator.simulate"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator.simulate">[docs]</a>    <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulate</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="UnobservedComponentsSimulator._simulate"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate">[docs]</a>    <span class="k">def</span> <span class="nf">_simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">simulate_result</span> <span class="o">=</span> <span class="n">UnobservedComponentsSimulatorResult</span><span class="p">()</span>
 
         <span class="n">trend</span> <span class="o">=</span> <span class="kc">None</span>
@@ -870,9 +870,9 @@ title="Open an issue"
         <span class="n">reg</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">reg</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
         <span class="n">endog</span> <span class="o">=</span> <span class="n">trend</span> <span class="o">+</span> <span class="n">freq_seasonal</span> <span class="o">+</span> <span class="n">reg</span>
         <span class="n">simulate_result</span><span class="o">.</span><span class="n">endog</span> <span class="o">=</span> <span class="n">endog</span>
-        <span class="k">return</span> <span class="n">simulate_result</span></div>
+        <span class="k">return</span> <span class="n">simulate_result</span>
 
-<div class="viewcode-block" id="UnobservedComponentsSimulator._simulate_trend_term"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_trend_term">[docs]</a>    <span class="k">def</span> <span class="nf">_simulate_trend_term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">start_param</span><span class="p">,</span> <span class="n">stddev_level</span><span class="p">,</span> <span class="n">stddev_trend</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_simulate_trend_term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">start_param</span><span class="p">,</span> <span class="n">stddev_level</span><span class="p">,</span> <span class="n">stddev_trend</span><span class="p">):</span>
         <span class="n">series</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span>
         <span class="n">level_t</span> <span class="o">=</span> <span class="n">start_param</span> <span class="o">+</span> <span class="n">stddev_level</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">prng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">()</span>
         <span class="n">trend_t</span> <span class="o">=</span> <span class="p">(</span>
@@ -886,9 +886,9 @@ title="Open an issue"
             <span class="n">trend_t</span> <span class="o">=</span> <span class="n">trend_tp</span>
             <span class="n">level_t</span> <span class="o">=</span> <span class="n">level_tp</span>
 
-        <span class="k">return</span> <span class="n">series</span></div>
+        <span class="k">return</span> <span class="n">series</span>
 
-<div class="viewcode-block" id="UnobservedComponentsSimulator._simulate_seasonal_term"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_seasonal_term">[docs]</a>    <span class="k">def</span> <span class="nf">_simulate_seasonal_term</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">_simulate_seasonal_term</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">periodicity</span><span class="p">,</span>
         <span class="n">total_cycles</span><span class="p">,</span>
@@ -946,23 +946,23 @@ title="Open an issue"
             <span class="n">gamma_jt</span> <span class="o">=</span> <span class="n">gamma_jtp1</span>
             <span class="n">gamma_star_jt</span> <span class="o">=</span> <span class="n">gamma_star_jtp1</span>
 
-        <span class="k">return</span> <span class="n">series</span><span class="p">[</span><span class="o">-</span><span class="n">duration</span><span class="p">:]</span></div>
+        <span class="k">return</span> <span class="n">series</span><span class="p">[</span><span class="o">-</span><span class="n">duration</span><span class="p">:]</span>
 
-<div class="viewcode-block" id="UnobservedComponentsSimulator._simulate_exog"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator._simulate_exog">[docs]</a>    <span class="k">def</span> <span class="nf">_simulate_exog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">exog_params</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_simulate_exog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">exog_params</span><span class="p">):</span>
         <span class="n">exog</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">steps</span><span class="p">,</span> <span class="n">exog_params</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">exog_params</span><span class="p">):</span>
             <span class="n">exog</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">steps</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">exog</span></div></div>
+        <span class="k">return</span> <span class="n">exog</span></div>
 
 
 <div class="viewcode-block" id="UnobservedComponentsSimulatorResult"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult">[docs]</a><span class="k">class</span> <span class="nc">UnobservedComponentsSimulatorResult</span><span class="p">(</span><span class="n">BaseData</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="UnobservedComponentsSimulatorResult._trend"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._trend">[docs]</a>    <span class="n">_trend</span> <span class="o">=</span> <span class="kc">None</span></div>
-<div class="viewcode-block" id="UnobservedComponentsSimulatorResult._freq_seasonal"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._freq_seasonal">[docs]</a>    <span class="n">_freq_seasonal</span> <span class="o">=</span> <span class="kc">None</span></div>
-<div class="viewcode-block" id="UnobservedComponentsSimulatorResult._exog"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._exog">[docs]</a>    <span class="n">_exog</span> <span class="o">=</span> <span class="kc">None</span></div>
-<div class="viewcode-block" id="UnobservedComponentsSimulatorResult._reg"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._reg">[docs]</a>    <span class="n">_reg</span> <span class="o">=</span> <span class="kc">None</span></div>
-<div class="viewcode-block" id="UnobservedComponentsSimulatorResult._endog"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult._endog">[docs]</a>    <span class="n">_endog</span> <span class="o">=</span> <span class="kc">None</span></div>
+    <span class="n">_trend</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_freq_seasonal</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_exog</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_reg</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_endog</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">UnobservedComponentsSimulatorResult</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>

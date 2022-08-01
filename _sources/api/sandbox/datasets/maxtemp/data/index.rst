@@ -7,6 +7,28 @@
 Module Contents
 ---------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.maxtemp.data.load
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.maxtemp.data.COPYRIGHT
+   sandbox.datasets.maxtemp.data.TITLE
+   sandbox.datasets.maxtemp.data.DESCRIPTION
+   sandbox.datasets.maxtemp.data.SOURCE
+   sandbox.datasets.maxtemp.data.NOTE
+
+
 .. py:data:: COPYRIGHT
    :annotation: = This data is public domain.
 
@@ -80,11 +102,5 @@ Module Contents
    
 
 .. py:function:: load()
-
-
-.. py:function:: _get_data()
-
-
-.. py:function:: _process_data()
 
 

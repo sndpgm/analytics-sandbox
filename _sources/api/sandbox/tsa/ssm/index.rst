@@ -12,6 +12,16 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.tsa.ssm.LinearGaussianStateSpaceModel
+
+
+
+
 .. py:class:: LinearGaussianStateSpaceModel(level=False, trend=False, seasonal=None, freq_seasonal=None, cycle=False, autoregressive=None, irregular=False, stochastic_level=False, stochastic_trend=False, stochastic_seasonal=True, stochastic_freq_seasonal=None, stochastic_cycle=False, damped_cycle=False, cycle_period_bounds=None, mle_regression=True, use_exact_diffuse=False)
 
    Bases: :py:obj:`sandbox.tsa.base.BaseTimeSeriesModel`
@@ -311,9 +321,6 @@ Module Contents
       :rtype: object
 
 
-   .. py:method:: _get_model_result(endog, exog)
-
-
    .. py:method:: has_model_result()
 
       Whether an instance has ``model_result_``.
@@ -510,9 +517,6 @@ Module Contents
       :rtype: array_like
 
 
-   .. py:method:: _get_prediction(X)
-
-
    .. py:method:: score(X, y, scorer='r2', **kwargs)
 
       Return the coefficient of determination of the prediction.
@@ -538,9 +542,6 @@ Module Contents
 
       :returns: **score** -- :math:`R^2` of ``self.predict(X)``.
       :rtype: float
-
-
-   .. py:method:: _predicted_state(X)
 
 
    .. py:method:: level_predicted_(X)
@@ -639,27 +640,6 @@ Module Contents
 
       :returns: **regression** -- Predicted regression component.
       :rtype: {numpy.ndarray, None}
-
-
-   .. py:method:: _level(which='smoothed', X=None)
-
-
-   .. py:method:: _trend(which='smoothed', X=None)
-
-
-   .. py:method:: _seasonal(which='smoothed', X=None)
-
-
-   .. py:method:: _freq_seasonal(which='smoothed', X=None)
-
-
-   .. py:method:: _cycle(which='smoothed', X=None)
-
-
-   .. py:method:: _autoregressive(which='smoothed', X=None)
-
-
-   .. py:method:: _regression(which='smoothed', X=None)
 
 
 

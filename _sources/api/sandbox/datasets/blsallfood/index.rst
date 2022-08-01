@@ -21,6 +21,28 @@ Submodules
 Package Contents
 ----------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.blsallfood.load
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.blsallfood.COPYRIGHT
+   sandbox.datasets.blsallfood.DESCRIPTION
+   sandbox.datasets.blsallfood.NOTE
+   sandbox.datasets.blsallfood.SOURCE
+   sandbox.datasets.blsallfood.TITLE
+
+
 .. py:data:: COPYRIGHT
    :annotation: = This data is public domain.
 

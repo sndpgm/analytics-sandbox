@@ -21,6 +21,28 @@ Submodules
 Package Contents
 ----------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.air_passengers.load
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.air_passengers.COPYRIGHT
+   sandbox.datasets.air_passengers.DESCRIPTION
+   sandbox.datasets.air_passengers.NOTE
+   sandbox.datasets.air_passengers.SOURCE
+   sandbox.datasets.air_passengers.TITLE
+
+
 .. py:data:: COPYRIGHT
    :annotation: = This data is public domain.
 

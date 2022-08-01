@@ -7,6 +7,28 @@
 Module Contents
 ---------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.blsallfood.data.load
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.blsallfood.data.COPYRIGHT
+   sandbox.datasets.blsallfood.data.TITLE
+   sandbox.datasets.blsallfood.data.DESCRIPTION
+   sandbox.datasets.blsallfood.data.SOURCE
+   sandbox.datasets.blsallfood.data.NOTE
+
+
 .. py:data:: COPYRIGHT
    :annotation: = This data is public domain.
 
@@ -82,11 +104,5 @@ Module Contents
    
 
 .. py:function:: load()
-
-
-.. py:function:: _get_data()
-
-
-.. py:function:: _process_data()
 
 

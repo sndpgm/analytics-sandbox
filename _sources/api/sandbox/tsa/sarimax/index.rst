@@ -12,6 +12,16 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.tsa.sarimax.SARIMAXModel
+
+
+
+
 .. py:class:: SARIMAXModel(trend=None, s=1, seasonal=True, method='lbfgs', start_p=2, d=None, start_q=2, max_p=5, max_d=2, max_q=5, start_P=1, D=None, start_Q=1, max_P=2, max_D=1, max_Q=2, stepwise=True, max_order=5, n_jobs=1, trace=False)
 
    Bases: :py:obj:`sandbox.tsa.base.BaseTimeSeriesModel`
@@ -194,9 +204,6 @@ Module Contents
       :rtype: object
 
 
-   .. py:method:: _get_model_result(endog, exog)
-
-
    .. py:method:: predict(X, is_pandas=False)
 
       Predict using the model.
@@ -230,9 +237,6 @@ Module Contents
 
       :returns: The confidence intervals.
       :rtype: array_like
-
-
-   .. py:method:: _get_prediction(start, end, exog)
 
 
    .. py:method:: score(X, y, scorer='r2')

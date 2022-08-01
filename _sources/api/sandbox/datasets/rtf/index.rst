@@ -21,6 +21,28 @@ Submodules
 Package Contents
 ----------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.rtf.load
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.rtf.COPYRIGHT
+   sandbox.datasets.rtf.DESCRIPTION
+   sandbox.datasets.rtf.NOTE
+   sandbox.datasets.rtf.SOURCE
+   sandbox.datasets.rtf.TITLE
+
+
 .. py:data:: COPYRIGHT
    :annotation: = This data is public domain.
 

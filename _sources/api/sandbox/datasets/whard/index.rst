@@ -21,6 +21,28 @@ Submodules
 Package Contents
 ----------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.whard.load
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.whard.COPYRIGHT
+   sandbox.datasets.whard.DESCRIPTION
+   sandbox.datasets.whard.NOTE
+   sandbox.datasets.whard.SOURCE
+   sandbox.datasets.whard.TITLE
+
+
 .. py:data:: COPYRIGHT
    :annotation: = This data is public domain.
 

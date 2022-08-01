@@ -800,9 +800,38 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData">
-     TimeSeriesModelData
+    <a class="reference internal nav-link" href="#classes">
+     Classes
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData">
+       TimeSeriesModelData
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData.X">
+         X
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData.y">
+         y
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData.orig_X">
+         orig_X
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData.orig_y">
+         orig_y
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -831,9 +860,38 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData">
-     TimeSeriesModelData
+    <a class="reference internal nav-link" href="#classes">
+     Classes
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData">
+       TimeSeriesModelData
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData.X">
+         X
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData.y">
+         y
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData.orig_X">
+         orig_X
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData.orig_y">
+         orig_y
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -851,12 +909,80 @@ title="Print to PDF"
 <span id="sandbox-datamodel-ts-datamodel"></span><h1><a class="reference internal" href="#module-sandbox.datamodel.ts_datamodel" title="sandbox.datamodel.ts_datamodel"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datamodel.ts_datamodel</span></code></a><a class="headerlink" href="#module-sandbox.datamodel.ts_datamodel" title="Permalink to this headline">#</a></h1>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">#</a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">#</a></h3>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData" title="sandbox.datamodel.ts_datamodel.TimeSeriesModelData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeSeriesModelData</span></code></a></p></td>
+<td><p>Base class for data model for supervised model.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="sandbox.datamodel.ts_datamodel.TimeSeriesModelData">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sandbox.datamodel.ts_datamodel.</span></span><span class="sig-name descname"><span class="pre">TimeSeriesModelData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sandbox/datamodel/ts_datamodel.html#TimeSeriesModelData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../base/index.html#sandbox.datamodel.base.SupervisedModelData" title="sandbox.datamodel.base.SupervisedModelData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sandbox.datamodel.base.SupervisedModelData</span></code></a></p>
+<p>Base class for data model for supervised model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>array_like</em>) – The feature vectors or matrix. If regression is not defined, you should
+handle the position of X as the one of y.</p></li>
+<li><p><strong>y</strong> (<em>{array_like</em><em>, </em><em>None}</em><em>, </em><em>optional</em>) – Target values. If regression is not defined, ignore that.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_datamodel.TimeSeriesModelData.X">
+<span class="sig-name descname"><span class="pre">X</span></span><a class="headerlink" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData.X" title="Permalink to this definition">#</a></dt>
+<dd><p>Training data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_datamodel.TimeSeriesModelData.y">
+<span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData.y" title="Permalink to this definition">#</a></dt>
+<dd><p>Target values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_datamodel.TimeSeriesModelData.orig_X">
+<span class="sig-name descname"><span class="pre">orig_X</span></span><a class="headerlink" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData.orig_X" title="Permalink to this definition">#</a></dt>
+<dd><p>Original X for input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sandbox.datamodel.ts_datamodel.TimeSeriesModelData.orig_y">
+<span class="sig-name descname"><span class="pre">orig_y</span></span><a class="headerlink" href="#sandbox.datamodel.ts_datamodel.TimeSeriesModelData.orig_y" title="Permalink to this definition">#</a></dt>
+<dd><p>Original y for input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 </section>
 </section>
 

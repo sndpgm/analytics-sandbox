@@ -12,6 +12,25 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.utils.Dataset
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.utils.load_csv
+   sandbox.datasets.utils.load_dataset
+
+
+
 .. py:class:: Dataset(**kw)
 
    Bases: :py:obj:`dict`

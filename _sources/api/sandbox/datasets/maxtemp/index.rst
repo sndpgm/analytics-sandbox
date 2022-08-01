@@ -21,6 +21,28 @@ Submodules
 Package Contents
 ----------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.maxtemp.load
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.maxtemp.COPYRIGHT
+   sandbox.datasets.maxtemp.DESCRIPTION
+   sandbox.datasets.maxtemp.NOTE
+   sandbox.datasets.maxtemp.SOURCE
+   sandbox.datasets.maxtemp.TITLE
+
+
 .. py:data:: COPYRIGHT
    :annotation: = This data is public domain.
 

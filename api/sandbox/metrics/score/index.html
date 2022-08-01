@@ -802,19 +802,26 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sandbox.metrics.score.mean_absolute_percentage_error">
-     mean_absolute_percentage_error
+    <a class="reference internal nav-link" href="#functions">
+     Functions
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sandbox.metrics.score.mape_score">
-     mape_score
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sandbox.metrics.score.r2_score">
-     r2_score
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.metrics.score.mean_absolute_percentage_error">
+       mean_absolute_percentage_error
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.metrics.score.mape_score">
+       mape_score
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.metrics.score.r2_score">
+       r2_score
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -843,19 +850,26 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sandbox.metrics.score.mean_absolute_percentage_error">
-     mean_absolute_percentage_error
+    <a class="reference internal nav-link" href="#functions">
+     Functions
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sandbox.metrics.score.mape_score">
-     mape_score
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sandbox.metrics.score.r2_score">
-     r2_score
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.metrics.score.mean_absolute_percentage_error">
+       mean_absolute_percentage_error
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.metrics.score.mape_score">
+       mape_score
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.metrics.score.r2_score">
+       r2_score
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -873,6 +887,25 @@ title="Print to PDF"
 <span id="sandbox-metrics-score"></span><h1><a class="reference internal" href="#module-sandbox.metrics.score" title="sandbox.metrics.score"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.metrics.score</span></code></a><a class="headerlink" href="#module-sandbox.metrics.score" title="Permalink to this headline">#</a></h1>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">#</a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h3>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sandbox.metrics.score.mean_absolute_percentage_error" title="sandbox.metrics.score.mean_absolute_percentage_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_absolute_percentage_error</span></code></a>(y_true, y_pred[, ...])</p></td>
+<td><p>Mean absolute percentage error (MAPE) regression loss from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sandbox.metrics.score.mape_score" title="sandbox.metrics.score.mape_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mape_score</span></code></a>(y_true, y_pred[, sample_weight, multioutput])</p></td>
+<td><p>1 - Mean absolute percentage error (MAPE) regression.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sandbox.metrics.score.r2_score" title="sandbox.metrics.score.r2_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">r2_score</span></code></a>(y_true, y_pred[, sample_weight, multioutput, ...])</p></td>
+<td><p><span class="math notranslate nohighlight">\(R^2\)</span> (coefficient of determination) regression score function from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py function">
 <dt class="sig sig-object py" id="sandbox.metrics.score.mean_absolute_percentage_error">
 <span class="sig-prename descclassname"><span class="pre">sandbox.metrics.score.</span></span><span class="sig-name descname"><span class="pre">mean_absolute_percentage_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multioutput</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform_average'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sandbox/metrics/score.html#mean_absolute_percentage_error"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.metrics.score.mean_absolute_percentage_error" title="Permalink to this definition">#</a></dt>
@@ -1068,6 +1101,7 @@ value if n_samples is less than two.</p>
 </div>
 </dd></dl>
 
+</section>
 </section>
 </section>
 

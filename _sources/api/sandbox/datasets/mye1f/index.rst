@@ -21,6 +21,28 @@ Submodules
 Package Contents
 ----------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.mye1f.load
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.mye1f.COPYRIGHT
+   sandbox.datasets.mye1f.DESCRIPTION
+   sandbox.datasets.mye1f.NOTE
+   sandbox.datasets.mye1f.SOURCE
+   sandbox.datasets.mye1f.TITLE
+
+
 .. py:data:: COPYRIGHT
    :annotation: = This data is public domain.
 

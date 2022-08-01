@@ -7,6 +7,28 @@
 Module Contents
 ---------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.mye1f.data.load
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.mye1f.data.COPYRIGHT
+   sandbox.datasets.mye1f.data.TITLE
+   sandbox.datasets.mye1f.data.DESCRIPTION
+   sandbox.datasets.mye1f.data.SOURCE
+   sandbox.datasets.mye1f.data.NOTE
+
+
 .. py:data:: COPYRIGHT
    :annotation: = This data is public domain.
 
@@ -83,11 +105,5 @@ Module Contents
    
 
 .. py:function:: load()
-
-
-.. py:function:: _get_data()
-
-
-.. py:function:: _process_data()
 
 

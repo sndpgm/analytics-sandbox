@@ -777,11 +777,11 @@ title="Open an issue"
     <span class="k">return</span> <span class="n">dataset</span></div>
 
 
-<div class="viewcode-block" id="_get_data"><a class="viewcode-back" href="../../../../api/sandbox/datasets/mye1f/data/index.html#sandbox.datasets.mye1f.data._get_data">[docs]</a><span class="k">def</span> <span class="nf">_get_data</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">du</span><span class="o">.</span><span class="n">load_csv</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="s2">&quot;mye1f.csv&quot;</span><span class="p">)</span></div>
+<span class="k">def</span> <span class="nf">_get_data</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">du</span><span class="o">.</span><span class="n">load_csv</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="s2">&quot;mye1f.csv&quot;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="_process_data"><a class="viewcode-back" href="../../../../api/sandbox/datasets/mye1f/data/index.html#sandbox.datasets.mye1f.data._process_data">[docs]</a><span class="k">def</span> <span class="nf">_process_data</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">_process_data</span><span class="p">():</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">_get_data</span><span class="p">()</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
@@ -797,7 +797,7 @@ title="Open an issue"
         <span class="n">exog</span><span class="o">=</span><span class="n">exog</span><span class="p">,</span>
         <span class="n">exog_name</span><span class="o">=</span><span class="n">exog_name</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="k">return</span> <span class="n">dataset</span></div>
+    <span class="k">return</span> <span class="n">dataset</span>
 </pre></div>
 
               </div>

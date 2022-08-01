@@ -7,6 +7,28 @@
 Module Contents
 ---------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.nikkei225.data.load
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.nikkei225.data.COPYRIGHT
+   sandbox.datasets.nikkei225.data.TITLE
+   sandbox.datasets.nikkei225.data.DESCRIPTION
+   sandbox.datasets.nikkei225.data.SOURCE
+   sandbox.datasets.nikkei225.data.NOTE
+
+
 .. py:data:: COPYRIGHT
    :annotation: = This data is public domain.
 
@@ -80,11 +102,5 @@ Module Contents
    
 
 .. py:function:: load()
-
-
-.. py:function:: _get_data()
-
-
-.. py:function:: _process_data()
 
 

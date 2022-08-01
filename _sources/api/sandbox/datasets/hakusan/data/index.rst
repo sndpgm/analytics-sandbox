@@ -7,6 +7,28 @@
 Module Contents
 ---------------
 
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.hakusan.data.load
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   sandbox.datasets.hakusan.data.COPYRIGHT
+   sandbox.datasets.hakusan.data.TITLE
+   sandbox.datasets.hakusan.data.DESCRIPTION
+   sandbox.datasets.hakusan.data.SOURCE
+   sandbox.datasets.hakusan.data.NOTE
+
+
 .. py:data:: COPYRIGHT
    :annotation: = This data is public domain.
 
@@ -84,11 +106,5 @@ Module Contents
    
 
 .. py:function:: load()
-
-
-.. py:function:: _get_data()
-
-
-.. py:function:: _process_data()
 
 

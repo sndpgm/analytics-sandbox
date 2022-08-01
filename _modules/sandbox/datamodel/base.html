@@ -758,31 +758,28 @@ title="Open an issue"
 <span class="kn">import</span> <span class="nn">sandbox.utils.validation</span> <span class="k">as</span> <span class="nn">val</span>
 
 
-<span class="c1"># ===================================</span>
-<span class="c1"># ベースのデータクラス.</span>
-<span class="c1"># ===================================</span>
 <div class="viewcode-block" id="BaseData"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseData">[docs]</a><span class="k">class</span> <span class="nc">BaseData</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="BaseData._get_1d_arr"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseData._get_1d_arr">[docs]</a>    <span class="k">def</span> <span class="nf">_get_1d_arr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">default_name</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">get_1d_arr</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">obj</span><span class="p">,</span> <span class="n">default_name</span><span class="o">=</span><span class="n">default_name</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">_get_1d_arr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">default_name</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">get_1d_arr</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">obj</span><span class="p">,</span> <span class="n">default_name</span><span class="o">=</span><span class="n">default_name</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="BaseData._get_2d_arr"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseData._get_2d_arr">[docs]</a>    <span class="k">def</span> <span class="nf">_get_2d_arr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">default_name</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">get_2d_arr</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">obj</span><span class="p">,</span> <span class="n">default_name</span><span class="o">=</span><span class="n">default_name</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">_get_2d_arr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">default_name</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">get_2d_arr</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">obj</span><span class="p">,</span> <span class="n">default_name</span><span class="o">=</span><span class="n">default_name</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="BaseData._get_index"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseData._get_index">[docs]</a>    <span class="k">def</span> <span class="nf">_get_index</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_index</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">val</span><span class="o">.</span><span class="n">is_dataframe_or_series</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
             <span class="n">index</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">index</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="p">)))</span>
-        <span class="k">return</span> <span class="n">index</span></div>
+        <span class="k">return</span> <span class="n">index</span>
 
     <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="BaseData._as_pandas_from_ndarray"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseData._as_pandas_from_ndarray">[docs]</a>    <span class="k">def</span> <span class="nf">_as_pandas_from_ndarray</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">pandas_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_as_pandas_from_ndarray</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">pandas_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">):</span>
         <span class="n">_obj</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">val</span><span class="o">.</span><span class="n">is_ndarray</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">pandas_type</span> <span class="o">==</span> <span class="s2">&quot;dataframe&quot;</span><span class="p">:</span>
@@ -791,22 +788,42 @@ title="Open an issue"
                 <span class="n">_obj</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">_obj</span> <span class="o">=</span> <span class="n">obj</span>
-        <span class="k">return</span> <span class="n">_obj</span></div>
+        <span class="k">return</span> <span class="n">_obj</span>
 
     <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="BaseData._as_ndarray_from_pandas"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseData._as_ndarray_from_pandas">[docs]</a>    <span class="k">def</span> <span class="nf">_as_ndarray_from_pandas</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_as_ndarray_from_pandas</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
         <span class="n">_obj</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">val</span><span class="o">.</span><span class="n">is_dataframe_or_series</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
             <span class="n">_obj</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">_obj</span> <span class="o">=</span> <span class="n">obj</span>
-        <span class="k">return</span> <span class="n">_obj</span></div></div>
+        <span class="k">return</span> <span class="n">_obj</span></div>
 
 
-<span class="c1"># ===================================</span>
-<span class="c1"># ベースのモデルデータクラス.</span>
-<span class="c1"># ===================================</span>
 <div class="viewcode-block" id="BaseModelData"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData">[docs]</a><span class="k">class</span> <span class="nc">BaseModelData</span><span class="p">(</span><span class="n">BaseData</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for data model of algorithm.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : array_like</span>
+<span class="sd">        Training data. In classification model, it is for classifying and clustering the data.</span>
+<span class="sd">        In regression model, it is feature vectors or matrix, but can be ignored when the regression</span>
+<span class="sd">        components are not defined in the case of time series analysis.</span>
+<span class="sd">    y : array_like</span>
+<span class="sd">        Target values. If algorithm is unsupervised, this should be ignored.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : numpy.ndarray</span>
+<span class="sd">        Training data.</span>
+<span class="sd">    y : numpy.ndarray</span>
+<span class="sd">        Target values.</span>
+<span class="sd">    orig_X : array_like</span>
+<span class="sd">        Original X for input.</span>
+<span class="sd">    orig_y : array_like</span>
+<span class="sd">        Original y for input.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">BaseModelData</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_X_or_y_is_not_none</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -814,27 +831,25 @@ title="Open an issue"
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">orig_X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">if</span> <span class="n">X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">orig_y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">orig_is_pandas</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">is_using_padnas</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orig_X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_y</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_X_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_2d_arr</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_1d_arr</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_common_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_index_from_X_and_y</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_pandas</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">X_pred</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="BaseModelData._both_X_y_are_none"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData._both_X_y_are_none">[docs]</a>    <span class="k">def</span> <span class="nf">_both_X_y_are_none</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_both_X_y_are_none</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">X</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span></div>
+            <span class="k">return</span> <span class="kc">False</span>
 
-<div class="viewcode-block" id="BaseModelData._check_X_or_y_is_not_none"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData._check_X_or_y_is_not_none">[docs]</a>    <span class="k">def</span> <span class="nf">_check_X_or_y_is_not_none</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_check_X_or_y_is_not_none</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_both_X_y_are_none</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Both X and y must not be None.&quot;</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="BaseModelData._check_X_y_length"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData._check_X_y_length">[docs]</a>    <span class="k">def</span> <span class="nf">_check_X_y_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_check_X_y_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="n">len_X</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">len_y</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -845,26 +860,28 @@ title="Open an issue"
             <span class="n">is_same_length</span> <span class="o">=</span> <span class="n">len_X</span> <span class="o">==</span> <span class="n">len_y</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">is_same_length</span><span class="p">:</span>
                 <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;The length of X is not same as the one of y.&quot;</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
     <span class="nd">@property</span>
 <div class="viewcode-block" id="BaseModelData.nobs"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData.nobs">[docs]</a>    <span class="k">def</span> <span class="nf">nobs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Number of observations.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">nobs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">nobs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">nobs</span></div>
 
-<div class="viewcode-block" id="BaseModelData._get_index_from_X_and_y"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData._get_index_from_X_and_y">[docs]</a>    <span class="k">def</span> <span class="nf">_get_index_from_X_and_y</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_index_from_X_and_y</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">index</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orig_X</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orig_y</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">index</span></div>
+        <span class="k">return</span> <span class="n">index</span>
 
     <span class="nd">@property</span>
 <div class="viewcode-block" id="BaseModelData.common_index"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData.common_index">[docs]</a>    <span class="k">def</span> <span class="nf">common_index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Common index of X and y&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_common_index</span></div>
 
     <span class="nd">@common_index</span><span class="o">.</span><span class="n">setter</span>
@@ -873,10 +890,12 @@ title="Open an issue"
 
     <span class="nd">@property</span>
 <div class="viewcode-block" id="BaseModelData.X_name"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData.X_name">[docs]</a>    <span class="k">def</span> <span class="nf">X_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;X name columns&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_X_name</span></div>
 
     <span class="nd">@X_name</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">X_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;y name.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;X_name must be list type.&quot;</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
@@ -897,7 +916,7 @@ title="Open an issue"
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_y_name</span> <span class="o">=</span> <span class="n">value</span>
 
-<div class="viewcode-block" id="BaseModelData._convert_pandas"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData._convert_pandas">[docs]</a>    <span class="k">def</span> <span class="nf">_convert_pandas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_convert_pandas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">X</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">y</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">is_pandas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_pandas</span>
@@ -919,12 +938,12 @@ title="Open an issue"
             <span class="n">is_pandas</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span>
-        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">is_pandas</span></div>
+        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">is_pandas</span>
 
 <div class="viewcode-block" id="BaseModelData.convert_pandas"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData.convert_pandas">[docs]</a>    <span class="k">def</span> <span class="nf">convert_pandas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_pandas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_pandas</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="BaseModelData._convert_ndarray"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData._convert_ndarray">[docs]</a>    <span class="k">def</span> <span class="nf">_convert_ndarray</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_convert_ndarray</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">X</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">y</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">is_pandas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_pandas</span>
@@ -936,22 +955,56 @@ title="Open an issue"
             <span class="n">is_pandas</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span>
-        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">is_pandas</span></div>
+        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">is_pandas</span>
 
 <div class="viewcode-block" id="BaseModelData.convert_ndarray"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseModelData.convert_ndarray">[docs]</a>    <span class="k">def</span> <span class="nf">convert_ndarray</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_pandas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_ndarray</span><span class="p">()</span></div></div>
 
 
-<span class="c1"># ===================================</span>
-<span class="c1"># 教師あり学習器のデータクラス.</span>
-<span class="c1"># ===================================</span>
 <div class="viewcode-block" id="SupervisedModelData"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.SupervisedModelData">[docs]</a><span class="k">class</span> <span class="nc">SupervisedModelData</span><span class="p">(</span><span class="n">BaseModelData</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for data model for supervised model.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : array_like</span>
+<span class="sd">        The feature vectors or matrix. If regression is not defined, you should</span>
+<span class="sd">        handle the position of X as the one of y.</span>
+<span class="sd">    y : {array_like, None}, optional</span>
+<span class="sd">        Target values. If regression is not defined, ignore that.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : numpy.ndarray</span>
+<span class="sd">        Training data.</span>
+<span class="sd">    y : numpy.ndarray</span>
+<span class="sd">        Target values.</span>
+<span class="sd">    orig_X : array_like</span>
+<span class="sd">        Original X for input.</span>
+<span class="sd">    orig_y : array_like</span>
+<span class="sd">        Original y for input.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">X</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SupervisedModelData</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="SupervisedModelData.split_index_and_X_from_X_pred"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.SupervisedModelData.split_index_and_X_from_X_pred">[docs]</a>    <span class="k">def</span> <span class="nf">split_index_and_X_from_X_pred</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_pred</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Split index and regression features design matrix</span>
+<span class="sd">        from X_pred that is assumed to be data of predictive range.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X_pred : {array_like, int}</span>
+<span class="sd">            Data to split into index and design matrix.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        index : pandas.Index</span>
+<span class="sd">            Index split into.</span>
+<span class="sd">        X: {numpy.ndarray, None}</span>
+<span class="sd">            Design matrix split into.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">index</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">X</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -996,29 +1049,58 @@ title="Open an issue"
         <span class="k">return</span> <span class="n">index</span><span class="p">,</span> <span class="n">X</span></div></div>
 
 
-<span class="c1"># ===================================</span>
-<span class="c1"># 教師なし学習器のデータクラス.</span>
-<span class="c1"># ===================================</span>
 <div class="viewcode-block" id="UnsupervisedModelData"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.UnsupervisedModelData">[docs]</a><span class="k">class</span> <span class="nc">UnsupervisedModelData</span><span class="p">(</span><span class="n">BaseModelData</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for data model for unsupervised model.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : array_like</span>
+<span class="sd">        Training data.</span>
+<span class="sd">    y : Ignored</span>
+<span class="sd">        Ignored.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : numpy.ndarray</span>
+<span class="sd">        Training data.</span>
+<span class="sd">    orig_X : array_like</span>
+<span class="sd">        Original X for input.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">y</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">UnsupervisedModelData</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<span class="c1"># ===================================</span>
-<span class="c1"># テストデータ作成・シミュレータークラス.</span>
-<span class="c1"># ===================================</span>
 <div class="viewcode-block" id="BaseDataSimulator"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.BaseDataSimulator">[docs]</a><span class="k">class</span> <span class="nc">BaseDataSimulator</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Base class for data simulator.&quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">123456789</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">prng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">seed</span> <span class="o">=</span> <span class="n">seed</span></div>
 
 
 <div class="viewcode-block" id="get_1d_arr"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.get_1d_arr">[docs]</a><span class="k">def</span> <span class="nf">get_1d_arr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">default_name</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the module-standard 1-dimensional array from input.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : array_like</span>
+<span class="sd">        Input data.</span>
+<span class="sd">    default_name : str</span>
+<span class="sd">        Name of input data.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    obj_arr : numpy.ndarray</span>
+<span class="sd">        Converted array.</span>
+<span class="sd">    obj_name : str</span>
+<span class="sd">        Name.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">obj_arr</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">obj_name</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">val</span><span class="o">.</span><span class="n">is_dataframe_or_series</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">val</span><span class="o">.</span><span class="n">is_dataframe_or_series</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">or</span> <span class="n">val</span><span class="o">.</span><span class="n">is_index</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">val</span><span class="o">.</span><span class="n">is_dataframe</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">and</span> <span class="n">obj</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Input obj must be one variable.&quot;</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
@@ -1038,6 +1120,22 @@ title="Open an issue"
 
 
 <div class="viewcode-block" id="get_2d_arr"><a class="viewcode-back" href="../../../api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.get_2d_arr">[docs]</a><span class="k">def</span> <span class="nf">get_2d_arr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">default_name</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the module-standard 2-dimensional array from input.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : array_like</span>
+<span class="sd">        Input data.</span>
+<span class="sd">    default_name : str</span>
+<span class="sd">        Name of input data.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    obj_arr : numpy.ndarray</span>
+<span class="sd">        Converted array.</span>
+<span class="sd">    obj_name : list[str]</span>
+<span class="sd">        Names.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">obj_arr</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">obj_name</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>

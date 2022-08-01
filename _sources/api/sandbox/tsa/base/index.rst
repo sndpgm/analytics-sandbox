@@ -12,22 +12,13 @@
 Module Contents
 ---------------
 
-.. py:class:: _BaseModelMeta
+Classes
+~~~~~~~
 
-   Bases: :py:obj:`abc.ABCMeta`
+.. autoapisummary::
 
-   Meta class for model estimators.
+   sandbox.tsa.base.BaseTimeSeriesModel
 
-   .. py:method:: wrapper_fit(child_fit)
-      :classmethod:
-
-      Common pre-/post-process in fit method.
-
-
-   .. py:method:: wrapper_predict(child_predict)
-      :classmethod:
-
-      Common pre-/post-process in predict method.
 
 
 
