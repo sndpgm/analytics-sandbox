@@ -53,8 +53,8 @@ sphinx:
     autoapi_options:
       - 'members'
       - 'undoc-members'
-      - 'private-members'
       - 'show-inheritance'
+      - 'show-module-summary'
       - 'special-members'
       - 'imported-members'
     intersphinx_mapping:
