@@ -8,9 +8,6 @@ import pandas as pd
 import sandbox.utils.validation as val
 
 
-# ===================================
-# ベースのデータクラス.
-# ===================================
 class BaseData:
     def __init__(self, **kwargs):
         self.__dict__.update(**kwargs)
@@ -53,10 +50,30 @@ class BaseData:
         return _obj
 
 
-# ===================================
-# ベースのモデルデータクラス.
-# ===================================
 class BaseModelData(BaseData):
+    """Base class for data model of algorithm.
+
+    Parameters
+    ----------
+    X : array_like
+        Training data. In classification model, it is for classifying and clustering the data.
+        In regression model, it is feature vectors or matrix, but can be ignored when the regression
+        components are not defined in the case of time series analysis.
+    y : array_like
+        Target values. If algorithm is unsupervised, this should be ignored.
+
+    Attributes
+    ----------
+    X : numpy.ndarray
+        Training data.
+    y : numpy.ndarray
+        Target values.
+    orig_X : array_like
+        Original X for input.
+    orig_y : array_like
+        Original y for input.
+    """
+
     def __init__(self, X, y, **kwargs):
         super(BaseModelData, self).__init__()
         self._check_X_or_y_is_not_none(X, y)
@@ -64,12 +81,10 @@ class BaseModelData(BaseData):
         self.__dict__.update(**kwargs)
         self.orig_X = X.copy() if X is not None else None
         self.orig_y = y.copy() if y is not None else None
-        self.orig_is_pandas = val.is_using_padnas(self.orig_X, self.orig_y)
         self.X, self._X_name = self._get_2d_arr(X)
         self.y, self._y_name = self._get_1d_arr(y)
         self._common_index = self._get_index_from_X_and_y()
         self.is_pandas = False
-        self.X_pred = None
 
     @staticmethod
     def _both_X_y_are_none(X, y):
@@ -99,6 +114,7 @@ class BaseModelData(BaseData):
 
     @property
     def nobs(self):
+        """Number of observations."""
         if self.X is not None:
             nobs = len(self.X)
         else:
@@ -115,6 +131,7 @@ class BaseModelData(BaseData):
 
     @property
     def common_index(self) -> pd.Index:
+        """Common index of X and y"""
         return self._common_index
 
     @common_index.setter
@@ -123,10 +140,12 @@ class BaseModelData(BaseData):
 
     @property
     def X_name(self) -> list[str] | None:
+        """X name columns"""
         return self._X_name
 
     @X_name.setter
     def X_name(self, value):
+        """y name."""
         if not isinstance(value, list):
             msg = "X_name must be list type."
             raise TypeError(msg)
@@ -192,16 +211,50 @@ class BaseModelData(BaseData):
         self.X, self.y, self.is_pandas = self._convert_ndarray()
 
 
-# ===================================
-# 教師あり学習器のデータクラス.
-# ===================================
 class SupervisedModelData(BaseModelData, metaclass=ABCMeta):
+    """Base class for data model for supervised model.
+
+    Parameters
+    ----------
+    X : array_like
+        The feature vectors or matrix. If regression is not defined, you should
+        handle the position of X as the one of y.
+    y : {array_like, None}, optional
+        Target values. If regression is not defined, ignore that.
+
+    Attributes
+    ----------
+    X : numpy.ndarray
+        Training data.
+    y : numpy.ndarray
+        Target values.
+    orig_X : array_like
+        Original X for input.
+    orig_y : array_like
+        Original y for input.
+    """
+
     def __init__(self, X, y=None, **kwargs):
         if X is not None and y is None:
             X, y = y, X
         super(SupervisedModelData, self).__init__(X=X, y=y, **kwargs)
 
     def split_index_and_X_from_X_pred(self, X_pred):
+        """Split index and regression features design matrix
+        from X_pred that is assumed to be data of predictive range.
+
+        Parameters
+        ----------
+        X_pred : {array_like, int}
+            Data to split into index and design matrix.
+
+        Returns
+        -------
+        index : pandas.Index
+            Index split into.
+        X: {numpy.ndarray, None}
+            Design matrix split into.
+        """
         index = None
         X = None
 
@@ -246,29 +299,58 @@ class SupervisedModelData(BaseModelData, metaclass=ABCMeta):
         return index, X
 
 
-# ===================================
-# 教師なし学習器のデータクラス.
-# ===================================
 class UnsupervisedModelData(BaseModelData, metaclass=ABCMeta):
+    """Base class for data model for unsupervised model.
+
+    Parameters
+    ----------
+    X : array_like
+        Training data.
+    y : Ignored
+        Ignored.
+
+    Attributes
+    ----------
+    X : numpy.ndarray
+        Training data.
+    orig_X : array_like
+        Original X for input.
+    """
+
     def __init__(self, X, **kwargs):
         y = None
         super(UnsupervisedModelData, self).__init__(X=X, y=y, **kwargs)
 
 
-# ===================================
-# テストデータ作成・シミュレータークラス.
-# ===================================
 class BaseDataSimulator:
+    """Base class for data simulator."""
+
     def __init__(self, seed=123456789, **kwargs):
         self.prng = np.random.default_rng(seed=seed)
         self.seed = seed
 
 
 def get_1d_arr(obj, default_name="y"):
+    """Get the module-standard 1-dimensional array from input.
+
+    Parameters
+    ----------
+    obj : array_like
+        Input data.
+    default_name : str
+        Name of input data.
+
+    Returns
+    -------
+    obj_arr : numpy.ndarray
+        Converted array.
+    obj_name : str
+        Name.
+    """
     obj_arr = None
     obj_name = None
     if obj is not None:
-        if val.is_dataframe_or_series(obj):
+        if val.is_dataframe_or_series(obj) or val.is_index(obj):
             if val.is_dataframe(obj) and obj.shape[1] > 1:
                 msg = "Input obj must be one variable."
                 raise ValueError(msg)
@@ -288,6 +370,22 @@ def get_1d_arr(obj, default_name="y"):
 
 
 def get_2d_arr(obj, default_name="x"):
+    """Get the module-standard 2-dimensional array from input.
+
+    Parameters
+    ----------
+    obj : array_like
+        Input data.
+    default_name : str
+        Name of input data.
+
+    Returns
+    -------
+    obj_arr : numpy.ndarray
+        Converted array.
+    obj_name : list[str]
+        Names.
+    """
     obj_arr = None
     obj_name = None
     if obj is not None:
