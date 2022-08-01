@@ -1,6 +1,8 @@
 """State space model."""
+import numpy as np
 import pandas as pd
 
+from sandbox.datamodel.base import get_1d_arr
 from sandbox.datamodel.ts_datamodel import TimeSeriesModelData
 from sandbox.tsa.base import BaseTimeSeriesModel
 
@@ -327,6 +329,9 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel):
         self.mle_regression = mle_regression
         self.use_exact_diffuse = use_exact_diffuse
 
+    # =====================================================
+    # Fit methods (filtering & smoothing, and parameters)
+    # =====================================================
     def fit(self, X, y=None):
         """Fit the model.
 
@@ -379,6 +384,228 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel):
 
         return model_result
 
+    def has_model_result(self):
+        r"""Whether an instance has ``model_result_``.
+
+        Some method needs ``model_result_`` that can be gained after
+        :py:func:`fit <sandbox.tsa.ssm.LinearGaussianState.fit>`.
+
+        Returns
+        -------
+        result : bool
+            If an instance has ``model_result_``, True. Otherwise, False.
+        """
+        if hasattr(self, "model_result_"):
+            return True
+        else:
+            return False
+
+    @property
+    def estimated_params_(self):
+        """Estimated parameters.
+
+        :py:class:`LinearGaussianState <sandbox.tsa.ssm.LinearGaussianState>` estimates (1) states parameters,
+        (2) fixed parameters (e.g., fixed state variances, regression coefficients).
+
+        This method returns (2) fixed parameters that are estimated in
+        :py:func:`fit <sandbox.tsa.ssm.LinearGaussianState.fit>` as dict format.
+
+        Returns
+        -------
+        estimated_params : dict
+            The estimated parameters which are other than state parameters.
+        """
+        estimated_params = None
+        if not self.has_model_result():
+            import warnings
+
+            msg = "This method works after performing `fit`."
+            warnings.warn(msg)
+        else:
+            estimated_params = dict(
+                zip(
+                    self.model_result_.param_names,
+                    self.model_result_.params,
+                )
+            )
+        return estimated_params
+
+    @property
+    def fittedvalues_(self):
+        """The fitted values of the model.
+
+        Returns
+        -------
+        fittedvalues : numpy.ndarray
+            The fitted values to be estimated.
+        """
+        fittedvalues = None
+        if not self.has_model_result():
+            import warnings
+
+            msg = "This method works after performing `fit`."
+            warnings.warn(msg)
+        else:
+            fittedvalues = get_1d_arr(self.model_result_.fittedvalues)[0]
+        return fittedvalues
+
+    @property
+    def level_filtered_(self):
+        """Filtered level component.
+
+        Returns
+        -------
+        level : {numpy.ndarray, None}
+            Filtered level component.
+        """
+        return self._level(which="filtered")
+
+    @property
+    def level_smoothed_(self):
+        """Smoothed level component.
+
+        Returns
+        -------
+        level : {numpy.ndarray, None}
+            Smoothed level component.
+        """
+        return self._level()
+
+    @property
+    def trend_filtered_(self):
+        """Filtered trend component.
+
+        Returns
+        -------
+        trend : {numpy.ndarray, None}
+            Filtered trend component.
+        """
+        return self._trend(which="filtered")
+
+    @property
+    def trend_smoothed_(self):
+        """Smoothed trend component.
+
+        Returns
+        -------
+        trend : {numpy.ndarray, None}
+            Smoothed trend component.
+        """
+        return self._trend()
+
+    @property
+    def seasonal_filtered_(self):
+        """Filtered seasonal component.
+
+        Returns
+        -------
+        seasonal : {numpy.ndarray, None}
+            Filtered seasonal component.
+        """
+        return self._seasonal(which="filtered")
+
+    @property
+    def seasonal_smoothed_(self):
+        """Smoothed seasonal component.
+
+        Returns
+        -------
+        seasonal : {numpy.ndarray, None}
+            Smoothed seasonal component.
+        """
+        return self._seasonal()
+
+    @property
+    def freq_seasonal_filtered_(self):
+        """Filtered frequency domain seasonal component.
+
+        Returns
+        -------
+        freq_seasonal : {list[numpy.ndarray], None}
+            Filtered frequency domain seasonal component
+        """
+        return self._freq_seasonal(which="filtered")
+
+    @property
+    def freq_seasonal_smoothed_(self):
+        """Smoothed frequency domain seasonal component.
+
+        Returns
+        -------
+        freq_seasonal : {list[numpy.ndarray], None}
+            Smoothed frequency domain seasonal component
+        """
+        return self._freq_seasonal()
+
+    @property
+    def cycle_filtered_(self):
+        """Filtered cycle component.
+
+        Returns
+        -------
+        cycle : {numpy.ndarray, None}
+            Filtered cycle component.
+        """
+        return self._cycle(which="filtered")
+
+    @property
+    def cycle_smoothed_(self):
+        """Smoothed cycle component.
+
+        Returns
+        -------
+        cycle : {numpy.ndarray, None}
+            Smoothed cycle component.
+        """
+        return self._cycle()
+
+    @property
+    def autoregressive_filtered_(self):
+        """Filtered autoregressive component.
+
+        Returns
+        -------
+        autoregressive : {numpy.ndarray, None}
+            Filtered autoregressive component.
+        """
+        return self._autoregressive(which="filtered")
+
+    @property
+    def autoregressive_smoothed_(self):
+        """Smoothed autoregressive component.
+
+        Returns
+        -------
+        autoregressive : {numpy.ndarray, None}
+            Smoothed autoregressive component.
+        """
+        return self._autoregressive()
+
+    @property
+    def regression_filtered_(self):
+        """Filtered regression component.
+
+        Returns
+        -------
+        regression : {numpy.ndarray, None}
+            Filtered regression component.
+        """
+        return self._regression(which="filtered")
+
+    @property
+    def regression_smoothed_(self):
+        """Smoothed regression component.
+
+        Returns
+        -------
+        regression : {numpy.ndarray, None}
+            Smoothed regression component.
+        """
+        return self._regression()
+
+    # =====================================================
+    # Predict methods (predicting and parameters)
+    # =====================================================
     def predict(self, X, is_pandas=False):
         """Predict using the model.
 
@@ -397,11 +624,9 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel):
         predicted_mean : array-like
             Mean of predictive distribution of query points.
         """
-        index, exog = self.data_.split_index_and_X_from_X_pred(X)
-        start = self.data_.nobs
-        end = self.data_.nobs + len(index) - 1
-        pred = self._get_prediction(start=start, end=end, exog=exog)
+        pred = self._get_prediction(X)
         if is_pandas:
+            index = self.data_.split_index_and_X_from_X_pred(X)[0]
             return pd.DataFrame(
                 pred.predicted_mean, index=index, columns=["predicted_mean"]
             )
@@ -430,11 +655,9 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel):
         array_like
             The confidence intervals.
         """
-        index, exog = self.data_.split_index_and_X_from_X_pred(X)
-        start = self.data_.nobs
-        end = self.data_.nobs + len(index) - 1
-        pred = self._get_prediction(start=start, end=end, exog=exog)
+        pred = self._get_prediction(X)
         if is_pandas:
+            index = self.data_.split_index_and_X_from_X_pred(X)[0]
             a = int(round(alpha * 100, 0))
             return pd.DataFrame(
                 pred.conf_int(alpha=1 - alpha),
@@ -444,17 +667,20 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel):
         else:
             return pred.conf_int(alpha=1 - alpha)
 
-    def _get_prediction(self, start, end, exog):
+    def _get_prediction(self, X):
+        index, exog = self.data_.split_index_and_X_from_X_pred(X)
+        start = self.data_.nobs
+        end = self.data_.nobs + len(index) - 1
         return self.model_result_.get_prediction(start=start, end=end, exog=exog)
 
-    def score(self, X, y, scorer="r2"):
+    def score(self, X, y, scorer="r2", **kwargs):
         r"""Return the coefficient of determination of the prediction.
 
         The default coefficient of determination :math:`R^2` is defined as
         :math:`(1 - \\frac{u}{v})`, where :math:`u` is the residual
         sum of squares ``((y_true - y_pred)** 2).sum()`` and :math:`v`
         is the total sum of squares ``((y_true - y_true.mean()) ** 2).sum()``.
-        The best possible score is 1.0 and it can be negative (because the
+        The best possible score is 1.0, and it can be negative (because the
         model can be arbitrarily worse). A constant model that always predicts
         the expected value of `y`, disregarding the input features, would get
         a :math:`R^2` score of 0.0.
@@ -477,5 +703,285 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel):
             :math:`R^2` of ``self.predict(X)``.
 
         """
-        score = super(LinearGaussianStateSpaceModel, self).score(X, y, scorer=scorer)
+        score = super(LinearGaussianStateSpaceModel, self).score(
+            X, y, scorer=scorer, **kwargs
+        )
         return score
+
+    def _predicted_state(self, X):
+        predicted_state = None
+        if self.has_model_result():
+            predicted_state = self._get_prediction(
+                X
+            )._results.prediction_results.results.predicted_state
+        return predicted_state
+
+    def level_predicted_(self, X):
+        """Predicted level component.
+
+        Parameters
+        ----------
+        X : {array-like, int}
+            Design matrix expressing the regression dummies or variables in
+            the period to be predicted. If no regression is defined in the model,
+            the index expressing the period or the period steps to be predicted
+            must be set.
+
+        Returns
+        -------
+        level : {numpy.ndarray, None}
+            Predicted level component.
+        """
+        return self._level(which="predicted", X=X)
+
+    def trend_predicted_(self, X):
+        """Predicted trend component.
+
+        Parameters
+        ----------
+        X : {array-like, int}
+            Design matrix expressing the regression dummies or variables in
+            the period to be predicted. If no regression is defined in the model,
+            the index expressing the period or the period steps to be predicted
+            must be set.
+
+        Returns
+        -------
+        trend : {numpy.ndarray, None}
+            Predicted trend component.
+        """
+        return self._trend(which="predicted", X=X)
+
+    def seasonal_predicted_(self, X):
+        """Predicted seasonal component.
+
+        Parameters
+        ----------
+        X : {array-like, int}
+            Design matrix expressing the regression dummies or variables in
+            the period to be predicted. If no regression is defined in the model,
+            the index expressing the period or the period steps to be predicted
+            must be set.
+
+        Returns
+        -------
+        seasonal : {numpy.ndarray, None}
+            Predicted seasonal component.
+        """
+        return self._seasonal(which="predicted", X=X)
+
+    def freq_seasonal_predicted_(self, X):
+        """Predicted frequency domain seasonal component.
+
+        Parameters
+        ----------
+        X : {array-like, int}
+            Design matrix expressing the regression dummies or variables in
+            the period to be predicted. If no regression is defined in the model,
+            the index expressing the period or the period steps to be predicted
+            must be set.
+
+        Returns
+        -------
+        freq_seasonal : {list[numpy.ndarray], None}
+            Predicted frequency domain seasonal component.
+        """
+        return self._freq_seasonal(which="predicted", X=X)
+
+    def cycle_predicted_(self, X):
+        """Predicted cycle component.
+
+        Parameters
+        ----------
+        X : {array-like, int}
+            Design matrix expressing the regression dummies or variables in
+            the period to be predicted. If no regression is defined in the model,
+            the index expressing the period or the period steps to be predicted
+            must be set.
+
+        Returns
+        -------
+        cycle : {numpy.ndarray, None}
+            Predicted cycle component.
+        """
+        return self._freq_seasonal(which="predicted", X=X)
+
+    def autoregressive_predicted_(self, X):
+        """Predicted autoregressive component.
+
+        Parameters
+        ----------
+        X : {array-like, int}
+            Design matrix expressing the regression dummies or variables in
+            the period to be predicted. If no regression is defined in the model,
+            the index expressing the period or the period steps to be predicted
+            must be set.
+
+        Returns
+        -------
+        autoregressive : {numpy.ndarray, None}
+            Predicted autoregressive component.
+        """
+        return self._autoregressive(which="predicted", X=X)
+
+    def regression_predicted_(self, X):
+        """Predicted regression component.
+
+        Parameters
+        ----------
+        X : {array-like, int}
+            Design matrix expressing the regression dummies or variables in
+            the period to be predicted. If no regression is defined in the model,
+            the index expressing the period or the period steps to be predicted
+            must be set.
+
+        Returns
+        -------
+        regression : {numpy.ndarray, None}
+            Predicted regression component.
+        """
+        return self._regression(which="predicted", X=X)
+
+    def _level(self, which="smoothed", X=None):
+        out = None
+        if self.has_model_result():
+            spec = self.model_result_.specification
+            if spec.level:
+                if which in ["filtered", "smoothed"]:
+                    out = self.model_result_.level[which]
+                if which == "predicted":
+                    offset = 0
+                    predicted_state = self._predicted_state(X)
+                    out = predicted_state[offset, :-1]
+        return out
+
+    def _trend(self, which="smoothed", X=None):
+        out = None
+        if self.has_model_result():
+            spec = self.model_result_.specification
+            if spec.trend:
+                if which in ["filtered", "smoothed"]:
+                    out = self.model_result_.trend[which]
+                if which == "predicted":
+                    offset = int(spec.level)
+                    predicted_state = self._predicted_state(X)
+                    out = predicted_state[offset, :-1]
+        return out
+
+    def _seasonal(self, which="smoothed", X=None):
+        out = None
+        if self.has_model_result():
+            spec = self.model_result_.specification
+            if spec.seasonal:
+                if which in ["filtered", "smoothed"]:
+                    out = self.model_result_.seasonal[which]
+                if which == "predicted":
+                    offset = int(spec.trend + spec.level)
+                    predicted_state = self._predicted_state(X)
+                    out = predicted_state[offset, :-1]
+        return out
+
+    def _freq_seasonal(self, which="smoothed", X=None):
+        out = []
+        if self.has_model_result():
+            spec = self.model_result_.specification
+            if spec.freq_seasonal:
+                if which in ["filtered", "smoothed"]:
+                    n_freq_seasonal = len(self.model_result_.freq_seasonal)
+                    for i in range(n_freq_seasonal):
+                        item = self.model_result_.freq_seasonal[i][which]
+                        out.append(item)
+                if which == "predicted":
+                    predicted_state = self._predicted_state(X)
+                    previous_states_offset = int(
+                        spec.trend
+                        + spec.level
+                        + self.model_result_._k_states_by_type["seasonal"]
+                    )
+                    previous_f_seas_offset = 0
+                    for ix, h in enumerate(spec.freq_seasonal_harmonics):
+                        offset = previous_states_offset + previous_f_seas_offset
+                        states_in_sum = np.arange(0, 2 * h, 2)
+                        item = np.sum(
+                            [predicted_state[offset + j] for j in states_in_sum], axis=0
+                        )
+                        out.append(item[:-1])
+                        previous_f_seas_offset += 2 * h
+        return out
+
+    def _cycle(self, which="smoothed", X=None):
+        out = None
+        if self.has_model_result():
+            spec = self.model_result_.specification
+            if spec.cycle:
+                if which in ["filtered", "smoothed"]:
+                    out = self.model_result_.cycle[which]
+                if which == "predicted":
+                    offset = int(
+                        spec.trend
+                        + spec.level
+                        + self.model_result_._k_states_by_type["seasonal"]
+                        + self.model_result_._k_states_by_type["freq_seasonal"]
+                    )
+                    predicted_state = self._predicted_state(X)
+                    out = predicted_state[offset, :-1]
+        return out
+
+    def _autoregressive(self, which="smoothed", X=None):
+        out = None
+        if self.has_model_result():
+            spec = self.model_result_.specification
+            if spec.autoregressive:
+                if which in ["filtered", "smoothed"]:
+                    out = self.model_result_.autoregressive[which]
+                if which == "predicted":
+                    offset = int(
+                        spec.trend
+                        + spec.level
+                        + self.model_result_._k_states_by_type["seasonal"]
+                        + self.model_result_._k_states_by_type["freq_seasonal"]
+                        + self.model_result_._k_states_by_type["cycle"]
+                    )
+                    predicted_state = self._predicted_state(X)
+                    out = predicted_state[offset, :-1]
+        return out
+
+    def _regression(self, which="smoothed", X=None):
+        out = None
+        if self.has_model_result():
+            spec = self.model_result_.specification
+            if spec.regression:
+                # mle_regression = True のとき, 最尤推定法によって回帰係数を推定しているため,
+                # 状態変数を格納している配列には保存されていない.
+                if not spec.mle_regression:
+                    if which in ["filtered", "smoothed"]:
+                        out = self.model_result_.regression_coefficients[which]
+                    if which == "predicted":
+                        offset = int(
+                            spec.trend
+                            + spec.level
+                            + self.model_result_._k_states_by_type["seasonal"]
+                            + self.model_result_._k_states_by_type["freq_seasonal"]
+                            + self.model_result_._k_states_by_type["cycle"]
+                            + spec.ar_order
+                        )
+                        start = offset
+                        end = offset + spec.k_exog
+                        predicted_state = self._predicted_state(X)
+                        out = predicted_state[start:end, :-1]
+                else:
+                    coefficient = np.zeros(spec.k_exog)
+                    offset = 0
+                    for k, v in self.estimated_params_.items():
+                        if "beta." in k:
+                            coefficient[offset] = v
+                            offset += 1
+
+                    # NumPy において `*` はアダマール積
+                    # ToDo: 下ではdata_.Xがnumpyを想定しているが, そもそもTimeSeriesModelDataの標準スタイルをnumpyにするか再検討.
+                    if which in ["filtered", "smoothed"]:
+                        out = (self.data_.X * coefficient).T
+                    if which == "predicted":
+                        exog = self.data_.split_index_and_X_from_X_pred(X)[1]
+                        out = (exog * coefficient).T
+        return out
