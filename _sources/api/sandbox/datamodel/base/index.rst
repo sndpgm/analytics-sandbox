@@ -93,12 +93,9 @@ Module Contents
 .. py:class:: BaseDataSimulator(seed=123456789, **kwargs)
 
 
-.. py:function:: _get_1d_arr(obj, default_name='y')
+.. py:function:: get_1d_arr(obj, default_name='y')
 
 
-.. py:function:: _get_2d_arr(obj, default_name='x')
-
-
-.. py:function:: check_for_compatible_data(*data)
+.. py:function:: get_2d_arr(obj, default_name='x')
 
 

@@ -5,7 +5,7 @@
 
 .. autoapi-nested-parse::
 
-   Time series analystis modeling modules.
+   Time series analytics modeling modules.
 
 
 

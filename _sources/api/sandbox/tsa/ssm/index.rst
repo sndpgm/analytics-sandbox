@@ -314,6 +314,167 @@ Module Contents
    .. py:method:: _get_model_result(endog, exog)
 
 
+   .. py:method:: has_model_result()
+
+      Whether an instance has ``model_result_``.
+
+      Some method needs ``model_result_`` that can be gained after
+      :py:func:`fit <sandbox.tsa.ssm.LinearGaussianState.fit>`.
+
+      :returns: **result** -- If an instance has ``model_result_``, True. Otherwise, False.
+      :rtype: bool
+
+
+   .. py:method:: estimated_params_()
+      :property:
+
+      Estimated parameters.
+
+      :py:class:`LinearGaussianState <sandbox.tsa.ssm.LinearGaussianState>` estimates (1) states parameters,
+      (2) fixed parameters (e.g., fixed state variances, regression coefficients).
+
+      This method returns (2) fixed parameters that are estimated in
+      :py:func:`fit <sandbox.tsa.ssm.LinearGaussianState.fit>` as dict format.
+
+      :returns: **estimated_params** -- The estimated parameters which are other than state parameters.
+      :rtype: dict
+
+
+   .. py:method:: fittedvalues_()
+      :property:
+
+      The fitted values of the model.
+
+      :returns: **fittedvalues** -- The fitted values to be estimated.
+      :rtype: numpy.ndarray
+
+
+   .. py:method:: level_filtered_()
+      :property:
+
+      Filtered level component.
+
+      :returns: **level** -- Filtered level component.
+      :rtype: {numpy.ndarray, None}
+
+
+   .. py:method:: level_smoothed_()
+      :property:
+
+      Smoothed level component.
+
+      :returns: **level** -- Smoothed level component.
+      :rtype: {numpy.ndarray, None}
+
+
+   .. py:method:: trend_filtered_()
+      :property:
+
+      Filtered trend component.
+
+      :returns: **trend** -- Filtered trend component.
+      :rtype: {numpy.ndarray, None}
+
+
+   .. py:method:: trend_smoothed_()
+      :property:
+
+      Smoothed trend component.
+
+      :returns: **trend** -- Smoothed trend component.
+      :rtype: {numpy.ndarray, None}
+
+
+   .. py:method:: seasonal_filtered_()
+      :property:
+
+      Filtered seasonal component.
+
+      :returns: **seasonal** -- Filtered seasonal component.
+      :rtype: {numpy.ndarray, None}
+
+
+   .. py:method:: seasonal_smoothed_()
+      :property:
+
+      Smoothed seasonal component.
+
+      :returns: **seasonal** -- Smoothed seasonal component.
+      :rtype: {numpy.ndarray, None}
+
+
+   .. py:method:: freq_seasonal_filtered_()
+      :property:
+
+      Filtered frequency domain seasonal component.
+
+      :returns: **freq_seasonal** -- Filtered frequency domain seasonal component
+      :rtype: {list[numpy.ndarray], None}
+
+
+   .. py:method:: freq_seasonal_smoothed_()
+      :property:
+
+      Smoothed frequency domain seasonal component.
+
+      :returns: **freq_seasonal** -- Smoothed frequency domain seasonal component
+      :rtype: {list[numpy.ndarray], None}
+
+
+   .. py:method:: cycle_filtered_()
+      :property:
+
+      Filtered cycle component.
+
+      :returns: **cycle** -- Filtered cycle component.
+      :rtype: {numpy.ndarray, None}
+
+
+   .. py:method:: cycle_smoothed_()
+      :property:
+
+      Smoothed cycle component.
+
+      :returns: **cycle** -- Smoothed cycle component.
+      :rtype: {numpy.ndarray, None}
+
+
+   .. py:method:: autoregressive_filtered_()
+      :property:
+
+      Filtered autoregressive component.
+
+      :returns: **autoregressive** -- Filtered autoregressive component.
+      :rtype: {numpy.ndarray, None}
+
+
+   .. py:method:: autoregressive_smoothed_()
+      :property:
+
+      Smoothed autoregressive component.
+
+      :returns: **autoregressive** -- Smoothed autoregressive component.
+      :rtype: {numpy.ndarray, None}
+
+
+   .. py:method:: regression_filtered_()
+      :property:
+
+      Filtered regression component.
+
+      :returns: **regression** -- Filtered regression component.
+      :rtype: {numpy.ndarray, None}
+
+
+   .. py:method:: regression_smoothed_()
+      :property:
+
+      Smoothed regression component.
+
+      :returns: **regression** -- Smoothed regression component.
+      :rtype: {numpy.ndarray, None}
+
+
    .. py:method:: predict(X, is_pandas=False)
 
       Predict using the model.
@@ -349,10 +510,10 @@ Module Contents
       :rtype: array_like
 
 
-   .. py:method:: _get_prediction(start, end, exog)
+   .. py:method:: _get_prediction(X)
 
 
-   .. py:method:: score(X, y, scorer='r2')
+   .. py:method:: score(X, y, scorer='r2', **kwargs)
 
       Return the coefficient of determination of the prediction.
 
@@ -360,7 +521,7 @@ Module Contents
       :math:`(1 - \\frac{u}{v})`, where :math:`u` is the residual
       sum of squares ``((y_true - y_pred)** 2).sum()`` and :math:`v`
       is the total sum of squares ``((y_true - y_true.mean()) ** 2).sum()``.
-      The best possible score is 1.0 and it can be negative (because the
+      The best possible score is 1.0, and it can be negative (because the
       model can be arbitrarily worse). A constant model that always predicts
       the expected value of `y`, disregarding the input features, would get
       a :math:`R^2` score of 0.0.
@@ -377,6 +538,128 @@ Module Contents
 
       :returns: **score** -- :math:`R^2` of ``self.predict(X)``.
       :rtype: float
+
+
+   .. py:method:: _predicted_state(X)
+
+
+   .. py:method:: level_predicted_(X)
+
+      Predicted level component.
+
+      :param X: Design matrix expressing the regression dummies or variables in
+                the period to be predicted. If no regression is defined in the model,
+                the index expressing the period or the period steps to be predicted
+                must be set.
+      :type X: {array-like, int}
+
+      :returns: **level** -- Predicted level component.
+      :rtype: {numpy.ndarray, None}
+
+
+   .. py:method:: trend_predicted_(X)
+
+      Predicted trend component.
+
+      :param X: Design matrix expressing the regression dummies or variables in
+                the period to be predicted. If no regression is defined in the model,
+                the index expressing the period or the period steps to be predicted
+                must be set.
+      :type X: {array-like, int}
+
+      :returns: **trend** -- Predicted trend component.
+      :rtype: {numpy.ndarray, None}
+
+
+   .. py:method:: seasonal_predicted_(X)
+
+      Predicted seasonal component.
+
+      :param X: Design matrix expressing the regression dummies or variables in
+                the period to be predicted. If no regression is defined in the model,
+                the index expressing the period or the period steps to be predicted
+                must be set.
+      :type X: {array-like, int}
+
+      :returns: **seasonal** -- Predicted seasonal component.
+      :rtype: {numpy.ndarray, None}
+
+
+   .. py:method:: freq_seasonal_predicted_(X)
+
+      Predicted frequency domain seasonal component.
+
+      :param X: Design matrix expressing the regression dummies or variables in
+                the period to be predicted. If no regression is defined in the model,
+                the index expressing the period or the period steps to be predicted
+                must be set.
+      :type X: {array-like, int}
+
+      :returns: **freq_seasonal** -- Predicted frequency domain seasonal component.
+      :rtype: {list[numpy.ndarray], None}
+
+
+   .. py:method:: cycle_predicted_(X)
+
+      Predicted cycle component.
+
+      :param X: Design matrix expressing the regression dummies or variables in
+                the period to be predicted. If no regression is defined in the model,
+                the index expressing the period or the period steps to be predicted
+                must be set.
+      :type X: {array-like, int}
+
+      :returns: **cycle** -- Predicted cycle component.
+      :rtype: {numpy.ndarray, None}
+
+
+   .. py:method:: autoregressive_predicted_(X)
+
+      Predicted autoregressive component.
+
+      :param X: Design matrix expressing the regression dummies or variables in
+                the period to be predicted. If no regression is defined in the model,
+                the index expressing the period or the period steps to be predicted
+                must be set.
+      :type X: {array-like, int}
+
+      :returns: **autoregressive** -- Predicted autoregressive component.
+      :rtype: {numpy.ndarray, None}
+
+
+   .. py:method:: regression_predicted_(X)
+
+      Predicted regression component.
+
+      :param X: Design matrix expressing the regression dummies or variables in
+                the period to be predicted. If no regression is defined in the model,
+                the index expressing the period or the period steps to be predicted
+                must be set.
+      :type X: {array-like, int}
+
+      :returns: **regression** -- Predicted regression component.
+      :rtype: {numpy.ndarray, None}
+
+
+   .. py:method:: _level(which='smoothed', X=None)
+
+
+   .. py:method:: _trend(which='smoothed', X=None)
+
+
+   .. py:method:: _seasonal(which='smoothed', X=None)
+
+
+   .. py:method:: _freq_seasonal(which='smoothed', X=None)
+
+
+   .. py:method:: _cycle(which='smoothed', X=None)
+
+
+   .. py:method:: _autoregressive(which='smoothed', X=None)
+
+
+   .. py:method:: _regression(which='smoothed', X=None)
 
 
 
