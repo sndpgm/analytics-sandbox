@@ -17,11 +17,11 @@ class BaseData:
 
     @staticmethod
     def _get_1d_arr(obj, default_name="y"):
-        return _get_1d_arr(obj=obj, default_name=default_name)
+        return get_1d_arr(obj=obj, default_name=default_name)
 
     @staticmethod
     def _get_2d_arr(obj, default_name="x"):
-        return _get_2d_arr(obj=obj, default_name=default_name)
+        return get_2d_arr(obj=obj, default_name=default_name)
 
     @staticmethod
     def _get_index(obj):
@@ -264,7 +264,7 @@ class BaseDataSimulator:
         self.seed = seed
 
 
-def _get_1d_arr(obj, default_name="y"):
+def get_1d_arr(obj, default_name="y"):
     obj_arr = None
     obj_name = None
     if obj is not None:
@@ -287,7 +287,7 @@ def _get_1d_arr(obj, default_name="y"):
     return obj_arr, obj_name
 
 
-def _get_2d_arr(obj, default_name="x"):
+def get_2d_arr(obj, default_name="x"):
     obj_arr = None
     obj_name = None
     if obj is not None:
@@ -317,13 +317,3 @@ def _get_2d_arr(obj, default_name="x"):
             ]
 
     return obj_arr, obj_name
-
-
-def check_for_compatible_data(*data):
-    result = list()
-    for d in data:
-        if val.is_dataframe_or_series(d) or val.is_index(d) or val.is_arraylike(d):
-            result.append(True)
-        else:
-            result.append(False)
-    return result
