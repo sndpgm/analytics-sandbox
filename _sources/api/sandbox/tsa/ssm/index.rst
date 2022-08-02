@@ -24,7 +24,7 @@ Classes
 
 .. py:class:: LinearGaussianStateSpaceModel(level=False, trend=False, seasonal=None, freq_seasonal=None, cycle=False, autoregressive=None, irregular=False, stochastic_level=False, stochastic_trend=False, stochastic_seasonal=True, stochastic_freq_seasonal=None, stochastic_cycle=False, damped_cycle=False, cycle_period_bounds=None, mle_regression=True, use_exact_diffuse=False)
 
-   Bases: :py:obj:`sandbox.tsa.base.BaseTimeSeriesModel`, :py:obj:`sandbox.graphics.ts_grapher.TimeSeriesGrapherMixin`
+   Bases: :py:obj:`sandbox.tsa.base.BaseTimeSeriesModel`
 
    Linear Gaussian state space model.
 
@@ -365,7 +365,7 @@ Classes
       :rtype: {numpy.ndarray, None}
 
 
-   .. py:method:: level_()
+   .. py:method:: level_smoothed_()
       :property:
 
       Smoothed level component.
@@ -383,7 +383,7 @@ Classes
       :rtype: {numpy.ndarray, None}
 
 
-   .. py:method:: trend_()
+   .. py:method:: trend_smoothed_()
       :property:
 
       Smoothed trend component.
@@ -401,7 +401,7 @@ Classes
       :rtype: {numpy.ndarray, None}
 
 
-   .. py:method:: seasonal_()
+   .. py:method:: seasonal_smoothed_()
       :property:
 
       Smoothed seasonal component.
@@ -419,7 +419,7 @@ Classes
       :rtype: {list[numpy.ndarray], None}
 
 
-   .. py:method:: freq_seasonal_()
+   .. py:method:: freq_seasonal_smoothed_()
       :property:
 
       Smoothed frequency domain seasonal component.
@@ -437,7 +437,7 @@ Classes
       :rtype: {numpy.ndarray, None}
 
 
-   .. py:method:: cycle_()
+   .. py:method:: cycle_smoothed_()
       :property:
 
       Smoothed cycle component.
@@ -455,7 +455,7 @@ Classes
       :rtype: {numpy.ndarray, None}
 
 
-   .. py:method:: autoregressive_()
+   .. py:method:: autoregressive_smoothed_()
       :property:
 
       Smoothed autoregressive component.
@@ -473,7 +473,7 @@ Classes
       :rtype: {numpy.ndarray, None}
 
 
-   .. py:method:: regression_()
+   .. py:method:: regression_smoothed_()
       :property:
 
       Smoothed regression component.
@@ -542,12 +542,6 @@ Classes
 
       :returns: **score** -- :math:`R^2` of ``self.predict(X)``.
       :rtype: float
-
-
-   .. py:method:: components_name_()
-      :property:
-
-      Return component names that are implemented in a defined model.
 
 
    .. py:method:: level_predicted_(X)
