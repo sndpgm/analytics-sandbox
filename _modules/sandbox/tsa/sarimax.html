@@ -794,11 +794,13 @@ title="Open an issue"
 <span></span><span class="sd">&quot;&quot;&quot;SARIMAX (Seasonal AutoRegressive Integrated Moving Average with eXogenous variables).&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
+<span class="kn">from</span> <span class="nn">sandbox.datamodel.base</span> <span class="kn">import</span> <span class="n">get_1d_arr</span>
 <span class="kn">from</span> <span class="nn">sandbox.datamodel.ts_datamodel</span> <span class="kn">import</span> <span class="n">TimeSeriesModelData</span>
+<span class="kn">from</span> <span class="nn">sandbox.graphics.ts_grapher</span> <span class="kn">import</span> <span class="n">TimeSeriesGrapherMixin</span>
 <span class="kn">from</span> <span class="nn">sandbox.tsa.base</span> <span class="kn">import</span> <span class="n">BaseTimeSeriesModel</span>
 
 
-<div class="viewcode-block" id="SARIMAXModel"><a class="viewcode-back" href="../../../api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel">[docs]</a><span class="k">class</span> <span class="nc">SARIMAXModel</span><span class="p">(</span><span class="n">BaseTimeSeriesModel</span><span class="p">):</span>
+<div class="viewcode-block" id="SARIMAXModel"><a class="viewcode-back" href="../../../api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel">[docs]</a><span class="k">class</span> <span class="nc">SARIMAXModel</span><span class="p">(</span><span class="n">BaseTimeSeriesModel</span><span class="p">,</span> <span class="n">TimeSeriesGrapherMixin</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Linear Gaussian state space model.</span>
 
 <span class="sd">    Parameters</span>
@@ -832,7 +834,7 @@ title="Open an issue"
 <span class="sd">        - &#39;ncg&#39; for Newton-conjugate gradient</span>
 <span class="sd">        - &#39;basinhopping&#39; for global basin-hopping solver</span>
 <span class="sd">        The explicit arguments in ``fit`` are passed to the solver,</span>
-<span class="sd">        with the exception of the basin-hopping solver. Each</span>
+<span class="sd">        except for the basin-hopping solver. Each</span>
 <span class="sd">        solver has several optional arguments that are not the same across</span>
 <span class="sd">        solvers. These can be passed as **fit_kwargs</span>
 <span class="sd">    start_p : int, optional</span>
@@ -858,7 +860,7 @@ title="Open an issue"
 <span class="sd">        The maximum value of ``q``, inclusive. Must be a positive integer</span>
 <span class="sd">        greater than ``start_q``.</span>
 <span class="sd">    start_P : int, optional</span>
-<span class="sd">        The starting value of ``P``, the order of the auto-regressive portion</span>
+<span class="sd">        The starting value of ``P``, the order of the autoregressive portion</span>
 <span class="sd">        of the seasonal model.</span>
 <span class="sd">    D : int, optional</span>
 <span class="sd">        The order of the seasonal differencing. If None (by default, the value</span>
@@ -878,7 +880,7 @@ title="Open an issue"
 <span class="sd">    stepwise : bool, optional</span>
 <span class="sd">        Whether to use the stepwise algorithm outlined in [1]_ Hyndman and Khandakar</span>
 <span class="sd">        (2008) to identify the optimal model parameters. The stepwise algorithm</span>
-<span class="sd">        can be significantly faster than fitting all hyper-parameter combinations</span>
+<span class="sd">        can be significantly faster than fitting all hyperparameter combinations</span>
 <span class="sd">        and is less likely to over-fit the model.</span>
 <span class="sd">    max_order : int, optional</span>
 <span class="sd">        Maximum value of :math:`p+q+P+Q` if model selection is not stepwise.</span>
@@ -958,6 +960,12 @@ title="Open an issue"
 <span class="sd">        \Phi (L) \equiv \phi_p (L) \tilde \phi_P (L^s) \\</span>
 <span class="sd">        \Theta (L) \equiv \theta_q (L) \tilde \theta_Q (L^s)</span>
 
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    statsmodels.tsa.statespace.sarimax.SARIMAX</span>
+<span class="sd">    pmdarima.arima.ARIMA</span>
+<span class="sd">    pmdarima.arima.AutoARIMA</span>
+
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
 <span class="sd">    .. [1] Hyndman, R. J., &amp; Khandakar, Y. (2008).</span>
@@ -1011,8 +1019,6 @@ title="Open an issue"
         <span class="bp">self</span><span class="o">.</span><span class="n">trace</span> <span class="o">=</span> <span class="n">trace</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X_train_</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y_train_</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">model_fitted_</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">params_</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="SARIMAXModel.fit"><a class="viewcode-back" href="../../../api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fit the model.</span>
@@ -1035,12 +1041,6 @@ title="Open an issue"
         <span class="bp">self</span><span class="o">.</span><span class="n">data_</span> <span class="o">=</span> <span class="n">TimeSeriesModelData</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_model_result</span><span class="p">(</span>
             <span class="n">endog</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">X</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">params_</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-            <span class="nb">zip</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">param_names</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
-            <span class="p">)</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
@@ -1077,6 +1077,69 @@ title="Open an issue"
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">model_result</span><span class="o">.</span><span class="n">arima_res_</span>
+
+<div class="viewcode-block" id="SARIMAXModel.has_model_result"><a class="viewcode-back" href="../../../api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel.has_model_result">[docs]</a>    <span class="k">def</span> <span class="nf">has_model_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Whether an instance has ``model_result_``.</span>
+
+<span class="sd">        Some method needs ``model_result_`` that can be gained after</span>
+<span class="sd">        :py:func:`fit &lt;sandbox.tsa.sarimaxSARIMAXModel.fit&gt;`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        result : bool</span>
+<span class="sd">            If an instance has ``model_result_``, True. Otherwise, False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;model_result_&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="SARIMAXModel.estimated_params_"><a class="viewcode-back" href="../../../api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel.estimated_params_">[docs]</a>    <span class="k">def</span> <span class="nf">estimated_params_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Estimated parameters.</span>
+
+<span class="sd">        :py:class:`SARIMAXModel &lt;sandbox.tsa.sarimax.SARIMAXModel&gt;` estimates (1) regression</span>
+<span class="sd">        , (2) autoregressive, (3) moving average, (4) seasonal autoregressive, (5) seasonal</span>
+<span class="sd">        moving average coefficients and (6) variance of noise.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        estimated_params : dict</span>
+<span class="sd">            The estimated parameters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">estimated_params</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model_result</span><span class="p">():</span>
+            <span class="kn">import</span> <span class="nn">warnings</span>
+
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;This method works after performing `fit`.&quot;</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">estimated_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="nb">zip</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">param_names</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">estimated_params</span></div>
+
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="SARIMAXModel.fittedvalues_"><a class="viewcode-back" href="../../../api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel.fittedvalues_">[docs]</a>    <span class="k">def</span> <span class="nf">fittedvalues_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The fitted values of the model.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        fittedvalues : numpy.ndarray</span>
+<span class="sd">            The fitted values to be estimated.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fittedvalues</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_model_result</span><span class="p">():</span>
+            <span class="kn">import</span> <span class="nn">warnings</span>
+
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;This method works after performing `fit`.&quot;</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fittedvalues</span> <span class="o">=</span> <span class="n">get_1d_arr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">fittedvalues</span></div>
 
 <div class="viewcode-block" id="SARIMAXModel.predict"><a class="viewcode-back" href="../../../api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">is_pandas</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Predict using the model.</span>
@@ -1153,7 +1216,7 @@ title="Open an issue"
 <span class="sd">        :math:`(1 - \\frac{u}{v})`, where :math:`u` is the residual</span>
 <span class="sd">        sum of squares ``((y_true - y_pred)** 2).sum()`` and :math:`v`</span>
 <span class="sd">        is the total sum of squares ``((y_true - y_true.mean()) ** 2).sum()``.</span>
-<span class="sd">        The best possible score is 1.0 and it can be negative (because the</span>
+<span class="sd">        The best possible score is 1.0, and it can be negative (because the</span>
 <span class="sd">        model can be arbitrarily worse). A constant model that always predicts</span>
 <span class="sd">        the expected value of `y`, disregarding the input features, would get</span>
 <span class="sd">        a :math:`R^2` score of 0.0.</span>
@@ -1177,7 +1240,17 @@ title="Open an issue"
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">score</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">SARIMAXModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scorer</span><span class="o">=</span><span class="n">scorer</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">score</span></div></div>
+        <span class="k">return</span> <span class="n">score</span></div>
+
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="SARIMAXModel.components_name_"><a class="viewcode-back" href="../../../api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel.components_name_">[docs]</a>    <span class="k">def</span> <span class="nf">components_name_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return component names.</span>
+
+<span class="sd">        Although SARIMAX model has no state parameter, present here for API</span>
+<span class="sd">        consistency.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">components_name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">components_name</span></div></div>
 </pre></div>
 
               </div>

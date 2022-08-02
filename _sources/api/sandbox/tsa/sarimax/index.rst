@@ -24,7 +24,7 @@ Classes
 
 .. py:class:: SARIMAXModel(trend=None, s=1, seasonal=True, method='lbfgs', start_p=2, d=None, start_q=2, max_p=5, max_d=2, max_q=5, start_P=1, D=None, start_Q=1, max_P=2, max_D=1, max_Q=2, stepwise=True, max_order=5, n_jobs=1, trace=False)
 
-   Bases: :py:obj:`sandbox.tsa.base.BaseTimeSeriesModel`
+   Bases: :py:obj:`sandbox.tsa.base.BaseTimeSeriesModel`, :py:obj:`sandbox.graphics.ts_grapher.TimeSeriesGrapherMixin`
 
    Linear Gaussian state space model.
 
@@ -56,7 +56,7 @@ Classes
                   - 'ncg' for Newton-conjugate gradient
                   - 'basinhopping' for global basin-hopping solver
                   The explicit arguments in ``fit`` are passed to the solver,
-                  with the exception of the basin-hopping solver. Each
+                  except for the basin-hopping solver. Each
                   solver has several optional arguments that are not the same across
                   solvers. These can be passed as **fit_kwargs
    :type method: str, optional
@@ -82,7 +82,7 @@ Classes
    :param max_q: The maximum value of ``q``, inclusive. Must be a positive integer
                  greater than ``start_q``.
    :type max_q: int, optional
-   :param start_P: The starting value of ``P``, the order of the auto-regressive portion
+   :param start_P: The starting value of ``P``, the order of the autoregressive portion
                    of the seasonal model.
    :type start_P: int, optional
    :param D: The order of the seasonal differencing. If None (by default, the value
@@ -102,7 +102,7 @@ Classes
    :type max_Q: int, optional
    :param stepwise: Whether to use the stepwise algorithm outlined in [1]_ Hyndman and Khandakar
                     (2008) to identify the optimal model parameters. The stepwise algorithm
-                    can be significantly faster than fitting all hyper-parameter combinations
+                    can be significantly faster than fitting all hyperparameter combinations
                     and is less likely to over-fit the model.
    :type stepwise: bool, optional
    :param max_order: Maximum value of :math:`p+q+P+Q` if model selection is not stepwise.
@@ -183,6 +183,8 @@ Classes
        \Phi (L) \equiv \phi_p (L) \tilde \phi_P (L^s) \\
        \Theta (L) \equiv \theta_q (L) \tilde \theta_Q (L^s)
 
+   .. seealso:: :obj:`statsmodels.tsa.statespace.sarimax.SARIMAX`, :obj:`pmdarima.arima.ARIMA`, :obj:`pmdarima.arima.AutoARIMA`
+
    .. rubric:: References
 
    .. [1] Hyndman, R. J., & Khandakar, Y. (2008).
@@ -202,6 +204,39 @@ Classes
 
       :returns: **self** -- Returns the instance itself.
       :rtype: object
+
+
+   .. py:method:: has_model_result()
+
+      Whether an instance has ``model_result_``.
+
+      Some method needs ``model_result_`` that can be gained after
+      :py:func:`fit <sandbox.tsa.sarimaxSARIMAXModel.fit>`.
+
+      :returns: **result** -- If an instance has ``model_result_``, True. Otherwise, False.
+      :rtype: bool
+
+
+   .. py:method:: estimated_params_()
+      :property:
+
+      Estimated parameters.
+
+      :py:class:`SARIMAXModel <sandbox.tsa.sarimax.SARIMAXModel>` estimates (1) regression
+      , (2) autoregressive, (3) moving average, (4) seasonal autoregressive, (5) seasonal
+      moving average coefficients and (6) variance of noise.
+
+      :returns: **estimated_params** -- The estimated parameters.
+      :rtype: dict
+
+
+   .. py:method:: fittedvalues_()
+      :property:
+
+      The fitted values of the model.
+
+      :returns: **fittedvalues** -- The fitted values to be estimated.
+      :rtype: numpy.ndarray
 
 
    .. py:method:: predict(X, is_pandas=False)
@@ -247,7 +282,7 @@ Classes
       :math:`(1 - \frac{u}{v})`, where :math:`u` is the residual
       sum of squares ``((y_true - y_pred)** 2).sum()`` and :math:`v`
       is the total sum of squares ``((y_true - y_true.mean()) ** 2).sum()``.
-      The best possible score is 1.0 and it can be negative (because the
+      The best possible score is 1.0, and it can be negative (because the
       model can be arbitrarily worse). A constant model that always predicts
       the expected value of `y`, disregarding the input features, would get
       a :math:`R^2` score of 0.0.
@@ -264,6 +299,15 @@ Classes
 
       :returns: **score** -- :math:`R^2` of ``self.predict(X)``.
       :rtype: float
+
+
+   .. py:method:: components_name_()
+      :property:
+
+      Return component names.
+
+      Although SARIMAX model has no state parameter, present here for API
+      consistency.
 
 
 

@@ -860,6 +860,21 @@ title="Print to PDF"
         </a>
        </li>
        <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.tsa.sarimax.SARIMAXModel.has_model_result">
+         has_model_result
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.tsa.sarimax.SARIMAXModel.estimated_params_">
+         estimated_params_
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.tsa.sarimax.SARIMAXModel.fittedvalues_">
+         fittedvalues_
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#sandbox.tsa.sarimax.SARIMAXModel.predict">
          predict
         </a>
@@ -872,6 +887,11 @@ title="Print to PDF"
        <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#sandbox.tsa.sarimax.SARIMAXModel.score">
          score
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.tsa.sarimax.SARIMAXModel.components_name_">
+         components_name_
         </a>
        </li>
       </ul>
@@ -920,6 +940,21 @@ title="Print to PDF"
         </a>
        </li>
        <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.tsa.sarimax.SARIMAXModel.has_model_result">
+         has_model_result
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.tsa.sarimax.SARIMAXModel.estimated_params_">
+         estimated_params_
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.tsa.sarimax.SARIMAXModel.fittedvalues_">
+         fittedvalues_
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#sandbox.tsa.sarimax.SARIMAXModel.predict">
          predict
         </a>
@@ -932,6 +967,11 @@ title="Print to PDF"
        <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#sandbox.tsa.sarimax.SARIMAXModel.score">
          score
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.tsa.sarimax.SARIMAXModel.components_name_">
+         components_name_
         </a>
        </li>
       </ul>
@@ -971,7 +1011,7 @@ title="Print to PDF"
 <dl class="py class">
 <dt class="sig sig-object py" id="sandbox.tsa.sarimax.SARIMAXModel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sandbox.tsa.sarimax.</span></span><span class="sig-name descname"><span class="pre">SARIMAXModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seasonal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lbfgs'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_P</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_Q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_P</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_Q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stepwise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sandbox/tsa/sarimax.html#SARIMAXModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.tsa.sarimax.SARIMAXModel" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../base/index.html#sandbox.tsa.base.BaseTimeSeriesModel" title="sandbox.tsa.base.BaseTimeSeriesModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sandbox.tsa.base.BaseTimeSeriesModel</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="../base/index.html#sandbox.tsa.base.BaseTimeSeriesModel" title="sandbox.tsa.base.BaseTimeSeriesModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sandbox.tsa.base.BaseTimeSeriesModel</span></code></a>, <a class="reference internal" href="../../graphics/ts_grapher/index.html#sandbox.graphics.ts_grapher.TimeSeriesGrapherMixin" title="sandbox.graphics.ts_grapher.TimeSeriesGrapherMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sandbox.graphics.ts_grapher.TimeSeriesGrapherMixin</span></code></a></p>
 <p>Linear Gaussian state space model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1001,7 +1041,7 @@ is used, and it can be chosen from among the following strings:
 - ‘ncg’ for Newton-conjugate gradient
 - ‘basinhopping’ for global basin-hopping solver
 The explicit arguments in <code class="docutils literal notranslate"><span class="pre">fit</span></code> are passed to the solver,
-with the exception of the basin-hopping solver. Each
+except for the basin-hopping solver. Each
 solver has several optional arguments that are not the same across
 solvers. These can be passed as <a href="#id1"><span class="problematic" id="id2">**</span></a>fit_kwargs</p></li>
 <li><p><strong>start_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>optional</em>) – The starting value of <code class="docutils literal notranslate"><span class="pre">p</span></code>, the order (or number of time lags)
@@ -1020,7 +1060,7 @@ greater than or equal to <code class="docutils literal notranslate"><span class=
 differences. Must be a positive integer greater than or equal to <code class="docutils literal notranslate"><span class="pre">d</span></code>.</p></li>
 <li><p><strong>max_q</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>optional</em>) – The maximum value of <code class="docutils literal notranslate"><span class="pre">q</span></code>, inclusive. Must be a positive integer
 greater than <code class="docutils literal notranslate"><span class="pre">start_q</span></code>.</p></li>
-<li><p><strong>start_P</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>optional</em>) – The starting value of <code class="docutils literal notranslate"><span class="pre">P</span></code>, the order of the auto-regressive portion
+<li><p><strong>start_P</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>optional</em>) – The starting value of <code class="docutils literal notranslate"><span class="pre">P</span></code>, the order of the autoregressive portion
 of the seasonal model.</p></li>
 <li><p><strong>D</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>optional</em>) – The order of the seasonal differencing. If None (by default, the value
 will automatically be selected. Must be a positive integer or None.</p></li>
@@ -1034,7 +1074,7 @@ than <code class="docutils literal notranslate"><span class="pre">D</span></code
 greater than <code class="docutils literal notranslate"><span class="pre">start_Q</span></code>.</p></li>
 <li><p><strong>stepwise</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to use the stepwise algorithm outlined in <a class="footnote-reference brackets" href="#id4" id="id3">1</a> Hyndman and Khandakar
 (2008) to identify the optimal model parameters. The stepwise algorithm
-can be significantly faster than fitting all hyper-parameter combinations
+can be significantly faster than fitting all hyperparameter combinations
 and is less likely to over-fit the model.</p></li>
 <li><p><strong>max_order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>optional</em>) – Maximum value of <span class="math notranslate nohighlight">\(p+q+P+Q\)</span> if model selection is not stepwise.
 If the sum of <code class="docutils literal notranslate"><span class="pre">p</span></code> and <code class="docutils literal notranslate"><span class="pre">q</span></code> is &gt;= <code class="docutils literal notranslate"><span class="pre">max_order</span></code>, a model will
@@ -1099,6 +1139,10 @@ Note that the reduced form lag polynomials will be written as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\Phi (L) \equiv \phi_p (L) \tilde \phi_P (L^s) \\
 \Theta (L) \equiv \theta_q (L) \tilde \theta_Q (L^s)\end{split}\]</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html#statsmodels.tsa.statespace.sarimax.SARIMAX" title="(in statsmodels vv0.13.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">statsmodels.tsa.statespace.sarimax.SARIMAX</span></code></a>, <a class="reference external" href="http://alkaline-ml.com/pmdarima/modules/generated/pmdarima.arima.ARIMA.html#pmdarima.arima.ARIMA" title="(in pmdarima v1.8.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pmdarima.arima.ARIMA</span></code></a>, <a class="reference external" href="http://alkaline-ml.com/pmdarima/modules/generated/pmdarima.arima.AutoARIMA.html#pmdarima.arima.AutoARIMA" title="(in pmdarima v1.8.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pmdarima.arima.AutoARIMA</span></code></a></p>
+</div>
 <p class="rubric">References</p>
 <dl class="footnote brackets">
 <dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
@@ -1125,6 +1169,53 @@ defined in the place of X.</p></li>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)">object</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.tsa.sarimax.SARIMAXModel.has_model_result">
+<span class="sig-name descname"><span class="pre">has_model_result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sandbox/tsa/sarimax.html#SARIMAXModel.has_model_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.tsa.sarimax.SARIMAXModel.has_model_result" title="Permalink to this definition">#</a></dt>
+<dd><p>Whether an instance has <code class="docutils literal notranslate"><span class="pre">model_result_</span></code>.</p>
+<p>Some method needs <code class="docutils literal notranslate"><span class="pre">model_result_</span></code> that can be gained after
+<code class="xref py py-func docutils literal notranslate"><span class="pre">fit</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>result</strong> – If an instance has <code class="docutils literal notranslate"><span class="pre">model_result_</span></code>, True. Otherwise, False.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.tsa.sarimax.SARIMAXModel.estimated_params_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">estimated_params_</span></span><a class="reference internal" href="../../../../_modules/sandbox/tsa/sarimax.html#SARIMAXModel.estimated_params_"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.tsa.sarimax.SARIMAXModel.estimated_params_" title="Permalink to this definition">#</a></dt>
+<dd><p>Estimated parameters.</p>
+<p><a class="reference internal" href="#sandbox.tsa.sarimax.SARIMAXModel" title="sandbox.tsa.sarimax.SARIMAXModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SARIMAXModel</span></code></a> estimates (1) regression
+, (2) autoregressive, (3) moving average, (4) seasonal autoregressive, (5) seasonal
+moving average coefficients and (6) variance of noise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>estimated_params</strong> – The estimated parameters.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.tsa.sarimax.SARIMAXModel.fittedvalues_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fittedvalues_</span></span><a class="reference internal" href="../../../../_modules/sandbox/tsa/sarimax.html#SARIMAXModel.fittedvalues_"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.tsa.sarimax.SARIMAXModel.fittedvalues_" title="Permalink to this definition">#</a></dt>
+<dd><p>The fitted values of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>fittedvalues</strong> – The fitted values to be estimated.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1185,7 +1276,7 @@ must be set.</p></li>
 <span class="math notranslate nohighlight">\((1 - \frac{u}{v})\)</span>, where <span class="math notranslate nohighlight">\(u\)</span> is the residual
 sum of squares <code class="docutils literal notranslate"><span class="pre">((y_true</span> <span class="pre">-</span> <span class="pre">y_pred)**</span> <span class="pre">2).sum()</span></code> and <span class="math notranslate nohighlight">\(v\)</span>
 is the total sum of squares <code class="docutils literal notranslate"><span class="pre">((y_true</span> <span class="pre">-</span> <span class="pre">y_true.mean())</span> <span class="pre">**</span> <span class="pre">2).sum()</span></code>.
-The best possible score is 1.0 and it can be negative (because the
+The best possible score is 1.0, and it can be negative (because the
 model can be arbitrarily worse). A constant model that always predicts
 the expected value of <cite>y</cite>, disregarding the input features, would get
 a <span class="math notranslate nohighlight">\(R^2\)</span> score of 0.0.</p>
@@ -1207,6 +1298,14 @@ must be set.</p></li>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)">float</a></p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.tsa.sarimax.SARIMAXModel.components_name_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">components_name_</span></span><a class="reference internal" href="../../../../_modules/sandbox/tsa/sarimax.html#SARIMAXModel.components_name_"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.tsa.sarimax.SARIMAXModel.components_name_" title="Permalink to this definition">#</a></dt>
+<dd><p>Return component names.</p>
+<p>Although SARIMAX model has no state parameter, present here for API
+consistency.</p>
 </dd></dl>
 
 </dd></dl>
