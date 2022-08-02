@@ -72,6 +72,7 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel, TimeSeriesGrapherMixin)
     --------
     >>> from sandbox.datamodel.ts_simulator import UnobservedComponentsSimulator
     >>> from sandbox.tsa.ssm import LinearGaussianStateSpaceModel
+    >>> from sklearn.model_selection import train_test_split
     >>> # Simulation data
     >>> sim = UnobservedComponentsSimulator(
     >>>     steps=400,
@@ -330,9 +331,6 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel, TimeSeriesGrapherMixin)
         self.mle_regression = mle_regression
         self.use_exact_diffuse = use_exact_diffuse
 
-    # =====================================================
-    # Fit methods (filtering & smoothing, and parameters)
-    # =====================================================
     def fit(self, X, y=None):
         """Fit the model.
 
