@@ -82,3 +82,6 @@ sphinx:
       statsmodels:
         - 'https://www.statsmodels.org/stable/'
         - null
+      pmdarima:
+        - 'http://alkaline-ml.com/pmdarima/'
+        - null
