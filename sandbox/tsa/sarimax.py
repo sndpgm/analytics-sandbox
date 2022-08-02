@@ -1,11 +1,13 @@
 """SARIMAX (Seasonal AutoRegressive Integrated Moving Average with eXogenous variables)."""
 import pandas as pd
 
+from sandbox.datamodel.base import get_1d_arr
 from sandbox.datamodel.ts_datamodel import TimeSeriesModelData
+from sandbox.graphics.ts_grapher import TimeSeriesGrapherMixin
 from sandbox.tsa.base import BaseTimeSeriesModel
 
 
-class SARIMAXModel(BaseTimeSeriesModel):
+class SARIMAXModel(BaseTimeSeriesModel, TimeSeriesGrapherMixin):
     r"""Linear Gaussian state space model.
 
     Parameters
@@ -39,7 +41,7 @@ class SARIMAXModel(BaseTimeSeriesModel):
         - 'ncg' for Newton-conjugate gradient
         - 'basinhopping' for global basin-hopping solver
         The explicit arguments in ``fit`` are passed to the solver,
-        with the exception of the basin-hopping solver. Each
+        except for the basin-hopping solver. Each
         solver has several optional arguments that are not the same across
         solvers. These can be passed as **fit_kwargs
     start_p : int, optional
@@ -65,7 +67,7 @@ class SARIMAXModel(BaseTimeSeriesModel):
         The maximum value of ``q``, inclusive. Must be a positive integer
         greater than ``start_q``.
     start_P : int, optional
-        The starting value of ``P``, the order of the auto-regressive portion
+        The starting value of ``P``, the order of the autoregressive portion
         of the seasonal model.
     D : int, optional
         The order of the seasonal differencing. If None (by default, the value
@@ -85,7 +87,7 @@ class SARIMAXModel(BaseTimeSeriesModel):
     stepwise : bool, optional
         Whether to use the stepwise algorithm outlined in [1]_ Hyndman and Khandakar
         (2008) to identify the optimal model parameters. The stepwise algorithm
-        can be significantly faster than fitting all hyper-parameter combinations
+        can be significantly faster than fitting all hyperparameter combinations
         and is less likely to over-fit the model.
     max_order : int, optional
         Maximum value of :math:`p+q+P+Q` if model selection is not stepwise.
@@ -165,6 +167,12 @@ class SARIMAXModel(BaseTimeSeriesModel):
         \Phi (L) \equiv \phi_p (L) \tilde \phi_P (L^s) \\
         \Theta (L) \equiv \theta_q (L) \tilde \theta_Q (L^s)
 
+    See Also
+    --------
+    statsmodels.tsa.statespace.sarimax.SARIMAX
+    pmdarima.arima.ARIMA
+    pmdarima.arima.AutoARIMA
+
     References
     ----------
     .. [1] Hyndman, R. J., & Khandakar, Y. (2008).
@@ -218,8 +226,6 @@ class SARIMAXModel(BaseTimeSeriesModel):
         self.trace = trace
         self.X_train_ = None
         self.y_train_ = None
-        self.model_fitted_ = None
-        self.params_ = None
 
     def fit(self, X, y=None, **kwargs):
         """Fit the model.
@@ -242,12 +248,6 @@ class SARIMAXModel(BaseTimeSeriesModel):
         self.data_ = TimeSeriesModelData(X, y)
         self.model_result_ = self._get_model_result(
             endog=self.data_.y, exog=self.data_.X
-        )
-        self.params_ = dict(
-            zip(
-                self.model_result_.param_names,
-                self.model_result_.params,
-            )
         )
         return self
 
@@ -284,6 +284,69 @@ class SARIMAXModel(BaseTimeSeriesModel):
             )
 
         return model_result.arima_res_
+
+    def has_model_result(self):
+        r"""Whether an instance has ``model_result_``.
+
+        Some method needs ``model_result_`` that can be gained after
+        :py:func:`fit <sandbox.tsa.sarimaxSARIMAXModel.fit>`.
+
+        Returns
+        -------
+        result : bool
+            If an instance has ``model_result_``, True. Otherwise, False.
+        """
+        if hasattr(self, "model_result_"):
+            return True
+        else:
+            return False
+
+    @property
+    def estimated_params_(self):
+        """Estimated parameters.
+
+        :py:class:`SARIMAXModel <sandbox.tsa.sarimax.SARIMAXModel>` estimates (1) regression
+        , (2) autoregressive, (3) moving average, (4) seasonal autoregressive, (5) seasonal
+        moving average coefficients and (6) variance of noise.
+
+        Returns
+        -------
+        estimated_params : dict
+            The estimated parameters.
+        """
+        estimated_params = None
+        if not self.has_model_result():
+            import warnings
+
+            msg = "This method works after performing `fit`."
+            warnings.warn(msg)
+        else:
+            estimated_params = dict(
+                zip(
+                    self.model_result_.param_names,
+                    self.model_result_.params,
+                )
+            )
+        return estimated_params
+
+    @property
+    def fittedvalues_(self):
+        """The fitted values of the model.
+
+        Returns
+        -------
+        fittedvalues : numpy.ndarray
+            The fitted values to be estimated.
+        """
+        fittedvalues = None
+        if not self.has_model_result():
+            import warnings
+
+            msg = "This method works after performing `fit`."
+            warnings.warn(msg)
+        else:
+            fittedvalues = get_1d_arr(self.model_result_.fittedvalues)[0]
+        return fittedvalues
 
     def predict(self, X, is_pandas=False):
         """Predict using the model.
@@ -360,7 +423,7 @@ class SARIMAXModel(BaseTimeSeriesModel):
         :math:`(1 - \\frac{u}{v})`, where :math:`u` is the residual
         sum of squares ``((y_true - y_pred)** 2).sum()`` and :math:`v`
         is the total sum of squares ``((y_true - y_true.mean()) ** 2).sum()``.
-        The best possible score is 1.0 and it can be negative (because the
+        The best possible score is 1.0, and it can be negative (because the
         model can be arbitrarily worse). A constant model that always predicts
         the expected value of `y`, disregarding the input features, would get
         a :math:`R^2` score of 0.0.
@@ -385,3 +448,13 @@ class SARIMAXModel(BaseTimeSeriesModel):
         """
         score = super(SARIMAXModel, self).score(X, y, scorer=scorer)
         return score
+
+    @property
+    def components_name_(self):
+        """Return component names.
+
+        Although SARIMAX model has no state parameter, present here for API
+        consistency.
+        """
+        components_name = list()
+        return components_name
