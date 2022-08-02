@@ -4,10 +4,11 @@ import pandas as pd
 
 from sandbox.datamodel.base import get_1d_arr
 from sandbox.datamodel.ts_datamodel import TimeSeriesModelData
+from sandbox.graphics.ts_grapher import TimeSeriesGrapherMixin
 from sandbox.tsa.base import BaseTimeSeriesModel
 
 
-class LinearGaussianStateSpaceModel(BaseTimeSeriesModel):
+class LinearGaussianStateSpaceModel(BaseTimeSeriesModel, TimeSeriesGrapherMixin):
     r"""
     Linear Gaussian state space model.
 
@@ -461,7 +462,7 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel):
         return self._level(which="filtered")
 
     @property
-    def level_smoothed_(self):
+    def level_(self):
         """Smoothed level component.
 
         Returns
@@ -483,7 +484,7 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel):
         return self._trend(which="filtered")
 
     @property
-    def trend_smoothed_(self):
+    def trend_(self):
         """Smoothed trend component.
 
         Returns
@@ -505,7 +506,7 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel):
         return self._seasonal(which="filtered")
 
     @property
-    def seasonal_smoothed_(self):
+    def seasonal_(self):
         """Smoothed seasonal component.
 
         Returns
@@ -527,7 +528,7 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel):
         return self._freq_seasonal(which="filtered")
 
     @property
-    def freq_seasonal_smoothed_(self):
+    def freq_seasonal_(self):
         """Smoothed frequency domain seasonal component.
 
         Returns
@@ -549,7 +550,7 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel):
         return self._cycle(which="filtered")
 
     @property
-    def cycle_smoothed_(self):
+    def cycle_(self):
         """Smoothed cycle component.
 
         Returns
@@ -571,7 +572,7 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel):
         return self._autoregressive(which="filtered")
 
     @property
-    def autoregressive_smoothed_(self):
+    def autoregressive_(self):
         """Smoothed autoregressive component.
 
         Returns
@@ -593,7 +594,7 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel):
         return self._regression(which="filtered")
 
     @property
-    def regression_smoothed_(self):
+    def regression_(self):
         """Smoothed regression component.
 
         Returns
@@ -603,9 +604,6 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel):
         """
         return self._regression()
 
-    # =====================================================
-    # Predict methods (predicting and parameters)
-    # =====================================================
     def predict(self, X, is_pandas=False):
         """Predict using the model.
 
@@ -707,6 +705,24 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel):
             X, y, scorer=scorer, **kwargs
         )
         return score
+
+    @property
+    def components_name_(self):
+        """Return component names that are implemented in a defined model."""
+        components_name = list()
+        if self.level:
+            components_name.append("level_")
+        if self.trend:
+            components_name.append("trend_")
+        if self.seasonal:
+            components_name.append("seasonal_")
+        if self.freq_seasonal:
+            components_name.append("freq_seasonal_")
+        if self.cycle:
+            components_name.append("cycle_")
+        if self.autoregressive:
+            components_name.append("autoregressive_")
+        return components_name
 
     def _predicted_state(self, X):
         predicted_state = None
@@ -907,7 +923,7 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel):
                         )
                         out.append(item[:-1])
                         previous_f_seas_offset += 2 * h
-        return out
+        return np.array(out)
 
     def _cycle(self, which="smoothed", X=None):
         out = None
