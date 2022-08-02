@@ -479,6 +479,40 @@ const thebe_selector_output = ".output, .cell_output"
     </ul>
    </li>
    <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../api/sandbox/graphics/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.graphics
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/sandbox/graphics/ts_grapher/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.graphics.ts_grapher
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/sandbox/graphics/utils/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.graphics.utils
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../../../api/sandbox/metrics/index.html">
      <code class="xref py py-mod docutils literal notranslate">
       <span class="pre">
@@ -486,8 +520,8 @@ const thebe_selector_output = ".output, .cell_output"
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-    <label for="toctree-checkbox-12">
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -511,8 +545,8 @@ const thebe_selector_output = ".output, .cell_output"
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-    <label for="toctree-checkbox-13">
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -525,8 +559,8 @@ const thebe_selector_output = ".output, .cell_output"
         </span>
        </code>
       </a>
-      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-      <label for="toctree-checkbox-14">
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
        <i class="fas fa-chevron-down">
        </i>
       </label>
@@ -552,8 +586,8 @@ const thebe_selector_output = ".output, .cell_output"
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label for="toctree-checkbox-15">
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -595,12 +629,21 @@ const thebe_selector_output = ".output, .cell_output"
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label for="toctree-checkbox-16">
+    <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+    <label for="toctree-checkbox-17">
      <i class="fas fa-chevron-down">
      </i>
     </label>
     <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/sandbox/utils/tools/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.utils.tools
+        </span>
+       </code>
+      </a>
+     </li>
      <li class="toctree-l3">
       <a class="reference internal" href="../../../api/sandbox/utils/validation/index.html">
        <code class="xref py py-mod docutils literal notranslate">
@@ -754,10 +797,11 @@ title="Open an issue"
 
 <span class="kn">from</span> <span class="nn">sandbox.datamodel.base</span> <span class="kn">import</span> <span class="n">get_1d_arr</span>
 <span class="kn">from</span> <span class="nn">sandbox.datamodel.ts_datamodel</span> <span class="kn">import</span> <span class="n">TimeSeriesModelData</span>
+<span class="kn">from</span> <span class="nn">sandbox.graphics.ts_grapher</span> <span class="kn">import</span> <span class="n">TimeSeriesGrapherMixin</span>
 <span class="kn">from</span> <span class="nn">sandbox.tsa.base</span> <span class="kn">import</span> <span class="n">BaseTimeSeriesModel</span>
 
 
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel">[docs]</a><span class="k">class</span> <span class="nc">LinearGaussianStateSpaceModel</span><span class="p">(</span><span class="n">BaseTimeSeriesModel</span><span class="p">):</span>
+<div class="viewcode-block" id="LinearGaussianStateSpaceModel"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel">[docs]</a><span class="k">class</span> <span class="nc">LinearGaussianStateSpaceModel</span><span class="p">(</span><span class="n">BaseTimeSeriesModel</span><span class="p">,</span> <span class="n">TimeSeriesGrapherMixin</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Linear Gaussian state space model.</span>
 
@@ -821,6 +865,7 @@ title="Open an issue"
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; from sandbox.datamodel.ts_simulator import UnobservedComponentsSimulator</span>
 <span class="sd">    &gt;&gt;&gt; from sandbox.tsa.ssm import LinearGaussianStateSpaceModel</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.model_selection import train_test_split</span>
 <span class="sd">    &gt;&gt;&gt; # Simulation data</span>
 <span class="sd">    &gt;&gt;&gt; sim = UnobservedComponentsSimulator(</span>
 <span class="sd">    &gt;&gt;&gt;     steps=400,</span>
@@ -1079,9 +1124,6 @@ title="Open an issue"
         <span class="bp">self</span><span class="o">.</span><span class="n">mle_regression</span> <span class="o">=</span> <span class="n">mle_regression</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">use_exact_diffuse</span> <span class="o">=</span> <span class="n">use_exact_diffuse</span>
 
-    <span class="c1"># =====================================================</span>
-    <span class="c1"># Fit methods (filtering &amp; smoothing, and parameters)</span>
-    <span class="c1"># =====================================================</span>
 <div class="viewcode-block" id="LinearGaussianStateSpaceModel.fit"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fit the model.</span>
 
@@ -1211,7 +1253,7 @@ title="Open an issue"
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_level</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">&quot;filtered&quot;</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel.level_smoothed_"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.level_smoothed_">[docs]</a>    <span class="k">def</span> <span class="nf">level_smoothed_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LinearGaussianStateSpaceModel.level_"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.level_">[docs]</a>    <span class="k">def</span> <span class="nf">level_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Smoothed level component.</span>
 
 <span class="sd">        Returns</span>
@@ -1233,7 +1275,7 @@ title="Open an issue"
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trend</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">&quot;filtered&quot;</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel.trend_smoothed_"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.trend_smoothed_">[docs]</a>    <span class="k">def</span> <span class="nf">trend_smoothed_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LinearGaussianStateSpaceModel.trend_"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.trend_">[docs]</a>    <span class="k">def</span> <span class="nf">trend_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Smoothed trend component.</span>
 
 <span class="sd">        Returns</span>
@@ -1255,7 +1297,7 @@ title="Open an issue"
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_seasonal</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">&quot;filtered&quot;</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel.seasonal_smoothed_"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.seasonal_smoothed_">[docs]</a>    <span class="k">def</span> <span class="nf">seasonal_smoothed_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LinearGaussianStateSpaceModel.seasonal_"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.seasonal_">[docs]</a>    <span class="k">def</span> <span class="nf">seasonal_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Smoothed seasonal component.</span>
 
 <span class="sd">        Returns</span>
@@ -1277,7 +1319,7 @@ title="Open an issue"
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freq_seasonal</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">&quot;filtered&quot;</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel.freq_seasonal_smoothed_"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.freq_seasonal_smoothed_">[docs]</a>    <span class="k">def</span> <span class="nf">freq_seasonal_smoothed_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LinearGaussianStateSpaceModel.freq_seasonal_"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.freq_seasonal_">[docs]</a>    <span class="k">def</span> <span class="nf">freq_seasonal_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Smoothed frequency domain seasonal component.</span>
 
 <span class="sd">        Returns</span>
@@ -1299,7 +1341,7 @@ title="Open an issue"
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cycle</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">&quot;filtered&quot;</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel.cycle_smoothed_"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.cycle_smoothed_">[docs]</a>    <span class="k">def</span> <span class="nf">cycle_smoothed_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LinearGaussianStateSpaceModel.cycle_"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.cycle_">[docs]</a>    <span class="k">def</span> <span class="nf">cycle_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Smoothed cycle component.</span>
 
 <span class="sd">        Returns</span>
@@ -1321,7 +1363,7 @@ title="Open an issue"
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_autoregressive</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">&quot;filtered&quot;</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel.autoregressive_smoothed_"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.autoregressive_smoothed_">[docs]</a>    <span class="k">def</span> <span class="nf">autoregressive_smoothed_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LinearGaussianStateSpaceModel.autoregressive_"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.autoregressive_">[docs]</a>    <span class="k">def</span> <span class="nf">autoregressive_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Smoothed autoregressive component.</span>
 
 <span class="sd">        Returns</span>
@@ -1343,7 +1385,7 @@ title="Open an issue"
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_regression</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">&quot;filtered&quot;</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="LinearGaussianStateSpaceModel.regression_smoothed_"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.regression_smoothed_">[docs]</a>    <span class="k">def</span> <span class="nf">regression_smoothed_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LinearGaussianStateSpaceModel.regression_"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.regression_">[docs]</a>    <span class="k">def</span> <span class="nf">regression_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Smoothed regression component.</span>
 
 <span class="sd">        Returns</span>
@@ -1353,9 +1395,6 @@ title="Open an issue"
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_regression</span><span class="p">()</span></div>
 
-    <span class="c1"># =====================================================</span>
-    <span class="c1"># Predict methods (predicting and parameters)</span>
-    <span class="c1"># =====================================================</span>
 <div class="viewcode-block" id="LinearGaussianStateSpaceModel.predict"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">is_pandas</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Predict using the model.</span>
 
@@ -1457,6 +1496,24 @@ title="Open an issue"
             <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scorer</span><span class="o">=</span><span class="n">scorer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">score</span></div>
+
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="LinearGaussianStateSpaceModel.components_name_"><a class="viewcode-back" href="../../../api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.components_name_">[docs]</a>    <span class="k">def</span> <span class="nf">components_name_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return component names that are implemented in a defined model.&quot;&quot;&quot;</span>
+        <span class="n">components_name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">:</span>
+            <span class="n">components_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;level_&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trend</span><span class="p">:</span>
+            <span class="n">components_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;trend_&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">seasonal</span><span class="p">:</span>
+            <span class="n">components_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;seasonal_&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">freq_seasonal</span><span class="p">:</span>
+            <span class="n">components_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;freq_seasonal_&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cycle</span><span class="p">:</span>
+            <span class="n">components_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;cycle_&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">autoregressive</span><span class="p">:</span>
+            <span class="n">components_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;autoregressive_&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">components_name</span></div>
 
     <span class="k">def</span> <span class="nf">_predicted_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="n">predicted_state</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1657,7 +1714,7 @@ title="Open an issue"
                         <span class="p">)</span>
                         <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
                         <span class="n">previous_f_seas_offset</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">h</span>
-        <span class="k">return</span> <span class="n">out</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;smoothed&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">out</span> <span class="o">=</span> <span class="kc">None</span>

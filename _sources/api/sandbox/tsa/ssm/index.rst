@@ -24,7 +24,7 @@ Classes
 
 .. py:class:: LinearGaussianStateSpaceModel(level=False, trend=False, seasonal=None, freq_seasonal=None, cycle=False, autoregressive=None, irregular=False, stochastic_level=False, stochastic_trend=False, stochastic_seasonal=True, stochastic_freq_seasonal=None, stochastic_cycle=False, damped_cycle=False, cycle_period_bounds=None, mle_regression=True, use_exact_diffuse=False)
 
-   Bases: :py:obj:`sandbox.tsa.base.BaseTimeSeriesModel`
+   Bases: :py:obj:`sandbox.tsa.base.BaseTimeSeriesModel`, :py:obj:`sandbox.graphics.ts_grapher.TimeSeriesGrapherMixin`
 
    Linear Gaussian state space model.
 
@@ -86,6 +86,7 @@ Classes
 
    >>> from sandbox.datamodel.ts_simulator import UnobservedComponentsSimulator
    >>> from sandbox.tsa.ssm import LinearGaussianStateSpaceModel
+   >>> from sklearn.model_selection import train_test_split
    >>> # Simulation data
    >>> sim = UnobservedComponentsSimulator(
    >>>     steps=400,
@@ -365,7 +366,7 @@ Classes
       :rtype: {numpy.ndarray, None}
 
 
-   .. py:method:: level_smoothed_()
+   .. py:method:: level_()
       :property:
 
       Smoothed level component.
@@ -383,7 +384,7 @@ Classes
       :rtype: {numpy.ndarray, None}
 
 
-   .. py:method:: trend_smoothed_()
+   .. py:method:: trend_()
       :property:
 
       Smoothed trend component.
@@ -401,7 +402,7 @@ Classes
       :rtype: {numpy.ndarray, None}
 
 
-   .. py:method:: seasonal_smoothed_()
+   .. py:method:: seasonal_()
       :property:
 
       Smoothed seasonal component.
@@ -419,7 +420,7 @@ Classes
       :rtype: {list[numpy.ndarray], None}
 
 
-   .. py:method:: freq_seasonal_smoothed_()
+   .. py:method:: freq_seasonal_()
       :property:
 
       Smoothed frequency domain seasonal component.
@@ -437,7 +438,7 @@ Classes
       :rtype: {numpy.ndarray, None}
 
 
-   .. py:method:: cycle_smoothed_()
+   .. py:method:: cycle_()
       :property:
 
       Smoothed cycle component.
@@ -455,7 +456,7 @@ Classes
       :rtype: {numpy.ndarray, None}
 
 
-   .. py:method:: autoregressive_smoothed_()
+   .. py:method:: autoregressive_()
       :property:
 
       Smoothed autoregressive component.
@@ -473,7 +474,7 @@ Classes
       :rtype: {numpy.ndarray, None}
 
 
-   .. py:method:: regression_smoothed_()
+   .. py:method:: regression_()
       :property:
 
       Smoothed regression component.
@@ -542,6 +543,12 @@ Classes
 
       :returns: **score** -- :math:`R^2` of ``self.predict(X)``.
       :rtype: float
+
+
+   .. py:method:: components_name_()
+      :property:
+
+      Return component names that are implemented in a defined model.
 
 
    .. py:method:: level_predicted_(X)

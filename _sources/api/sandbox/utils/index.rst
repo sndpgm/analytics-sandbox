@@ -15,6 +15,7 @@ Submodules
    :titlesonly:
    :maxdepth: 1
 
+   tools/index.rst
    validation/index.rst
 
 
