@@ -313,7 +313,6 @@ class LinearGaussianStateSpaceModel(BaseTimeSeriesModel, TimeSeriesGrapherMixin)
         mle_regression=True,
         use_exact_diffuse=False,
     ):
-        self.model_fitted_ = None
         self.level = level
         self.trend = trend
         self.seasonal = seasonal
