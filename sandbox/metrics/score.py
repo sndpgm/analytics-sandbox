@@ -181,11 +181,6 @@ def r2_score(
     This metric is not well-defined for single samples and will return a NaN
     value if n_samples is less than two.
 
-    References
-    ----------
-    .. [1] `Wikipedia entry on the Coefficient of determination
-            <https://en.wikipedia.org/wiki/Coefficient_of_determination>`_
-
     Examples
     --------
     >>> from sklearn.metrics import r2_score
