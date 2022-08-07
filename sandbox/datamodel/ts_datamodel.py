@@ -1,5 +1,5 @@
-from sandbox.datamodel.base import SupervisedModelData
+from sandbox.datamodel.base import SupervisedModelDataset
 
 
-class TimeSeriesModelData(SupervisedModelData):
+class TimeSeriesModelData(SupervisedModelDataset):
     ...

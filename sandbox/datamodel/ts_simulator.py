@@ -1,9 +1,9 @@
 from warnings import warn
 
 import numpy as np
-import pandas as pd
 
-from sandbox.datamodel.base import BaseData, BaseDataSimulator
+from sandbox.datamodel.base import BaseDataSimulator
+from sandbox.utils.tools import Bunch
 
 
 class UnobservedComponentsSimulator(BaseDataSimulator):
@@ -74,7 +74,14 @@ class UnobservedComponentsSimulator(BaseDataSimulator):
         return self._simulate()
 
     def _simulate(self):
-        simulate_result = UnobservedComponentsSimulatorResult()
+        # simulate_result = UnobservedComponentsSimulatorResult()
+        simulate_result = Bunch(
+            trend=None,
+            freq_seasonal=None,
+            exog=None,
+            reg=None,
+            endog=None,
+        )
 
         trend = None
         if self.level:
@@ -203,130 +210,3 @@ class UnobservedComponentsSimulator(BaseDataSimulator):
         for i in range(exog_params):
             exog[:, i] = self.prng.integers(low=0, high=2, size=steps)
         return exog
-
-
-class UnobservedComponentsSimulatorResult(BaseData):
-    """"""
-
-    _trend = None
-    _freq_seasonal = None
-    _exog = None
-    _reg = None
-    _endog = None
-
-    def __init__(self, **kwargs):
-        super(UnobservedComponentsSimulatorResult, self).__init__(**kwargs)
-        self.is_pandas = False
-
-    @property
-    def trend(self):
-        return self._trend
-
-    @trend.setter
-    def trend(self, value):
-        self._trend = value
-
-    @property
-    def freq_seasonal(self):
-        return self._freq_seasonal
-
-    @freq_seasonal.setter
-    def freq_seasonal(self, value):
-        self._freq_seasonal = value
-
-    @property
-    def exog(self):
-        return self._exog
-
-    @exog.setter
-    def exog(self, value):
-        self._exog = value
-
-    @property
-    def reg(self):
-        return self._reg
-
-    @reg.setter
-    def reg(self, value):
-        self._reg = value
-
-    @property
-    def endog(self):
-        return self._endog
-
-    @endog.setter
-    def endog(self, value):
-        self._endog = value
-
-    @property
-    def common_index(self):
-        return pd.Index(range(self.nobs))
-
-    @property
-    def nobs(self):
-        return len(self.endog)
-
-    def convert_pandas(self):
-        if not self.is_pandas:
-            if self.trend is not None:
-                self.trend = self._as_pandas_from_ndarray(
-                    obj=self.trend,
-                    index=self.common_index,
-                    key="trend",
-                    pandas_type="series",
-                )
-
-            if self.freq_seasonal is not None:
-                key = [
-                    "freq_seasonal_{}".format(i)
-                    for i in range(self.freq_seasonal.shape[1])
-                ]
-                self.freq_seasonal = self._as_pandas_from_ndarray(
-                    obj=self.freq_seasonal,
-                    index=self.common_index,
-                    key=key,
-                    pandas_type="dataframe",
-                )
-
-            if self.exog is not None:
-                exog_key = ["x{}".format(i) for i in range(self.exog.shape[1])]
-                self.exog = self._as_pandas_from_ndarray(
-                    obj=self.exog,
-                    index=self.common_index,
-                    key=exog_key,
-                    pandas_type="dataframe",
-                )
-
-                reg_key = ["reg{}".format(i) for i in range(self.reg.shape[1])]
-                self.reg = self._as_pandas_from_ndarray(
-                    obj=self.reg,
-                    index=self.common_index,
-                    key=reg_key,
-                    pandas_type="dataframe",
-                )
-
-            if self.endog is not None:
-                self.endog = self._as_pandas_from_ndarray(
-                    obj=self.endog,
-                    index=self.common_index,
-                    key="endog",
-                    pandas_type="series",
-                )
-            self.is_pandas = True
-
-    def convert_ndarray(self):
-        if self.is_pandas:
-            if self.trend is not None:
-                self.trend = self._as_ndarray_from_pandas(self.trend)
-
-            if self.freq_seasonal is not None:
-                self.freq_seasonal = self._as_ndarray_from_pandas(self.freq_seasonal)
-
-            if self.exog is not None:
-                self.exog = self._as_ndarray_from_pandas(self.exog)
-                self.reg = self._as_ndarray_from_pandas(self.reg)
-
-            if self.endog is not None:
-                self.endog = self._as_ndarray_from_pandas(self.endog)
-
-            self.is_pandas = False

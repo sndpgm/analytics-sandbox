@@ -1,247 +1,375 @@
-from __future__ import annotations
-
-from abc import ABCMeta
+from typing import Union
 
 import numpy as np
 import pandas as pd
+from numpy import ndarray
+from pandas import DataFrame, Index, Series
+from pandas.core.indexes.api import default_index
 
-import sandbox.utils.validation as val
+try:
+    from dask import array as da
+    from dask import dataframe as dd
+except ImportError:
+    dd = da = None
+
+if dd:
+    StructuralDataType = Union[
+        DataFrame, Series, Index, ndarray, dd.DataFrame, dd.Series, dd.Index, da.Array
+    ]
+else:
+    StructuralDataType = Union[DataFrame, Series, Index, ndarray]
 
 
 class BaseData:
-    def __init__(self, **kwargs):
-        self.__dict__.update(**kwargs)
+    r"""Base data class.
+
+    Parameters
+    ----------
+    data : StructuralDataType
+        Input data. Supported format is `pandas.DataFrame`, `pandas.Series`, `pandas.Index`, `numpy.ndarray`,
+        `dask.dataframe.DataFrame`, `dask.dataframe.Series`, `dask.dataframe.Index`, `dask.array.Array`.
+
+    Warnings
+    --------
+    In case of `Pandas` and `NumPy` format, :py:attr:`values <sandbox.datamodel.base.BaseData.values>`
+    returns the actual data. However, the format of `Dask` returns before-compute objects, and if you want
+    to get the actual data, you need to :py:func:`compute <dask.dataframe.DataFrame.compute>`.
+
+    """
+
+    def __init__(self, data: StructuralDataType) -> None:
+        # pandas, numpy, dask のみ対応
+        if not self._is_incorrect_data(data):
+            msg = (
+                "Specified data format {} is unsupported, and must be as follows: pandas.DataFrame, "
+                "pandas.Series, pandas.Index, numpy.ndarray, dask.dataframe.DataFrame, "
+                "dask.dataframe.Series, dask.dataframe.Index, dask.array.Array.".format(
+                    str(type(data))
+                )
+            )
+            raise TypeError(msg)
+        self.data = data
+        self._names = self.names
+
+    def __repr__(self) -> str:
+        return self.data.__repr__()
+
+    def __len__(self) -> int:
+        return self.data.__len__()
 
     @staticmethod
-    def _get_1d_arr(obj, default_name="y"):
-        return get_1d_arr(obj=obj, default_name=default_name)
-
-    @staticmethod
-    def _get_2d_arr(obj, default_name="x"):
-        return get_2d_arr(obj=obj, default_name=default_name)
-
-    @staticmethod
-    def _get_index(obj):
-        if val.is_dataframe_or_series(obj):
-            index = obj.index
+    def _is_incorrect_data(data: StructuralDataType) -> bool:
+        if isinstance(data, (pd.DataFrame, pd.Series, pd.Index)):
+            _is = True
+        elif isinstance(data, np.ndarray):
+            _is = True
+        elif dd and isinstance(data, (dd.DataFrame, dd.Series, dd.Index)):
+            _is = True
+        elif da and isinstance(data, da.Array):
+            _is = True
         else:
-            index = pd.Index(range(len(obj)))
-        return index
+            _is = False
+        return _is
 
-    @staticmethod
-    def _as_pandas_from_ndarray(obj, index, key, pandas_type="dataframe"):
-        _obj = None
-        if val.is_ndarray(obj):
-            if pandas_type == "dataframe":
-                _obj = pd.DataFrame(obj, index=index, columns=key)
-            if pandas_type == "series":
-                _obj = pd.Series(obj, index=index, name=key)
+    @property
+    def nobs(self) -> int:
+        """Number of observations."""
+        return len(self.data)
+
+    @property
+    def nparams(self) -> int:
+        """Number of parameters."""
+        if self.data.ndim == 1:
+            return 1
         else:
-            _obj = obj
-        return _obj
+            return self.shape[1]
 
-    @staticmethod
-    def _as_ndarray_from_pandas(obj):
-        _obj = None
-        if val.is_dataframe_or_series(obj):
-            _obj = obj.to_numpy()
-        else:
-            _obj = obj
-        return _obj
+    @property
+    def values(self) -> Union[ndarray, da.Array]:
+        """Return a Numpy representation of data.
+        In case of Dask format, return a Dask.array.Array.
+        """
+        if isinstance(self.data, (np.ndarray, da.Array)):
+            return self.data
+        if isinstance(
+            self.data,
+            (pd.DataFrame, pd.Series, pd.Index, dd.DataFrame, dd.Series, dd.Index),
+        ):
+            return self.data.values
+
+    @property
+    def index(self) -> Union[Index, dd.Index]:
+        """Return the index (row labels) of data."""
+        if isinstance(self.data, (pd.Index, dd.Index, np.ndarray, da.Array)):
+            return default_index(len(self.data))
+        if isinstance(self.data, (pd.DataFrame, pd.Series, dd.DataFrame, dd.Series)):
+            return self.data.index
+
+    @property
+    def names(self) -> Index:
+        """Returns the column labels of data."""
+        if isinstance(self.data, (pd.DataFrame, dd.DataFrame)):
+            return self.data.columns
+        if isinstance(self.data, (pd.Series, pd.Index, dd.Series, dd.Index)):
+            name = self.data.name
+            if name is None:
+                name = "name_0"
+            return Index([name])
+        if isinstance(self.data, (np.ndarray, da.Array)):
+            names = list()
+            if self.nparams == 1:
+                names.append("name_0")
+                return Index(names)
+            else:
+                for i in range(self.nparams):
+                    names.append("name_{}".format(i))
+                return Index(names)
+
+    @names.setter
+    def names(self, value) -> None:
+        if len(value) != self.nparams:
+            msg = "Specified names length must be {0}, not {1}.".format(
+                self.nparams, len(value)
+            )
+            raise ValueError(msg)
+        if hasattr(self.data, "name"):
+            self.data.name = value[0]
+        if hasattr(self.data, "columns"):
+            self.data.columns = Index(value)
+        self._names = Index(value)
+
+    @property
+    def shape(self) -> tuple[int, int]:
+        """Return a tuple representing the dimensionality of data."""
+        return self.data.shape
+
+    def to_pandas(self) -> Union[DataFrame, Series, Index]:
+        """Convert the BaseData to Pandas dataframe.
+
+        Returns
+        -------
+        {pandas.DataFrame, pandas.Series, pandas.Index}
+        """
+        if isinstance(self.data, (pd.DataFrame, pd.Series, pd.Index)):
+            return self.data
+        if isinstance(self.data, (dd.DataFrame, dd.Series, dd.Index)):
+            return self.data.compute()
+        if isinstance(self.data, np.ndarray):
+            return DataFrame(self.data, index=self.index, columns=self.names)
+        if isinstance(self.data, da.Array):
+            return DataFrame(self.data.compute(), index=self.index, columns=self.names)
+
+    def to_numpy(self) -> ndarray:
+        """Convert the BaseData to NumPy array.
+
+        Returns
+        -------
+        numpy.ndarray
+        """
+        if isinstance(self.data, np.ndarray):
+            return self.data
+        if isinstance(self.data, (pd.DataFrame, pd.Series, pd.Index)):
+            return self.data.values
+        if isinstance(self.data, da.Array):
+            return self.data.compute()
+        if isinstance(self.data, (dd.DataFrame, dd.Series, dd.Index)):
+            return self.data.values.compute()
+
+    def to_dask_dataframe(
+        self, **from_pandas_kwargs
+    ) -> Union[dd.DataFrame, dd.Series, dd.Index]:
+        """Convert the BaseData to Dask dataframe.
+
+        Parameters
+        ----------
+        from_pandas_kwargs : dict
+            :py:func:`from_pandas <dask.dataframe.from_pandas>` in Dask converts data, and `from_pandas_kwargs`
+            is the argument which is used in the function.
+
+        Returns
+        -------
+        {dask.dataframe.DataFrame, dask.dataframe.Series, dask.dataframe.Index}
+
+        See Also
+        --------
+        dask.dataframe.from_pandas
+        """
+        if isinstance(self.data, dd.DataFrame):
+            return self.data
+        if isinstance(self.data, (pd.DataFrame, pd.Series)):
+            return dd.from_pandas(self.data, **from_pandas_kwargs)
+        if isinstance(self.data, (np.ndarray, da.Array)):
+            return dd.from_pandas(self.to_pandas(), **from_pandas_kwargs)
+
+    def to_dask_numpy(self, **from_array_kwargs) -> da.Array:
+        """Convert the BaseData to Dask array.
+
+        Parameters
+        ----------
+        from_array_kwargs : dict
+            :py:func:`from_array <dask.array.from_array>` in Dask converts data, and `from_array_kwargs`
+            is the argument which is used in the function.
+
+        Returns
+        -------
+        dask.array.Array
+
+        See Also
+        --------
+        dask.array.from_array
+        """
+        if isinstance(self.data, da.Array):
+            return self.data
+        if isinstance(self.data, np.ndarray):
+            return da.from_array(self.data, **from_array_kwargs)
+        if isinstance(
+            self.data,
+            (pd.DataFrame, pd.Series, pd.Index, dd.DataFrame, dd.Series, dd.Index),
+        ):
+            return da.from_array(self.to_numpy(), **from_array_kwargs)
 
 
-class BaseModelData(BaseData):
+class BaseModelDataset:
     """Base class for data model of algorithm.
 
     Parameters
     ----------
-    X : array_like
+    X : StructuralDataType
         Training data. In classification model, it is for classifying and clustering the data.
         In regression model, it is feature vectors or matrix, but can be ignored when the regression
         components are not defined in the case of time series analysis.
-    y : array_like
+    y : StructuralDataType
         Target values. If algorithm is unsupervised, this should be ignored.
 
-    Attributes
-    ----------
-    X : numpy.ndarray
-        Training data.
-    y : numpy.ndarray
-        Target values.
-    orig_X : array_like
-        Original X for input.
-    orig_y : array_like
-        Original y for input.
     """
 
-    def __init__(self, X, y, **kwargs):
-        super(BaseModelData, self).__init__()
-        self._check_X_or_y_is_not_none(X, y)
-        self._check_X_y_length(X, y)
-        self.__dict__.update(**kwargs)
-        self.orig_X = X.copy() if X is not None else None
-        self.orig_y = y.copy() if y is not None else None
-        self.X, self._X_name = self._get_2d_arr(X)
-        self.y, self._y_name = self._get_1d_arr(y)
-        self._common_index = self._get_index_from_X_and_y()
-        self.is_pandas = False
+    def __init__(self, X, y):
+        self.X = BaseData(X) if X is not None else None
+        self.y = BaseData(y) if y is not None else None
+        self._X_name = self.X.names if X is not None else None
+        self._y_name = self.y.names if y is not None else None
 
-    @staticmethod
-    def _both_X_y_are_none(X, y):
-        if X is None and y is None:
+        if not self._has_non_None_X_y():
+            msg = "X and y must not be both None."
+            raise ValueError(msg)
+
+        if self._has_both_X_y_defined():
+            if not self._has_same_length_in_X_y():
+                msg = "X and y must be same length."
+                raise ValueError(msg)
+            if not self._has_same_index_in_X_y():
+                msg = "X and y must be same index."
+                raise ValueError(msg)
+
+    def __repr__(self):
+        return "X:\n{0}\n\ny:\n{1}".format(self.X, self.y)
+
+    def _has_both_X_y_defined(self):
+        if self.X is not None and self.y is not None:
             return True
         else:
             return False
 
-    def _check_X_or_y_is_not_none(self, X, y):
-        if self._both_X_y_are_none(X, y):
-            msg = "Both X and y must not be None."
-            raise ValueError(msg)
+    def _has_non_None_X_y(self):
+        if not (self.X is None and self.y is None):
+            return True
+        else:
+            return False
 
-    @staticmethod
-    def _check_X_y_length(X, y):
-        len_X = None
-        len_y = None
-        if X is not None:
-            len_X = len(X)
-        if y is not None:
-            len_y = len(y)
-        if len_X is not None and len_y is not None:
-            is_same_length = len_X == len_y
-            if not is_same_length:
-                msg = "The length of X is not same as the one of y."
-                raise ValueError(msg)
+    def _has_same_length_in_X_y(self):
+        if len(self.X) == len(self.y):
+            return True
+        else:
+            return False
+
+    def _has_same_index_in_X_y(self):
+        return self.X.index.equals(self.y.index)
 
     @property
     def nobs(self):
         """Number of observations."""
         if self.X is not None:
-            nobs = len(self.X)
+            return self.X.nobs
         else:
-            nobs = len(self.y)
-        return nobs
-
-    def _get_index_from_X_and_y(self):
-        index = None
-        if self.orig_X is not None:
-            index = self._get_index(self.orig_X)
-        if self.orig_y is not None:
-            index = self._get_index(self.orig_y)
-        return index
+            return self.y.nobs
 
     @property
-    def common_index(self) -> pd.Index:
+    def nfeatures(self):
+        """Number of feature variables."""
+        return self.X.nparams
+
+    @property
+    def common_index(self):
         """Common index of X and y"""
-        return self._common_index
-
-    @common_index.setter
-    def common_index(self, value):
-        self._common_index = value
+        if self.X is not None:
+            return self.X.index
+        else:
+            return self.y.index
 
     @property
-    def X_name(self) -> list[str] | None:
+    def X_name(self):
         """X name columns"""
-        return self._X_name
+        if self.X:
+            return self.X.names
+        else:
+            return None
 
     @X_name.setter
-    def X_name(self, value):
-        """y name."""
-        if not isinstance(value, list):
-            msg = "X_name must be list type."
-            raise TypeError(msg)
-        is_string = all(isinstance(d, str) for d in value)
-        if not is_string:
-            msg = "All elements of X_name must be str."
-            raise TypeError(msg)
-        self._X_name = value
+    def X_name(self, value) -> None:
+        if self.X:
+            if len(value) != self.nfeatures:
+                msg = "Specified X_names length must be {0}, not {1}.".format(
+                    self.nfeatures, len(value)
+                )
+                raise ValueError(msg)
+            if hasattr(self.X.data, "name"):
+                self.X.data.name = value[0]
+            if hasattr(self.X.data, "columns"):
+                self.X.data.columns = Index(value)
+            self._X_name = Index(value)
 
     @property
-    def y_name(self) -> str | None:
-        return self._y_name
+    def y_name(self):
+        """y name."""
+        if self.y:
+            return self.y.names
+        else:
+            return None
 
     @y_name.setter
-    def y_name(self, value):
-        if not isinstance(value, str):
-            msg = "y_name must be str."
-            raise TypeError(msg)
-        self._y_name = value
-
-    def _convert_pandas(self):
-        X = None
-        y = None
-        is_pandas = self.is_pandas
-        if not self.is_pandas:
-            if self.X is not None:
-                X = self._as_pandas_from_ndarray(
-                    obj=self.X,
-                    index=self.common_index,
-                    key=self.X_name,
-                    pandas_type="dataframe",
-                )
-            if self.y is not None:
-                y = self._as_pandas_from_ndarray(
-                    obj=self.y,
-                    index=self.common_index,
-                    key=self.y_name,
-                    pandas_type="series",
-                )
-            is_pandas = True
-        else:
-            X, y = self.X, self.y
-        return X, y, is_pandas
-
-    def convert_pandas(self):
-        self.X, self.y, self.is_pandas = self._convert_pandas()
-
-    def _convert_ndarray(self):
-        X = None
-        y = None
-        is_pandas = self.is_pandas
-        if self.is_pandas:
-            if self.X is not None:
-                X = self._as_ndarray_from_pandas(self.X)
-            if self.y is not None:
-                y = self._as_ndarray_from_pandas(self.y)
-            is_pandas = False
-        else:
-            X, y = self.X, self.y
-        return X, y, is_pandas
-
-    def convert_ndarray(self):
-        self.X, self.y, self.is_pandas = self._convert_ndarray()
+    def y_name(self, value) -> None:
+        if self.y:
+            if len(value) != 1:
+                msg = "Specified y_names length must be 1, not {}.".format(len(value))
+                raise ValueError(msg)
+            if hasattr(self.y.data, "name"):
+                self.y.data.name = value[0]
+            if hasattr(self.y.data, "columns"):
+                self.y.data.columns = Index(value)
+            self._y_name = Index(value)
 
 
-class SupervisedModelData(BaseModelData, metaclass=ABCMeta):
+class SupervisedModelDataset(BaseModelDataset):
     """Base class for data model for supervised model.
 
     Parameters
     ----------
-    X : array_like
+    X : StructuralDataType
         The feature vectors or matrix. If regression is not defined, you should
         handle the position of X as the one of y.
-    y : {array_like, None}, optional
+    y : {StructuralDataType, None}, optional
         Target values. If regression is not defined, ignore that.
 
-    Attributes
-    ----------
-    X : numpy.ndarray
-        Training data.
-    y : numpy.ndarray
-        Target values.
-    orig_X : array_like
-        Original X for input.
-    orig_y : array_like
-        Original y for input.
     """
 
-    def __init__(self, X, y=None, **kwargs):
+    def __init__(self, X, y=None):
         if X is not None and y is None:
             X, y = y, X
-        super(SupervisedModelData, self).__init__(X=X, y=y, **kwargs)
+        super(SupervisedModelDataset, self).__init__(X=X, y=y)
 
-    def split_index_and_X_from_X_pred(self, X_pred):
-        """Split index and regression features design matrix
-        from X_pred that is assumed to be data of predictive range.
+    def get_index_and_values_from_X_pred(self, X_pred):
+        """Get index and features design matrix from X_pred
+        that is assumed to be data of predictive range.
 
         Parameters
         ----------
@@ -255,71 +383,21 @@ class SupervisedModelData(BaseModelData, metaclass=ABCMeta):
         X: {numpy.ndarray, None}
             Design matrix split into.
         """
-        index = None
-        X = None
-
-        # If the defined model has no regression components,
-        # only the index of the range to be predicted is returned
-        # from input (pandas.Index or int).
-        if val.is_index(X_pred):
-            index = X_pred
-        elif isinstance(X_pred, (int, float)):
+        if isinstance(X_pred, int):
             obs_X = int(X_pred)
-            start = self.common_index.__len__()
+            start = len(self.common_index)
             stop = start + obs_X
             index = pd.RangeIndex(start=start, stop=stop, step=1)
-
-        # Otherwise, the index and the numpy array of design matrix
-        # on regression are returned from input (pandas.DataFrame or numpy.ndarray).
-        elif val.is_dataframe_or_series(X_pred):
-            index = X_pred.index
-            X = self._get_2d_arr(X_pred)[0]
-            n_X = X.shape[1]
-            if n_X != len(self.X_name):
-                msg = "The components of X_pred does not match the ones of trained X."
-                raise ValueError(msg)
-        elif val.is_arraylike(X_pred):
-            X = self._get_2d_arr(X_pred)[0]
-            obs_X, n_X = X.shape
-            if n_X != len(self.X_name):
-                msg = "The components of X_pred does not match the ones of trained X."
-                raise ValueError(msg)
-            start = self.common_index.__len__()
-            stop = start + obs_X
-            index = pd.RangeIndex(start=start, stop=stop, step=1)
-
+            values = None
         else:
-            msg = (
-                "When your model needs the explanatory components, X_pred must be"
-                " pandas.DataFrame or numpy.ndarray. Otherwise, X_pred must be"
-                " pandas.Index or int to express the steps to be predicted."
-            )
-            raise ValueError(msg)
-
-        return index, X
+            X_pred = BaseData(X_pred)
+            index = X_pred.index
+            values = X_pred.values
+        return index, values
 
 
-class UnsupervisedModelData(BaseModelData, metaclass=ABCMeta):
-    """Base class for data model for unsupervised model.
-
-    Parameters
-    ----------
-    X : array_like
-        Training data.
-    y : Ignored
-        Ignored.
-
-    Attributes
-    ----------
-    X : numpy.ndarray
-        Training data.
-    orig_X : array_like
-        Original X for input.
-    """
-
-    def __init__(self, X, **kwargs):
-        y = None
-        super(UnsupervisedModelData, self).__init__(X=X, y=y, **kwargs)
+class UnsupervisedModelDataset(BaseModelDataset):
+    ...
 
 
 class BaseDataSimulator:
@@ -328,90 +406,3 @@ class BaseDataSimulator:
     def __init__(self, seed=123456789, **kwargs):
         self.prng = np.random.default_rng(seed=seed)
         self.seed = seed
-
-
-def get_1d_arr(obj, default_name="y"):
-    """Get the module-standard 1-dimensional array from input.
-
-    Parameters
-    ----------
-    obj : array_like
-        Input data.
-    default_name : str
-        Name of input data.
-
-    Returns
-    -------
-    obj_arr : numpy.ndarray
-        Converted array.
-    obj_name : str
-        Name.
-    """
-    obj_arr = None
-    obj_name = None
-    if obj is not None:
-        if val.is_dataframe_or_series(obj) or val.is_index(obj):
-            if val.is_dataframe(obj) and obj.shape[1] > 1:
-                msg = "Input obj must be one variable."
-                raise ValueError(msg)
-
-            if val.is_dataframe(obj):
-                obj_name = obj.columns.astype(str).to_list()[0]
-            else:
-                obj_name = default_name if obj.name is None else obj.name
-
-            obj_arr = obj.values.squeeze()
-
-        if val.is_ndarray(obj) or isinstance(obj, (list, tuple)):
-            obj_arr = np.asarray(obj)
-            obj_name = default_name
-
-    return obj_arr, obj_name
-
-
-def get_2d_arr(obj, default_name="x"):
-    """Get the module-standard 2-dimensional array from input.
-
-    Parameters
-    ----------
-    obj : array_like
-        Input data.
-    default_name : str
-        Name of input data.
-
-    Returns
-    -------
-    obj_arr : numpy.ndarray
-        Converted array.
-    obj_name : list[str]
-        Names.
-    """
-    obj_arr = None
-    obj_name = None
-    if obj is not None:
-        if val.is_dataframe_or_series(obj):
-            if val.is_dataframe(obj):
-                obj_arr = obj.values
-                obj_name = obj.columns.astype(str).to_list()
-
-            if val.is_series(obj):
-                obj_arr = obj.values[:, None]
-                n_obj = 1
-                obj_name = (
-                    [
-                        "{default_name}{i}".format(default_name=default_name, i=i)
-                        for i in range(n_obj)
-                    ]
-                    if obj.name is None
-                    else [obj.name]
-                )
-
-        if val.is_ndarray(obj) or isinstance(obj, (list, tuple)):
-            obj_arr = np.asarray(obj)
-            n_obj = obj_arr.shape[1]
-            obj_name = [
-                "{default_name}{i}".format(default_name=default_name, i=i)
-                for i in range(n_obj)
-            ]
-
-    return obj_arr, obj_name
