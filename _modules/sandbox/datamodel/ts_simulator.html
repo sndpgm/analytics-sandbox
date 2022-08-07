@@ -794,9 +794,9 @@ title="Open an issue"
 <span></span><span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="kn">from</span> <span class="nn">sandbox.datamodel.base</span> <span class="kn">import</span> <span class="n">BaseData</span><span class="p">,</span> <span class="n">BaseDataSimulator</span>
+<span class="kn">from</span> <span class="nn">sandbox.datamodel.base</span> <span class="kn">import</span> <span class="n">BaseDataSimulator</span>
+<span class="kn">from</span> <span class="nn">sandbox.utils.tools</span> <span class="kn">import</span> <span class="n">Bunch</span>
 
 
 <div class="viewcode-block" id="UnobservedComponentsSimulator"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator">[docs]</a><span class="k">class</span> <span class="nc">UnobservedComponentsSimulator</span><span class="p">(</span><span class="n">BaseDataSimulator</span><span class="p">):</span>
@@ -867,7 +867,14 @@ title="Open an issue"
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulate</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="nf">_simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">simulate_result</span> <span class="o">=</span> <span class="n">UnobservedComponentsSimulatorResult</span><span class="p">()</span>
+        <span class="c1"># simulate_result = UnobservedComponentsSimulatorResult()</span>
+        <span class="n">simulate_result</span> <span class="o">=</span> <span class="n">Bunch</span><span class="p">(</span>
+            <span class="n">trend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">freq_seasonal</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">exog</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">reg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">endog</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span>
 
         <span class="n">trend</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">:</span>
@@ -996,133 +1003,6 @@ title="Open an issue"
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">exog_params</span><span class="p">):</span>
             <span class="n">exog</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">steps</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">exog</span></div>
-
-
-<div class="viewcode-block" id="UnobservedComponentsSimulatorResult"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult">[docs]</a><span class="k">class</span> <span class="nc">UnobservedComponentsSimulatorResult</span><span class="p">(</span><span class="n">BaseData</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
-
-    <span class="n">_trend</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">_freq_seasonal</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">_exog</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">_reg</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">_endog</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">UnobservedComponentsSimulatorResult</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">is_pandas</span> <span class="o">=</span> <span class="kc">False</span>
-
-    <span class="nd">@property</span>
-<div class="viewcode-block" id="UnobservedComponentsSimulatorResult.trend"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.trend">[docs]</a>    <span class="k">def</span> <span class="nf">trend</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trend</span></div>
-
-    <span class="nd">@trend</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">trend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_trend</span> <span class="o">=</span> <span class="n">value</span>
-
-    <span class="nd">@property</span>
-<div class="viewcode-block" id="UnobservedComponentsSimulatorResult.freq_seasonal"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.freq_seasonal">[docs]</a>    <span class="k">def</span> <span class="nf">freq_seasonal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freq_seasonal</span></div>
-
-    <span class="nd">@freq_seasonal</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">freq_seasonal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_freq_seasonal</span> <span class="o">=</span> <span class="n">value</span>
-
-    <span class="nd">@property</span>
-<div class="viewcode-block" id="UnobservedComponentsSimulatorResult.exog"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.exog">[docs]</a>    <span class="k">def</span> <span class="nf">exog</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exog</span></div>
-
-    <span class="nd">@exog</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">exog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_exog</span> <span class="o">=</span> <span class="n">value</span>
-
-    <span class="nd">@property</span>
-<div class="viewcode-block" id="UnobservedComponentsSimulatorResult.reg"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.reg">[docs]</a>    <span class="k">def</span> <span class="nf">reg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reg</span></div>
-
-    <span class="nd">@reg</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">reg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_reg</span> <span class="o">=</span> <span class="n">value</span>
-
-    <span class="nd">@property</span>
-<div class="viewcode-block" id="UnobservedComponentsSimulatorResult.endog"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.endog">[docs]</a>    <span class="k">def</span> <span class="nf">endog</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_endog</span></div>
-
-    <span class="nd">@endog</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">endog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_endog</span> <span class="o">=</span> <span class="n">value</span>
-
-    <span class="nd">@property</span>
-<div class="viewcode-block" id="UnobservedComponentsSimulatorResult.common_index"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.common_index">[docs]</a>    <span class="k">def</span> <span class="nf">common_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nobs</span><span class="p">))</span></div>
-
-    <span class="nd">@property</span>
-<div class="viewcode-block" id="UnobservedComponentsSimulatorResult.nobs"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.nobs">[docs]</a>    <span class="k">def</span> <span class="nf">nobs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endog</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="UnobservedComponentsSimulatorResult.convert_pandas"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.convert_pandas">[docs]</a>    <span class="k">def</span> <span class="nf">convert_pandas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_pandas</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trend</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">trend</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_pandas_from_ndarray</span><span class="p">(</span>
-                    <span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">trend</span><span class="p">,</span>
-                    <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">common_index</span><span class="p">,</span>
-                    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;trend&quot;</span><span class="p">,</span>
-                    <span class="n">pandas_type</span><span class="o">=</span><span class="s2">&quot;series&quot;</span><span class="p">,</span>
-                <span class="p">)</span>
-
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">freq_seasonal</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">key</span> <span class="o">=</span> <span class="p">[</span>
-                    <span class="s2">&quot;freq_seasonal_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">freq_seasonal</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-                <span class="p">]</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">freq_seasonal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_pandas_from_ndarray</span><span class="p">(</span>
-                    <span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">freq_seasonal</span><span class="p">,</span>
-                    <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">common_index</span><span class="p">,</span>
-                    <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
-                    <span class="n">pandas_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">,</span>
-                <span class="p">)</span>
-
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exog</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">exog_key</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;x</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exog</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">exog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_pandas_from_ndarray</span><span class="p">(</span>
-                    <span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">exog</span><span class="p">,</span>
-                    <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">common_index</span><span class="p">,</span>
-                    <span class="n">key</span><span class="o">=</span><span class="n">exog_key</span><span class="p">,</span>
-                    <span class="n">pandas_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">,</span>
-                <span class="p">)</span>
-
-                <span class="n">reg_key</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;reg</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">reg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_pandas_from_ndarray</span><span class="p">(</span>
-                    <span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span>
-                    <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">common_index</span><span class="p">,</span>
-                    <span class="n">key</span><span class="o">=</span><span class="n">reg_key</span><span class="p">,</span>
-                    <span class="n">pandas_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">,</span>
-                <span class="p">)</span>
-
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">endog</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">endog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_pandas_from_ndarray</span><span class="p">(</span>
-                    <span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">endog</span><span class="p">,</span>
-                    <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">common_index</span><span class="p">,</span>
-                    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;endog&quot;</span><span class="p">,</span>
-                    <span class="n">pandas_type</span><span class="o">=</span><span class="s2">&quot;series&quot;</span><span class="p">,</span>
-                <span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">is_pandas</span> <span class="o">=</span> <span class="kc">True</span></div>
-
-<div class="viewcode-block" id="UnobservedComponentsSimulatorResult.convert_ndarray"><a class="viewcode-back" href="../../../api/sandbox/datamodel/ts_simulator/index.html#sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult.convert_ndarray">[docs]</a>    <span class="k">def</span> <span class="nf">convert_ndarray</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_pandas</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trend</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">trend</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_ndarray_from_pandas</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trend</span><span class="p">)</span>
-
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">freq_seasonal</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">freq_seasonal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_ndarray_from_pandas</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">freq_seasonal</span><span class="p">)</span>
-
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exog</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">exog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_ndarray_from_pandas</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exog</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">reg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_ndarray_from_pandas</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">)</span>
-
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">endog</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">endog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_ndarray_from_pandas</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endog</span><span class="p">)</span>
-
-            <span class="bp">self</span><span class="o">.</span><span class="n">is_pandas</span> <span class="o">=</span> <span class="kc">False</span></div></div>
 </pre></div>
 
               </div>

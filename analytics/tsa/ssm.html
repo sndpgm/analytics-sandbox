@@ -2243,7 +2243,16 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ssm_38_0.png" src="../../_images/ssm_38_0.png"/>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">Input In [14],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ret</span><span class="o">.</span><span class="n">convert_pandas</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># 観測値, 状態変数 (ローカル・トレンド) のプロット.</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="ne">AttributeError</span>: 'Bunch' object has no attribute 'convert_pandas'
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -2286,27 +2295,30 @@ At X0         0 variables are exactly at the bounds
 
 At iterate    0    f=  3.39664D+00    |proj g|=  1.56735D-01
 
-At iterate    5    f=  1.01591D+00    |proj g|=  1.44373D+00
+At iterate    5    f=  1.01431D+00    |proj g|=  1.44158D+00
+
+At iterate   10    f=  2.61021D-01    |proj g|=  2.01992D+00
+
+At iterate   15    f= -7.22842D-01    |proj g|=  1.82145D+01
+
+At iterate   20    f= -1.38949D+00    |proj g|=  2.89803D+00
+
+At iterate   25    f= -1.39576D+00    |proj g|=  2.15417D+00
+
+At iterate   30    f= -1.39702D+00    |proj g|=  3.17118D+00
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   10    f=  2.62900D-01    |proj g|=  2.00037D+00
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Bad direction in the line search;
+   refresh the lbfgs memory and restart the iteration.
 
-At iterate   15    f= -7.45997D-01    |proj g|=  1.81921D+01
+ Line search cannot locate an adequate point after MAXLS
+  function and gradient evaluations.
+  Previous x, f and g restored.
+ Possible causes: 1 error in function or gradient evaluation;
+                  2 rounding error dominate computation.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   20    f= -1.38754D+00    |proj g|=  1.68847D+00
-
-At iterate   25    f= -1.39574D+00    |proj g|=  2.57964D+00
-
-At iterate   30    f= -1.39690D+00    |proj g|=  2.45095D+00
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   35    f= -1.39705D+00    |proj g|=  1.50381D-03
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   40    f= -1.39705D+00    |proj g|=  4.79069D-02
-
-           * * *
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           * * *
 
 Tit   = total number of iterations
 Tnf   = total number of function evaluations
@@ -2319,15 +2331,10 @@ F     = final function value
            * * *
 
    N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
-    5     40    103      1     0     0   4.791D-02  -1.397D+00
-  F =  -1.3970515694210084     
+    5     35    117      2     0     0   2.185D-02  -1.397D+00
+  F =  -1.3970513572070058     
 
-CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Warning:  more than 10 function and gradient
-   evaluations in the last line search.  Termination
-   may possibly be caused by a bad search direction.
+ABNORMAL_TERMINATION_IN_LNSRCH                              
 </pre></div>
 </div>
 <div class="output text_html"><table class="simpletable">
@@ -2345,10 +2352,10 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 <th></th> <td>+ stochastic freq_seasonal(100(6))</td> <th>  BIC                </th> <td>-810.093</td>
 </tr>
 <tr>
-<th>Date:</th> <td>Tue, 02 Aug 2022</td> <th>  HQIC               </th> <td>-820.954</td>
+<th>Date:</th> <td>Fri, 29 Jul 2022</td> <th>  HQIC               </th> <td>-820.954</td>
 </tr>
 <tr>
-<th>Time:</th> <td>16:33:23</td> <th> </th> <td> </td>
+<th>Time:</th> <td>13:50:46</td> <th> </th> <td> </td>
 </tr>
 <tr>
 <th>Sample:</th> <td>0</td> <th> </th> <td> </td>
@@ -2365,24 +2372,24 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 <td></td> <th>coef</th> <th>std err</th> <th>z</th> <th>P&gt;|z|</th> <th>[0.025</th> <th>0.975]</th>
 </tr>
 <tr>
-<th>sigma2.level</th> <td> 3.159e-10</td> <td>    0.000</td> <td> 1.44e-06</td> <td> 1.000</td> <td>   -0.000</td> <td>    0.000</td>
+<th>sigma2.level</th> <td> 2.094e-10</td> <td>    0.000</td> <td>  9.5e-07</td> <td> 1.000</td> <td>   -0.000</td> <td>    0.000</td>
 </tr>
 <tr>
-<th>sigma2.trend</th> <td> 2.401e-11</td> <td> 2.91e-08</td> <td>    0.001</td> <td> 0.999</td> <td> -5.7e-08</td> <td>  5.7e-08</td>
+<th>sigma2.trend</th> <td> 2.489e-11</td> <td> 2.92e-08</td> <td>    0.001</td> <td> 0.999</td> <td>-5.71e-08</td> <td> 5.72e-08</td>
 </tr>
 <tr>
-<th>sigma2.freq_seasonal_50(4)</th> <td> 8.387e-05</td> <td> 3.79e-05</td> <td>    2.214</td> <td> 0.027</td> <td> 9.61e-06</td> <td>    0.000</td>
+<th>sigma2.freq_seasonal_50(4)</th> <td>  8.35e-05</td> <td> 3.78e-05</td> <td>    2.210</td> <td> 0.027</td> <td> 9.45e-06</td> <td>    0.000</td>
 </tr>
 <tr>
-<th>sigma2.freq_seasonal_100(6)</th> <td> 9.713e-05</td> <td> 3.99e-05</td> <td>    2.432</td> <td> 0.015</td> <td> 1.88e-05</td> <td>    0.000</td>
+<th>sigma2.freq_seasonal_100(6)</th> <td> 9.747e-05</td> <td>    4e-05</td> <td>    2.437</td> <td> 0.015</td> <td> 1.91e-05</td> <td>    0.000</td>
 </tr>
 <tr>
-<th>beta.x1</th> <td>    4.9979</td> <td>    0.003</td> <td> 1704.902</td> <td> 0.000</td> <td>    4.992</td> <td>    5.004</td>
+<th>beta.x1</th> <td>    4.9979</td> <td>    0.003</td> <td> 1703.848</td> <td> 0.000</td> <td>    4.992</td> <td>    5.004</td>
 </tr>
 </table>
 <table class="simpletable">
 <tr>
-<th>Ljung-Box (L1) (Q):</th> <td>1.21</td> <th>  Jarque-Bera (JB):  </th> <td>0.34</td>
+<th>Ljung-Box (L1) (Q):</th> <td>1.20</td> <th>  Jarque-Bera (JB):  </th> <td>0.34</td>
 </tr>
 <tr>
 <th>Prob(Q):</th> <td>0.27</td> <th>  Prob(JB):          </th> <td>0.84</td>
@@ -2641,10 +2648,10 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 <th>Model:</th> <td>LocalLinearTrend</td> <th>  Log Likelihood     </th> <td>11.857</td>
 </tr>
 <tr>
-<th>Date:</th> <td>Tue, 02 Aug 2022</td> <th>  AIC                </th> <td>-17.713</td>
+<th>Date:</th> <td>Fri, 29 Jul 2022</td> <th>  AIC                </th> <td>-17.713</td>
 </tr>
 <tr>
-<th>Time:</th> <td>16:33:24</td> <th>  BIC                </th> <td>-13.134</td>
+<th>Time:</th> <td>13:50:46</td> <th>  BIC                </th> <td>-13.134</td>
 </tr>
 <tr>
 <th>Sample:</th> <td>12-31-1970</td> <th>  HQIC               </th> <td>-16.152</td>
@@ -2667,7 +2674,7 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 <th>sigma2.level</th> <td>    0.0074</td> <td>    0.005</td> <td>    1.564</td> <td> 0.118</td> <td>   -0.002</td> <td>    0.017</td>
 </tr>
 <tr>
-<th>sigma2.trend</th> <td> 2.498e-11</td> <td>    0.000</td> <td> 1.67e-07</td> <td> 1.000</td> <td>   -0.000</td> <td>    0.000</td>
+<th>sigma2.trend</th> <td> 2.457e-11</td> <td>    0.000</td> <td> 1.64e-07</td> <td> 1.000</td> <td>   -0.000</td> <td>    0.000</td>
 </tr>
 </table>
 <table class="simpletable">
@@ -3025,11 +3032,10 @@ At iterate    0    f=  1.93831D+00    |proj g|=  4.45116D-01
 At iterate    5    f=  1.22291D+00    |proj g|=  4.62909D+00
 
 At iterate   10    f=  4.93695D-01    |proj g|=  3.44678D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   15    f=  4.08063D-01    |proj g|=  2.96812D-02
 
-At iterate   20    f=  4.08015D-01    |proj g|=  4.38519D-05
+At iterate   15    f=  4.08063D-01    |proj g|=  2.96812D-02
+
+At iterate   20    f=  4.08015D-01    |proj g|=  4.38512D-05
 
            * * *
 
@@ -3045,7 +3051,7 @@ F     = final function value
 
    N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
     4     20     45      1     0     0   4.385D-05   4.080D-01
-  F =  0.40801504275767103     
+  F =  0.40801504275767325     
 
 CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
 </pre></div>
@@ -3064,10 +3070,10 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 <th>Model:</th> <td>TVRegression</td> <th>  Log Likelihood     </th> <td>-367.214</td>
 </tr>
 <tr>
-<th>Date:</th> <td>Tue, 02 Aug 2022</td> <th>  AIC                </th> <td>746.427</td>
+<th>Date:</th> <td>Fri, 29 Jul 2022</td> <th>  AIC                </th> <td>746.427</td>
 </tr>
 <tr>
-<th>Time:</th> <td>16:33:28</td> <th>  BIC                </th> <td>775.241</td>
+<th>Time:</th> <td>13:50:48</td> <th>  BIC                </th> <td>775.241</td>
 </tr>
 <tr>
 <th>Sample:</th> <td>0</td> <th>  HQIC               </th> <td>757.434</td>

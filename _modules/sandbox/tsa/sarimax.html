@@ -794,7 +794,6 @@ title="Open an issue"
 <span></span><span class="sd">&quot;&quot;&quot;SARIMAX (Seasonal AutoRegressive Integrated Moving Average with eXogenous variables).&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="kn">from</span> <span class="nn">sandbox.datamodel.base</span> <span class="kn">import</span> <span class="n">get_1d_arr</span>
 <span class="kn">from</span> <span class="nn">sandbox.datamodel.ts_datamodel</span> <span class="kn">import</span> <span class="n">TimeSeriesModelData</span>
 <span class="kn">from</span> <span class="nn">sandbox.graphics.ts_grapher</span> <span class="kn">import</span> <span class="n">TimeSeriesGrapherMixin</span>
 <span class="kn">from</span> <span class="nn">sandbox.tsa.base</span> <span class="kn">import</span> <span class="n">BaseTimeSeriesModel</span>
@@ -1040,7 +1039,7 @@ title="Open an issue"
         <span class="c1"># このモジュールで提供しているデータクラスに変換.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_</span> <span class="o">=</span> <span class="n">TimeSeriesModelData</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_model_result</span><span class="p">(</span>
-            <span class="n">endog</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">X</span>
+            <span class="n">endog</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">values</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
@@ -1138,7 +1137,7 @@ title="Open an issue"
             <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;This method works after performing `fit`.&quot;</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">fittedvalues</span> <span class="o">=</span> <span class="n">get_1d_arr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">fittedvalues</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">fittedvalues</span>
         <span class="k">return</span> <span class="n">fittedvalues</span></div>
 
 <div class="viewcode-block" id="SARIMAXModel.predict"><a class="viewcode-back" href="../../../api/sandbox/tsa/sarimax/index.html#sandbox.tsa.sarimax.SARIMAXModel.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">is_pandas</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -1159,7 +1158,7 @@ title="Open an issue"
 <span class="sd">        predicted_mean : array-like</span>
 <span class="sd">            Mean of predictive distribution of query points.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">index</span><span class="p">,</span> <span class="n">exog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">split_index_and_X_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">index</span><span class="p">,</span> <span class="n">exog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">get_index_and_values_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">nobs</span>
         <span class="n">end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">nobs</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
         <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">exog</span><span class="p">)</span>
@@ -1192,7 +1191,7 @@ title="Open an issue"
 <span class="sd">        array_like</span>
 <span class="sd">            The confidence intervals.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">index</span><span class="p">,</span> <span class="n">exog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">split_index_and_X_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">index</span><span class="p">,</span> <span class="n">exog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">get_index_and_values_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">nobs</span>
         <span class="n">end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">nobs</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
         <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">exog</span><span class="p">)</span>

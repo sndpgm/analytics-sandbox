@@ -795,7 +795,6 @@ title="Open an issue"
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="kn">from</span> <span class="nn">sandbox.datamodel.base</span> <span class="kn">import</span> <span class="n">get_1d_arr</span>
 <span class="kn">from</span> <span class="nn">sandbox.datamodel.ts_datamodel</span> <span class="kn">import</span> <span class="n">TimeSeriesModelData</span>
 <span class="kn">from</span> <span class="nn">sandbox.graphics.ts_grapher</span> <span class="kn">import</span> <span class="n">TimeSeriesGrapherMixin</span>
 <span class="kn">from</span> <span class="nn">sandbox.tsa.base</span> <span class="kn">import</span> <span class="n">BaseTimeSeriesModel</span>
@@ -1143,7 +1142,7 @@ title="Open an issue"
         <span class="c1"># このモジュールで提供しているデータクラスに変換.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_</span> <span class="o">=</span> <span class="n">TimeSeriesModelData</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_model_result</span><span class="p">(</span>
-            <span class="n">endog</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">X</span>
+            <span class="n">endog</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">values</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
@@ -1237,7 +1236,8 @@ title="Open an issue"
             <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;This method works after performing `fit`.&quot;</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">fittedvalues</span> <span class="o">=</span> <span class="n">get_1d_arr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="c1"># fittedvalues = get_1d_arr(self.model_result_.fittedvalues)[0]</span>
+            <span class="n">fittedvalues</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">fittedvalues</span>
         <span class="k">return</span> <span class="n">fittedvalues</span></div>
 
     <span class="nd">@property</span>
@@ -1414,7 +1414,7 @@ title="Open an issue"
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_prediction</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">is_pandas</span><span class="p">:</span>
-            <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">split_index_and_X_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">get_index_and_values_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
                 <span class="n">pred</span><span class="o">.</span><span class="n">predicted_mean</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;predicted_mean&quot;</span><span class="p">]</span>
             <span class="p">)</span>
@@ -1445,7 +1445,7 @@ title="Open an issue"
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_prediction</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">is_pandas</span><span class="p">:</span>
-            <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">split_index_and_X_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">get_index_and_values_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">alpha</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
             <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
                 <span class="n">pred</span><span class="o">.</span><span class="n">conf_int</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">),</span>
@@ -1456,7 +1456,7 @@ title="Open an issue"
             <span class="k">return</span> <span class="n">pred</span><span class="o">.</span><span class="n">conf_int</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_get_prediction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="n">index</span><span class="p">,</span> <span class="n">exog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">split_index_and_X_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">index</span><span class="p">,</span> <span class="n">exog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">get_index_and_values_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">nobs</span>
         <span class="n">end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">nobs</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_result_</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">exog</span><span class="p">)</span>
@@ -1788,7 +1788,7 @@ title="Open an issue"
                     <span class="k">if</span> <span class="n">which</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;filtered&quot;</span><span class="p">,</span> <span class="s2">&quot;smoothed&quot;</span><span class="p">]:</span>
                         <span class="n">out</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">X</span> <span class="o">*</span> <span class="n">coefficient</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
                     <span class="k">if</span> <span class="n">which</span> <span class="o">==</span> <span class="s2">&quot;predicted&quot;</span><span class="p">:</span>
-                        <span class="n">exog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">split_index_and_X_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+                        <span class="n">exog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">get_index_and_values_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
                         <span class="n">out</span> <span class="o">=</span> <span class="p">(</span><span class="n">exog</span> <span class="o">*</span> <span class="n">coefficient</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
         <span class="k">return</span> <span class="n">out</span></div>
 </pre></div>

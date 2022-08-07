@@ -13,7 +13,6 @@ Classes
 .. autoapisummary::
 
    sandbox.datamodel.ts_simulator.UnobservedComponentsSimulator
-   sandbox.datamodel.ts_simulator.UnobservedComponentsSimulatorResult
 
 
 
@@ -25,45 +24,6 @@ Classes
    Base class for data simulator.
 
    .. py:method:: simulate()
-
-
-
-.. py:class:: UnobservedComponentsSimulatorResult(**kwargs)
-
-   Bases: :py:obj:`sandbox.datamodel.base.BaseData`
-
-   .. py:method:: trend()
-      :property:
-
-
-   .. py:method:: freq_seasonal()
-      :property:
-
-
-   .. py:method:: exog()
-      :property:
-
-
-   .. py:method:: reg()
-      :property:
-
-
-   .. py:method:: endog()
-      :property:
-
-
-   .. py:method:: common_index()
-      :property:
-
-
-   .. py:method:: nobs()
-      :property:
-
-
-   .. py:method:: convert_pandas()
-
-
-   .. py:method:: convert_ndarray()
 
 
 

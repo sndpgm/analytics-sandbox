@@ -792,7 +792,7 @@ title="Open an issue"
                 
   <h1>Source code for sandbox.graphics.ts_grapher</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;The grapher module on time series modeling.&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">sandbox.datamodel.base</span> <span class="kn">import</span> <span class="n">get_1d_arr</span>
+<span class="kn">from</span> <span class="nn">sandbox.datamodel.base</span> <span class="kn">import</span> <span class="n">BaseData</span>
 <span class="kn">from</span> <span class="nn">sandbox.graphics.utils</span> <span class="kn">import</span> <span class="n">create_mpl_fig</span>
 <span class="kn">from</span> <span class="nn">sandbox.utils.tools</span> <span class="kn">import</span> <span class="n">Bunch</span>
 
@@ -877,7 +877,7 @@ title="Open an issue"
         <span class="c1"># (1) Training period</span>
         <span class="c1"># Prepare for data in training period.</span>
         <span class="n">x_train</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">common_index</span>
-        <span class="n">y_train</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">y</span>
+        <span class="n">y_train</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">values</span>
         <span class="n">y_fitted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fittedvalues_</span>
 
         <span class="c1"># Draw ax in training period.</span>
@@ -889,7 +889,7 @@ title="Open an issue"
         <span class="c1"># (2) Prediction period</span>
         <span class="k">if</span> <span class="n">draw_forecast</span><span class="p">:</span>
             <span class="c1"># Prepare for data in prediction period.</span>
-            <span class="n">x_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">split_index_and_X_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">x_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">get_index_and_values_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
             <span class="c1"># Draw forecast values.</span>
@@ -903,7 +903,7 @@ title="Open an issue"
 
             <span class="c1"># If applicable, draw test data</span>
             <span class="k">if</span> <span class="n">draw_y_test</span><span class="p">:</span>
-                <span class="n">y_test</span> <span class="o">=</span> <span class="n">get_1d_arr</span><span class="p">(</span><span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">y_test</span> <span class="o">=</span> <span class="n">BaseData</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
                 <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
             <span class="c1"># Draw the line to distinguish training period from prediction one.</span>
@@ -979,7 +979,7 @@ title="Open an issue"
         <span class="c1"># x 軸をそれぞれ取得する.</span>
         <span class="n">x_train</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">common_index</span>
         <span class="n">x_pred</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">split_index_and_X_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">get_index_and_values_from_X_pred</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">draw_forecast</span>
             <span class="k">else</span> <span class="kc">None</span>
         <span class="p">)</span>
