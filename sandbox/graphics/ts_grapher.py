@@ -1,5 +1,5 @@
 """The grapher module on time series modeling."""
-from sandbox.datamodel.base import get_1d_arr
+from sandbox.datamodel.base import BaseData
 from sandbox.graphics.utils import create_mpl_fig
 from sandbox.utils.tools import Bunch
 
@@ -84,7 +84,7 @@ class TimeSeriesGrapher:
         # (1) Training period
         # Prepare for data in training period.
         x_train = self.model.data_.common_index
-        y_train = self.model.data_.y
+        y_train = self.model.data_.y.values
         y_fitted = self.model.fittedvalues_
 
         # Draw ax in training period.
@@ -96,7 +96,7 @@ class TimeSeriesGrapher:
         # (2) Prediction period
         if draw_forecast:
             # Prepare for data in prediction period.
-            x_pred = self.model.data_.split_index_and_X_from_X_pred(X)[0]
+            x_pred = self.model.data_.get_index_and_values_from_X_pred(X)[0]
             y_pred = self.model.predict(X)
 
             # Draw forecast values.
@@ -110,7 +110,7 @@ class TimeSeriesGrapher:
 
             # If applicable, draw test data
             if draw_y_test:
-                y_test = get_1d_arr(y)[0]
+                y_test = BaseData(y).values
                 ax.bar(x_pred, y_test, color=colors[0])
 
             # Draw the line to distinguish training period from prediction one.
@@ -186,7 +186,7 @@ class TimeSeriesGrapher:
         # x 軸をそれぞれ取得する.
         x_train = self.model.data_.common_index
         x_pred = (
-            self.model.data_.split_index_and_X_from_X_pred(X)[0]
+            self.model.data_.get_index_and_values_from_X_pred(X)[0]
             if draw_forecast
             else None
         )

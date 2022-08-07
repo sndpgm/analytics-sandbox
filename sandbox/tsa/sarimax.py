@@ -1,7 +1,6 @@
 """SARIMAX (Seasonal AutoRegressive Integrated Moving Average with eXogenous variables)."""
 import pandas as pd
 
-from sandbox.datamodel.base import get_1d_arr
 from sandbox.datamodel.ts_datamodel import TimeSeriesModelData
 from sandbox.graphics.ts_grapher import TimeSeriesGrapherMixin
 from sandbox.tsa.base import BaseTimeSeriesModel
@@ -247,7 +246,7 @@ class SARIMAXModel(BaseTimeSeriesModel, TimeSeriesGrapherMixin):
         # このモジュールで提供しているデータクラスに変換.
         self.data_ = TimeSeriesModelData(X, y)
         self.model_result_ = self._get_model_result(
-            endog=self.data_.y, exog=self.data_.X
+            endog=self.data_.y.values, exog=self.data_.X.values
         )
         return self
 
@@ -345,7 +344,7 @@ class SARIMAXModel(BaseTimeSeriesModel, TimeSeriesGrapherMixin):
             msg = "This method works after performing `fit`."
             warnings.warn(msg)
         else:
-            fittedvalues = get_1d_arr(self.model_result_.fittedvalues)[0]
+            fittedvalues = self.model_result_.fittedvalues
         return fittedvalues
 
     def predict(self, X, is_pandas=False):
@@ -366,7 +365,7 @@ class SARIMAXModel(BaseTimeSeriesModel, TimeSeriesGrapherMixin):
         predicted_mean : array-like
             Mean of predictive distribution of query points.
         """
-        index, exog = self.data_.split_index_and_X_from_X_pred(X)
+        index, exog = self.data_.get_index_and_values_from_X_pred(X)
         start = self.data_.nobs
         end = self.data_.nobs + len(index) - 1
         pred = self._get_prediction(start=start, end=end, exog=exog)
@@ -399,7 +398,7 @@ class SARIMAXModel(BaseTimeSeriesModel, TimeSeriesGrapherMixin):
         array_like
             The confidence intervals.
         """
-        index, exog = self.data_.split_index_and_X_from_X_pred(X)
+        index, exog = self.data_.get_index_and_values_from_X_pred(X)
         start = self.data_.nobs
         end = self.data_.nobs + len(index) - 1
         pred = self._get_prediction(start=start, end=end, exog=exog)

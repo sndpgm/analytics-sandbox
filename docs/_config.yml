@@ -67,6 +67,9 @@ sphinx:
       pandas:
         - 'https://pandas.pydata.org/pandas-docs/stable/'
         - null
+      dask:
+        - 'https://docs.dask.org/en/stable/'
+        - null
       python:
         - 'https://docs.python.org/3'
         - null
