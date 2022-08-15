@@ -17,6 +17,7 @@ Subpackages
 
    datamodel/index.rst
    datasets/index.rst
+   features/index.rst
    graphics/index.rst
    metrics/index.rst
    tsa/index.rst
