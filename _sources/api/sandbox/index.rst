@@ -19,7 +19,6 @@ Subpackages
    datasets/index.rst
    graphics/index.rst
    metrics/index.rst
-   tests/index.rst
    tsa/index.rst
    utils/index.rst
 
