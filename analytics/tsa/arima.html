@@ -549,6 +549,15 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
+<li class="toctree-l2">
+<a class="reference internal" href="../../api/sandbox/model_selection/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.model_selection
+      </span>
+</code>
+</a>
+</li>
 <li class="toctree-l2 has-children">
 <a class="reference internal" href="../../api/sandbox/tsa/index.html">
 <code class="xref py py-mod docutils literal notranslate">
@@ -1436,7 +1445,7 @@ const thebe_selector_output = ".output, .cell_output"
 <th>Date:</th> <td>Mon, 15 Aug 2022</td> <th>  AIC                </th> <td>876.280</td>
 </tr>
 <tr>
-<th>Time:</th> <td>16:27:08</td> <th>  BIC                </th> <td>914.586</td>
+<th>Time:</th> <td>16:42:58</td> <th>  BIC                </th> <td>914.586</td>
 </tr>
 <tr>
 <th>Sample:</th> <td>01-01-1949</td> <th>  HQIC               </th> <td>891.826</td>
@@ -1736,7 +1745,7 @@ const thebe_selector_output = ".output, .cell_output"
 <th>Date:</th> <td>Mon, 15 Aug 2022</td> <th>  AIC                </th> <td>871.521</td>
 </tr>
 <tr>
-<th>Time:</th> <td>16:28:23</td> <th>  BIC                </th> <td>906.977</td>
+<th>Time:</th> <td>16:44:45</td> <th>  BIC                </th> <td>906.977</td>
 </tr>
 <tr>
 <th>Sample:</th> <td>01-01-1949</td> <th>  HQIC               </th> <td>885.909</td>
@@ -1859,7 +1868,7 @@ const thebe_selector_output = ".output, .cell_output"
 <th>Date:</th> <td>Mon, 15 Aug 2022</td> <th>  AIC                </th> <td>755.955</td>
 </tr>
 <tr>
-<th>Time:</th> <td>16:28:25</td> <th>  BIC                </th> <td>774.330</td>
+<th>Time:</th> <td>16:44:48</td> <th>  BIC                </th> <td>774.330</td>
 </tr>
 <tr>
 <th>Sample:</th> <td>01-01-1949</td> <th>  HQIC               </th> <td>763.395</td>
@@ -2135,7 +2144,7 @@ const thebe_selector_output = ".output, .cell_output"
 <th>Date:</th> <td>Mon, 15 Aug 2022</td> <th>  AIC                </th> <td>757.826</td>
 </tr>
 <tr>
-<th>Time:</th> <td>16:28:58</td> <th>  BIC                </th> <td>760.451</td>
+<th>Time:</th> <td>16:45:23</td> <th>  BIC                </th> <td>760.451</td>
 </tr>
 <tr>
 <th>Sample:</th> <td>01-01-1949</td> <th>  HQIC               </th> <td>758.889</td>
@@ -2250,25 +2259,27 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Performing stepwise search to minimize aic
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,2)(1,1,1)[12]             : AIC=757.714, Time=0.61 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,2)(1,1,1)[12]             : AIC=757.714, Time=0.70 sec
  ARIMA(0,1,0)(0,1,0)[12]             : AIC=757.826, Time=0.02 sec
  ARIMA(1,1,0)(1,1,0)[12]             : AIC=755.750, Time=0.08 sec
- ARIMA(0,1,1)(0,1,1)[12]             : AIC=756.380, Time=0.10 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,0)(0,1,0)[12]             : AIC=755.499, Time=0.03 sec
- ARIMA(1,1,0)(0,1,1)[12]             : AIC=755.982, Time=0.11 sec
- ARIMA(1,1,0)(1,1,1)[12]             : AIC=757.649, Time=0.16 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,1)(0,1,1)[12]             : AIC=756.380, Time=0.12 sec
+ ARIMA(1,1,0)(0,1,0)[12]             : AIC=755.499, Time=0.04 sec
+ ARIMA(1,1,0)(0,1,1)[12]             : AIC=755.982, Time=0.12 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,0)(0,1,0)[12]             : AIC=756.771, Time=0.05 sec
- ARIMA(1,1,1)(0,1,0)[12]             : AIC=756.022, Time=0.06 sec
- ARIMA(0,1,1)(0,1,0)[12]             : AIC=756.011, Time=0.03 sec
- ARIMA(2,1,1)(0,1,0)[12]             : AIC=757.976, Time=0.08 sec
- ARIMA(1,1,0)(0,1,0)[12] intercept   : AIC=757.438, Time=0.07 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,0)(1,1,1)[12]             : AIC=757.649, Time=0.20 sec
+ ARIMA(2,1,0)(0,1,0)[12]             : AIC=756.771, Time=0.06 sec
+ ARIMA(1,1,1)(0,1,0)[12]             : AIC=756.022, Time=0.07 sec
+ ARIMA(0,1,1)(0,1,0)[12]             : AIC=756.011, Time=0.04 sec
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,1)(0,1,0)[12]             : AIC=757.976, Time=0.09 sec
+ ARIMA(1,1,0)(0,1,0)[12] intercept   : AIC=757.438, Time=0.08 sec
 
 Best model:  ARIMA(1,1,0)(0,1,0)[12]          
-Total fit time: 1.427 seconds
+Total fit time: 1.652 seconds
 </pre></div>
 </div>
 <div class="output text_html"><table class="simpletable">
@@ -2283,7 +2294,7 @@ Total fit time: 1.427 seconds
 <th>Date:</th> <td>Mon, 15 Aug 2022</td> <th>  AIC                </th> <td>755.499</td>
 </tr>
 <tr>
-<th>Time:</th> <td>16:29:03</td> <th>  BIC                </th> <td>760.749</td>
+<th>Time:</th> <td>16:45:29</td> <th>  BIC                </th> <td>760.749</td>
 </tr>
 <tr>
 <th>Sample:</th> <td>0</td> <th>  HQIC               </th> <td>757.625</td>

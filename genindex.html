@@ -571,6 +571,15 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
     </ul>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/sandbox/model_selection/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.model_selection
+      </span>
+     </code>
+    </a>
+   </li>
    <li class="toctree-l2 has-children">
     <a class="reference internal" href="api/sandbox/tsa/index.html">
      <code class="xref py py-mod docutils literal notranslate">
@@ -921,6 +930,8 @@ title="Open an issue"
 </li>
       <li><a href="api/sandbox/graphics/utils/index.html#sandbox.graphics.utils.create_mpl_fig">create_mpl_fig() (in module sandbox.graphics.utils)</a>
 </li>
+      <li><a href="api/sandbox/model_selection/_search/index.html#sandbox.model_selection._search.CVSearcher">CVSearcher (class in sandbox.model_selection._search)</a>
+</li>
       <li><a href="api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.cycle_">cycle_ (sandbox.tsa.ssm.LinearGaussianStateSpaceModel property)</a>
 </li>
       <li><a href="api/sandbox/tsa/ssm/index.html#sandbox.tsa.ssm.LinearGaussianStateSpaceModel.cycle_filtered_">cycle_filtered_ (sandbox.tsa.ssm.LinearGaussianStateSpaceModel property)</a>
@@ -1037,12 +1048,18 @@ title="Open an issue"
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/sandbox/features/features/index.html#sandbox.features.features.get_features">get_features() (in module sandbox.features.features)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.SupervisedModelDataset.get_index_and_values_from_X_pred">get_index_and_values_from_X_pred() (sandbox.datamodel.base.SupervisedModelDataset method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/sandbox/graphics/ts_grapher/index.html#sandbox.graphics.ts_grapher.TimeSeriesGrapherMixin.graph">graph (sandbox.graphics.ts_grapher.TimeSeriesGrapherMixin property)</a>
 </li>
+      <li><a href="api/sandbox/model_selection/index.html#sandbox.model_selection.GroupTimeSeriesSplit">GroupTimeSeriesSplit (class in sandbox.model_selection)</a>
+
+      <ul>
+        <li><a href="api/sandbox/model_selection/_split/index.html#sandbox.model_selection._split.GroupTimeSeriesSplit">(class in sandbox.model_selection._split)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -1225,6 +1242,12 @@ title="Open an issue"
 </li>
         <li><a href="api/sandbox/metrics/score/index.html#module-sandbox.metrics.score">sandbox.metrics.score</a>
 </li>
+        <li><a href="api/sandbox/model_selection/index.html#module-sandbox.model_selection">sandbox.model_selection</a>
+</li>
+        <li><a href="api/sandbox/model_selection/_search/index.html#module-sandbox.model_selection._search">sandbox.model_selection._search</a>
+</li>
+        <li><a href="api/sandbox/model_selection/_split/index.html#module-sandbox.model_selection._split">sandbox.model_selection._split</a>
+</li>
         <li><a href="api/sandbox/tsa/index.html#module-sandbox.tsa">sandbox.tsa</a>
 </li>
         <li><a href="api/sandbox/tsa/base/index.html#module-sandbox.tsa.base">sandbox.tsa.base</a>
@@ -1306,6 +1329,12 @@ title="Open an issue"
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/sandbox/graphics/ts_grapher/index.html#sandbox.graphics.ts_grapher.TimeSeriesGrapher.plot_components">plot_components() (sandbox.graphics.ts_grapher.TimeSeriesGrapher method)</a>
 </li>
+      <li><a href="api/sandbox/model_selection/index.html#sandbox.model_selection.plot_cv_indices">plot_cv_indices() (in module sandbox.model_selection)</a>
+
+      <ul>
+        <li><a href="api/sandbox/model_selection/_split/index.html#sandbox.model_selection._split.plot_cv_indices">(in module sandbox.model_selection._split)</a>
+</li>
+      </ul></li>
       <li><a href="api/sandbox/graphics/ts_grapher/index.html#sandbox.graphics.ts_grapher.TimeSeriesGrapher.plot_prediction">plot_prediction() (sandbox.graphics.ts_grapher.TimeSeriesGrapher method)</a>
 </li>
       <li><a href="api/sandbox/tsa/base/index.html#sandbox.tsa.base.BaseTimeSeriesModel.predict">predict() (sandbox.tsa.base.BaseTimeSeriesModel method)</a>
@@ -1320,6 +1349,12 @@ title="Open an issue"
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/sandbox/features/features/index.html#sandbox.features.features.FeaturesFactory.process">process() (sandbox.features.features.FeaturesFactory method)</a>
 </li>
+      <li><a href="api/sandbox/model_selection/index.html#sandbox.model_selection.PurgedGroupTimeSeriesSplit">PurgedGroupTimeSeriesSplit (class in sandbox.model_selection)</a>
+
+      <ul>
+        <li><a href="api/sandbox/model_selection/_split/index.html#sandbox.model_selection._split.PurgedGroupTimeSeriesSplit">(class in sandbox.model_selection._split)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -1534,8 +1569,6 @@ title="Open an issue"
         <li><a href="api/sandbox/features/ts_calculator/index.html#module-sandbox.features.ts_calculator">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     sandbox.graphics
 
@@ -1557,6 +1590,8 @@ title="Open an issue"
         <li><a href="api/sandbox/graphics/utils/index.html#module-sandbox.graphics.utils">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     sandbox.metrics
 
@@ -1569,6 +1604,27 @@ title="Open an issue"
 
       <ul>
         <li><a href="api/sandbox/metrics/score/index.html#module-sandbox.metrics.score">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.model_selection
+
+      <ul>
+        <li><a href="api/sandbox/model_selection/index.html#module-sandbox.model_selection">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.model_selection._search
+
+      <ul>
+        <li><a href="api/sandbox/model_selection/_search/index.html#module-sandbox.model_selection._search">module</a>
+</li>
+      </ul></li>
+      <li>
+    sandbox.model_selection._split
+
+      <ul>
+        <li><a href="api/sandbox/model_selection/_split/index.html#module-sandbox.model_selection._split">module</a>
 </li>
       </ul></li>
       <li>
@@ -1674,6 +1730,16 @@ title="Open an issue"
         <li><a href="api/sandbox/datasets/whard/index.html#sandbox.datasets.whard.SOURCE">(in module sandbox.datasets.whard)</a>
 </li>
         <li><a href="api/sandbox/datasets/whard/data/index.html#sandbox.datasets.whard.data.SOURCE">(in module sandbox.datasets.whard.data)</a>
+</li>
+      </ul></li>
+      <li><a href="api/sandbox/model_selection/_split/index.html#sandbox.model_selection._split.GroupTimeSeriesSplit.split">split() (sandbox.model_selection._split.GroupTimeSeriesSplit method)</a>
+
+      <ul>
+        <li><a href="api/sandbox/model_selection/_split/index.html#sandbox.model_selection._split.PurgedGroupTimeSeriesSplit.split">(sandbox.model_selection._split.PurgedGroupTimeSeriesSplit method)</a>
+</li>
+        <li><a href="api/sandbox/model_selection/index.html#sandbox.model_selection.GroupTimeSeriesSplit.split">(sandbox.model_selection.GroupTimeSeriesSplit method)</a>
+</li>
+        <li><a href="api/sandbox/model_selection/index.html#sandbox.model_selection.PurgedGroupTimeSeriesSplit.split">(sandbox.model_selection.PurgedGroupTimeSeriesSplit method)</a>
 </li>
       </ul></li>
       <li><a href="api/sandbox/datamodel/base/index.html#sandbox.datamodel.base.StructuralDataType">StructuralDataType (in module sandbox.datamodel.base)</a>

@@ -20,6 +20,7 @@ Subpackages
    features/index.rst
    graphics/index.rst
    metrics/index.rst
+   model_selection/index.rst
    tsa/index.rst
    utils/index.rst
 
