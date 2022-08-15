@@ -1,0 +1,41 @@
+# 特徴量生成を行う関数に対する設定.
+# 記載している関数のみを実行する想定.
+func_domain:
+
+  - func_name: hour
+    func_params: null
+
+  - func_name: dayofweek
+    func_params: null
+
+  - func_name: quarter
+    func_params: null
+
+  - func_name: month
+    func_params: null
+
+  - func_name: year
+    func_params: null
+
+  - func_name: dayofyear
+    func_params: null
+
+  - func_name: dayofmonth
+    func_params: null
+
+  - func_name: weekofyear
+    func_params: null
+
+  - func_name: lag
+    func_params:
+      - lag: 1
+      - lag: 2
+      - lag: 3
+      - lag: 4
+
+# データに対する設定.
+# partition 区分を行うためのカラム指定や, どのカラムに対して特徴量を生成するのかを記載.
+data_domain:
+  column_id: ["category_id", "subcategory_id"]
+  column_values: ["date"]
+  sort_values: ["date"]
