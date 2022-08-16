@@ -1734,6 +1734,11 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matplotlib is building the font cache; this may take a moment.
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -1829,9 +1834,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[0 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 1 1 0 0 0 0 0 0 0 1 0 0 1 1 0 0 0 0 0 0 1
- 1 1 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 1 1 0 1 0 0 1 1 0 0 0 0
- 0 0 0 0 1 1 1 1 0 1 1 1 1 0 0 1 0 1 0 0 1 1 1 0 1 0]
+[1 0 0 1 0 1 1 0 0 0 0 1 0 0 0 0 1 1 0 0 1 0 0 1 1 1 0 1 0 0 0 1 0 1 1 1 1
+ 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 1 0 1 1 0 1 0 0 1
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 1 0 0 0 0 1]
 &gt; NumPy
 [0 0 1 0 0 0 0 0 0 1 0 1 0 0 0 1 0 0 1 0 0 0 0 0 0 1 0 0 0 0 1 0 1 1 1 1 0
  1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0
@@ -1885,8 +1890,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 0.3031 vs 0.3
-分散(乱数 vs 真値): 0.21123039 vs 0.21
+期待値(乱数 vs 真値): 0.299 vs 0.3
+分散(乱数 vs 真値): 0.20959900000000006 vs 0.21
 &gt; NumPy
 期待値(乱数 vs 真値): 0.2951 vs 0.3
 分散(乱数 vs 真値): 0.20801598999999996 vs 0.21
@@ -2054,9 +2059,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[3 0 6 3 8 4 4 2 6 2 3 3 3 4 4 5 5 2 2 4 3 3 2 5 1 3 1 1 4 3 3 3 0 3 3 4 2
- 3 4 3 2 2 5 1 4 5 2 2 1 5 4 4 6 4 3 1 2 2 2 2 3 4 5 3 0 5 4 2 1 3 1 3 5 3
- 2 4 4 3 2 3 3 4 3 3 6 3 4 2 4 4 5 4 4 3 2 0 2 1 2 4]
+[2 5 2 6 2 2 2 3 5 4 2 3 4 5 1 2 3 2 3 4 4 2 2 3 4 5 3 2 2 4 2 2 4 2 2 5 5
+ 2 1 3 4 4 4 4 2 1 4 3 4 2 2 3 4 3 5 6 6 3 1 2 3 3 3 2 5 4 2 4 6 2 2 5 2 3
+ 3 3 4 3 1 4 3 1 0 3 3 3 2 5 6 4 4 1 3 3 2 2 2 2 4 4]
 &gt; NumPy
 [5 5 4 2 4 2 4 3 2 3 3 1 6 2 4 5 3 5 6 1 3 4 6 4 7 3 4 2 3 2 5 4 5 2 4 2 3
  3 3 5 2 4 3 2 5 2 2 2 3 1 4 2 2 2 5 4 3 3 5 1 3 4 5 4 4 5 5 2 2 2 7 1 3 2
@@ -2087,8 +2092,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 3.009 vs 3.0
-分散(乱数 vs 真値): 2.1117190000000003 vs 2.0999999999999996
+期待値(乱数 vs 真値): 2.9918 vs 3.0
+分散(乱数 vs 真値): 2.13233276 vs 2.0999999999999996
 &gt; NumPy
 期待値(乱数 vs 真値): 3.0054 vs 3.0
 分散(乱数 vs 真値): 2.14157084 vs 2.0999999999999996
@@ -2147,7 +2152,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12380e940&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x127b9b820&gt;
 </pre></div>
 </div>
 <img alt="../../_images/dist_23_1.png" src="../../_images/dist_23_1.png">
@@ -2173,7 +2178,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x123865af0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x127b7e8e0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/dist_24_1.png" src="../../_images/dist_24_1.png"/>
@@ -2290,11 +2295,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[ 6  3  2  4 11  2  3  2  7  4  5  5  4  8  7  4  4  1  4  8  6  2  3  7
-  2  7 11  7  6  6  4  3  5  6  7  2  6  3  2  2  6  5  8  4  8  8  7  3
-  4  4  6  3  8  6  3  3  9  2  6  5  6  5  4  2  7  6  6  6  2  7  8  7
- 10  9  5  4  0  5  4  9  5  4  4  5  7  6  7  5  6  2  0  3  7  3  8  5
-  5  5  3  3]
+[ 7  6  4  3  5  4  6  5  4  4  5  3  3  8  4  3  5  8  6  4  5  6  4  4
+  4 10  4  4  3  1  5  4  5  4  3  7  5  4  5  7  8  4  5  6  5  6  6  3
+  5  5  6  4  1  6  5  9  5  5  5  4  7  7 10  4  5  7  8  5  2  0  4  4
+  4  4  5  5  8  3  3  3  9  7  3  7  7  4  4  5  6  4  2  1  7  3  5  4
+  6  2  7  4]
 &gt; NumPy
 [ 3  4 10  3  3  2 13  6  5  2  6  5  5  2  5  4  3  3  4  6  8  6  8  7
   4  5  3  4  7  7  4  3  7  6  4  4  2  5  2  7  3  4  5  4  6  5  4  8
@@ -2327,8 +2332,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 5.0047 vs 5.0
-分散(乱数 vs 真値): 5.100277910000002 vs 5.0
+期待値(乱数 vs 真値): 4.9519 vs 5.0
+分散(乱数 vs 真値): 5.030586390000001 vs 5.0
 &gt; NumPy
 期待値(乱数 vs 真値): 5.0234 vs 5.0
 分散(乱数 vs 真値): 4.98485244 vs 5.0
@@ -2388,7 +2393,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x123a5b8e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x127c7a3a0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/dist_33_1.png" src="../../_images/dist_33_1.png"/>
@@ -2445,7 +2450,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x123aec070&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x127e13fd0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/dist_35_1.png" src="../../_images/dist_35_1.png"/>
@@ -2589,11 +2594,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[ 6  2  1  1  2  1  3  3  3  2  5 11  4 11  1  7  1  3  2  6  4  1  7  4
-  1  4  6 10  3  1  4  4  1  1  8  1  1  7  2  2  8  1  1  2  8  2  2  4
-  3 13  6  1  1 11  6  2  4  3  2  3  3  1  5  1  4  6 10  3  8  3 10  1
-  4  6  1 10  1  1  1  1  1  1  3  4  2  4  4  4  2  1  2  3  2  2  3  1
-  1  3  1  3]
+[ 1  3  1 12  1  4  1  7  1  1  1  3  2  6  3  3  2  5  4  6  1  4  2  2
+  1  2  9  2  7  1  8  1  4  2  2  2  1  2 11  1  1  1  4  6  1  3  1  1
+  2  3  1  3  2  1  1  4  2  1  1  8  2  2  1  3  1 10  2  2  1  1  2  1
+  6  2  4  3  4  6  3  2  7  5 12  2 10  1 14  4  1  2  1  3  2  2  4  2
+  4  3  1  1]
 &gt; NumPy
 [ 3  1  3  1  2  2  2  2  3  1  3  3  1  1  1  7  1  4  1  5  8  2  3  2
   1  3  2  5  3  1  3  7  3  1  3  5  1  4  1  1  1  1  8  4  3  1  3  4
@@ -2627,8 +2632,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 3.3262 vs 3.3333333333333335
-分散(乱数 vs 真値): 7.91059356 vs 7.777777777777779
+期待値(乱数 vs 真値): 3.3137 vs 3.3333333333333335
+分散(乱数 vs 真値): 7.69509231 vs 7.777777777777779
 &gt; NumPy
 期待値(乱数 vs 真値): 3.3007 vs 3.3333333333333335
 分散(乱数 vs 真値): 7.4182795100000005 vs 7.777777777777779
@@ -2687,7 +2692,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x123c55ee0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x127f4e220&gt;
 </pre></div>
 </div>
 <img alt="../../_images/dist_44_1.png" src="../../_images/dist_44_1.png"/>
@@ -2846,11 +2851,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[22 12 12 13 17 31 22  2 20 21  8 26  1 14 15 11 21 10 10  8  3 15 12 21
- 44 17 12 21 16 26 48 21 20 12 27 14  7 29  7  5 19 19  7  6  5 17 12 34
- 37  6 15 14 13 12 10 21 17 20 18 14 14 17 33 16 17 12 19 14 20 22 16 17
-  1 12 10 12 21 17 15 13 24 21 18 10 19 12 21 10 19 53 30 16 20 25  3  3
- 29 23  4 12]
+[ 2 51 14 16 17 26 27 18 11 17 22 13  8  3 36  8 10 18 16 25 21 14  9  5
+ 33 19 13  5 26 11 19 32 11 13 14 13 15 19 18  6 14 25  5 11 31 16 12 38
+ 14 18 12 19 35  9 10 12  6 10 24  5  6 23 11 32  8 12 26 19 22 17 12 15
+ 20 20 12 10 20 31  8 18 21 10 17 11 43 31 18 16 11 10 16 12 11 10 14  7
+ 18 13 40  7]
 &gt; NumPy
 [19 34 25  3  8 16 18 12 44 10  5 26 11 16 28 12  6 14  6 19 23 14  3 23
  22 15 16 14 10 29  6 20 16  5 25  5 10 10 21  9  9 21 25 29 13 22  4 21
@@ -2884,8 +2889,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 16.0451 vs｜ 16.0
-分散(乱数 vs 真値): 77.10026599000001 vs 79.99999999999999
+期待値(乱数 vs 真値): 16.1057 vs｜ 16.0
+分散(乱数 vs 真値): 80.73952751 vs 79.99999999999999
 &gt; NumPy
 期待値(乱数 vs 真値): 16.0454 vs 16.0
 分散(乱数 vs 真値): 82.54973884 vs 79.99999999999999
@@ -2943,7 +2948,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x123ed0df0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x128179550&gt;
 </pre></div>
 </div>
 <img alt="../../_images/dist_53_1.png" src="../../_images/dist_53_1.png"/>
@@ -2973,7 +2978,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x123eaa9d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x127feac40&gt;
 </pre></div>
 </div>
 <img alt="../../_images/dist_54_1.png" src="../../_images/dist_54_1.png"/>
@@ -3101,10 +3106,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[3.8640518  3.26113574 7.50299171 4.12808503 5.68099749 5.94730609
- 6.78431404 6.26098278 6.10967813 5.79615195 6.5701115  6.04860658
- 5.43834323 4.73072935 5.41817569 4.40413755 4.3277924  5.26938138
- 5.89746232 3.68464827]
+[7.32551316 6.31636644 7.4265023  5.22100444 4.82688849 6.19332573
+ 4.53029437 4.54359795 7.58312645 7.05156733 7.10463071 3.33571789
+ 4.69655308 6.94542005 7.26812631 7.65332043 3.30167185 5.01004804
+ 6.52648147 5.12574643]
 &gt; NumPy
 [7.22090427 4.98426609 7.55452031 3.1926514  6.32169067 4.0104301
  7.9795091  4.4106398  7.99999312 3.92861151 6.61590431 5.92276641
@@ -3136,8 +3141,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 5.494109346975909 vs｜ 5.5
-分散(乱数 vs 真値): 2.0852171514287345 vs 2.083333333333333
+期待値(乱数 vs 真値): 5.517465616742393 vs｜ 5.5
+分散(乱数 vs 真値): 2.086434569277188 vs 2.083333333333333
 &gt; NumPy
 期待値(乱数 vs 真値): 5.500166337412839 vs 5.5
 分散(乱数 vs 真値): 2.0828626544358886 vs 2.083333333333333
@@ -3329,10 +3334,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[ 8.76918002 11.87913309 12.3041572   6.45447808  9.19203215 11.13192135
-  7.11359261 10.91289992 11.03544979  9.00516077  8.85047978 13.59276356
- 10.50775627 10.19151665  9.18938819 10.59874599 10.94260152 13.44037863
- 12.87208466 11.87130802]
+[ 8.09118333 10.97136549 11.13700725 11.09214311 10.96731058  9.90762386
+ 10.88643521  8.17555654 10.55642395  9.41987157  8.6968649  10.86004167
+ 13.48721827  9.6120427   9.83993125 12.04829666 16.39830336 10.31557763
+ 11.70347966 11.62025051]
 &gt; NumPy
 [ 8.70461874 11.39812729  8.50115066 10.33695154 10.55931471  9.32878914
   9.00163263 13.17880852 10.83535446 13.12140641  9.68146009  7.14082452
@@ -3364,8 +3369,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 10.01368588898539 vs 10.0
-分散(乱数 vs 真値): 3.930622246228067 vs 4.0
+期待値(乱数 vs 真値): 9.977838993334322 vs 10.0
+分散(乱数 vs 真値): 4.017025184630008 vs 4.0
 &gt; NumPy
 期待値(乱数 vs 真値): 10.022351940478329 vs 10.0
 分散(乱数 vs 真値): 3.992217287294061 vs 4.0
@@ -3425,7 +3430,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x124314d60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x128617d00&gt;
 </pre></div>
 </div>
 <img alt="../../_images/dist_73_1.png" src="../../_images/dist_73_1.png"/>
@@ -3454,7 +3459,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x123f60820&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12868a520&gt;
 </pre></div>
 </div>
 <img alt="../../_images/dist_74_1.png" src="../../_images/dist_74_1.png"/>
@@ -3732,15 +3737,15 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[ 1.49847151  2.46479895 10.7851481  43.07916278  3.09332126 23.25188728
-  9.51981347 10.8520891   4.36945621 12.44053126  4.10376421  2.36334329
- 13.25579477  3.99257331 60.65967545 13.07259384  8.97280822 28.65533038
-  9.50941544 16.34385366]
+[ 4.39549742  4.7779078   4.6006171   6.78050788  4.43931234 42.60533304
+  7.68362361  6.24500452  5.9450946   3.53458472  5.43376725 87.00118235
+  2.79964018  3.71595837 10.12299142  1.72298392  4.02531538 10.54470183
+  0.68814514  3.32458459]
 &gt; NumPy
-[ 5.25906916  1.80572034 32.90808653  9.89450108  4.91021786 89.13024984
-  9.88143354 15.09314229 21.41880829 15.93243508  3.21251978  2.2384927
-  0.82683016  4.07299139 50.07372202 30.25739639  6.6522854  45.72636412
-  3.26271266  2.78203307]
+[ 1.73294393  2.37317246 17.06120843  2.48269082  2.20899493  3.1640909
+  2.43953775  8.07085947 12.16272376  5.98836001  7.95162609  2.00144023
+  2.35137142  2.15658178  5.60100093  7.91900485 20.87395158  3.05503256
+  5.39824738  7.28087448]
 </pre></div>
 </div>
 </div>
@@ -3767,11 +3772,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 12.229647369514144 vs 12.182493960703473
-分散(乱数 vs 真値): 248.22190039828945 vs 255.0156343901585
+期待値(乱数 vs 真値): 12.500089475718882 vs 12.182493960703473
+分散(乱数 vs 真値): 290.5441960963972 vs 255.0156343901585
 &gt; NumPy
-期待値(乱数 vs 真値): 12.196987344584434 vs 12.182493960703473
-分散(乱数 vs 真値): 242.19799934955904 vs 255.0156343901585
+期待値(乱数 vs 真値): 12.331838576749096 vs 12.182493960703473
+分散(乱数 vs 真値): 262.3510993892583 vs 255.0156343901585
 </pre></div>
 </div>
 </div>
@@ -3827,7 +3832,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1269cba30&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12ace0ca0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/dist_86_1.png" src="../../_images/dist_86_1.png"/>
@@ -3940,15 +3945,15 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[0.00829179 0.0356067  0.0389174  0.01985702 0.04024081 0.02924408
- 0.00779111 0.04236244 0.09772218 0.31904661 0.17072029 0.06407159
- 0.17703711 0.0376379  0.09658867 0.03477813 0.07803295 0.02979447
- 0.03700487 0.41670825]
+[0.15815159 0.05348344 0.1332915  0.01053601 0.02605265 0.19523764
+ 0.08329459 0.01298294 0.03288031 0.06538823 0.00778646 0.11662116
+ 0.05840873 0.08022903 0.27213391 0.06746003 0.06761739 0.01541697
+ 0.02997302 0.15920746]
 &gt; NumPy
-[0.07692891 0.1769744  0.07132269 0.01817227 0.01336775 0.01590922
- 0.56539519 0.02003913 0.434983   0.06852029 0.20973344 0.06267446
- 0.05925697 0.02994257 0.01143664 0.14594563 0.03378981 0.11944376
- 0.05663243 0.17896468]
+[0.02672129 0.14472257 0.06235519 0.03456202 0.00691561 0.11977618
+ 0.10927404 0.03901976 0.07983298 0.34357738 0.39320378 0.08321627
+ 0.18653903 0.02669044 0.10729312 0.01634316 0.05153545 0.03123127
+ 0.01651978 0.09010017]
 </pre></div>
 </div>
 </div>
@@ -3975,11 +3980,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 0.09992598111031309 vs 0.1
-分散(乱数 vs 真値): 0.009867241064336466 vs 0.010000000000000002
+期待値(乱数 vs 真値): 0.09965113485406867 vs 0.1
+分散(乱数 vs 真値): 0.00970744583366837 vs 0.010000000000000002
 &gt; NumPy
-期待値(乱数 vs 真値): 0.09956924789887313 vs 0.1
-分散(乱数 vs 真値): 0.010006828703637763 vs 0.010000000000000002
+期待値(乱数 vs 真値): 0.10242454642783821 vs 0.1
+分散(乱数 vs 真値): 0.010070624125535884 vs 0.010000000000000002
 </pre></div>
 </div>
 </div>
@@ -4037,7 +4042,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1269fac10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12af138b0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/dist_95_1.png" src="../../_images/dist_95_1.png"/>
@@ -4235,15 +4240,15 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[0.24006688 0.74180597 0.35013049 0.14363312 2.96540487 0.72545093
- 0.53028717 2.28417391 2.95663882 0.70875824 2.81385189 3.55439867
- 2.55498038 4.09157629 2.89397798 3.86056443 0.77982098 3.16416638
- 0.41659422 0.68899939]
+[1.06016878 1.69804461 2.69746565 0.899584   0.82080821 1.81759799
+ 0.73369847 1.73503156 1.69157329 1.57239761 0.08697971 0.9429691
+ 1.60054555 4.10740376 3.44068485 2.13650724 1.88925764 0.63717749
+ 1.2701934  2.12342818]
 &gt; NumPy
-[1.91102377 1.52715012 2.05223542 8.08331239 1.7400743  2.69476722
- 3.60787036 0.83786327 2.5091615  0.52075429 0.37831371 2.36677396
- 2.51338567 2.26244963 2.02654605 3.86238179 0.79877208 1.80446844
- 0.77982892 1.13006936]
+[3.55972532 1.87376488 1.54326815 0.843432   1.47266465 1.45615709
+ 1.84068831 4.77020272 1.57619308 1.16079844 3.9856453  0.82138276
+ 2.98193636 1.81207336 4.58788321 3.35924873 2.3890259  2.11582127
+ 3.09147533 0.70393828]
 </pre></div>
 </div>
 </div>
@@ -4270,11 +4275,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 1.9920502848088675 vs 2.0
-分散(乱数 vs 真値): 1.990987724739774 vs 2.0
+期待値(乱数 vs 真値): 1.9989792155573056 vs 2.0
+分散(乱数 vs 真値): 1.9772843751701934 vs 2.0
 &gt; NumPy
-期待値(乱数 vs 真値): 1.984877196314518 vs 2.0
-分散(乱数 vs 真値): 1.9400352714352387 vs 2.0
+期待値(乱数 vs 真値): 2.013717092987251 vs 2.0
+分散(乱数 vs 真値): 2.0261846476837104 vs 2.0
 </pre></div>
 </div>
 </div>
@@ -4332,7 +4337,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x126d5f670&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12b258040&gt;
 </pre></div>
 </div>
 <img alt="../../_images/dist_105_1.png" src="../../_images/dist_105_1.png"/>
@@ -4358,7 +4363,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x126658b50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12b2f6d00&gt;
 </pre></div>
 </div>
 <img alt="../../_images/dist_106_1.png" src="../../_images/dist_106_1.png"/>
@@ -4578,15 +4583,15 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-[0.12393292 0.40388776 0.58749389 0.77276527 0.18034831 0.57770239
- 0.11592662 0.2983722  0.59050795 0.90194899 0.49948095 0.46969268
- 0.38497683 0.89584395 0.51906448 0.84005319 0.54136504 0.92470252
- 0.65852047 0.85197516]
+[0.50454539 0.15091866 0.11643439 0.27915443 0.5768196  0.49931901
+ 0.84382881 0.88888991 0.56609989 0.43386066 0.16261618 0.28647133
+ 0.70584627 0.43760965 0.6102874  0.64805735 0.41038227 0.86650816
+ 0.45138821 0.62394619]
 &gt; NumPy
-[0.81496501 0.84040642 0.21877303 0.48663786 0.42302417 0.3347019
- 0.75307788 0.5607845  0.40932492 0.31548838 0.25405924 0.63319555
- 0.86919187 0.74142837 0.60639757 0.25033693 0.49571677 0.49588028
- 0.54161463 0.12608403]
+[0.54406548 0.89123121 0.81544736 0.60408076 0.7300173  0.63905814
+ 0.84006537 0.22628242 0.74890006 0.23701207 0.39643298 0.75801165
+ 0.39785516 0.71161256 0.51340187 0.05049673 0.27571584 0.52214377
+ 0.42629505 0.28205902]
 </pre></div>
 </div>
 </div>
@@ -4613,11 +4618,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; SciPy
-期待値(乱数 vs 真値): 0.49985651989705077 vs 0.5
-分散(乱数 vs 真値): 0.049771300333601394 vs 0.05
+期待値(乱数 vs 真値): 0.499763111530666 vs 0.5
+分散(乱数 vs 真値): 0.049289096258742414 vs 0.05
 &gt; NumPy
-期待値(乱数 vs 真値): 0.49893257516619843 vs 0.5
-分散(乱数 vs 真値): 0.04962693338351221 vs 0.05
+期待値(乱数 vs 真値): 0.5017236186898003 vs 0.5
+分散(乱数 vs 真値): 0.05017554954320199 vs 0.05
 </pre></div>
 </div>
 </div>
@@ -4671,7 +4676,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x126564d60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x128742ac0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/dist_116_1.png" src="../../_images/dist_116_1.png"/>

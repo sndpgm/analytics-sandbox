@@ -938,7 +938,6 @@ title="Open an issue"
         <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span> <span class="o">=</span> <span class="n">indexable</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
         <span class="n">n_splits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_splits</span>
         <span class="n">n_folds</span> <span class="o">=</span> <span class="n">n_splits</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="n">group_dict</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sort_groups</span><span class="p">:</span>
             <span class="n">unique_groups</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span>
@@ -946,13 +945,8 @@ title="Open an issue"
             <span class="n">u</span><span class="p">,</span> <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">return_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">unique_groups</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">ind</span><span class="p">)]</span>
 
-        <span class="n">n_samples</span> <span class="o">=</span> <span class="n">_num_samples</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">n_groups</span> <span class="o">=</span> <span class="n">_num_samples</span><span class="p">(</span><span class="n">unique_groups</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">groups</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="ow">in</span> <span class="n">group_dict</span><span class="p">:</span>
-                <span class="n">group_dict</span><span class="p">[</span><span class="n">groups</span><span class="p">[</span><span class="n">idx</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">group_dict</span><span class="p">[</span><span class="n">groups</span><span class="p">[</span><span class="n">idx</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
         <span class="k">if</span> <span class="n">n_folds</span> <span class="o">&gt;</span> <span class="n">n_groups</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="s2">&quot;Cannot have number of folds=</span><span class="si">{0}</span><span class="s2"> greater than the number of groups=</span><span class="si">{1}</span><span class="s2">&quot;</span>
@@ -963,28 +957,20 @@ title="Open an issue"
         <span class="n">group_test_starts</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span>
             <span class="n">n_groups</span> <span class="o">-</span> <span class="n">n_splits</span> <span class="o">*</span> <span class="n">group_test_size</span><span class="p">,</span> <span class="n">n_groups</span><span class="p">,</span> <span class="n">group_test_size</span>
         <span class="p">)</span>
+
         <span class="k">for</span> <span class="n">group_test_start</span> <span class="ow">in</span> <span class="n">group_test_starts</span><span class="p">:</span>
-            <span class="n">train_array</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">test_array</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">train_group_idx</span> <span class="ow">in</span> <span class="n">unique_groups</span><span class="p">[:</span><span class="n">group_test_start</span><span class="p">]:</span>
-                <span class="n">train_array_tmp</span> <span class="o">=</span> <span class="n">group_dict</span><span class="p">[</span><span class="n">train_group_idx</span><span class="p">]</span>
-                <span class="n">train_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span>
-                    <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span>
-                        <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">train_array</span><span class="p">,</span> <span class="n">train_array_tmp</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span>
-                    <span class="p">),</span>
-                    <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                <span class="p">)</span>
+            <span class="n">train_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">unique_groups</span><span class="p">[:</span><span class="n">group_test_start</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">train_end</span> <span class="o">=</span> <span class="n">train_array</span><span class="o">.</span><span class="n">size</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_train_size</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_train_size</span> <span class="o">&lt;</span> <span class="n">train_end</span><span class="p">:</span>
                 <span class="n">train_array</span> <span class="o">=</span> <span class="n">train_array</span><span class="p">[</span><span class="n">train_end</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_train_size</span> <span class="p">:</span> <span class="n">train_end</span><span class="p">]</span>
-            <span class="k">for</span> <span class="n">test_group_idx</span> <span class="ow">in</span> <span class="n">unique_groups</span><span class="p">[</span>
-                <span class="n">group_test_start</span> <span class="p">:</span> <span class="n">group_test_start</span> <span class="o">+</span> <span class="n">group_test_size</span>
-            <span class="p">]:</span>
-                <span class="n">test_array_tmp</span> <span class="o">=</span> <span class="n">group_dict</span><span class="p">[</span><span class="n">test_group_idx</span><span class="p">]</span>
-                <span class="n">test_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span>
-                    <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">test_array</span><span class="p">,</span> <span class="n">test_array_tmp</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
-                    <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">test_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span>
+                    <span class="n">groups</span><span class="p">,</span>
+                    <span class="n">unique_groups</span><span class="p">[</span>
+                        <span class="n">group_test_start</span> <span class="p">:</span> <span class="n">group_test_start</span> <span class="o">+</span> <span class="n">group_test_size</span>
+                    <span class="p">],</span>
                 <span class="p">)</span>
+            <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">yield</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">train_array</span><span class="p">],</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">test_array</span><span class="p">]</span></div></div>
 
 
@@ -1071,7 +1057,6 @@ title="Open an issue"
         <span class="n">max_test_group_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_test_group_size</span>
         <span class="n">max_train_group_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_train_group_size</span>
         <span class="n">n_folds</span> <span class="o">=</span> <span class="n">n_splits</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="n">group_dict</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sort_groups</span><span class="p">:</span>
             <span class="n">unique_groups</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span>
@@ -1079,13 +1064,7 @@ title="Open an issue"
             <span class="n">u</span><span class="p">,</span> <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">return_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">unique_groups</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">ind</span><span class="p">)]</span>
 
-        <span class="n">n_samples</span> <span class="o">=</span> <span class="n">_num_samples</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">n_groups</span> <span class="o">=</span> <span class="n">_num_samples</span><span class="p">(</span><span class="n">unique_groups</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">groups</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="ow">in</span> <span class="n">group_dict</span><span class="p">:</span>
-                <span class="n">group_dict</span><span class="p">[</span><span class="n">groups</span><span class="p">[</span><span class="n">idx</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">group_dict</span><span class="p">[</span><span class="n">groups</span><span class="p">[</span><span class="n">idx</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="n">idx</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">n_folds</span> <span class="o">&gt;</span> <span class="n">n_groups</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="s2">&quot;Cannot have number of folds=</span><span class="si">{0}</span><span class="s2"> greater than the number of groups=</span><span class="si">{1}</span><span class="s2">&quot;</span>
@@ -1097,29 +1076,20 @@ title="Open an issue"
             <span class="n">n_groups</span> <span class="o">-</span> <span class="n">n_splits</span> <span class="o">*</span> <span class="n">group_test_size</span><span class="p">,</span> <span class="n">n_groups</span><span class="p">,</span> <span class="n">group_test_size</span>
         <span class="p">)</span>
         <span class="k">for</span> <span class="n">group_test_start</span> <span class="ow">in</span> <span class="n">group_test_starts</span><span class="p">:</span>
-            <span class="n">train_array</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">test_array</span> <span class="o">=</span> <span class="p">[]</span>
-
             <span class="n">group_st</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">group_test_start</span> <span class="o">-</span> <span class="n">group_gap</span> <span class="o">-</span> <span class="n">max_train_group_size</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">train_group_idx</span> <span class="ow">in</span> <span class="n">unique_groups</span><span class="p">[</span>
-                <span class="n">group_st</span> <span class="p">:</span> <span class="p">(</span><span class="n">group_test_start</span> <span class="o">-</span> <span class="n">group_gap</span><span class="p">)</span>
-            <span class="p">]:</span>
-                <span class="n">train_array_tmp</span> <span class="o">=</span> <span class="n">group_dict</span><span class="p">[</span><span class="n">train_group_idx</span><span class="p">]</span>
-                <span class="n">train_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span>
-                    <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span>
-                        <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">train_array</span><span class="p">,</span> <span class="n">train_array_tmp</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span>
-                    <span class="p">),</span>
-                    <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">train_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span>
+                    <span class="n">groups</span><span class="p">,</span> <span class="n">unique_groups</span><span class="p">[</span><span class="n">group_st</span> <span class="p">:</span> <span class="p">(</span><span class="n">group_test_start</span> <span class="o">-</span> <span class="n">group_gap</span><span class="p">)]</span>
                 <span class="p">)</span>
-
-            <span class="k">for</span> <span class="n">test_group_idx</span> <span class="ow">in</span> <span class="n">unique_groups</span><span class="p">[</span>
-                <span class="n">group_test_start</span> <span class="p">:</span> <span class="n">group_test_start</span> <span class="o">+</span> <span class="n">group_test_size</span>
-            <span class="p">]:</span>
-                <span class="n">test_array_tmp</span> <span class="o">=</span> <span class="n">group_dict</span><span class="p">[</span><span class="n">test_group_idx</span><span class="p">]</span>
-                <span class="n">test_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span>
-                    <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">test_array</span><span class="p">,</span> <span class="n">test_array_tmp</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
-                    <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">test_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span>
+                    <span class="n">groups</span><span class="p">,</span>
+                    <span class="n">unique_groups</span><span class="p">[</span>
+                        <span class="n">group_test_start</span> <span class="p">:</span> <span class="n">group_test_start</span> <span class="o">+</span> <span class="n">group_test_size</span>
+                    <span class="p">],</span>
                 <span class="p">)</span>
+            <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">test_array</span> <span class="o">=</span> <span class="n">test_array</span><span class="p">[</span><span class="n">group_gap</span><span class="p">:]</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">pass</span>
