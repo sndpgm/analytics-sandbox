@@ -767,6 +767,23 @@ title="Open an issue"
 
       </li>
       
+      <li>
+        <a href="https://github.com/sndpgm/analytics-sandbox/edit/main/docs/intro.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
     </ul>
   </div>
 </div>
@@ -816,12 +833,51 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   はじめに
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   アナリティクス
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sandbox">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sandbox
+    </span>
+   </code>
+   プログラム
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -833,6 +889,34 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   はじめに
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   アナリティクス
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sandbox">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sandbox
+    </span>
+   </code>
+   プログラム
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -842,113 +926,123 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="welcome-to-my-analytics-sandbox">
 <h1>Welcome to my Analytics Sandbox<a class="headerlink" href="#welcome-to-my-analytics-sandbox" title="Permalink to this headline">#</a></h1>
-<p>本サイトではアナリティクスに関する自学自習内容をログとして残している.<br />
-ゆえに, 内容の正確性については保証しないので, 参考にする際には注意をすること.</p>
+<section id="id1">
+<h2>はじめに<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>本サイトではアナリティクスに関する自学自習内容をログとし, 関連したコードのAPIドキュメントを記載することを目的とした<strong>自己満サイト</strong>です.
+従って, 内容の正確性については保証しないので, 参考にする際には注意してください.</p>
+</section>
+<section id="id2">
+<h2>アナリティクス<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>以下について作成中. コンテンツの追加や加筆は気長に行う予定.</p>
+<div class="sd-sphinx-override sd-cards-carousel sd-card-cols-3 docutils">
+<div class="sd-card sd-sphinx-override sd-m-3 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-header bg-light text-center docutils">
+<p class="sd-card-text"><strong>確率変数と確率分布</strong></p>
+</div>
+<div class="sd-card-body text-center docutils">
+<p class="sd-card-text">アナリティクスの根底にある確率論に基づいた知識. ベイズ統計において重要な条件付事象についても記載.</p>
+</div>
+<div class="sd-card-footer docutils">
+<p class="sd-card-text">Check the content <span class="fas fa-arrow-right"></span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://sndpgm.github.io/analytics-sandbox/analytics/distribution/rvs.html"></a></div>
+<div class="sd-card sd-sphinx-override sd-m-3 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-header bg-light text-center docutils">
+<p class="sd-card-text"><strong>回帰モデル</strong></p>
+</div>
+<div class="sd-card-body text-center docutils">
+<p class="sd-card-text">工事中.</p>
+</div>
+<div class="sd-card-footer docutils">
+<p class="sd-card-text">Check the content <span class="fas fa-arrow-right"></span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://sndpgm.github.io/analytics-sandbox/analytics/regression/blm.html"></a></div>
+<div class="sd-card sd-sphinx-override sd-m-3 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-header bg-light text-center docutils">
+<p class="sd-card-text"><strong>時系列モデル</strong></p>
+</div>
+<div class="sd-card-body text-center docutils">
+<p class="sd-card-text">時系列データの特徴から古典的時系列モデル・状態空間モデルまで簡単に整理.</p>
+</div>
+<div class="sd-card-footer docutils">
+<p class="sd-card-text">Check the content <span class="fas fa-arrow-right"></span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://sndpgm.github.io/analytics-sandbox/analytics/tsa/ts.html"></a></div>
+<div class="sd-card sd-sphinx-override sd-m-3 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-header bg-light text-center docutils">
+<p class="sd-card-text"><strong>勾配ブースティング決定木</strong></p>
+</div>
+<div class="sd-card-body text-center docutils">
+<p class="sd-card-text">工事中.</p>
+</div>
+<div class="sd-card-footer docutils">
+<p class="sd-card-text">Check the content <span class="fas fa-arrow-right"></span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://sndpgm.github.io/analytics-sandbox/analytics/regression/blm.html"></a></div>
+<div class="sd-card sd-sphinx-override sd-m-3 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-header bg-light text-center docutils">
+<p class="sd-card-text"><strong>深層学習</strong></p>
+</div>
+<div class="sd-card-body text-center docutils">
+<p class="sd-card-text">工事中.</p>
+</div>
+<div class="sd-card-footer docutils">
+<p class="sd-card-text">Check the content <span class="fas fa-arrow-right"></span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://sndpgm.github.io/analytics-sandbox/analytics/regression/blm.html"></a></div>
+<div class="sd-card sd-sphinx-override sd-m-3 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-header bg-light text-center docutils">
+<p class="sd-card-text"><strong>強化学習</strong></p>
+</div>
+<div class="sd-card-body text-center docutils">
+<p class="sd-card-text">工事中.</p>
+</div>
+<div class="sd-card-footer docutils">
+<p class="sd-card-text">Check the content <span class="fas fa-arrow-right"></span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://sndpgm.github.io/analytics-sandbox/analytics/regression/blm.html"></a></div>
+</div>
+</section>
+<section id="sandbox">
+<h2><code class="docutils literal notranslate"><span class="pre">sandbox</span></code> プログラム<a class="headerlink" href="#sandbox" title="Permalink to this headline">#</a></h2>
+<p>アナリティクスの学習と並行して関連コードを開発中.
+基本的には有名ライブラリを使いやすくラッピングしたもの.
+APIドキュメントは<a class="reference internal" href="api/sandbox/index.html"><span class="doc std std-doc">こちら</span></a>.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 text-center docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">💬 Ask and answer questions</p>
+</div>
+<div class="sd-card-body docutils">
+<p class="sd-card-text">GitHub 上の Discussions からプログラムのQ&amp;Aができます. もちろん筆者だけでなく閲覧者同士でも活発にできればと思います.</p>
+</div>
+<a class="sd-stretched-link reference external" href="https://github.com/sndpgm/analytics-sandbox/discussions"></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">👍 Call for new features</p>
+</div>
+<div class="sd-card-body docutils">
+<p class="sd-card-text">GitHub issue から「このようなモジュールがあるといい」というリクエストがあれば実装を検討します.
+もし実装方針等にアイディアがあれば是非お願いします.</p>
+</div>
+<a class="sd-stretched-link reference external" href="https://github.com/sndpgm/analytics-sandbox/issues"></a></div>
+</div>
+</div>
+</div>
+</section>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">確率変数と確率分布</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="analytics/distribution/rvs.html">確率変数</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analytics/distribution/dist.html">確率分布</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analytics/distribution/mdist.html">多変量確率分布</a></li>
-</ul>
 </div>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">回帰モデル</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="analytics/regression/blm.html">ベイズ線形回帰モデル</a></li>
-</ul>
 </div>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">時系列モデル</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="analytics/tsa/ts.html">時系列データ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analytics/tsa/arma.html">ARMAモデル系</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analytics/tsa/arima.html">ARIMAモデル系</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analytics/tsa/ssm.html">状態空間モデル</a></li>
-</ul>
 </div>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">補足</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="analytics/math/calculus.html">微分積分学</a></li>
-<li class="toctree-l1"><a class="reference internal" href="analytics/math/linear_algebra.html">線形代数学</a></li>
-</ul>
 </div>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="api/sandbox/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/sandbox/datamodel/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datamodel</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/datamodel/base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datamodel.base</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/datamodel/ts_datamodel/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datamodel.ts_datamodel</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/datamodel/ts_simulator/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datamodel.ts_simulator</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/sandbox/datasets/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/datasets/air_passengers/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets.air_passengers</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/sandbox/datasets/air_passengers/data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets.air_passengers.data</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/datasets/blsallfood/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets.blsallfood</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/sandbox/datasets/blsallfood/data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets.blsallfood.data</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/datasets/hakusan/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets.hakusan</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/sandbox/datasets/hakusan/data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets.hakusan.data</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/datasets/maxtemp/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets.maxtemp</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/sandbox/datasets/maxtemp/data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets.maxtemp.data</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/datasets/mye1f/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets.mye1f</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/sandbox/datasets/mye1f/data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets.mye1f.data</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/datasets/nikkei225/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets.nikkei225</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/sandbox/datasets/nikkei225/data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets.nikkei225.data</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/datasets/rtf/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets.rtf</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/sandbox/datasets/rtf/data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets.rtf.data</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/datasets/whard/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets.whard</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/sandbox/datasets/whard/data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets.whard.data</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/datasets/utils/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.datasets.utils</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/sandbox/features/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.features</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/features/features/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.features.features</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/features/ts_calculator/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.features.ts_calculator</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/sandbox/graphics/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.graphics</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/graphics/ts_grapher/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.graphics.ts_grapher</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/graphics/utils/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.graphics.utils</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/sandbox/metrics/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.metrics</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/metrics/score/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.metrics.score</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/sandbox/model_selection/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.model_selection</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/sandbox/tsa/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.tsa</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/tsa/base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.tsa.base</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/tsa/sarimax/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.tsa.sarimax</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/tsa/ssm/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.tsa.ssm</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/sandbox/utils/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.utils</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/utils/tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.utils.tools</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/sandbox/utils/validation/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sandbox.utils.validation</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 </div>
 </section>
 
@@ -993,7 +1087,7 @@ title="Print to PDF"
     <div class="footer-content row">
         <footer class="col footer"><p>
   
-    By sndpgm<br/>
+    By Yuta<br/>
   
       &copy; Copyright 2022.<br/>
 </p>

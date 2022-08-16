@@ -882,24 +882,23 @@ title="Open an issue"
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">    &gt;&gt;&gt; from sandbox.model_selection import GroupTimeSeriesSplit</span>
-<span class="sd">    &gt;&gt;&gt; groups = np.array([&#39;a&#39;, &#39;a&#39;, &#39;a&#39;, &#39;a&#39;, &#39;a&#39;, &#39;a&#39;,\</span>
-<span class="sd">                           &#39;b&#39;, &#39;b&#39;, &#39;b&#39;, &#39;b&#39;, &#39;b&#39;,\</span>
-<span class="sd">                           &#39;c&#39;, &#39;c&#39;, &#39;c&#39;, &#39;c&#39;,\</span>
-<span class="sd">                           &#39;d&#39;, &#39;d&#39;, &#39;d&#39;])</span>
+<span class="sd">    &gt;&gt;&gt; groups = np.array([&#39;a&#39;, &#39;a&#39;, &#39;a&#39;, &#39;a&#39;, &#39;a&#39;, &#39;a&#39;,</span>
+<span class="sd">    ...                    &#39;b&#39;, &#39;b&#39;, &#39;b&#39;, &#39;b&#39;, &#39;b&#39;,</span>
+<span class="sd">    ...                    &#39;c&#39;, &#39;c&#39;, &#39;c&#39;, &#39;c&#39;,</span>
+<span class="sd">    ...                    &#39;d&#39;, &#39;d&#39;, &#39;d&#39;])</span>
 <span class="sd">    &gt;&gt;&gt; gtss = GroupTimeSeriesSplit(n_splits=3)</span>
 <span class="sd">    &gt;&gt;&gt; for train_idx, test_idx in gtss.split(groups, groups=groups):</span>
 <span class="sd">    ...     print(&quot;TRAIN:&quot;, train_idx, &quot;TEST:&quot;, test_idx)</span>
-<span class="sd">    ...     print(&quot;TRAIN GROUP:&quot;, groups[train_idx],\</span>
-<span class="sd">                  &quot;TEST GROUP:&quot;, groups[test_idx])</span>
+<span class="sd">    ...     print(&quot;TRAIN GROUP:&quot;, groups[train_idx], &quot;TEST GROUP:&quot;, groups[test_idx])</span>
 <span class="sd">    TRAIN: [0, 1, 2, 3, 4, 5] TEST: [6, 7, 8, 9, 10]</span>
-<span class="sd">    TRAIN GROUP: [&#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39;]\</span>
+<span class="sd">    TRAIN GROUP: [&#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39;]</span>
 <span class="sd">    TEST GROUP: [&#39;b&#39; &#39;b&#39; &#39;b&#39; &#39;b&#39; &#39;b&#39;]</span>
 <span class="sd">    TRAIN: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] TEST: [11, 12, 13, 14]</span>
-<span class="sd">    TRAIN GROUP: [&#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;b&#39; &#39;b&#39; &#39;b&#39; &#39;b&#39; &#39;b&#39;]\</span>
+<span class="sd">    TRAIN GROUP: [&#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;b&#39; &#39;b&#39; &#39;b&#39; &#39;b&#39; &#39;b&#39;]</span>
 <span class="sd">    TEST GROUP: [&#39;c&#39; &#39;c&#39; &#39;c&#39; &#39;c&#39;]</span>
-<span class="sd">    TRAIN: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]\</span>
+<span class="sd">    TRAIN: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]</span>
 <span class="sd">    TEST: [15, 16, 17]</span>
-<span class="sd">    TRAIN GROUP: [&#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;b&#39; &#39;b&#39; &#39;b&#39; &#39;b&#39; &#39;b&#39; &#39;c&#39; &#39;c&#39; &#39;c&#39; &#39;c&#39;]\</span>
+<span class="sd">    TRAIN GROUP: [&#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;a&#39; &#39;b&#39; &#39;b&#39; &#39;b&#39; &#39;b&#39; &#39;b&#39; &#39;c&#39; &#39;c&#39; &#39;c&#39; &#39;c&#39;]</span>
 <span class="sd">    TEST GROUP: [&#39;d&#39; &#39;d&#39; &#39;d&#39;]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -1202,7 +1201,7 @@ title="Open an issue"
     <div class="footer-content row">
         <footer class="col footer"><p>
   
-    By sndpgm<br/>
+    By Yuta<br/>
   
       &copy; Copyright 2022.<br/>
 </p>
