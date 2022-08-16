@@ -143,7 +143,6 @@ class GroupTimeSeriesSplit(_BaseKFold, ABC):
         X, y, groups = indexable(X, y, groups)
         n_splits = self.n_splits
         n_folds = n_splits + 1
-        group_dict = {}
 
         if self.sort_groups:
             unique_groups = np.unique(groups)
@@ -151,13 +150,8 @@ class GroupTimeSeriesSplit(_BaseKFold, ABC):
             u, ind = np.unique(groups, return_index=True)
             unique_groups = u[np.argsort(ind)]
 
-        n_samples = _num_samples(X)
         n_groups = _num_samples(unique_groups)
-        for idx in np.arange(n_samples):
-            if groups[idx] in group_dict:
-                group_dict[groups[idx]].append(idx)
-            else:
-                group_dict[groups[idx]] = [idx]
+
         if n_folds > n_groups:
             msg = (
                 "Cannot have number of folds={0} greater than the number of groups={1}"
@@ -168,28 +162,20 @@ class GroupTimeSeriesSplit(_BaseKFold, ABC):
         group_test_starts = range(
             n_groups - n_splits * group_test_size, n_groups, group_test_size
         )
+
         for group_test_start in group_test_starts:
-            train_array = []
-            test_array = []
-            for train_group_idx in unique_groups[:group_test_start]:
-                train_array_tmp = group_dict[train_group_idx]
-                train_array = np.sort(
-                    np.unique(
-                        np.concatenate((train_array, train_array_tmp)), axis=None
-                    ),
-                    axis=None,
-                )
+            train_array = np.where(np.isin(groups, unique_groups[:group_test_start]))[0]
             train_end = train_array.size
             if self.max_train_size and self.max_train_size < train_end:
                 train_array = train_array[train_end - self.max_train_size : train_end]
-            for test_group_idx in unique_groups[
-                group_test_start : group_test_start + group_test_size
-            ]:
-                test_array_tmp = group_dict[test_group_idx]
-                test_array = np.sort(
-                    np.unique(np.concatenate((test_array, test_array_tmp)), axis=None),
-                    axis=None,
+            test_array = np.where(
+                np.isin(
+                    groups,
+                    unique_groups[
+                        group_test_start : group_test_start + group_test_size
+                    ],
                 )
+            )[0]
             yield [int(i) for i in train_array], [int(i) for i in test_array]
 
 
@@ -276,7 +262,6 @@ class PurgedGroupTimeSeriesSplit(_BaseKFold, ABC):
         max_test_group_size = self.max_test_group_size
         max_train_group_size = self.max_train_group_size
         n_folds = n_splits + 1
-        group_dict = {}
 
         if self.sort_groups:
             unique_groups = np.unique(groups)
@@ -284,13 +269,7 @@ class PurgedGroupTimeSeriesSplit(_BaseKFold, ABC):
             u, ind = np.unique(groups, return_index=True)
             unique_groups = u[np.argsort(ind)]
 
-        n_samples = _num_samples(X)
         n_groups = _num_samples(unique_groups)
-        for idx in np.arange(n_samples):
-            if groups[idx] in group_dict:
-                group_dict[groups[idx]].append(idx)
-            else:
-                group_dict[groups[idx]] = [idx]
         if n_folds > n_groups:
             msg = (
                 "Cannot have number of folds={0} greater than the number of groups={1}"
@@ -302,29 +281,20 @@ class PurgedGroupTimeSeriesSplit(_BaseKFold, ABC):
             n_groups - n_splits * group_test_size, n_groups, group_test_size
         )
         for group_test_start in group_test_starts:
-            train_array = []
-            test_array = []
-
             group_st = max(0, group_test_start - group_gap - max_train_group_size)
-            for train_group_idx in unique_groups[
-                group_st : (group_test_start - group_gap)
-            ]:
-                train_array_tmp = group_dict[train_group_idx]
-                train_array = np.sort(
-                    np.unique(
-                        np.concatenate((train_array, train_array_tmp)), axis=None
-                    ),
-                    axis=None,
+            train_array = np.where(
+                np.isin(
+                    groups, unique_groups[group_st : (group_test_start - group_gap)]
                 )
-
-            for test_group_idx in unique_groups[
-                group_test_start : group_test_start + group_test_size
-            ]:
-                test_array_tmp = group_dict[test_group_idx]
-                test_array = np.sort(
-                    np.unique(np.concatenate((test_array, test_array_tmp)), axis=None),
-                    axis=None,
+            )[0]
+            test_array = np.where(
+                np.isin(
+                    groups,
+                    unique_groups[
+                        group_test_start : group_test_start + group_test_size
+                    ],
                 )
+            )[0]
             test_array = test_array[group_gap:]
             if self.verbose > 0:
                 pass
