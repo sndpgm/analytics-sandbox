@@ -7,6 +7,8 @@
 
    The utility functions on graphics.
 
+   ..
+       !! processed by numpydoc !!
 
 
 Module Contents
@@ -43,16 +45,70 @@ Attributes
 
 .. py:function:: is_color_like(c)
 
+   
    Return whether c can be interpreted as an RGB(A) color.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: is_linestyle(linestyle)
 
+   
    Return whether linestyle can be defined as the one in this module.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: convert_mpl_linestyle(linestyle)
 
+   
    Convert linestyle into the one which can be interpreted in matplotlib.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 

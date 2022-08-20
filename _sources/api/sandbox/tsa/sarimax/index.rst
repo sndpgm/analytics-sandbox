@@ -7,6 +7,8 @@
 
    SARIMAX (Seasonal AutoRegressive Integrated Moving Average with eXogenous variables).
 
+   ..
+       !! processed by numpydoc !!
 
 
 Module Contents
@@ -26,6 +28,7 @@ Classes
 
    Bases: :py:obj:`sandbox.tsa.base.BaseTimeSeriesModel`, :py:obj:`sandbox.graphics.ts_grapher.TimeSeriesGrapherMixin`
 
+   
    Linear Gaussian state space model.
 
    :param trend: Parameter controlling the deterministic trend polynomial :math:`A(t)`.
@@ -100,7 +103,7 @@ Classes
    :param max_Q: The maximum value of ``Q``, inclusive. Must be a positive integer
                  greater than ``start_Q``.
    :type max_Q: int, optional
-   :param stepwise: Whether to use the stepwise algorithm outlined in [1]_ Hyndman and Khandakar
+   :param stepwise: Whether to use the stepwise algorithm outlined in [Ref8bae9f1a81-1]_ Hyndman and Khandakar
                     (2008) to identify the optimal model parameters. The stepwise algorithm
                     can be significantly faster than fitting all hyperparameter combinations
                     and is less likely to over-fit the model.
@@ -187,12 +190,29 @@ Classes
 
    .. rubric:: References
 
-   .. [1] Hyndman, R. J., & Khandakar, Y. (2008).
+   .. [Ref8bae9f1a81-1] Hyndman, R. J., & Khandakar, Y. (2008).
           Automatic time series forecasting: the forecast package for R.
           Journal of statistical software, 27, 1-22.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
    .. py:method:: fit(X, y=None, **kwargs)
 
+      
       Fit the model.
 
       :param X: Training data on regressions. If no regression is defined,
@@ -206,8 +226,25 @@ Classes
       :rtype: object
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: has_model_result()
 
+      
       Whether an instance has ``model_result_``.
 
       Some method needs ``model_result_`` that can be gained after
@@ -217,9 +254,26 @@ Classes
       :rtype: bool
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: estimated_params_()
       :property:
 
+      
       Estimated parameters.
 
       :py:class:`SARIMAXModel <sandbox.tsa.sarimax.SARIMAXModel>` estimates (1) regression
@@ -230,17 +284,51 @@ Classes
       :rtype: dict
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: fittedvalues_()
       :property:
 
+      
       The fitted values of the model.
 
       :returns: **fittedvalues** -- The fitted values to be estimated.
       :rtype: numpy.ndarray
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: predict(X, is_pandas=False)
 
+      
       Predict using the model.
 
       :param X: Design matrix expressing the regression dummies or variables in
@@ -255,8 +343,25 @@ Classes
       :rtype: array-like
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: conf_int(X, alpha=0.95, is_pandas=False)
 
+      
       Compute the confidence interval.
 
       :param X: Design matrix expressing the regression dummies or variables in
@@ -274,8 +379,25 @@ Classes
       :rtype: array_like
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: score(X, y, scorer='r2')
 
+      
       Return the coefficient of determination of the prediction.
 
       The default coefficient of determination :math:`R^2` is defined as
@@ -301,13 +423,46 @@ Classes
       :rtype: float
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: components_name_()
       :property:
 
+      
       Return component names.
 
       Although SARIMAX model has no state parameter, present here for API
       consistency.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
 
 

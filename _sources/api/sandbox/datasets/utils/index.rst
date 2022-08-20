@@ -7,6 +7,8 @@
 
    Datasets utils modules.
 
+   ..
+       !! processed by numpydoc !!
 
 
 Module Contents
@@ -35,16 +37,70 @@ Functions
 
    Bases: :py:obj:`dict`
 
+   
    Dataset class.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: load_csv(base_file, csv_name, sep=',')
 
+   
    Load standard csv file.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: load_dataset(data: DataFrame | Series, endog_name: str, exog_name: List[str] | None = None)
 
+   
    Load dataset.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 

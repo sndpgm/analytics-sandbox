@@ -5,8 +5,26 @@
 
 .. autoapi-nested-parse::
 
+   
    Analytics sandbox modules.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 
 
 Subpackages
@@ -17,6 +35,7 @@ Subpackages
 
    datamodel/index.rst
    datasets/index.rst
+   ensemble/index.rst
    features/index.rst
    graphics/index.rst
    metrics/index.rst

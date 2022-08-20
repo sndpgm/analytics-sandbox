@@ -5,8 +5,26 @@
 
 .. autoapi-nested-parse::
 
+   
    Datasets Nikkei 225 average stock price.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 
 
 Submodules

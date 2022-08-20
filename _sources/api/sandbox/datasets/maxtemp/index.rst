@@ -5,8 +5,26 @@
 
 .. autoapi-nested-parse::
 
+   
    Datasets daily max temperatures in Tokyo.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 
 
 Submodules

@@ -47,6 +47,7 @@ Attributes
 
 .. py:function:: get_features(data: DataFrame, column_values: list[str] | None = None, column_id: list[str] | None = None, sort_values: list[str] | None = None, func_params_list: list[dict] | None = None, params_path: str | None = None) -> DataFrame
 
+   
    Get the dataframe with features columns.
 
    :param data:
@@ -66,11 +67,46 @@ Attributes
    :rtype: pandas.DataFrame or dask.DataFrame
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:class:: FeaturesManager(column_values: list[str] | None = None, column_id: list[str] | None = None, sort_values: list[str] | None = None, func_params_list: list[dict] | None = None, params_path: str | None = None)
 
    .. py:method:: features_parameters() -> dict[list | dict]
       :property:
 
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
 
 
 .. py:class:: FeaturesFactory(features_parameters: dict)

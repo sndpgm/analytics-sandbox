@@ -10,6 +10,8 @@
    The :mod:`sandbox.model_selection._split` module includes classes and
    functions to split the data based on a preset strategy.
 
+   ..
+       !! processed by numpydoc !!
 
 
 Module Contents
@@ -38,6 +40,7 @@ Functions
 
    Bases: :py:obj:`sklearn.model_selection._split._BaseKFold`, :py:obj:`abc.ABC`
 
+   
    Time Series cross-validator variant with non-overlapping groups.
    Provides train/test indices to split time series data samples
    that are observed at fixed time intervals according to a
@@ -83,8 +86,25 @@ Functions
    TRAIN GROUP: ['a' 'a' 'a' 'a' 'a' 'a' 'b' 'b' 'b' 'b' 'b' 'c' 'c' 'c' 'c']
    TEST GROUP: ['d' 'd' 'd']
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
    .. py:method:: split(X, y=None, groups=None)
 
+      
       Generate indices to split data into training and test set.
 
       :param X: Training data, where n_samples is the number of samples
@@ -101,10 +121,27 @@ Functions
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
 .. py:class:: PurgedGroupTimeSeriesSplit(n_splits=5, *, max_train_group_size=np.inf, max_test_group_size=np.inf, group_gap=None, sort_groups=True, verbose=False)
 
    Bases: :py:obj:`sklearn.model_selection._split._BaseKFold`, :py:obj:`abc.ABC`
 
+   
    Time Series cross-validator variant with non-overlapping groups.
    Allows for a gap in groups to avoid potentially leaking info from
    train into test if the model has windowed or lag features.
@@ -133,8 +170,25 @@ Functions
    :param max_test_group_size: We discard this number of groups from the end of each train split
    :type max_test_group_size: int, default=Inf
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
    .. py:method:: split(X, y=None, groups=None)
 
+      
       Generate indices to split data into training and test set.
 
       :param X: Training data, where n_samples is the number of samples
@@ -151,8 +205,42 @@ Functions
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
 .. py:function:: plot_cv_indices(cv, X, y, group, ax, n_splits, lw=10)
 
+   
    Create a sample plot for indices of a cross-validation object.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 

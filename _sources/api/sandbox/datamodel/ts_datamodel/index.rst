@@ -21,6 +21,7 @@ Classes
 
    Bases: :py:obj:`sandbox.datamodel.base.SupervisedModelDataset`
 
+   
    Base class for data model for supervised model.
 
    :param X: The feature vectors or matrix. If regression is not defined, you should
@@ -29,4 +30,20 @@ Classes
    :param y: Target values. If regression is not defined, ignore that.
    :type y: {StructuralDataType, None}, optional
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 

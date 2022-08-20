@@ -5,8 +5,26 @@
 
 .. autoapi-nested-parse::
 
+   
    The module includes score functions
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 
 
 Submodules

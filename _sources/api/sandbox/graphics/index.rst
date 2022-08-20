@@ -5,8 +5,26 @@
 
 .. autoapi-nested-parse::
 
+   
    The module includes graphics functions
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 
 
 Submodules

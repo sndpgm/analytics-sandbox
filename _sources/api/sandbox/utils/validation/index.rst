@@ -7,6 +7,8 @@
 
    The validation module.
 
+   ..
+       !! processed by numpydoc !!
 
 
 Module Contents
@@ -31,6 +33,7 @@ Functions
 
 .. py:function:: is_dataframe(obj)
 
+   
    Check whether object is pandas.DataFrame.
 
    :param obj: Input data
@@ -51,8 +54,25 @@ Functions
    False
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: is_series(obj)
 
+   
    Check whether object is pandas.Series.
 
    :param obj: Input data
@@ -70,8 +90,25 @@ Functions
    True
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: is_index(obj)
 
+   
    Check whether object is pandas.Index.
 
    :param obj: Input data
@@ -89,8 +126,25 @@ Functions
    True
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: is_dataframe_or_series(obj)
 
+   
    Check whether object is pandas.DataFrame or pandas.Series.
 
    :param obj: Input data
@@ -114,8 +168,25 @@ Functions
    False
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: is_using_padnas(X, y)
 
+   
    Whether both X and y are the class of pandas (DataFrame, Series).
 
    :param X: Input data for X
@@ -127,8 +198,25 @@ Functions
    :rtype: bool
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: is_ndarray(obj)
 
+   
    Check whether object is numpy.ndarray.
    :param obj: Input data
    :type obj: numpy.ndarray
@@ -145,8 +233,25 @@ Functions
    True
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: is_using_ndarray(X, y)
 
+   
    Whether both X and y are the class of numpy (ndarray).
 
    :param X: Input data for X
@@ -158,8 +263,25 @@ Functions
    :rtype: bool
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: is_arraylike(obj)
 
+   
    Returns whether the input is array-like.
 
    :param obj: Input data
@@ -177,4 +299,20 @@ Functions
    >>> is_arraylike("cc")
    False
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 

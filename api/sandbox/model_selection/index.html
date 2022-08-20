@@ -52,6 +52,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="sandbox.tsa" href="../tsa/index.html" />
@@ -482,6 +484,40 @@ const thebe_selector_output = ".output, .cell_output"
     </ul>
    </li>
    <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../ensemble/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.ensemble
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ensemble/base/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.ensemble.base
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ensemble/boost/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.ensemble.boost
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../features/index.html">
      <code class="xref py py-mod docutils literal notranslate">
       <span class="pre">
@@ -489,8 +525,8 @@ const thebe_selector_output = ".output, .cell_output"
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-    <label for="toctree-checkbox-12">
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -523,8 +559,8 @@ const thebe_selector_output = ".output, .cell_output"
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-    <label for="toctree-checkbox-13">
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -557,8 +593,8 @@ const thebe_selector_output = ".output, .cell_output"
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label for="toctree-checkbox-14">
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -591,8 +627,8 @@ const thebe_selector_output = ".output, .cell_output"
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label for="toctree-checkbox-15">
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -634,8 +670,8 @@ const thebe_selector_output = ".output, .cell_output"
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label for="toctree-checkbox-16">
+    <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+    <label for="toctree-checkbox-17">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -872,6 +908,62 @@ title="Print to PDF"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.model_selection.BaseOptunaSearchCV">
+       BaseOptunaSearchCV
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.model_selection.BaseOptunaSearchCV.study">
+         study
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.model_selection.BaseOptunaSearchCV.params">
+         params
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.model_selection.BaseOptunaSearchCV.fit">
+         fit
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.model_selection.LightGBMOptunaStepwiseSearchCV">
+       LightGBMOptunaStepwiseSearchCV
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.model_selection.LightGBMOptunaStepwiseSearchCV.study">
+         study
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.model_selection.LightGBMOptunaStepwiseSearchCV.fit">
+         fit
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.model_selection.XGBoostOptunaSearchCV">
+       XGBoostOptunaSearchCV
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.model_selection.XGBoostOptunaSearchCV.params">
+         params
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.model_selection.XGBoostOptunaSearchCV.fit">
+         fit
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#sandbox.model_selection.GroupTimeSeriesSplit">
        GroupTimeSeriesSplit
       </a>
@@ -939,6 +1031,62 @@ title="Print to PDF"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.model_selection.BaseOptunaSearchCV">
+       BaseOptunaSearchCV
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.model_selection.BaseOptunaSearchCV.study">
+         study
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.model_selection.BaseOptunaSearchCV.params">
+         params
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.model_selection.BaseOptunaSearchCV.fit">
+         fit
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.model_selection.LightGBMOptunaStepwiseSearchCV">
+       LightGBMOptunaStepwiseSearchCV
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.model_selection.LightGBMOptunaStepwiseSearchCV.study">
+         study
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.model_selection.LightGBMOptunaStepwiseSearchCV.fit">
+         fit
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sandbox.model_selection.XGBoostOptunaSearchCV">
+       XGBoostOptunaSearchCV
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.model_selection.XGBoostOptunaSearchCV.params">
+         params
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sandbox.model_selection.XGBoostOptunaSearchCV.fit">
+         fit
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#sandbox.model_selection.GroupTimeSeriesSplit">
        GroupTimeSeriesSplit
       </a>
@@ -993,10 +1141,19 @@ title="Print to PDF"
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#sandbox.model_selection.GroupTimeSeriesSplit" title="sandbox.model_selection.GroupTimeSeriesSplit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GroupTimeSeriesSplit</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sandbox.model_selection.BaseOptunaSearchCV" title="sandbox.model_selection.BaseOptunaSearchCV"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseOptunaSearchCV</span></code></a></p></td>
+<td><p>Base class for hyperparameter search using <cite>Optuna</cite>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sandbox.model_selection.LightGBMOptunaStepwiseSearchCV" title="sandbox.model_selection.LightGBMOptunaStepwiseSearchCV"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LightGBMOptunaStepwiseSearchCV</span></code></a></p></td>
+<td><p>Hyperparameter stepwise search for LightGBM with cross-validation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sandbox.model_selection.XGBoostOptunaSearchCV" title="sandbox.model_selection.XGBoostOptunaSearchCV"><code class="xref py py-obj docutils literal notranslate"><span class="pre">XGBoostOptunaSearchCV</span></code></a></p></td>
+<td><p>Hyperparameter search for XGBoost with cross-validation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sandbox.model_selection.GroupTimeSeriesSplit" title="sandbox.model_selection.GroupTimeSeriesSplit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GroupTimeSeriesSplit</span></code></a></p></td>
 <td><p>Time Series cross-validator variant with non-overlapping groups.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#sandbox.model_selection.PurgedGroupTimeSeriesSplit" title="sandbox.model_selection.PurgedGroupTimeSeriesSplit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PurgedGroupTimeSeriesSplit</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sandbox.model_selection.PurgedGroupTimeSeriesSplit" title="sandbox.model_selection.PurgedGroupTimeSeriesSplit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PurgedGroupTimeSeriesSplit</span></code></a></p></td>
 <td><p>Time Series cross-validator variant with non-overlapping groups.</p></td>
 </tr>
 </tbody>
@@ -1015,6 +1172,451 @@ title="Print to PDF"
 </tr>
 </tbody>
 </table>
+<dl class="py class">
+<dt class="sig sig-object py" id="sandbox.model_selection.BaseOptunaSearchCV">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sandbox.model_selection.</span></span><span class="sig-name descname"><span class="pre">BaseOptunaSearchCV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scoring</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_dispatch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2*n_jobs'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">study_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minimize'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_if_exists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/sandbox/model_selection/_search.html#BaseOptunaSearchCV"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.model_selection.BaseOptunaSearchCV" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.base.BaseEstimator.html#sklearn.base.BaseEstimator" title="(in scikit-learn v1.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sklearn.base.BaseEstimator</span></code></a></p>
+<p>Base class for hyperparameter search using <cite>Optuna</cite>.</p>
+<p class="rubric">Examples</p>
+<p>Inheriting to this base class, it is easy to create
+the custom class on hyperparameter tuning for your estimator.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sandbox.model_selection</span> <span class="kn">import</span> <span class="n">BaseOptunaSearchCV</span>
+
+<span class="k">class</span> <span class="nc">SVMOptunaSearchCV</span><span class="p">(</span><span class="n">BaseOptunaSearchCV</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;mse&quot;</span><span class="p">,</span>
+        <span class="n">cv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">pre_dispatch</span><span class="o">=</span><span class="s2">&quot;2*n_jobs&quot;</span><span class="p">,</span>
+        <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;minimize&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="n">estimator</span> <span class="o">=</span> <span class="n">SVR</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SVMOptunaSearchCV</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">estimator</span><span class="o">=</span><span class="n">estimator</span><span class="p">,</span>
+            <span class="n">scoring</span><span class="o">=</span><span class="n">scoring</span><span class="p">,</span>
+            <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span>
+            <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+            <span class="n">pre_dispatch</span><span class="o">=</span><span class="n">pre_dispatch</span><span class="p">,</span>
+            <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># you have to override params method, and define the parameters to be searched.</span>
+    <span class="k">def</span> <span class="nf">params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trial</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_loguniform</span><span class="p">(</span>
+                <span class="s1">&#39;C&#39;</span><span class="p">,</span>
+                <span class="mf">1e0</span><span class="p">,</span> <span class="mf">1e2</span>
+            <span class="p">)</span>
+            <span class="p">,</span>
+            <span class="s2">&quot;epsilon&quot;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_loguniform</span><span class="p">(</span>
+                <span class="s1">&#39;epsilon&#39;</span><span class="p">,</span>
+                <span class="mf">1e-1</span><span class="p">,</span> <span class="mf">1e1</span>
+            <span class="p">),</span>
+        <span class="p">}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>estimator</strong> (<em>estimator object</em>) – The estimator class compatible with scikit-learn</p></li>
+<li><p><strong>scoring</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Which metric to use in evaluating the precision of cross validated estimator using <cite>Optuna</cite>.</p></li>
+<li><p><strong>cv</strong> (<em>{None</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>cross-validation generator</em><em> or </em><em>and iterable}</em><em>, </em><em>default=None</em>) – <p>Determines the cross-validation splitting strategy. Possible inputs for cv are:</p>
+<blockquote>
+<div><ul>
+<li><p>None, to use the default 5-fold cross validation,</p></li>
+<li><p>integer, to specify the number of folds in a <cite>KFold</cite>,</p></li>
+<li><p>CV splitter,</p></li>
+<li><p>An iterable yielding (train, test) splits as arrays of indices.</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>n_jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>default=None</em>) – Number of jobs to run in parallel.
+<code class="docutils literal notranslate"><span class="pre">None</span></code> means 1 unless in a <a class="reference external" href="https://joblib.readthedocs.io/en/latest/parallel.html#joblib.parallel_backend" title="(in joblib v1.2.0.dev0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.parallel_backend</span></code></a> context.
+<code class="docutils literal notranslate"><span class="pre">-1</span></code> means using all processors.</p></li>
+<li><p><strong>pre_dispatch</strong> (<em>{int</em><em>, </em><em>str}</em><em>, </em><em>default='2*n_jobs'</em>) – <p>Controls the number of jobs that get dispatched during parallel
+execution. Reducing this number can be useful to avoid an
+explosion of memory consumption when more jobs get dispatched
+than CPUs can process. This parameter can be:</p>
+<blockquote>
+<div><ul>
+<li><p>None, in which case all the jobs are immediately
+created and spawned. Use this for lightweight and
+fast-running jobs, to avoid delays due to on-demand
+spawning of the jobs</p></li>
+<li><p>An int, giving the exact number of total jobs that are
+spawned</p></li>
+<li><p>A str, giving an expression as a function of n_jobs,
+as in ‘2*n_jobs’</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>storage</strong> (<em>{None</em><em>, </em><em>str}</em><em>, </em><em>default=None</em>) – <p>Database URL. If this argument is set to None, in-memory storage is used, and the
+<a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.study.Study.html#optuna.study.Study" title="(in Optuna v2.10.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.study.Study</span></code></a> will not be persistent.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<blockquote>
+<div><p>When a database URL is passed, Optuna internally uses <a class="reference external" href="https://www.sqlalchemy.org/">SQLAlchemy</a> to handle
+the database. Please refer to <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls">SQLAlchemy’s document</a> for further details.
+If you want to specify non-default options to <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html">SQLAlchemy Engine</a>, you can
+instantiate <a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.storages.RDBStorage.html#optuna.storages.RDBStorage" title="(in Optuna v2.10.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">RDBStorage</span></code></a> with your desired options and
+pass it to the <code class="docutils literal notranslate"><span class="pre">storage</span></code> argument instead of a URL.</p>
+</div></blockquote>
+</div>
+</p></li>
+<li><p><strong>study_name</strong> (<em>{None</em><em>, </em><em>str}</em><em>, </em><em>default=None</em>) – Study’s name. If this argument is set to None, a unique name is generated automatically.</p></li>
+<li><p><strong>direction</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>default=minimize</em>) – Direction of optimization. Set <code class="docutils literal notranslate"><span class="pre">minimize</span></code> for minimization and <code class="docutils literal notranslate"><span class="pre">maximize</span></code> for maximization.
+You can also pass the corresponding <a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.study.StudyDirection.html#optuna.study.StudyDirection" title="(in Optuna v2.10.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.study.StudyDirection</span></code></a> object.</p></li>
+<li><p><strong>load_if_exists</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>default=False</em>) – Flag to control the behavior to handle a conflict of study names.
+In the case where a study named <code class="docutils literal notranslate"><span class="pre">study_name</span></code> already exists in the <code class="docutils literal notranslate"><span class="pre">storage</span></code>,
+a <a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.exceptions.DuplicatedStudyError.html#optuna.exceptions.DuplicatedStudyError" title="(in Optuna v2.10.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.exceptions.DuplicatedStudyError</span></code></a> is raised if <code class="docutils literal notranslate"><span class="pre">load_if_exists</span></code> is
+set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>. Otherwise, the creation of the study is skipped, and the existing one is returned.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.model_selection.BaseOptunaSearchCV.study">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">study</span></span><a class="headerlink" href="#sandbox.model_selection.BaseOptunaSearchCV.study" title="Permalink to this definition">#</a></dt>
+<dd><p>This has the all results of searching hyperparameter in the instance.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.study.Study.html#optuna.study.Study" title="(in Optuna v2.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.study.Study</span></code></a></dt><dd><p>A study corresponds to an optimization task, i.e., a set of trials.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.model_selection.BaseOptunaSearchCV.params">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trial</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sandbox.model_selection.BaseOptunaSearchCV.params" title="Permalink to this definition">#</a></dt>
+<dd><p>This returns the hyperparameter search space for your defined estimator.</p>
+<p class="rubric">Examples</p>
+<p>When you want to search the hyperparameter on support vector machine,
+the following two parameters are to be searched: <cite>C</cite> and <cite>epsilon</cite></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="k">def</span> <span class="nf">params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trial</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_loguniform</span><span class="p">(</span>
+            <span class="s1">&#39;C&#39;</span><span class="p">,</span>
+            <span class="mf">1e0</span><span class="p">,</span> <span class="mf">1e2</span>
+        <span class="p">)</span>
+        <span class="p">,</span>
+        <span class="s2">&quot;epsilon&quot;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_loguniform</span><span class="p">(</span>
+            <span class="s1">&#39;epsilon&#39;</span><span class="p">,</span>
+            <span class="mf">1e-1</span><span class="p">,</span> <span class="mf">1e1</span>
+        <span class="p">),</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.trial.Trial.html#optuna.trial.Trial.suggest_categorical" title="(in Optuna v2.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_categorical</span></code></a></dt><dd><p>Suggest a value for the categorical parameter.</p>
+</dd>
+<dt><a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.trial.Trial.html#optuna.trial.Trial.suggest_discrete_uniform" title="(in Optuna v2.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_discrete_uniform</span></code></a></dt><dd><p>Suggest a value for the discrete parameter.</p>
+</dd>
+<dt><a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.trial.Trial.html#optuna.trial.Trial.suggest_float" title="(in Optuna v2.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_float</span></code></a></dt><dd><p>Suggest a value for the floating point parameter.</p>
+</dd>
+<dt><a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.trial.Trial.html#optuna.trial.Trial.suggest_int" title="(in Optuna v2.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_int</span></code></a></dt><dd><p>Suggest a value for the integer parameter.</p>
+</dd>
+<dt><a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.trial.Trial.html#optuna.trial.Trial.suggest_loguniform" title="(in Optuna v2.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_loguniform</span></code></a></dt><dd><p>Suggest a value for the continuous parameter.</p>
+</dd>
+<dt><a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.trial.Trial.html#optuna.trial.Trial.suggest_uniform" title="(in Optuna v2.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.trial.Trial.suggest_uniform</span></code></a></dt><dd><p>Suggest a value for the continuous parameter.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.model_selection.BaseOptunaSearchCV.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_trials</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">fit_params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sandbox.model_selection.BaseOptunaSearchCV.fit" title="Permalink to this definition">#</a></dt>
+<dd><p>Execute hyperparameter tuning.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> – The input samples.</p></li>
+<li><p><strong>y</strong> – Target values (strings or integers in classification, real numbers in regression).
+For classification, labels must correspond to classes.</p></li>
+<li><p><strong>groups</strong> – Group labels for the samples used while splitting the dataset into train/test set.</p></li>
+<li><p><strong>n_trials</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – The number of trials.</p></li>
+<li><p><strong>fit_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Parameters passed to the <cite>fit</cite> method of the estimator.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sandbox.model_selection.LightGBMOptunaStepwiseSearchCV">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sandbox.model_selection.</span></span><span class="sig-name descname"><span class="pre">LightGBMOptunaStepwiseSearchCV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_estimators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boosting_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gbdt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'regression'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rmse'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">early_stopping_rounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2022</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">study_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minimize'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_if_exists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/sandbox/model_selection/_search.html#LightGBMOptunaStepwiseSearchCV"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.model_selection.LightGBMOptunaStepwiseSearchCV" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.base.BaseEstimator.html#sklearn.base.BaseEstimator" title="(in scikit-learn v1.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sklearn.base.BaseEstimator</span></code></a></p>
+<p>Hyperparameter stepwise search for LightGBM with cross-validation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_estimators</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>default=1000</em>) – Number of gradient boosted trees. Equivalent to number of boosting rounds.</p></li>
+<li><p><strong>boosting_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>default='gbdt'</em>) – <ul>
+<li><p>‘gbdt’, traditional Gradient Boosting Decision Tree.</p></li>
+<li><p>’dart’, Dropouts meet Multiple Additive Regression Trees.</p></li>
+<li><p>’goss’, Gradient-based One-Side Sampling.</p></li>
+<li><p>’rf’, Random Forest.</p></li>
+</ul>
+</p></li>
+<li><p><strong>objective</strong> (<em>{str</em><em>, </em><em>callable</em><em>, </em><em>None}</em><em>, </em><em>default=&quot;regression&quot;</em>) – Specify the learning task and the corresponding learning objective or
+a custom objective function to be used (see note below).
+Default: ‘regression’ for LGBMRegressor, ‘binary’ or ‘multiclass’
+for LGBMClassifier, ‘lambdarank’ for LGBMRanker.</p></li>
+<li><p><strong>metric</strong> (<em>{str</em><em>, </em><em>callable</em><em>, </em><em>None}</em><em>, </em><em>default=&quot;rmse&quot;</em>) – Metric(s) to be evaluated on the evaluation set(s).</p></li>
+<li><p><strong>early_stopping_rounds</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Activates early stopping.</p></li>
+<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Random number seed.</p></li>
+<li><p><strong>cv</strong> (<em>{None</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>cross-validation generator</em><em> or </em><em>and iterable}</em><em>, </em><em>default=None</em>) – <p>Determines the cross-validation splitting strategy. Possible inputs for cv are:</p>
+<blockquote>
+<div><ul>
+<li><p>None, to use the default 5-fold cross validation,</p></li>
+<li><p>integer, to specify the number of folds in a <cite>KFold</cite>,</p></li>
+<li><p>CV splitter,</p></li>
+<li><p>An iterable yielding (train, test) splits as arrays of indices.</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>storage</strong> (<em>{None</em><em>, </em><em>str}</em><em>, </em><em>default=None</em>) – <p>Database URL. If this argument is set to None, in-memory storage is used, and the
+<a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.study.Study.html#optuna.study.Study" title="(in Optuna v2.10.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.study.Study</span></code></a> will not be persistent.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<blockquote>
+<div><p>When a database URL is passed, Optuna internally uses <a class="reference external" href="https://www.sqlalchemy.org/">SQLAlchemy</a> to handle
+the database. Please refer to <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls">SQLAlchemy’s document</a> for further details.
+If you want to specify non-default options to <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html">SQLAlchemy Engine</a>, you can
+instantiate <a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.storages.RDBStorage.html#optuna.storages.RDBStorage" title="(in Optuna v2.10.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">RDBStorage</span></code></a> with your desired options and
+pass it to the <code class="docutils literal notranslate"><span class="pre">storage</span></code> argument instead of a URL.</p>
+</div></blockquote>
+</div>
+</p></li>
+<li><p><strong>study_name</strong> (<em>{None</em><em>, </em><em>str}</em><em>, </em><em>default=None</em>) – Study’s name. If this argument is set to None, a unique name is generated automatically.</p></li>
+<li><p><strong>direction</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>default=minimize</em>) – Direction of optimization. Set <code class="docutils literal notranslate"><span class="pre">minimize</span></code> for minimization and <code class="docutils literal notranslate"><span class="pre">maximize</span></code> for maximization.
+You can also pass the corresponding <a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.study.StudyDirection.html#optuna.study.StudyDirection" title="(in Optuna v2.10.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.study.StudyDirection</span></code></a> object.</p></li>
+<li><p><strong>load_if_exists</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>default=False</em>) – Flag to control the behavior to handle a conflict of study names.
+In the case where a study named <code class="docutils literal notranslate"><span class="pre">study_name</span></code> already exists in the <code class="docutils literal notranslate"><span class="pre">storage</span></code>,
+a <a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.exceptions.DuplicatedStudyError.html#optuna.exceptions.DuplicatedStudyError" title="(in Optuna v2.10.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.exceptions.DuplicatedStudyError</span></code></a> is raised if <code class="docutils literal notranslate"><span class="pre">load_if_exists</span></code> is
+set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>. Otherwise, the creation of the study is skipped, and the existing one is returned.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.integration.lightgbm.LightGBMTunerCV.html#optuna.integration.lightgbm.LightGBMTunerCV" title="(in Optuna v2.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.integration.lightgbm.LightGBMTunerCV</span></code></a></dt><dd><p>Hyperparameter tuner for LightGBM with cross-validation.</p>
+</dd>
+</dl>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.model_selection.LightGBMOptunaStepwiseSearchCV.study">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">study</span></span><a class="headerlink" href="#sandbox.model_selection.LightGBMOptunaStepwiseSearchCV.study" title="Permalink to this definition">#</a></dt>
+<dd><p>This has the all results of searching hyperparameter in the instance.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.study.Study.html#optuna.study.Study" title="(in Optuna v2.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.study.Study</span></code></a></dt><dd><p>A study corresponds to an optimization task, i.e., a set of trials.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.model_selection.LightGBMOptunaStepwiseSearchCV.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sandbox.model_selection.LightGBMOptunaStepwiseSearchCV.fit" title="Permalink to this definition">#</a></dt>
+<dd><p>Execute hyperparameter tuning.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> – The input samples.</p></li>
+<li><p><strong>y</strong> – Target values (strings or integers in classification, real numbers in regression).
+For classification, labels must correspond to classes.</p></li>
+<li><p><strong>groups</strong> – Group labels for the samples used while splitting the dataset into train/test set.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sandbox.model_selection.XGBoostOptunaSearchCV">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sandbox.model_selection.</span></span><span class="sig-name descname"><span class="pre">XGBoostOptunaSearchCV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_estimators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scoring</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mse'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_dispatch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2*n_jobs'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">study_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minimize'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_if_exists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/sandbox/model_selection/_search.html#XGBoostOptunaSearchCV"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.model_selection.XGBoostOptunaSearchCV" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sandbox.model_selection.BaseOptunaSearchCV" title="sandbox.model_selection.BaseOptunaSearchCV"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseOptunaSearchCV</span></code></a></p>
+<p>Hyperparameter search for XGBoost with cross-validation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_estimators</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>default=1000</em>) – Number of gradient boosted trees. Equivalent to number of boosting rounds.</p></li>
+<li><p><strong>scoring</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>default=&quot;mse&quot;</em>) – Which metric to use in evaluating the precision of cross validated estimator using <cite>Optuna</cite>.</p></li>
+<li><p><strong>cv</strong> (<em>{None</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>cross-validation generator</em><em> or </em><em>and iterable}</em><em>, </em><em>default=None</em>) – <p>Determines the cross-validation splitting strategy. Possible inputs for cv are:</p>
+<blockquote>
+<div><ul>
+<li><p>None, to use the default 5-fold cross validation,</p></li>
+<li><p>integer, to specify the number of folds in a <cite>KFold</cite>,</p></li>
+<li><p>CV splitter,</p></li>
+<li><p>An iterable yielding (train, test) splits as arrays of indices.</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>n_jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>default=None</em>) – Number of jobs to run in parallel.
+<code class="docutils literal notranslate"><span class="pre">None</span></code> means 1 unless in a <a class="reference external" href="https://joblib.readthedocs.io/en/latest/parallel.html#joblib.parallel_backend" title="(in joblib v1.2.0.dev0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.parallel_backend</span></code></a> context.
+<code class="docutils literal notranslate"><span class="pre">-1</span></code> means using all processors.</p></li>
+<li><p><strong>pre_dispatch</strong> (<em>{int</em><em>, </em><em>str}</em><em>, </em><em>default='2*n_jobs'</em>) – <p>Controls the number of jobs that get dispatched during parallel
+execution. Reducing this number can be useful to avoid an
+explosion of memory consumption when more jobs get dispatched
+than CPUs can process. This parameter can be:</p>
+<blockquote>
+<div><ul>
+<li><p>None, in which case all the jobs are immediately
+created and spawned. Use this for lightweight and
+fast-running jobs, to avoid delays due to on-demand
+spawning of the jobs</p></li>
+<li><p>An int, giving the exact number of total jobs that are
+spawned</p></li>
+<li><p>A str, giving an expression as a function of n_jobs,
+as in ‘2*n_jobs’</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>storage</strong> (<em>{None</em><em>, </em><em>str}</em><em>, </em><em>default=None</em>) – <p>Database URL. If this argument is set to None, in-memory storage is used, and the
+<a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.study.Study.html#optuna.study.Study" title="(in Optuna v2.10.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.study.Study</span></code></a> will not be persistent.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<blockquote>
+<div><p>When a database URL is passed, Optuna internally uses <a class="reference external" href="https://www.sqlalchemy.org/">SQLAlchemy</a> to handle
+the database. Please refer to <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls">SQLAlchemy’s document</a> for further details.
+If you want to specify non-default options to <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html">SQLAlchemy Engine</a>, you can
+instantiate <a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.storages.RDBStorage.html#optuna.storages.RDBStorage" title="(in Optuna v2.10.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">RDBStorage</span></code></a> with your desired options and
+pass it to the <code class="docutils literal notranslate"><span class="pre">storage</span></code> argument instead of a URL.</p>
+</div></blockquote>
+</div>
+</p></li>
+<li><p><strong>study_name</strong> (<em>{None</em><em>, </em><em>str}</em><em>, </em><em>default=None</em>) – Study’s name. If this argument is set to None, a unique name is generated automatically.</p></li>
+<li><p><strong>direction</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>default=minimize</em>) – Direction of optimization. Set <code class="docutils literal notranslate"><span class="pre">minimize</span></code> for minimization and <code class="docutils literal notranslate"><span class="pre">maximize</span></code> for maximization.
+You can also pass the corresponding <a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.study.StudyDirection.html#optuna.study.StudyDirection" title="(in Optuna v2.10.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.study.StudyDirection</span></code></a> object.</p></li>
+<li><p><strong>load_if_exists</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>default=False</em>) – Flag to control the behavior to handle a conflict of study names.
+In the case where a study named <code class="docutils literal notranslate"><span class="pre">study_name</span></code> already exists in the <code class="docutils literal notranslate"><span class="pre">storage</span></code>,
+a <a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.exceptions.DuplicatedStudyError.html#optuna.exceptions.DuplicatedStudyError" title="(in Optuna v2.10.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">optuna.exceptions.DuplicatedStudyError</span></code></a> is raised if <code class="docutils literal notranslate"><span class="pre">load_if_exists</span></code> is
+set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>. Otherwise, the creation of the study is skipped, and the existing one is returned.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.model_selection.XGBoostOptunaSearchCV.params">
+<span class="sig-name descname"><span class="pre">params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trial</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sandbox.model_selection.XGBoostOptunaSearchCV.params" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>trial</strong> (<a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.trial.Trial.html#optuna.trial.Trial" title="(in Optuna v2.10.1)"><em>optuna.trial.Trial</em></a>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul>
+<li><dl class="simple">
+<dt>reg_lambda :</dt><dd><ul class="simple">
+<li><p>L2 regularization term on weights (xgb’s lambda).</p></li>
+<li><p>The value is sampled from the range <span class="math notranslate nohighlight">\([0.001, 10.0)\)</span> in the log domain</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>reg_alpha :</dt><dd><ul class="simple">
+<li><p>L1 regularization term on weights (xgb’s alpha).</p></li>
+<li><p>The value is sampled from the range <span class="math notranslate nohighlight">\([0.001, 10.0)\)</span> in the log domain</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>gamma :</dt><dd><ul class="simple">
+<li><p>Minimum loss reduction required to make a further partition on a leaf node of the tree.</p></li>
+<li><p>The value is sampled from the integers in <span class="math notranslate nohighlight">\([0, 20]\)</span></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>colsample_bytree :</dt><dd><ul class="simple">
+<li><p>Subsample ratio of columns when constructing each tree.</p></li>
+<li><p>Suggest a value for the categorical parameter: <span class="math notranslate nohighlight">\(\{0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0\}\)</span></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>subsample :</dt><dd><ul class="simple">
+<li><p>Subsample ratio of the training instance.</p></li>
+<li><p>Suggest a value for the categorical parameter: <span class="math notranslate nohighlight">\(\{0.4, 0.5, 0.6, 0.7, 0.8, 1.0\}\)</span></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>learning_rate :</dt><dd><ul class="simple">
+<li><p>Boosting learning rate (xgb’s “eta”)</p></li>
+<li><p>Suggest a value for the categorical parameter:</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\{0.008, 0.01, 0.012, 0.014, 0.016, 0.018, 0.02\}\)</span></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>max_depth :</dt><dd><ul class="simple">
+<li><p>Maximum tree depth for base learners.</p></li>
+<li><p>Suggest a value for the categorical parameter: <span class="math notranslate nohighlight">\(\{5, 7, 9, 11, 13, 15, 17\}\)</span></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>random_state :</dt><dd><ul class="simple">
+<li><p>Random number seed.</p></li>
+<li><p>Seed is fixed as 2020.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>min_child_weight :</dt><dd><ul class="simple">
+<li><p>Minimum sum of instance weight(hessian) needed in a child.</p></li>
+<li><p>The value is sampled from the integers in <span class="math notranslate nohighlight">\([1, 300]\)</span></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>The following search space on hyperparameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sandbox.model_selection.XGBoostOptunaSearchCV.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_trials</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">early_stopping_rounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">fit_params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sandbox.model_selection.XGBoostOptunaSearchCV.fit" title="Permalink to this definition">#</a></dt>
+<dd><p>Execute hyperparameter tuning.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> – The input samples.</p></li>
+<li><p><strong>y</strong> – Target values (strings or integers in classification, real numbers in regression).
+For classification, labels must correspond to classes.</p></li>
+<li><p><strong>groups</strong> – Group labels for the samples used while splitting the dataset into train/test set.</p></li>
+<li><p><strong>n_trials</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – The number of trials.</p></li>
+<li><p><strong>early_stopping_rounds</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Activates early stopping.</p></li>
+<li><p><strong>fit_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Parameters passed to the <cite>fit</cite> method of the estimator of <a class="reference internal" href="../ensemble/boost/index.html#sandbox.ensemble.boost.XGBoostRegressor" title="sandbox.ensemble.boost.XGBoostRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">XGBoostRegressor</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="sandbox.model_selection.GroupTimeSeriesSplit">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sandbox.model_selection.</span></span><span class="sig-name descname"><span class="pre">GroupTimeSeriesSplit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_splits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_train_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/sandbox/model_selection/_split.html#GroupTimeSeriesSplit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sandbox.model_selection.GroupTimeSeriesSplit" title="Permalink to this definition">#</a></dt>

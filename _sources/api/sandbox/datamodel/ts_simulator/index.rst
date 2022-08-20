@@ -21,8 +21,26 @@ Classes
 
    Bases: :py:obj:`sandbox.datamodel.base.BaseDataSimulator`
 
+   
    Base class for data simulator.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
    .. py:method:: simulate()
 
 

@@ -7,6 +7,8 @@
 
    Base classes for time series estimators.
 
+   ..
+       !! processed by numpydoc !!
 
 
 Module Contents
@@ -26,28 +28,118 @@ Classes
 
    Bases: :py:obj:`sklearn.base.BaseEstimator`
 
+   
    Base class for time series model.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
    .. py:method:: fit(X, y=None)
       :abstractmethod:
 
+      
       Fit time series model.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
 
    .. py:method:: predict(X)
       :abstractmethod:
 
+      
       Predict using time series model.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: conf_int(X, alpha)
 
+      
       Construct confidence interval for the fitted parameters.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: score(X, y, scorer='r2', **kwargs)
 
+      
       Return the coefficient of determination of the prediction.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
 
 

@@ -7,6 +7,8 @@
 
    State space model.
 
+   ..
+       !! processed by numpydoc !!
 
 
 Module Contents
@@ -26,6 +28,7 @@ Classes
 
    Bases: :py:obj:`sandbox.tsa.base.BaseTimeSeriesModel`, :py:obj:`sandbox.graphics.ts_grapher.TimeSeriesGrapherMixin`
 
+   
    Linear Gaussian state space model.
 
    :param level: Whether to include a level component. Default is False.
@@ -117,7 +120,7 @@ Classes
 
    .. rubric:: Notes
 
-   These models take the general form (see [1]_ Chapter 3.2 for all details)
+   These models take the general form (see [Re82dd28e89fa-1]_ Chapter 3.2 for all details)
 
    .. math::
 
@@ -303,12 +306,29 @@ Classes
 
    .. rubric:: References
 
-   .. [1] Durbin, James, and Siem Jan Koopman. 2012.
+   .. [Re82dd28e89fa-1] Durbin, James, and Siem Jan Koopman. 2012.
       Time Series Analysis by State Space Methods: Second Edition.
       Oxford University Press.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
    .. py:method:: fit(X, y=None)
 
+      
       Fit the model.
 
       :param X: Training data on regressions. If no regression is defined,
@@ -322,8 +342,25 @@ Classes
       :rtype: object
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: has_model_result()
 
+      
       Whether an instance has ``model_result_``.
 
       Some method needs ``model_result_`` that can be gained after
@@ -333,9 +370,26 @@ Classes
       :rtype: bool
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: estimated_params_()
       :property:
 
+      
       Estimated parameters.
 
       :py:class:`LinearGaussianState <sandbox.tsa.ssm.LinearGaussianState>` estimates (1) states parameters,
@@ -348,143 +402,415 @@ Classes
       :rtype: dict
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: fittedvalues_()
       :property:
 
+      
       The fitted values of the model.
 
       :returns: **fittedvalues** -- The fitted values to be estimated.
       :rtype: numpy.ndarray
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: level_filtered_()
       :property:
 
+      
       Filtered level component.
 
       :returns: **level** -- Filtered level component.
       :rtype: {numpy.ndarray, None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: level_()
       :property:
 
+      
       Smoothed level component.
 
       :returns: **level** -- Smoothed level component.
       :rtype: {numpy.ndarray, None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: trend_filtered_()
       :property:
 
+      
       Filtered trend component.
 
       :returns: **trend** -- Filtered trend component.
       :rtype: {numpy.ndarray, None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: trend_()
       :property:
 
+      
       Smoothed trend component.
 
       :returns: **trend** -- Smoothed trend component.
       :rtype: {numpy.ndarray, None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: seasonal_filtered_()
       :property:
 
+      
       Filtered seasonal component.
 
       :returns: **seasonal** -- Filtered seasonal component.
       :rtype: {numpy.ndarray, None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: seasonal_()
       :property:
 
+      
       Smoothed seasonal component.
 
       :returns: **seasonal** -- Smoothed seasonal component.
       :rtype: {numpy.ndarray, None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: freq_seasonal_filtered_()
       :property:
 
+      
       Filtered frequency domain seasonal component.
 
       :returns: **freq_seasonal** -- Filtered frequency domain seasonal component
       :rtype: {list[numpy.ndarray], None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: freq_seasonal_()
       :property:
 
+      
       Smoothed frequency domain seasonal component.
 
       :returns: **freq_seasonal** -- Smoothed frequency domain seasonal component
       :rtype: {list[numpy.ndarray], None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: cycle_filtered_()
       :property:
 
+      
       Filtered cycle component.
 
       :returns: **cycle** -- Filtered cycle component.
       :rtype: {numpy.ndarray, None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: cycle_()
       :property:
 
+      
       Smoothed cycle component.
 
       :returns: **cycle** -- Smoothed cycle component.
       :rtype: {numpy.ndarray, None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: autoregressive_filtered_()
       :property:
 
+      
       Filtered autoregressive component.
 
       :returns: **autoregressive** -- Filtered autoregressive component.
       :rtype: {numpy.ndarray, None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: autoregressive_()
       :property:
 
+      
       Smoothed autoregressive component.
 
       :returns: **autoregressive** -- Smoothed autoregressive component.
       :rtype: {numpy.ndarray, None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: regression_filtered_()
       :property:
 
+      
       Filtered regression component.
 
       :returns: **regression** -- Filtered regression component.
       :rtype: {numpy.ndarray, None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: regression_()
       :property:
 
+      
       Smoothed regression component.
 
       :returns: **regression** -- Smoothed regression component.
       :rtype: {numpy.ndarray, None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: predict(X, is_pandas=False)
 
+      
       Predict using the model.
 
       :param X: Design matrix expressing the regression dummies or variables in
@@ -499,8 +825,25 @@ Classes
       :rtype: array-like
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: conf_int(X, alpha=0.95, is_pandas=False)
 
+      
       Compute the confidence interval.
 
       :param X: Design matrix expressing the regression dummies or variables in
@@ -518,8 +861,25 @@ Classes
       :rtype: array_like
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: score(X, y, scorer='r2', **kwargs)
 
+      
       Return the coefficient of determination of the prediction.
 
       The default coefficient of determination :math:`R^2` is defined as
@@ -545,14 +905,49 @@ Classes
       :rtype: float
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: components_name_()
       :property:
 
+      
       Return component names that are implemented in a defined model.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: level_predicted_(X)
 
+      
       Predicted level component.
 
       :param X: Design matrix expressing the regression dummies or variables in
@@ -565,8 +960,25 @@ Classes
       :rtype: {numpy.ndarray, None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: trend_predicted_(X)
 
+      
       Predicted trend component.
 
       :param X: Design matrix expressing the regression dummies or variables in
@@ -579,8 +991,25 @@ Classes
       :rtype: {numpy.ndarray, None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: seasonal_predicted_(X)
 
+      
       Predicted seasonal component.
 
       :param X: Design matrix expressing the regression dummies or variables in
@@ -593,8 +1022,25 @@ Classes
       :rtype: {numpy.ndarray, None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: freq_seasonal_predicted_(X)
 
+      
       Predicted frequency domain seasonal component.
 
       :param X: Design matrix expressing the regression dummies or variables in
@@ -607,8 +1053,25 @@ Classes
       :rtype: {list[numpy.ndarray], None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: cycle_predicted_(X)
 
+      
       Predicted cycle component.
 
       :param X: Design matrix expressing the regression dummies or variables in
@@ -621,8 +1084,25 @@ Classes
       :rtype: {numpy.ndarray, None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: autoregressive_predicted_(X)
 
+      
       Predicted autoregressive component.
 
       :param X: Design matrix expressing the regression dummies or variables in
@@ -635,8 +1115,25 @@ Classes
       :rtype: {numpy.ndarray, None}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: regression_predicted_(X)
 
+      
       Predicted regression component.
 
       :param X: Design matrix expressing the regression dummies or variables in
@@ -648,5 +1145,21 @@ Classes
       :returns: **regression** -- Predicted regression component.
       :rtype: {numpy.ndarray, None}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
 
 

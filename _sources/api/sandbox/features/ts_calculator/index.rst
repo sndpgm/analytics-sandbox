@@ -42,11 +42,30 @@ Attributes
 
 .. py:function:: set_property(key, value)
 
+   
    This method returns a decorator that sets the property key of the function to value
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: hour(x: pd.DataFrame | dd.DataFrame, value: str) -> tuple[pd.Series | dd.Series, str]
 
+   
    The hours of the datetime.
    Internal execution is `pandas.Series.dt.hour` or `dask.dataframe.Series.dt.hour`.
 
@@ -81,8 +100,25 @@ Attributes
           The hours of the datetime in dask.dataframe.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: dayofweek(x: pd.DataFrame | dd.DataFrame, value: str) -> tuple[pd.Series | dd.Series, str]
 
+   
    The day of the week with Monday=0, Sunday=6.
    Internal execution is `pandas.Series.dt.dayofweek` or `dask.dataframe.Series.dt.dayofweek`.
 
@@ -117,8 +153,25 @@ Attributes
           The day of the week in dask.dataframe.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: quarter(x: pd.DataFrame | dd.DataFrame, value: str) -> tuple[pd.Series | dd.Series, str]
 
+   
    The quarter of the date.
    Internal execution is `pandas.Series.dt.quarter` or `dask.dataframe.Series.dt.quarter`.
 
@@ -153,8 +206,25 @@ Attributes
           The quarter of the date in dask.dataframe.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: month(x: pd.DataFrame | dd.DataFrame, value: str) -> tuple[pd.Series | dd.Series, str]
 
+   
    The month of the date.
    Internal execution is `pandas.Series.dt.month` or `dask.dataframe.Series.dt.month`.
 
@@ -189,8 +259,25 @@ Attributes
           The month of the date in dask.dataframe.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: year(x: pd.DataFrame | dd.DataFrame, value: str) -> tuple[pd.Series | dd.Series, str]
 
+   
    The month of the date.
    Internal execution is `pandas.Series.dt.year` or `dask.dataframe.Series.dt.year`.
 
@@ -225,8 +312,25 @@ Attributes
           The year of the date in dask.dataframe.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: dayofyear(x: pd.DataFrame | dd.DataFrame, value: str) -> tuple[pd.Series | dd.Series, str]
 
+   
    The ordinal day of the year.
    Internal execution is `pandas.Series.dt.dayofyear` or `dask.dataframe.Series.dt.dayofyear`.
 
@@ -261,8 +365,25 @@ Attributes
           The ordinal day of the year in dask.dataframe.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: dayofmonth(x: pd.DataFrame | dd.DataFrame, value: str) -> tuple[pd.Series | dd.Series, str]
 
+   
    The day of the datetime.
    Internal execution is `pandas.Series.dt.day` or `dask.dataframe.Series.dt.day`.
 
@@ -297,8 +418,25 @@ Attributes
           The day of the datetime in dask.dataframe.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: weekofyear(x: pd.DataFrame | dd.DataFrame, value: str) -> tuple[pd.Series | dd.Series, str]
 
+   
    Calculate week of the year according to the ISO 8601 standard.
    Internal execution is `pandas.Series.dt.isocalendar` or `dask.dataframe.Series.dt.isocalendar`.
 
@@ -333,8 +471,25 @@ Attributes
           The week of the year according to the ISO 8601 standard in dask.dataframe.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: lag(x: pd.DataFrame | dd.DataFrame, value: str, params: dict, by: list[str] | None = None, sort: list[str] | None = None) -> tuple[pd.Series | dd.Series, str]
 
+   
    Shift index by desired number of periods.
 
    :param x: Target input.
@@ -356,8 +511,25 @@ Attributes
              * *list[str]* -- List of column names.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 .. py:function:: rolling(x: pd.DataFrame | dd.DataFrame, value: str, params: dict, by: list[str] | None = None, sort: list[str] | None = None) -> tuple[pd.DataFrame | dd.DataFrame, str]
 
+   
    Return the dataframe on rolling statistics.
 
    :param x: Target input.
@@ -388,4 +560,20 @@ Attributes
    :returns: * *{pandas.DataFrame, dask.DataFrame}* -- Rolling statistics data.
              * *list[str]* -- List of column names.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 

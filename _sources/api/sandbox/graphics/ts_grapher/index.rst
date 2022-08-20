@@ -7,6 +7,8 @@
 
    The grapher module on time series modeling.
 
+   ..
+       !! processed by numpydoc !!
 
 
 Module Contents
@@ -25,18 +27,31 @@ Classes
 
 .. py:class:: TimeSeriesGrapher(model)
 
+   
    The time series graphing class.
 
    :param model: The time series modeling instance.
    :type model: model
 
-   .. py:method:: __repr__()
-
-      Return repr(self).
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
    .. py:method:: plot_prediction(X=None, y=None, colors=('lightblue', 'navy', 'red'), linestyles=(None, 'dotted', 'solid'), labels=('Observed', 'Fitted', 'Predicted'), title='Prediction Plot', fig=None, ax=None, figsize=(16, 4))
 
+      
       Plot in-sample and out-of-sample prediction.
 
       :param X: Design matrix expressing the regression dummies or variables in
@@ -71,8 +86,25 @@ Classes
                 * **ax** (*matplot.axes.Axes*) -- The axes object of prediction plot graph.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
    .. py:method:: plot_components(X=None, y=None, figsize=None)
 
+      
       Plot in-sample and out-of-sample component predictions.
 
       :param X: Design matrix expressing the regression dummies or variables in
@@ -91,8 +123,25 @@ Classes
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
 .. py:class:: TimeSeriesGrapherMixin
 
+   
    Mixin class for graphing of time series modeling.
 
    .. seealso:: :obj:`sandbox.graphics.ts_grapher.TimeSeriesGrapher`
@@ -110,6 +159,22 @@ Classes
    >>> model.graph.plot_prediction(X_test, y_test)
    >>> model.graph.plot_components(X_test, y_test)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
    .. py:method:: graph()
       :property:
 

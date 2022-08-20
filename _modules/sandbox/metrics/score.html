@@ -479,6 +479,40 @@ const thebe_selector_output = ".output, .cell_output"
     </ul>
    </li>
    <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../api/sandbox/ensemble/index.html">
+     <code class="xref py py-mod docutils literal notranslate">
+      <span class="pre">
+       sandbox.ensemble
+      </span>
+     </code>
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/sandbox/ensemble/base/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.ensemble.base
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/sandbox/ensemble/boost/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.ensemble.boost
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../../../api/sandbox/features/index.html">
      <code class="xref py py-mod docutils literal notranslate">
       <span class="pre">
@@ -486,8 +520,8 @@ const thebe_selector_output = ".output, .cell_output"
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-    <label for="toctree-checkbox-12">
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -520,8 +554,8 @@ const thebe_selector_output = ".output, .cell_output"
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-    <label for="toctree-checkbox-13">
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -554,8 +588,8 @@ const thebe_selector_output = ".output, .cell_output"
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label for="toctree-checkbox-14">
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -588,8 +622,8 @@ const thebe_selector_output = ".output, .cell_output"
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label for="toctree-checkbox-15">
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -631,8 +665,8 @@ const thebe_selector_output = ".output, .cell_output"
       </span>
      </code>
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label for="toctree-checkbox-16">
+    <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+    <label for="toctree-checkbox-17">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -793,14 +827,109 @@ title="Open an issue"
               <div>
                 
   <h1>Source code for sandbox.metrics.score</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span> <span class="k">as</span> <span class="n">mape</span>
+<span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span> <span class="k">as</span> <span class="n">mae</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span> <span class="k">as</span> <span class="n">mape</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span> <span class="k">as</span> <span class="n">mse</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span> <span class="k">as</span> <span class="n">r2</span>
+
+<span class="c1"># ToDo: 他のスコアリングの計算式を紐解き, 下記のエイリアスおよび関数に追加する.</span>
+<span class="c1"># 参考: https://lightgbm.readthedocs.io/en/latest/Parameters.html</span>
+<div class="viewcode-block" id="SCORING_ALIASES"><a class="viewcode-back" href="../../../api/sandbox/metrics/score/index.html#sandbox.metrics.score.SCORING_ALIASES">[docs]</a><span class="n">SCORING_ALIASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;mean_squared_error&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;regression&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;regression_l2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;l2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mean_squared_error&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mse&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;root_mean_squared_error&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;l2_root&quot;</span><span class="p">,</span> <span class="s2">&quot;root_mean_squared_error&quot;</span><span class="p">,</span> <span class="s2">&quot;rmse&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;mean_absolute_error&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;regression_l1&quot;</span><span class="p">,</span> <span class="s2">&quot;l1&quot;</span><span class="p">,</span> <span class="s2">&quot;mean_absolute_error&quot;</span><span class="p">,</span> <span class="s2">&quot;mae&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;mean_absolute_percentage_error&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;mape&quot;</span><span class="p">,</span> <span class="s2">&quot;mean_absolute_percentage_error&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;r2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;r2&quot;</span><span class="p">,</span> <span class="s2">&quot;r2_score&quot;</span><span class="p">],</span>
+<span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="manage_scoring_alias"><a class="viewcode-back" href="../../../api/sandbox/metrics/score/index.html#sandbox.metrics.score.manage_scoring_alias">[docs]</a><span class="k">def</span> <span class="nf">manage_scoring_alias</span><span class="p">(</span><span class="n">scoring</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Manage and convert the string expressing which score is used.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    scoring : str</span>
+<span class="sd">        The string expressing which score is used.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">        Converted string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">standard_scoring</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">SCORING_ALIASES</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">scoring</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+            <span class="n">standard_scoring</span> <span class="o">=</span> <span class="n">key</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">standard_scoring</span></div>
+
+
+<div class="viewcode-block" id="mean_absolute_error"><a class="viewcode-back" href="../../../api/sandbox/metrics/score/index.html#sandbox.metrics.score.mean_absolute_error">[docs]</a><span class="k">def</span> <span class="nf">mean_absolute_error</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">multioutput</span><span class="o">=</span><span class="s2">&quot;uniform_average&quot;</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Mean absolute error regression loss.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Ground truth (correct) target values.</span>
+<span class="sd">    y_pred : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Estimated target values.</span>
+<span class="sd">    sample_weight : array-like of shape (n_samples,), default=None</span>
+<span class="sd">        Sample weights.</span>
+<span class="sd">    multioutput : {&#39;raw_values&#39;, &#39;uniform_average&#39;}  or array-like of shape (n_outputs,), default=&#39;uniform_average&#39;</span>
+<span class="sd">        Defines aggregating of multiple output values.</span>
+
+<span class="sd">        Array-like value defines weights used to average errors.</span>
+
+<span class="sd">        &#39;raw_values&#39; :</span>
+<span class="sd">            Returns a full set of errors in case of multioutput input.</span>
+<span class="sd">        &#39;uniform_average&#39; :</span>
+<span class="sd">            Errors of all outputs are averaged with uniform weight.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    loss : float or ndarray of floats</span>
+<span class="sd">        If multioutput is &#39;raw_values&#39;, then mean absolute error is returned</span>
+<span class="sd">        for each output separately.</span>
+<span class="sd">        If multioutput is &#39;uniform_average&#39; or a ndarray of weights, then the</span>
+<span class="sd">        weighted average of all output errors is returned.</span>
+<span class="sd">        MAE output is non-negative floating point. The best value is 0.0.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sandbox.metrics.score import mean_absolute_error</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [3, -0.5, 2, 7]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [2.5, 0.0, 2, 8]</span>
+<span class="sd">    &gt;&gt;&gt; mean_absolute_error(y_true, y_pred)</span>
+<span class="sd">    0.5</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [[0.5, 1], [-1, 1], [7, -6]]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [[0, 2], [-1, 2], [8, -5]]</span>
+<span class="sd">    &gt;&gt;&gt; mean_absolute_error(y_true, y_pred)</span>
+<span class="sd">    0.75</span>
+<span class="sd">    &gt;&gt;&gt; mean_absolute_error(y_true, y_pred, multioutput=&#39;raw_values&#39;)</span>
+<span class="sd">    array([0.5, 1. ])</span>
+<span class="sd">    &gt;&gt;&gt; mean_absolute_error(y_true, y_pred, multioutput=[0.3, 0.7])</span>
+<span class="sd">    0.85...</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">mae</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="o">=</span><span class="n">y_true</span><span class="p">,</span>
+        <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+        <span class="n">multioutput</span><span class="o">=</span><span class="n">multioutput</span><span class="p">,</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="mean_absolute_percentage_error"><a class="viewcode-back" href="../../../api/sandbox/metrics/score/index.html#sandbox.metrics.score.mean_absolute_percentage_error">[docs]</a><span class="k">def</span> <span class="nf">mean_absolute_percentage_error</span><span class="p">(</span>
     <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">multioutput</span><span class="o">=</span><span class="s2">&quot;uniform_average&quot;</span>
 <span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Mean absolute percentage error (MAPE) regression loss from ``scikit-learn``</span>
+    <span class="sd">&quot;&quot;&quot;Mean absolute percentage error (MAPE) regression loss from ``scikit-learn``</span>
 
 <span class="sd">    Note here that the output is not a percentage in the range [0, 100]</span>
 <span class="sd">    and a value of 100 does not mean 100% but 1e2. Furthermore, the output</span>
@@ -834,7 +963,7 @@ title="Open an issue"
 <span class="sd">        If multioutput is &#39;raw_values&#39;, then mean absolute percentage error</span>
 <span class="sd">        is returned for each output separately.</span>
 
-<span class="sd">        If multioutput is &#39;uniform_average&#39; or an ndarray of weights, then the</span>
+<span class="sd">        If multioutput is &#39;uniform_average&#39; or a ndarray of weights, then the</span>
 <span class="sd">        weighted average of all output errors is returned.</span>
 
 <span class="sd">        MAPE output is non-negative floating point. The best value is 0.0.</span>
@@ -872,7 +1001,7 @@ title="Open an issue"
 
 
 <div class="viewcode-block" id="mape_score"><a class="viewcode-back" href="../../../api/sandbox/metrics/score/index.html#sandbox.metrics.score.mape_score">[docs]</a><span class="k">def</span> <span class="nf">mape_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">multioutput</span><span class="o">=</span><span class="s2">&quot;uniform_average&quot;</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;1 - Mean absolute percentage error (MAPE) regression.</span>
+    <span class="sd">&quot;&quot;&quot;1 - Mean absolute percentage error (MAPE) regression.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -898,6 +1027,7 @@ title="Open an issue"
 <span class="sd">    -------</span>
 <span class="sd">    z : {float, ndarray[float]}</span>
 <span class="sd">        1 - `mean_absolute_percentage_error`</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">mape</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span>
         <span class="n">y_true</span><span class="o">=</span><span class="n">y_true</span><span class="p">,</span>
@@ -909,6 +1039,66 @@ title="Open an issue"
     <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">mape</span></div>
 
 
+<div class="viewcode-block" id="mean_squared_error"><a class="viewcode-back" href="../../../api/sandbox/metrics/score/index.html#sandbox.metrics.score.mean_squared_error">[docs]</a><span class="k">def</span> <span class="nf">mean_squared_error</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">multioutput</span><span class="o">=</span><span class="s2">&quot;uniform_average&quot;</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Mean squared error regression loss.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Ground truth (correct) target values.</span>
+<span class="sd">    y_pred : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Estimated target values.</span>
+<span class="sd">    sample_weight : array-like of shape (n_samples,), default=None</span>
+<span class="sd">        Sample weights.</span>
+<span class="sd">    multioutput : {&#39;raw_values&#39;, &#39;uniform_average&#39;} or array-like of shape (n_outputs,), default=&#39;uniform_average&#39;</span>
+<span class="sd">        Defines aggregating of multiple output values.</span>
+<span class="sd">        Array-like value defines weights used to average errors.</span>
+<span class="sd">        &#39;raw_values&#39; :</span>
+<span class="sd">            Returns a full set of errors in case of multioutput input.</span>
+<span class="sd">        &#39;uniform_average&#39; :</span>
+<span class="sd">            Errors of all outputs are averaged with uniform weight.</span>
+<span class="sd">    squared : bool, default=True</span>
+<span class="sd">        If True returns MSE value, if False returns RMSE value.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    loss : float or ndarray of floats</span>
+<span class="sd">        A non-negative floating point value (the best value is 0.0), or an</span>
+<span class="sd">        array of floating point values, one for each individual target.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sandbox.metrics.score import mean_squared_error</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [3, -0.5, 2, 7]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [2.5, 0.0, 2, 8]</span>
+<span class="sd">    &gt;&gt;&gt; mean_squared_error(y_true, y_pred)</span>
+<span class="sd">    0.375</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [3, -0.5, 2, 7]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [2.5, 0.0, 2, 8]</span>
+<span class="sd">    &gt;&gt;&gt; mean_squared_error(y_true, y_pred, squared=False)</span>
+<span class="sd">    0.612...</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [[0.5, 1],[-1, 1],[7, -6]]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [[0, 2],[-1, 2],[8, -5]]</span>
+<span class="sd">    &gt;&gt;&gt; mean_squared_error(y_true, y_pred)</span>
+<span class="sd">    0.708...</span>
+<span class="sd">    &gt;&gt;&gt; mean_squared_error(y_true, y_pred, squared=False)</span>
+<span class="sd">    0.822...</span>
+<span class="sd">    &gt;&gt;&gt; mean_squared_error(y_true, y_pred, multioutput=&#39;raw_values&#39;)</span>
+<span class="sd">    array([0.41666667, 1.        ])</span>
+<span class="sd">    &gt;&gt;&gt; mean_squared_error(y_true, y_pred, multioutput=[0.3, 0.7])</span>
+<span class="sd">    0.825...</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">mse</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="o">=</span><span class="n">y_true</span><span class="p">,</span>
+        <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+        <span class="n">multioutput</span><span class="o">=</span><span class="n">multioutput</span><span class="p">,</span>
+        <span class="n">squared</span><span class="o">=</span><span class="n">squared</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="r2_score"><a class="viewcode-back" href="../../../api/sandbox/metrics/score/index.html#sandbox.metrics.score.r2_score">[docs]</a><span class="k">def</span> <span class="nf">r2_score</span><span class="p">(</span>
     <span class="n">y_true</span><span class="p">,</span>
     <span class="n">y_pred</span><span class="p">,</span>
@@ -918,7 +1108,7 @@ title="Open an issue"
 <span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;:math:`R^2` (coefficient of determination) regression score function from ``scikit-learn``</span>
 
-<span class="sd">    Best possible score is 1.0 and it can be negative (because the</span>
+<span class="sd">    Best possible score is 1.0, and it can be negative (because the</span>
 <span class="sd">    model can be arbitrarily worse). In the general case when the true y is</span>
 <span class="sd">    non-constant, a constant model that always predicts the average y</span>
 <span class="sd">    disregarding the input features would get a :math:`R^2` score of 0.0.</span>
@@ -1020,6 +1210,42 @@ title="Open an issue"
         <span class="n">multioutput</span><span class="o">=</span><span class="n">multioutput</span><span class="p">,</span>
         <span class="n">force_finite</span><span class="o">=</span><span class="n">force_finite</span><span class="p">,</span>
     <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="score"><a class="viewcode-back" href="../../../api/sandbox/metrics/score/index.html#sandbox.metrics.score.score">[docs]</a><span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;r2&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">score_kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Score function.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like</span>
+<span class="sd">        Ground truth (correct) target values.</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Estimated target values.</span>
+<span class="sd">    scoring : str</span>
+<span class="sd">        The string expressing which score is used.</span>
+<span class="sd">    score_kwargs : dict</span>
+<span class="sd">        Keyword arguments for internal score function.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    score : float or ndarray of floats</span>
+<span class="sd">        The result of score function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">scoring</span> <span class="o">=</span> <span class="n">manage_scoring_alias</span><span class="p">(</span><span class="n">scoring</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">scoring</span> <span class="o">==</span> <span class="s2">&quot;mean_squared_error&quot;</span><span class="p">:</span>
+        <span class="n">score_val</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">score_kwargs</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">scoring</span> <span class="o">==</span> <span class="s2">&quot;root_mean_squared_error&quot;</span><span class="p">:</span>
+        <span class="n">score_val</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">score_kwargs</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">scoring</span> <span class="o">==</span> <span class="s2">&quot;mean_absolute_error&quot;</span><span class="p">:</span>
+        <span class="n">score_val</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">**</span><span class="n">score_kwargs</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">scoring</span> <span class="o">==</span> <span class="s2">&quot;mean_absolute_percentage_error&quot;</span><span class="p">:</span>
+        <span class="n">score_val</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">**</span><span class="n">score_kwargs</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">scoring</span> <span class="o">==</span> <span class="s2">&quot;r2&quot;</span><span class="p">:</span>
+        <span class="n">score_val</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">**</span><span class="n">score_kwargs</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Specified scoring is not supported, </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scoring</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">score_val</span></div>
 </pre></div>
 
               </div>
