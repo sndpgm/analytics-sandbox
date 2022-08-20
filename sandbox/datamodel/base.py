@@ -55,7 +55,16 @@ class BaseData:
         return self.data.__repr__()
 
     def __len__(self) -> int:
-        return self.data.__len__()
+        if self.data is None:
+            return 0
+        else:
+            return self.data.__len__()
+
+    def __getitem__(self, *args, **kwargs):
+        if self.data is None:
+            return None
+        else:
+            return self.data.__getitem__(*args, **kwargs)
 
     @staticmethod
     def _is_incorrect_data(data: StructuralDataType) -> bool:
@@ -66,6 +75,8 @@ class BaseData:
         elif dd and isinstance(data, (dd.DataFrame, dd.Series, dd.Index)):
             _is = True
         elif da and isinstance(data, da.Array):
+            _is = True
+        elif data is None:
             _is = True
         else:
             _is = False
@@ -89,33 +100,52 @@ class BaseData:
         """Return a Numpy representation of data.
         In case of Dask format, return a Dask.array.Array.
         """
-        if isinstance(self.data, (np.ndarray, da.Array)):
+        if self.data is None:
+            return None
+        if isinstance(self.data, np.ndarray) or (
+            da and isinstance(self.data, da.Array)
+        ):
             return self.data
-        if isinstance(
-            self.data,
-            (pd.DataFrame, pd.Series, pd.Index, dd.DataFrame, dd.Series, dd.Index),
+        if isinstance(self.data, (pd.DataFrame, pd.Series, pd.Index)) or (
+            dd and isinstance(self.data, (dd.DataFrame, dd.Series, dd.Index))
         ):
             return self.data.values
 
     @property
     def index(self) -> Union[Index, dd.Index]:
         """Return the index (row labels) of data."""
-        if isinstance(self.data, (pd.Index, dd.Index, np.ndarray, da.Array)):
+        if self.data is None:
+            return None
+        if isinstance(self.data, pd.Index) or (dd and isinstance(self.data, dd.Index)):
+            return self.data
+        if isinstance(self.data, np.ndarray) or (
+            da and isinstance(self.data, da.Array)
+        ):
             return default_index(len(self.data))
-        if isinstance(self.data, (pd.DataFrame, pd.Series, dd.DataFrame, dd.Series)):
+        if isinstance(self.data, (pd.DataFrame, pd.Series)) or (
+            dd and isinstance(self.data, (dd.DataFrame, dd.Series))
+        ):
             return self.data.index
 
     @property
     def names(self) -> Index:
         """Returns the column labels of data."""
-        if isinstance(self.data, (pd.DataFrame, dd.DataFrame)):
+        if self.data is None:
+            return None
+        if isinstance(self.data, pd.DataFrame) or (
+            dd and isinstance(self.data, dd.DataFrame)
+        ):
             return self.data.columns
-        if isinstance(self.data, (pd.Series, pd.Index, dd.Series, dd.Index)):
+        if isinstance(self.data, (pd.Series, pd.Index)) or (
+            dd and isinstance(self.data, (dd.Series, dd.Index))
+        ):
             name = self.data.name
             if name is None:
                 name = "name_0"
             return Index([name])
-        if isinstance(self.data, (np.ndarray, da.Array)):
+        if isinstance(self.data, np.ndarray) or (
+            da and isinstance(self.data, da.Array)
+        ):
             names = list()
             if self.nparams == 1:
                 names.append("name_0")
@@ -244,10 +274,10 @@ class BaseModelDataset:
     """
 
     def __init__(self, X, y):
-        self.X = BaseData(X) if X is not None else None
-        self.y = BaseData(y) if y is not None else None
-        self._X_name = self.X.names if X is not None else None
-        self._y_name = self.y.names if y is not None else None
+        self.X = BaseData(X)
+        self.y = BaseData(y)
+        self._X_name = self.X.names
+        self._y_name = self.y.names
 
         if not self._has_non_None_X_y():
             msg = "X and y must not be both None."
@@ -265,13 +295,13 @@ class BaseModelDataset:
         return "X:\n{0}\n\ny:\n{1}".format(self.X, self.y)
 
     def _has_both_X_y_defined(self):
-        if self.X is not None and self.y is not None:
+        if self.X.data is not None and self.y.data is not None:
             return True
         else:
             return False
 
     def _has_non_None_X_y(self):
-        if not (self.X is None and self.y is None):
+        if not (self.X.data is None and self.y.data is None):
             return True
         else:
             return False
@@ -288,7 +318,7 @@ class BaseModelDataset:
     @property
     def nobs(self):
         """Number of observations."""
-        if self.X is not None:
+        if self.X.data is not None:
             return self.X.nobs
         else:
             return self.y.nobs
@@ -301,7 +331,7 @@ class BaseModelDataset:
     @property
     def common_index(self):
         """Common index of X and y"""
-        if self.X is not None:
+        if self.X.data is not None:
             return self.X.index
         else:
             return self.y.index
@@ -309,7 +339,7 @@ class BaseModelDataset:
     @property
     def X_name(self):
         """X name columns"""
-        if self.X:
+        if self.X.data:
             return self.X.names
         else:
             return None
@@ -331,14 +361,14 @@ class BaseModelDataset:
     @property
     def y_name(self):
         """y name."""
-        if self.y:
+        if self.y.data:
             return self.y.names
         else:
             return None
 
     @y_name.setter
     def y_name(self, value) -> None:
-        if self.y:
+        if self.y.data:
             if len(value) != 1:
                 msg = "Specified y_names length must be 1, not {}.".format(len(value))
                 raise ValueError(msg)
@@ -390,9 +420,14 @@ class SupervisedModelDataset(BaseModelDataset):
             index = pd.RangeIndex(start=start, stop=stop, step=1)
             values = None
         else:
-            X_pred = BaseData(X_pred)
-            index = X_pred.index
-            values = X_pred.values
+            X = BaseData(X_pred)
+            index = X.index
+            if isinstance(X_pred, pd.Index):
+                values = None
+            elif dd and isinstance(X_pred, dd.Index):
+                values = None
+            else:
+                values = X.values
         return index, values
 
 
