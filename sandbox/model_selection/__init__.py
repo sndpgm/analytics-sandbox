@@ -1,4 +1,9 @@
 """"""
+from ._search import (
+    BaseOptunaSearchCV,
+    LightGBMOptunaStepwiseSearchCV,
+    XGBoostOptunaSearchCV,
+)
 from ._split import (
     BaseCrossValidator,
     BaseShuffleSplit,
@@ -25,6 +30,9 @@ from ._split import (
 )
 
 __all__ = [
+    "BaseOptunaSearchCV",
+    "XGBoostOptunaSearchCV",
+    "LightGBMOptunaStepwiseSearchCV",
     "BaseCrossValidator",
     "BaseShuffleSplit",
     "GroupKFold",
