@@ -46,6 +46,7 @@ sphinx:
     - 'sphinx.ext.autodoc'
     - 'sphinx.ext.napoleon'
     - 'sphinx.ext.viewcode'
+    - 'numpydoc'
     - 'sphinx.ext.intersphinx'
     - 'autoapi.extension'
     - 'myst_nb'
@@ -62,7 +63,6 @@ sphinx:
       - 'undoc-members'
       - 'show-inheritance'
       - 'show-module-summary'
-      - 'special-members'
       - 'imported-members'
     intersphinx_mapping:
       matplotlib:
@@ -94,4 +94,16 @@ sphinx:
         - null
       pmdarima:
         - 'http://alkaline-ml.com/pmdarima/'
+        - null
+      xgboost:
+        - 'https://xgboost.readthedocs.io/en/stable/'
+        - null
+      lightgbm:
+        - 'https://lightgbm.readthedocs.io/en/latest/'
+        - null
+      joblib:
+        - 'https://joblib.readthedocs.io/en/latest/'
+        - null
+      optuna:
+        - 'https://optuna.readthedocs.io/en/stable/'
         - null
