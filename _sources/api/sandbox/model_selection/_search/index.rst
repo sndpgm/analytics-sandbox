@@ -29,9 +29,9 @@ Classes
 
 
 
-.. py:class:: BaseOptunaSearchCV(estimator, scoring, cv=None, n_jobs=None, pre_dispatch='2*n_jobs', storage=None, study_name=None, direction='minimize', load_if_exists=False)
+.. py:class:: BaseOptunaSearchCV(estimator, scoring, cv=None, n_jobs=None, pre_dispatch='2*n_jobs', storage=None, study_name=None, direction='minimize', load_if_exists=False, sampler=None, sampler_seed=42)
 
-   Bases: :py:obj:`sklearn.base.BaseEstimator`
+   Bases: :py:obj:`BaseOptunaStudyInitializer`, :py:obj:`sklearn.base.BaseEstimator`
 
    
    Base class for hyperparameter search using `Optuna`.
@@ -134,6 +134,11 @@ Classes
                           a :class:`optuna.exceptions.DuplicatedStudyError` is raised if ``load_if_exists`` is
                           set to :obj:`False`. Otherwise, the creation of the study is skipped, and the existing one is returned.
    :type load_if_exists: bool, default=False
+   :param sampler: A sampler object that implements background algorithm for value suggestion.
+                   If :obj:`None` is specified, :class:`optuna.samplers.TPESampler` is used.
+   :type sampler: {optuna.samplers, None}, default=None
+   :param sampler_seed: Seed for random number generator.
+   :type sampler_seed: int, default=42
 
 
 
@@ -244,7 +249,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: fit(X, y, groups=None, n_trials=10, **fit_params)
+   .. py:method:: fit(X, y, groups=None, n_trials=10, show_progress_bar=False, optuna_verbosity=1, **fit_params)
 
       
       Execute hyperparameter tuning.
@@ -255,6 +260,11 @@ Classes
       :param groups: Group labels for the samples used while splitting the dataset into train/test set.
       :param n_trials: The number of trials.
       :type n_trials: int
+      :param show_progress_bar: Flag to show progress bars or not. To disable progress bar, set this :obj:`False`.
+                                Currently, progress bar is experimental feature and disabled when ``n_jobs`` :math:`\ne 1`.
+      :type show_progress_bar: bool, default=False
+      :param optuna_verbosity: The degree of verbosity in `Optuna` optimization. Valid values are 0 (silent) - 3 (debug).
+      :type optuna_verbosity: int, default=1
       :param fit_params: Parameters passed to the `fit` method of the estimator.
       :type fit_params: dict
 
@@ -276,7 +286,7 @@ Classes
           !! processed by numpydoc !!
 
 
-.. py:class:: XGBoostOptunaSearchCV(n_estimators=1000, scoring='mse', cv=None, n_jobs=None, pre_dispatch='2*n_jobs', storage=None, study_name=None, direction='minimize', load_if_exists=False)
+.. py:class:: XGBoostOptunaSearchCV(n_estimators=1000, scoring='mse', early_stopping_rounds=None, verbosity=1, cv=None, n_jobs=None, pre_dispatch='2*n_jobs', storage=None, study_name=None, direction='minimize', load_if_exists=False, sampler=None, sampler_seed=42)
 
    Bases: :py:obj:`BaseOptunaSearchCV`
 
@@ -285,8 +295,21 @@ Classes
 
    :param n_estimators: Number of gradient boosted trees. Equivalent to number of boosting rounds.
    :type n_estimators: int, default=1000
-   :param scoring: Which metric to use in evaluating the precision of cross validated estimator using `Optuna`.
+   :param scoring: Which metric to use in evaluating the precision of cross validated estimator.
    :type scoring: str, default="mse"
+   :param early_stopping_rounds: Activates early stopping. Validation metric needs to improve at least once in
+                                 every **early_stopping_rounds** round(s) to continue training. Requires at least
+                                 one item in **eval_set** in :py:meth:`fit`.
+                                 The method returns the model from the last iteration (not the best one). If
+                                 there's more than one item in **eval_set**, the last entry will be used for early
+                                 stopping. If there's more than one metric in **eval_metric**, the last metric
+                                 will be used for early stopping.
+                                 If early stopping occurs, the model will have three additional fields:
+                                 :py:attr:`best_score`, :py:attr:`best_iteration` and
+                                 :py:attr:`best_ntree_limit`.
+   :type early_stopping_rounds: int or None, default=None
+   :param verbosity: The degree of verbosity. Valid values are 0 (silent) - 3 (debug).
+   :type verbosity: int or None, default=None
    :param cv:
               Determines the cross-validation splitting strategy. Possible inputs for cv are:
 
@@ -338,6 +361,11 @@ Classes
                           a :class:`optuna.exceptions.DuplicatedStudyError` is raised if ``load_if_exists`` is
                           set to :obj:`False`. Otherwise, the creation of the study is skipped, and the existing one is returned.
    :type load_if_exists: bool, default=False
+   :param sampler: A sampler object that implements background algorithm for value suggestion.
+                   If :obj:`None` is specified, :class:`optuna.samplers.TPESampler` is used.
+   :type sampler: {optuna.samplers, None}, default=None
+   :param sampler_seed: Seed for random number generator.
+   :type sampler_seed: int, default=42
 
 
 
@@ -385,9 +413,6 @@ Classes
                 - max_depth :
                     - Maximum tree depth for base learners.
                     - Suggest a value for the categorical parameter: :math:`\{5, 7, 9, 11, 13, 15, 17\}`
-                - random_state :
-                    - Random number seed.
-                    - Seed is fixed as 2020.
                 - min_child_weight :
                     - Minimum sum of instance weight(hessian) needed in a child.
                     - The value is sampled from the integers in :math:`[1, 300]`
@@ -410,7 +435,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: fit(X, y, groups=None, n_trials=10, early_stopping_rounds=100, **fit_params)
+   .. py:method:: fit(X, y, groups=None, n_trials=10, show_progress_bar=False, eval_verbosity=1, optuna_verbosity=1, **fit_params)
 
       
       Execute hyperparameter tuning.
@@ -421,9 +446,15 @@ Classes
       :param groups: Group labels for the samples used while splitting the dataset into train/test set.
       :param n_trials: The number of trials.
       :type n_trials: int
-      :param early_stopping_rounds: Activates early stopping.
-      :type early_stopping_rounds: int
-      :param fit_params: Parameters passed to the `fit` method of the estimator of :class:`~sandbox.ensemble.boost.XGBoostRegressor`.
+      :param show_progress_bar: Flag to show progress bars or not. To disable progress bar, set this :obj:`False`.
+                                Currently, progress bar is experimental feature and disabled when ``n_jobs`` :math:`\ne 1`.
+      :type show_progress_bar: bool, default=False
+      :param eval_verbosity: The degree of verbosity in cross-validation evaluation. Valid values are 0 (silent) - 3 (debug).
+      :type eval_verbosity: int, default=1
+      :param optuna_verbosity: The degree of verbosity in `Optuna` optimization. Valid values are 0 (silent) - 3 (debug).
+      :type optuna_verbosity: int, default=1
+      :param fit_params: Parameters passed to the `fit` method of the estimator of
+                         :class:`~sandbox.ensemble.boost.XGBoostRegressor`.
       :type fit_params: dict
 
 
@@ -444,9 +475,9 @@ Classes
           !! processed by numpydoc !!
 
 
-.. py:class:: LightGBMOptunaStepwiseSearchCV(n_estimators=1000, boosting_type='gbdt', objective='regression', metric='rmse', early_stopping_rounds=100, random_state=2022, cv=None, storage=None, study_name=None, direction='minimize', load_if_exists=False)
+.. py:class:: LightGBMOptunaStepwiseSearchCV(n_estimators=1000, boosting_type='gbdt', objective='regression', metric='rmse', early_stopping_rounds=100, random_state=42, cv=None, storage=None, study_name=None, direction='minimize', load_if_exists=False, sampler=None, sampler_seed=42)
 
-   Bases: :py:obj:`sklearn.base.BaseEstimator`
+   Bases: :py:obj:`BaseOptunaStudyInitializer`, :py:obj:`sklearn.base.BaseEstimator`
 
    
    Hyperparameter stepwise search for LightGBM with cross-validation
@@ -503,6 +534,11 @@ Classes
                           a :class:`optuna.exceptions.DuplicatedStudyError` is raised if ``load_if_exists`` is
                           set to :obj:`False`. Otherwise, the creation of the study is skipped, and the existing one is returned.
    :type load_if_exists: bool, default=False
+   :param sampler: A sampler object that implements background algorithm for value suggestion.
+                   If :obj:`None` is specified, :class:`optuna.samplers.TPESampler` is used.
+   :type sampler: {optuna.samplers, None}, default=None
+   :param sampler_seed: Seed for random number generator.
+   :type sampler_seed: int, default=42
 
    .. seealso::
 
@@ -553,7 +589,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: fit(X, y, groups=None)
+   .. py:method:: fit(X, y, groups=None, show_progress_bar=False, eval_verbosity=1, optuna_verbosity=1, **fit_params)
 
       
       Execute hyperparameter tuning.
@@ -562,6 +598,16 @@ Classes
       :param y: Target values (strings or integers in classification, real numbers in regression).
                 For classification, labels must correspond to classes.
       :param groups: Group labels for the samples used while splitting the dataset into train/test set.
+      :param show_progress_bar: Flag to show progress bars or not. To disable progress bar, set this :obj:`False`.
+                                Currently, progress bar is experimental feature and disabled when ``n_jobs`` :math:`\ne 1`.
+      :type show_progress_bar: bool, default=False
+      :param eval_verbosity: The degree of verbosity in cross-validation evaluation. Valid values are 0 (silent) - 3 (debug).
+      :type eval_verbosity: int, default=1
+      :param optuna_verbosity: The degree of verbosity in `Optuna` optimization. Valid values are 0 (silent) - 3 (debug).
+      :type optuna_verbosity: int, default=1
+      :param fit_params: Parameters passed to the `fit` method of the estimator of
+                         :class:`~sandbox.ensemble.boost.XGBoostRegressor`.
+      :type fit_params: dict
 
 
 

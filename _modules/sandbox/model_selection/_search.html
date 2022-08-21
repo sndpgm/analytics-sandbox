@@ -836,6 +836,7 @@ title="Open an issue"
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">optuna</span>
 <span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span>
+<span class="kn">from</span> <span class="nn">optuna.logging</span> <span class="kn">import</span> <span class="n">DEBUG</span><span class="p">,</span> <span class="n">ERROR</span><span class="p">,</span> <span class="n">INFO</span><span class="p">,</span> <span class="n">WARNING</span><span class="p">,</span> <span class="n">set_verbosity</span>
 <span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils.fixes</span> <span class="kn">import</span> <span class="n">delayed</span>
 
@@ -852,7 +853,114 @@ title="Open an issue"
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="BaseOptunaSearchCV"><a class="viewcode-back" href="../../../api/sandbox/model_selection/index.html#sandbox.model_selection._search.BaseOptunaSearchCV">[docs]</a><span class="k">class</span> <span class="nc">BaseOptunaSearchCV</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseOptunaStudyInitializer"><a class="viewcode-back" href="../../../api/sandbox/model_selection/index.html#sandbox.model_selection._search.BaseOptunaStudyInitializer">[docs]</a><span class="k">class</span> <span class="nc">BaseOptunaStudyInitializer</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Base initializer class for study instance.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    storage : {None, str}, default=None</span>
+<span class="sd">        Database URL. If this argument is set to None, in-memory storage is used, and the</span>
+<span class="sd">        :class:`optuna.study.Study` will not be persistent.</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            When a database URL is passed, Optuna internally uses `SQLAlchemy`_ to handle</span>
+<span class="sd">            the database. Please refer to `SQLAlchemy&#39;s document`_ for further details.</span>
+<span class="sd">            If you want to specify non-default options to `SQLAlchemy Engine`_, you can</span>
+<span class="sd">            instantiate :class:`~optuna.storages.RDBStorage` with your desired options and</span>
+<span class="sd">            pass it to the ``storage`` argument instead of a URL.</span>
+
+<span class="sd">         .. _SQLAlchemy: https://www.sqlalchemy.org/</span>
+<span class="sd">         .. _SQLAlchemy&#39;s document:</span>
+<span class="sd">             https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls</span>
+<span class="sd">         .. _SQLAlchemy Engine: https://docs.sqlalchemy.org/en/latest/core/engines.html</span>
+
+<span class="sd">    study_name: {None, str}, default=None</span>
+<span class="sd">        Study&#39;s name. If this argument is set to None, a unique name is generated automatically.</span>
+<span class="sd">    direction: str, default=minimize</span>
+<span class="sd">        Direction of optimization. Set ``minimize`` for minimization and ``maximize`` for maximization.</span>
+<span class="sd">        You can also pass the corresponding :class:`optuna.study.StudyDirection` object.</span>
+<span class="sd">    load_if_exists: bool, default=False</span>
+<span class="sd">        Flag to control the behavior to handle a conflict of study names.</span>
+<span class="sd">        In the case where a study named ``study_name`` already exists in the ``storage``,</span>
+<span class="sd">        a :class:`optuna.exceptions.DuplicatedStudyError` is raised if ``load_if_exists`` is</span>
+<span class="sd">        set to :obj:`False`. Otherwise, the creation of the study is skipped, and the existing one is returned.</span>
+<span class="sd">    sampler : {optuna.samplers, None}, default=None</span>
+<span class="sd">        A sampler object that implements background algorithm for value suggestion.</span>
+<span class="sd">        If :obj:`None` is specified, :class:`optuna.samplers.TPESampler` is used.</span>
+<span class="sd">    sampler_params : dict</span>
+<span class="sd">        Parameters passed to the specified `optuna.samplers`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">storage</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">study_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;minimize&quot;</span><span class="p">,</span>
+        <span class="n">load_if_exists</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">sampler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">sampler_params</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span> <span class="o">=</span> <span class="n">storage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">study_name</span> <span class="o">=</span> <span class="n">study_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_if_exists</span> <span class="o">=</span> <span class="n">load_if_exists</span>
+
+        <span class="c1"># setting for sampler of optuna.study.Study</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sampler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">optuna_sampler</span><span class="p">(</span><span class="n">sampler</span><span class="p">,</span> <span class="o">**</span><span class="n">sampler_params</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">create_study_params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;storage&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+            <span class="s2">&quot;sampler&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sampler</span><span class="p">,</span>
+            <span class="s2">&quot;study_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">study_name</span><span class="p">,</span>
+            <span class="s2">&quot;direction&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">,</span>
+            <span class="s2">&quot;load_if_exists&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_if_exists</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">optuna_sampler</span><span class="p">(</span><span class="n">sampler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">sampler_params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return your specified `optuna.samplers`</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sampler : {optuna.samplers, None}, default=None</span>
+<span class="sd">            A sampler object that implements background algorithm for value suggestion.</span>
+<span class="sd">            If :obj:`None` is specified, :class:`optuna.samplers.TPESampler` is used.</span>
+<span class="sd">        sampler_params : dict</span>
+<span class="sd">            Parameters passed to the specified `optuna.samplers`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        sampler : optuna.samplers</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">sampler</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">optuna</span><span class="o">.</span><span class="n">samplers</span><span class="o">.</span><span class="n">TPESampler</span><span class="p">(</span><span class="o">**</span><span class="n">sampler_params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">sampler</span>
+
+    <span class="k">def</span> <span class="nf">create_study</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create `optuna.study.Study` instance.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        study : optuna.study.Study</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">create_study_params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The parameter search space which should be implemented in the subclass which is inheritance to this class.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        kwargs : dict</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        The parameter space to be searched.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="BaseOptunaSearchCV"><a class="viewcode-back" href="../../../api/sandbox/model_selection/index.html#sandbox.model_selection._search.BaseOptunaSearchCV">[docs]</a><span class="k">class</span> <span class="nc">BaseOptunaSearchCV</span><span class="p">(</span><span class="n">BaseOptunaStudyInitializer</span><span class="p">,</span> <span class="n">BaseEstimator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for hyperparameter search using `Optuna`.</span>
 
 <span class="sd">    Examples</span>
@@ -958,6 +1066,11 @@ title="Open an issue"
 <span class="sd">        In the case where a study named ``study_name`` already exists in the ``storage``,</span>
 <span class="sd">        a :class:`optuna.exceptions.DuplicatedStudyError` is raised if ``load_if_exists`` is</span>
 <span class="sd">        set to :obj:`False`. Otherwise, the creation of the study is skipped, and the existing one is returned.</span>
+<span class="sd">    sampler : {optuna.samplers, None}, default=None</span>
+<span class="sd">        A sampler object that implements background algorithm for value suggestion.</span>
+<span class="sd">        If :obj:`None` is specified, :class:`optuna.samplers.TPESampler` is used.</span>
+<span class="sd">    sampler_seed : int, default=42</span>
+<span class="sd">        Seed for random number generator.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -971,10 +1084,13 @@ title="Open an issue"
         <span class="n">study_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;minimize&quot;</span><span class="p">,</span>
         <span class="n">load_if_exists</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">sampler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">sampler_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">estimator</span> <span class="o">=</span> <span class="n">estimator</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scoring</span> <span class="o">=</span> <span class="n">scoring</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pre_dispatch</span> <span class="o">=</span> <span class="n">pre_dispatch</span>
 
         <span class="k">if</span> <span class="n">cv</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">cv</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -983,22 +1099,17 @@ title="Open an issue"
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">cv</span> <span class="o">=</span> <span class="n">cv</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">pre_dispatch</span> <span class="o">=</span> <span class="n">pre_dispatch</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span> <span class="o">=</span> <span class="n">storage</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">study_name</span> <span class="o">=</span> <span class="n">study_name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">load_if_exists</span> <span class="o">=</span> <span class="n">load_if_exists</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">create_study_params</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;storage&quot;</span><span class="p">:</span> <span class="n">storage</span><span class="p">,</span>
-            <span class="s2">&quot;study_name&quot;</span><span class="p">:</span> <span class="n">study_name</span><span class="p">,</span>
-            <span class="s2">&quot;direction&quot;</span><span class="p">:</span> <span class="n">direction</span><span class="p">,</span>
-            <span class="s2">&quot;load_if_exists&quot;</span><span class="p">:</span> <span class="n">load_if_exists</span><span class="p">,</span>
-        <span class="p">}</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_study</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_study</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">_create_study</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">create_study_params</span><span class="p">)</span>
+        <span class="c1"># initialize by BaseOptunaStudyInitializer.</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BaseOptunaSearchCV</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">storage</span><span class="o">=</span><span class="n">storage</span><span class="p">,</span>
+            <span class="n">study_name</span><span class="o">=</span><span class="n">study_name</span><span class="p">,</span>
+            <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span>
+            <span class="n">load_if_exists</span><span class="o">=</span><span class="n">load_if_exists</span><span class="p">,</span>
+            <span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span><span class="p">,</span>
+            <span class="n">seed</span><span class="o">=</span><span class="n">sampler_seed</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sampler_seed</span> <span class="o">=</span> <span class="n">sampler_seed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_study</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_study</span><span class="p">()</span>
 
     <span class="nd">@property</span>
 <div class="viewcode-block" id="BaseOptunaSearchCV.study"><a class="viewcode-back" href="../../../api/sandbox/model_selection/_search/index.html#sandbox.model_selection._search.BaseOptunaSearchCV.study">[docs]</a>    <span class="k">def</span> <span class="nf">study</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1061,7 +1172,10 @@ title="Open an issue"
             <span class="n">X_test</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">]</span>
             <span class="n">y_test</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">]</span>
 
-            <span class="k">if</span> <span class="s2">&quot;early_stopping_rounds&quot;</span> <span class="ow">in</span> <span class="n">fit_params</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;early_stopping_rounds&quot;</span> <span class="ow">in</span> <span class="n">fit_params</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="ow">or</span> <span class="p">(</span>
+                <span class="nb">hasattr</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="s2">&quot;early_stopping_rounds&quot;</span><span class="p">)</span>
+                <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="s2">&quot;early_stopping_rounds&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="p">):</span>
                 <span class="n">fit_params</span><span class="p">[</span><span class="s2">&quot;eval_set&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)]</span>
 
             <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
@@ -1113,7 +1227,16 @@ title="Open an issue"
 
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
 
-<div class="viewcode-block" id="BaseOptunaSearchCV.fit"><a class="viewcode-back" href="../../../api/sandbox/model_selection/_search/index.html#sandbox.model_selection._search.BaseOptunaSearchCV.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseOptunaSearchCV.fit"><a class="viewcode-back" href="../../../api/sandbox/model_selection/_search/index.html#sandbox.model_selection._search.BaseOptunaSearchCV.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">n_trials</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">show_progress_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">optuna_verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">fit_params</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Execute hyperparameter tuning.</span>
 
 <span class="sd">        Parameters</span>
@@ -1127,9 +1250,30 @@ title="Open an issue"
 <span class="sd">            Group labels for the samples used while splitting the dataset into train/test set.</span>
 <span class="sd">        n_trials : int</span>
 <span class="sd">            The number of trials.</span>
+<span class="sd">        show_progress_bar : bool, default=False</span>
+<span class="sd">            Flag to show progress bars or not. To disable progress bar, set this :obj:`False`.</span>
+<span class="sd">            Currently, progress bar is experimental feature and disabled when ``n_jobs`` :math:`\\ne 1`.</span>
+<span class="sd">        optuna_verbosity : int, default=1</span>
+<span class="sd">            The degree of verbosity in `Optuna` optimization. Valid values are 0 (silent) - 3 (debug).</span>
 <span class="sd">        fit_params : dict</span>
 <span class="sd">            Parameters passed to the `fit` method of the estimator.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">optuna_verbosity</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">OPTUNA_VERBOSE_LEVEL</span> <span class="o">=</span> <span class="n">ERROR</span>
+        <span class="k">elif</span> <span class="n">optuna_verbosity</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">OPTUNA_VERBOSE_LEVEL</span> <span class="o">=</span> <span class="n">WARNING</span>
+        <span class="k">elif</span> <span class="n">optuna_verbosity</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">OPTUNA_VERBOSE_LEVEL</span> <span class="o">=</span> <span class="n">INFO</span>
+        <span class="k">elif</span> <span class="n">optuna_verbosity</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">OPTUNA_VERBOSE_LEVEL</span> <span class="o">=</span> <span class="n">DEBUG</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Specified optuna_verbosity must be [0, 1, 2, 3], not </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">optuna_verbosity</span>
+            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">set_verbosity</span><span class="p">(</span><span class="n">OPTUNA_VERBOSE_LEVEL</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span>
             <span class="k">lambda</span> <span class="n">trial</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_objective</span><span class="p">(</span>
                 <span class="n">trial</span><span class="p">,</span>
@@ -1139,6 +1283,7 @@ title="Open an issue"
                 <span class="o">**</span><span class="n">fit_params</span><span class="p">,</span>
             <span class="p">),</span>
             <span class="n">n_trials</span><span class="o">=</span><span class="n">n_trials</span><span class="p">,</span>
+            <span class="n">show_progress_bar</span><span class="o">=</span><span class="n">show_progress_bar</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div></div>
 
@@ -1151,7 +1296,20 @@ title="Open an issue"
 <span class="sd">    n_estimators : int, default=1000</span>
 <span class="sd">        Number of gradient boosted trees. Equivalent to number of boosting rounds.</span>
 <span class="sd">    scoring : str, default=&quot;mse&quot;</span>
-<span class="sd">        Which metric to use in evaluating the precision of cross validated estimator using `Optuna`.</span>
+<span class="sd">        Which metric to use in evaluating the precision of cross validated estimator.</span>
+<span class="sd">    early_stopping_rounds : int or None, default=None</span>
+<span class="sd">        Activates early stopping. Validation metric needs to improve at least once in</span>
+<span class="sd">        every **early_stopping_rounds** round(s) to continue training. Requires at least</span>
+<span class="sd">        one item in **eval_set** in :py:meth:`fit`.</span>
+<span class="sd">        The method returns the model from the last iteration (not the best one). If</span>
+<span class="sd">        there&#39;s more than one item in **eval_set**, the last entry will be used for early</span>
+<span class="sd">        stopping. If there&#39;s more than one metric in **eval_metric**, the last metric</span>
+<span class="sd">        will be used for early stopping.</span>
+<span class="sd">        If early stopping occurs, the model will have three additional fields:</span>
+<span class="sd">        :py:attr:`best_score`, :py:attr:`best_iteration` and</span>
+<span class="sd">        :py:attr:`best_ntree_limit`.</span>
+<span class="sd">    verbosity : int or None, default=None</span>
+<span class="sd">        The degree of verbosity. Valid values are 0 (silent) - 3 (debug).</span>
 <span class="sd">    cv : {None, int, cross-validation generator or and iterable}, default=None</span>
 <span class="sd">        Determines the cross-validation splitting strategy. Possible inputs for cv are:</span>
 
@@ -1204,12 +1362,19 @@ title="Open an issue"
 <span class="sd">        In the case where a study named ``study_name`` already exists in the ``storage``,</span>
 <span class="sd">        a :class:`optuna.exceptions.DuplicatedStudyError` is raised if ``load_if_exists`` is</span>
 <span class="sd">        set to :obj:`False`. Otherwise, the creation of the study is skipped, and the existing one is returned.</span>
+<span class="sd">    sampler : {optuna.samplers, None}, default=None</span>
+<span class="sd">        A sampler object that implements background algorithm for value suggestion.</span>
+<span class="sd">        If :obj:`None` is specified, :class:`optuna.samplers.TPESampler` is used.</span>
+<span class="sd">    sampler_seed : int, default=42</span>
+<span class="sd">        Seed for random number generator.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">n_estimators</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
         <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;mse&quot;</span><span class="p">,</span>
+        <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">cv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">pre_dispatch</span><span class="o">=</span><span class="s2">&quot;2*n_jobs&quot;</span><span class="p">,</span>
@@ -1217,9 +1382,18 @@ title="Open an issue"
         <span class="n">study_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;minimize&quot;</span><span class="p">,</span>
         <span class="n">load_if_exists</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">sampler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">sampler_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="n">n_estimators</span>
-        <span class="n">estimator</span> <span class="o">=</span> <span class="n">XGBoostRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="n">n_estimators</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">early_stopping_rounds</span> <span class="o">=</span> <span class="n">early_stopping_rounds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="n">verbosity</span>
+        <span class="n">estimator</span> <span class="o">=</span> <span class="n">XGBoostRegressor</span><span class="p">(</span>
+            <span class="n">n_estimators</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">,</span>
+            <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">early_stopping_rounds</span><span class="p">,</span>
+            <span class="n">verbosity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="mi">2020</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">XGBoostOptunaSearchCV</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">estimator</span><span class="o">=</span><span class="n">estimator</span><span class="p">,</span>
             <span class="n">scoring</span><span class="o">=</span><span class="n">scoring</span><span class="p">,</span>
@@ -1230,6 +1404,8 @@ title="Open an issue"
             <span class="n">study_name</span><span class="o">=</span><span class="n">study_name</span><span class="p">,</span>
             <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span>
             <span class="n">load_if_exists</span><span class="o">=</span><span class="n">load_if_exists</span><span class="p">,</span>
+            <span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span><span class="p">,</span>
+            <span class="n">sampler_seed</span><span class="o">=</span><span class="n">sampler_seed</span><span class="p">,</span>
         <span class="p">)</span>
 
 <div class="viewcode-block" id="XGBoostOptunaSearchCV.params"><a class="viewcode-back" href="../../../api/sandbox/model_selection/_search/index.html#sandbox.model_selection._search.XGBoostOptunaSearchCV.params">[docs]</a>    <span class="k">def</span> <span class="nf">params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trial</span><span class="p">):</span>
@@ -1264,9 +1440,6 @@ title="Open an issue"
 <span class="sd">            - max_depth :</span>
 <span class="sd">                - Maximum tree depth for base learners.</span>
 <span class="sd">                - Suggest a value for the categorical parameter: :math:`\\{5, 7, 9, 11, 13, 15, 17\\}`</span>
-<span class="sd">            - random_state :</span>
-<span class="sd">                - Random number seed.</span>
-<span class="sd">                - Seed is fixed as 2020.</span>
 <span class="sd">            - min_child_weight :</span>
 <span class="sd">                - Minimum sum of instance weight(hessian) needed in a child.</span>
 <span class="sd">                - The value is sampled from the integers in :math:`[1, 300]`</span>
@@ -1287,12 +1460,19 @@ title="Open an issue"
             <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span>
                 <span class="s2">&quot;max_depth&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">17</span><span class="p">]</span>
             <span class="p">),</span>
-            <span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s2">&quot;random_state&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2020</span><span class="p">]),</span>
             <span class="s2">&quot;min_child_weight&quot;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s2">&quot;min_child_weight&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span>
         <span class="p">}</span></div>
 
 <div class="viewcode-block" id="XGBoostOptunaSearchCV.fit"><a class="viewcode-back" href="../../../api/sandbox/model_selection/_search/index.html#sandbox.model_selection._search.XGBoostOptunaSearchCV.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">n_trials</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">show_progress_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">eval_verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">optuna_verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">fit_params</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Execute hyperparameter tuning.</span>
 
@@ -1307,19 +1487,31 @@ title="Open an issue"
 <span class="sd">            Group labels for the samples used while splitting the dataset into train/test set.</span>
 <span class="sd">        n_trials : int</span>
 <span class="sd">            The number of trials.</span>
-<span class="sd">        early_stopping_rounds : int</span>
-<span class="sd">             Activates early stopping.</span>
+<span class="sd">        show_progress_bar : bool, default=False</span>
+<span class="sd">            Flag to show progress bars or not. To disable progress bar, set this :obj:`False`.</span>
+<span class="sd">            Currently, progress bar is experimental feature and disabled when ``n_jobs`` :math:`\\ne 1`.</span>
+<span class="sd">        eval_verbosity : int, default=1</span>
+<span class="sd">            The degree of verbosity in cross-validation evaluation. Valid values are 0 (silent) - 3 (debug).</span>
+<span class="sd">        optuna_verbosity : int, default=1</span>
+<span class="sd">            The degree of verbosity in `Optuna` optimization. Valid values are 0 (silent) - 3 (debug).</span>
 <span class="sd">        fit_params : dict</span>
-<span class="sd">            Parameters passed to the `fit` method of the estimator of :class:`~sandbox.ensemble.boost.XGBoostRegressor`.</span>
+<span class="sd">            Parameters passed to the `fit` method of the estimator of</span>
+<span class="sd">            :class:`~sandbox.ensemble.boost.XGBoostRegressor`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">fit_params</span><span class="p">[</span><span class="s2">&quot;early_stopping_rounds&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">early_stopping_rounds</span>
+        <span class="n">fit_params</span><span class="p">[</span><span class="s2">&quot;verbose&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">eval_verbosity</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">XGBoostOptunaSearchCV</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
-            <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="n">groups</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="n">n_trials</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span>
+            <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+            <span class="n">groups</span><span class="o">=</span><span class="n">groups</span><span class="p">,</span>
+            <span class="n">n_trials</span><span class="o">=</span><span class="n">n_trials</span><span class="p">,</span>
+            <span class="n">show_progress_bar</span><span class="o">=</span><span class="n">show_progress_bar</span><span class="p">,</span>
+            <span class="n">optuna_verbosity</span><span class="o">=</span><span class="n">optuna_verbosity</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">fit_params</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div></div>
 
 
-<div class="viewcode-block" id="LightGBMOptunaStepwiseSearchCV"><a class="viewcode-back" href="../../../api/sandbox/model_selection/index.html#sandbox.model_selection._search.LightGBMOptunaStepwiseSearchCV">[docs]</a><span class="k">class</span> <span class="nc">LightGBMOptunaStepwiseSearchCV</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
+<div class="viewcode-block" id="LightGBMOptunaStepwiseSearchCV"><a class="viewcode-back" href="../../../api/sandbox/model_selection/index.html#sandbox.model_selection._search.LightGBMOptunaStepwiseSearchCV">[docs]</a><span class="k">class</span> <span class="nc">LightGBMOptunaStepwiseSearchCV</span><span class="p">(</span><span class="n">BaseOptunaStudyInitializer</span><span class="p">,</span> <span class="n">BaseEstimator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Hyperparameter stepwise search for LightGBM with cross-validation</span>
 
 <span class="sd">    Parameters</span>
@@ -1376,6 +1568,11 @@ title="Open an issue"
 <span class="sd">        In the case where a study named ``study_name`` already exists in the ``storage``,</span>
 <span class="sd">        a :class:`optuna.exceptions.DuplicatedStudyError` is raised if ``load_if_exists`` is</span>
 <span class="sd">        set to :obj:`False`. Otherwise, the creation of the study is skipped, and the existing one is returned.</span>
+<span class="sd">    sampler : {optuna.samplers, None}, default=None</span>
+<span class="sd">        A sampler object that implements background algorithm for value suggestion.</span>
+<span class="sd">        If :obj:`None` is specified, :class:`optuna.samplers.TPESampler` is used.</span>
+<span class="sd">    sampler_seed : int, default=42</span>
+<span class="sd">        Seed for random number generator.</span>
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
@@ -1389,12 +1586,14 @@ title="Open an issue"
         <span class="n">objective</span><span class="o">=</span><span class="s2">&quot;regression&quot;</span><span class="p">,</span>
         <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;rmse&quot;</span><span class="p">,</span>
         <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-        <span class="n">random_state</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
         <span class="n">cv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">storage</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">study_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;minimize&quot;</span><span class="p">,</span>
         <span class="n">load_if_exists</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">sampler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">sampler_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="n">n_estimators</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">early_stopping_rounds</span> <span class="o">=</span> <span class="n">early_stopping_rounds</span>
@@ -1417,20 +1616,17 @@ title="Open an issue"
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">cv</span> <span class="o">=</span> <span class="n">cv</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span> <span class="o">=</span> <span class="n">storage</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">study_name</span> <span class="o">=</span> <span class="n">study_name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">load_if_exists</span> <span class="o">=</span> <span class="n">load_if_exists</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">create_study_params</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;storage&quot;</span><span class="p">:</span> <span class="n">storage</span><span class="p">,</span>
-            <span class="s2">&quot;study_name&quot;</span><span class="p">:</span> <span class="n">study_name</span><span class="p">,</span>
-            <span class="s2">&quot;direction&quot;</span><span class="p">:</span> <span class="n">direction</span><span class="p">,</span>
-            <span class="s2">&quot;load_if_exists&quot;</span><span class="p">:</span> <span class="n">load_if_exists</span><span class="p">,</span>
-        <span class="p">}</span>
+        <span class="c1"># initialize by BaseOptunaStudyInitializer.</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">LightGBMOptunaStepwiseSearchCV</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">storage</span><span class="o">=</span><span class="n">storage</span><span class="p">,</span>
+            <span class="n">study_name</span><span class="o">=</span><span class="n">study_name</span><span class="p">,</span>
+            <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span>
+            <span class="n">load_if_exists</span><span class="o">=</span><span class="n">load_if_exists</span><span class="p">,</span>
+            <span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span><span class="p">,</span>
+            <span class="n">seed</span><span class="o">=</span><span class="n">sampler_seed</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sampler_seed</span> <span class="o">=</span> <span class="n">sampler_seed</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tuner</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">_create_study</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">create_study_params</span><span class="p">)</span>
 
     <span class="nd">@property</span>
 <div class="viewcode-block" id="LightGBMOptunaStepwiseSearchCV.study"><a class="viewcode-back" href="../../../api/sandbox/model_selection/_search/index.html#sandbox.model_selection._search.LightGBMOptunaStepwiseSearchCV.study">[docs]</a>    <span class="k">def</span> <span class="nf">study</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1445,7 +1641,8 @@ title="Open an issue"
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tuner</span><span class="o">.</span><span class="n">study</span></div>
 
-    <span class="k">def</span> <span class="nf">_define_tuner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_define_tuner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">lightgbm</span> <span class="kn">import</span> <span class="n">early_stopping</span><span class="p">,</span> <span class="n">log_evaluation</span>
         <span class="kn">from</span> <span class="nn">optuna.integration.lightgbm</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">LightGBMTunerCV</span>
 
         <span class="k">if</span> <span class="n">groups</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1460,12 +1657,27 @@ title="Open an issue"
             <span class="bp">self</span><span class="o">.</span><span class="n">tuner_params</span><span class="p">,</span>
             <span class="n">train_set</span><span class="p">,</span>
             <span class="n">num_boost_round</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">,</span>
-            <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">early_stopping_rounds</span><span class="p">,</span>
             <span class="n">folds</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="n">groups</span><span class="p">)),</span>
-            <span class="n">study</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_create_study</span><span class="p">(),</span>
+            <span class="n">study</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">create_study</span><span class="p">(),</span>
+            <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">early_stopping</span><span class="p">(</span>
+                    <span class="n">stopping_rounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">early_stopping_rounds</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+                <span class="p">),</span>
+                <span class="n">log_evaluation</span><span class="p">(</span><span class="n">eval_verbosity</span><span class="p">),</span>
+            <span class="p">],</span>
+            <span class="o">**</span><span class="n">fit_params</span><span class="p">,</span>
         <span class="p">)</span>
 
-<div class="viewcode-block" id="LightGBMOptunaStepwiseSearchCV.fit"><a class="viewcode-back" href="../../../api/sandbox/model_selection/_search/index.html#sandbox.model_selection._search.LightGBMOptunaStepwiseSearchCV.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="LightGBMOptunaStepwiseSearchCV.fit"><a class="viewcode-back" href="../../../api/sandbox/model_selection/_search/index.html#sandbox.model_selection._search.LightGBMOptunaStepwiseSearchCV.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">show_progress_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">eval_verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">optuna_verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">fit_params</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Execute hyperparameter tuning.</span>
 
 <span class="sd">        Parameters</span>
@@ -1477,8 +1689,35 @@ title="Open an issue"
 <span class="sd">            For classification, labels must correspond to classes.</span>
 <span class="sd">        groups :</span>
 <span class="sd">            Group labels for the samples used while splitting the dataset into train/test set.</span>
+<span class="sd">        show_progress_bar : bool, default=False</span>
+<span class="sd">            Flag to show progress bars or not. To disable progress bar, set this :obj:`False`.</span>
+<span class="sd">            Currently, progress bar is experimental feature and disabled when ``n_jobs`` :math:`\\ne 1`.</span>
+<span class="sd">        eval_verbosity : int, default=1</span>
+<span class="sd">            The degree of verbosity in cross-validation evaluation. Valid values are 0 (silent) - 3 (debug).</span>
+<span class="sd">        optuna_verbosity : int, default=1</span>
+<span class="sd">            The degree of verbosity in `Optuna` optimization. Valid values are 0 (silent) - 3 (debug).</span>
+<span class="sd">        fit_params : dict</span>
+<span class="sd">            Parameters passed to the `fit` method of the estimator of</span>
+<span class="sd">            :class:`~sandbox.ensemble.boost.XGBoostRegressor`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_define_tuner</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">optuna_verbosity</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">OPTUNA_VERBOSE_LEVEL</span> <span class="o">=</span> <span class="n">ERROR</span>
+        <span class="k">elif</span> <span class="n">optuna_verbosity</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">OPTUNA_VERBOSE_LEVEL</span> <span class="o">=</span> <span class="n">WARNING</span>
+        <span class="k">elif</span> <span class="n">optuna_verbosity</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">OPTUNA_VERBOSE_LEVEL</span> <span class="o">=</span> <span class="n">INFO</span>
+        <span class="k">elif</span> <span class="n">optuna_verbosity</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">OPTUNA_VERBOSE_LEVEL</span> <span class="o">=</span> <span class="n">DEBUG</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Specified optuna_verbosity must be [0, 1, 2, 3], not </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">optuna_verbosity</span>
+            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">set_verbosity</span><span class="p">(</span><span class="n">OPTUNA_VERBOSE_LEVEL</span><span class="p">)</span>
+
+        <span class="n">fit_params</span><span class="p">[</span><span class="s2">&quot;show_progress_bar&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">show_progress_bar</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_define_tuner</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">,</span> <span class="n">eval_verbosity</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tuner</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span></div></div>
 </pre></div>
