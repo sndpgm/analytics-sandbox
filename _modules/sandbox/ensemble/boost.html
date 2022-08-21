@@ -949,6 +949,46 @@ title="Open an issue"
 <span class="sd">        Experimental support for categorical data.  When enabled, cudf/pandas.DataFrame</span>
 <span class="sd">        should be used to specify categorical data type.  Also, JSON/UBJSON</span>
 <span class="sd">        serialization format is required.</span>
+<span class="sd">    eval_metric : Optional[Union[str, List[str], Callable]], default=None</span>
+<span class="sd">        Metric used for monitoring the training result and early stopping.  It can be a</span>
+<span class="sd">        string or list of strings as names of predefined metric in XGBoost (See</span>
+<span class="sd">        doc/parameter.rst), one of the metrics in :py:mod:`sklearn.metrics`, or any other</span>
+<span class="sd">        user defined metric that looks like `sklearn.metrics`.</span>
+<span class="sd">        If custom objective is also provided, then custom metric should implement the</span>
+<span class="sd">        corresponding reverse link function.</span>
+<span class="sd">        Unlike the `scoring` parameter commonly used in scikit-learn, when a callable</span>
+<span class="sd">        object is provided, it&#39;s assumed to be a cost function and by default XGBoost will</span>
+<span class="sd">        minimize the result during early stopping.</span>
+<span class="sd">        For advanced usage on Early stopping like directly choosing to maximize instead of</span>
+<span class="sd">        minimize, see :py:obj:`xgboost.callback.EarlyStopping`.</span>
+<span class="sd">        See :doc:`Custom Objective and Evaluation Metric &lt;/tutorials/custom_metric_obj&gt;`</span>
+<span class="sd">        for more.</span>
+
+<span class="sd">        .. highlight:: python</span>
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            from sandbox.ensemble.boost import XGBoostRegressor</span>
+<span class="sd">            from sklearn.datasets import load_diabetes</span>
+<span class="sd">            from sklearn.metrics import mean_absolute_error</span>
+<span class="sd">            X, y = load_diabetes(return_X_y=True)</span>
+<span class="sd">            reg = XGBoostRegressor(</span>
+<span class="sd">                tree_method=&quot;hist&quot;,</span>
+<span class="sd">                eval_metric=mean_absolute_error,</span>
+<span class="sd">            )</span>
+<span class="sd">            reg.fit(X, y, eval_set=[(X, y)])</span>
+
+<span class="sd">    early_stopping_rounds : int or None, default=None</span>
+<span class="sd">        Activates early stopping. Validation metric needs to improve at least once in</span>
+<span class="sd">        every **early_stopping_rounds** round(s) to continue training. Requires at least</span>
+<span class="sd">        one item in **eval_set** in :py:meth:`fit`.</span>
+<span class="sd">        The method returns the model from the last iteration (not the best one). If</span>
+<span class="sd">        there&#39;s more than one item in **eval_set**, the last entry will be used for early</span>
+<span class="sd">        stopping. If there&#39;s more than one metric in **eval_metric**, the last metric</span>
+<span class="sd">        will be used for early stopping.</span>
+<span class="sd">        If early stopping occurs, the model will have three additional fields:</span>
+<span class="sd">        :py:attr:`best_score`, :py:attr:`best_iteration` and</span>
+<span class="sd">        :py:attr:`best_ntree_limit`.</span>
+
 <span class="sd">    callbacks : Optional[List[TrainingCallback]] or None, default=None</span>
 <span class="sd">        List of callback functions that are applied at end of each iteration.</span>
 <span class="sd">        It is possible to use predefined callbacks by using</span>

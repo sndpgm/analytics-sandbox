@@ -37,7 +37,7 @@ Attributes
 
    
 
-.. py:class:: XGBoostRegressor(*, objective: _SklObjective = 'reg:squarederror', **kwargs: Any)
+.. py:class:: XGBoostRegressor
 
    Bases: :py:obj:`xgboost.XGBRegressor`
 
@@ -146,6 +146,44 @@ Attributes
                               should be used to specify categorical data type.  Also, JSON/UBJSON
                               serialization format is required.
    :type enable_categorical: bool or None, default=None
+   :param eval_metric: Metric used for monitoring the training result and early stopping.  It can be a
+                       string or list of strings as names of predefined metric in XGBoost (See
+                       doc/parameter.rst), one of the metrics in :py:mod:`sklearn.metrics`, or any other
+                       user defined metric that looks like `sklearn.metrics`.
+                       If custom objective is also provided, then custom metric should implement the
+                       corresponding reverse link function.
+                       Unlike the `scoring` parameter commonly used in scikit-learn, when a callable
+                       object is provided, it's assumed to be a cost function and by default XGBoost will
+                       minimize the result during early stopping.
+                       For advanced usage on Early stopping like directly choosing to maximize instead of
+                       minimize, see :py:obj:`xgboost.callback.EarlyStopping`.
+                       See :doc:`Custom Objective and Evaluation Metric </tutorials/custom_metric_obj>`
+                       for more.
+
+                       .. highlight:: python
+                       .. code-block:: python
+
+                           from sandbox.ensemble.boost import XGBoostRegressor
+                           from sklearn.datasets import load_diabetes
+                           from sklearn.metrics import mean_absolute_error
+                           X, y = load_diabetes(return_X_y=True)
+                           reg = XGBoostRegressor(
+                               tree_method="hist",
+                               eval_metric=mean_absolute_error,
+                           )
+                           reg.fit(X, y, eval_set=[(X, y)])
+   :type eval_metric: Optional[Union[str, List[str], Callable]], default=None
+   :param early_stopping_rounds: Activates early stopping. Validation metric needs to improve at least once in
+                                 every **early_stopping_rounds** round(s) to continue training. Requires at least
+                                 one item in **eval_set** in :py:meth:`fit`.
+                                 The method returns the model from the last iteration (not the best one). If
+                                 there's more than one item in **eval_set**, the last entry will be used for early
+                                 stopping. If there's more than one metric in **eval_metric**, the last metric
+                                 will be used for early stopping.
+                                 If early stopping occurs, the model will have three additional fields:
+                                 :py:attr:`best_score`, :py:attr:`best_iteration` and
+                                 :py:attr:`best_ntree_limit`.
+   :type early_stopping_rounds: int or None, default=None
    :param callbacks: List of callback functions that are applied at end of each iteration.
                      It is possible to use predefined callbacks by using
                      `Callback API <https://xgboost.readthedocs.io/en/stable/python/python_api.html#callback-api>`_.
@@ -238,7 +276,7 @@ Attributes
           !! processed by numpydoc !!
 
 
-.. py:class:: LightGBMRegressor(boosting_type: str = 'gbdt', num_leaves: int = 31, max_depth: int = -1, learning_rate: float = 0.1, n_estimators: int = 100, subsample_for_bin: int = 200000, objective: Optional[Union[str, Callable]] = None, class_weight: Optional[Union[Dict, str]] = None, min_split_gain: float = 0.0, min_child_weight: float = 0.001, min_child_samples: int = 20, subsample: float = 1.0, subsample_freq: int = 0, colsample_bytree: float = 1.0, reg_alpha: float = 0.0, reg_lambda: float = 0.0, random_state: Optional[Union[int, numpy.random.RandomState]] = None, n_jobs: int = -1, silent: Union[bool, str] = 'warn', importance_type: str = 'split', **kwargs)
+.. py:class:: LightGBMRegressor
 
    Bases: :py:obj:`lightgbm.LGBMRegressor`
 
