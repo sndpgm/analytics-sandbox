@@ -1,6 +1,7 @@
 """"""
 from ._search import (
     BaseOptunaSearchCV,
+    BaseOptunaStudyInitializer,
     LightGBMOptunaStepwiseSearchCV,
     XGBoostOptunaSearchCV,
 )
@@ -30,6 +31,7 @@ from ._split import (
 )
 
 __all__ = [
+    "BaseOptunaStudyInitializer",
     "BaseOptunaSearchCV",
     "XGBoostOptunaSearchCV",
     "LightGBMOptunaStepwiseSearchCV",
