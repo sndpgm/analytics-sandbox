@@ -120,6 +120,46 @@ class XGBoostRegressor(XGBRegressor, metaclass=_BaseEnsembleModelMeta):
         Experimental support for categorical data.  When enabled, cudf/pandas.DataFrame
         should be used to specify categorical data type.  Also, JSON/UBJSON
         serialization format is required.
+    eval_metric : Optional[Union[str, List[str], Callable]], default=None
+        Metric used for monitoring the training result and early stopping.  It can be a
+        string or list of strings as names of predefined metric in XGBoost (See
+        doc/parameter.rst), one of the metrics in :py:mod:`sklearn.metrics`, or any other
+        user defined metric that looks like `sklearn.metrics`.
+        If custom objective is also provided, then custom metric should implement the
+        corresponding reverse link function.
+        Unlike the `scoring` parameter commonly used in scikit-learn, when a callable
+        object is provided, it's assumed to be a cost function and by default XGBoost will
+        minimize the result during early stopping.
+        For advanced usage on Early stopping like directly choosing to maximize instead of
+        minimize, see :py:obj:`xgboost.callback.EarlyStopping`.
+        See :doc:`Custom Objective and Evaluation Metric </tutorials/custom_metric_obj>`
+        for more.
+
+        .. highlight:: python
+        .. code-block:: python
+
+            from sandbox.ensemble.boost import XGBoostRegressor
+            from sklearn.datasets import load_diabetes
+            from sklearn.metrics import mean_absolute_error
+            X, y = load_diabetes(return_X_y=True)
+            reg = XGBoostRegressor(
+                tree_method="hist",
+                eval_metric=mean_absolute_error,
+            )
+            reg.fit(X, y, eval_set=[(X, y)])
+
+    early_stopping_rounds : int or None, default=None
+        Activates early stopping. Validation metric needs to improve at least once in
+        every **early_stopping_rounds** round(s) to continue training. Requires at least
+        one item in **eval_set** in :py:meth:`fit`.
+        The method returns the model from the last iteration (not the best one). If
+        there's more than one item in **eval_set**, the last entry will be used for early
+        stopping. If there's more than one metric in **eval_metric**, the last metric
+        will be used for early stopping.
+        If early stopping occurs, the model will have three additional fields:
+        :py:attr:`best_score`, :py:attr:`best_iteration` and
+        :py:attr:`best_ntree_limit`.
+
     callbacks : Optional[List[TrainingCallback]] or None, default=None
         List of callback functions that are applied at end of each iteration.
         It is possible to use predefined callbacks by using
