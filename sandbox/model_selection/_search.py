@@ -7,6 +7,7 @@ from abc import abstractmethod
 import numpy as np
 import optuna
 from joblib import Parallel
+from optuna.logging import DEBUG, ERROR, INFO, WARNING, set_verbosity
 from sklearn.base import BaseEstimator
 from sklearn.utils.fixes import delayed
 
@@ -23,7 +24,114 @@ __all__ = [
 ]
 
 
-class BaseOptunaSearchCV(BaseEstimator):
+class BaseOptunaStudyInitializer:
+    """Base initializer class for study instance.
+
+    Parameters
+    ----------
+    storage : {None, str}, default=None
+        Database URL. If this argument is set to None, in-memory storage is used, and the
+        :class:`optuna.study.Study` will not be persistent.
+
+        .. note::
+            When a database URL is passed, Optuna internally uses `SQLAlchemy`_ to handle
+            the database. Please refer to `SQLAlchemy's document`_ for further details.
+            If you want to specify non-default options to `SQLAlchemy Engine`_, you can
+            instantiate :class:`~optuna.storages.RDBStorage` with your desired options and
+            pass it to the ``storage`` argument instead of a URL.
+
+         .. _SQLAlchemy: https://www.sqlalchemy.org/
+         .. _SQLAlchemy's document:
+             https://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls
+         .. _SQLAlchemy Engine: https://docs.sqlalchemy.org/en/latest/core/engines.html
+
+    study_name: {None, str}, default=None
+        Study's name. If this argument is set to None, a unique name is generated automatically.
+    direction: str, default=minimize
+        Direction of optimization. Set ``minimize`` for minimization and ``maximize`` for maximization.
+        You can also pass the corresponding :class:`optuna.study.StudyDirection` object.
+    load_if_exists: bool, default=False
+        Flag to control the behavior to handle a conflict of study names.
+        In the case where a study named ``study_name`` already exists in the ``storage``,
+        a :class:`optuna.exceptions.DuplicatedStudyError` is raised if ``load_if_exists`` is
+        set to :obj:`False`. Otherwise, the creation of the study is skipped, and the existing one is returned.
+    sampler : {optuna.samplers, None}, default=None
+        A sampler object that implements background algorithm for value suggestion.
+        If :obj:`None` is specified, :class:`optuna.samplers.TPESampler` is used.
+    sampler_params : dict
+        Parameters passed to the specified `optuna.samplers`.
+    """
+
+    def __init__(
+        self,
+        storage=None,
+        study_name=None,
+        direction="minimize",
+        load_if_exists=False,
+        sampler=None,
+        **sampler_params,
+    ):
+        self.storage = storage
+        self.study_name = study_name
+        self.direction = direction
+        self.load_if_exists = load_if_exists
+
+        # setting for sampler of optuna.study.Study
+        self.sampler = self.optuna_sampler(sampler, **sampler_params)
+
+        self.create_study_params = {
+            "storage": self.storage,
+            "sampler": self.sampler,
+            "study_name": self.study_name,
+            "direction": self.direction,
+            "load_if_exists": self.load_if_exists,
+        }
+
+    @staticmethod
+    def optuna_sampler(sampler=None, **sampler_params):
+        """Return your specified `optuna.samplers`
+
+        Parameters
+        ----------
+        sampler : {optuna.samplers, None}, default=None
+            A sampler object that implements background algorithm for value suggestion.
+            If :obj:`None` is specified, :class:`optuna.samplers.TPESampler` is used.
+        sampler_params : dict
+            Parameters passed to the specified `optuna.samplers`.
+
+        Returns
+        -------
+        sampler : optuna.samplers
+        """
+        if sampler is None:
+            return optuna.samplers.TPESampler(**sampler_params)
+        else:
+            return sampler
+
+    def create_study(self):
+        """Create `optuna.study.Study` instance.
+
+        Returns
+        -------
+        study : optuna.study.Study
+        """
+        return optuna.create_study(**self.create_study_params)
+
+    def params(self, **kwargs):
+        """The parameter search space which should be implemented in the subclass which is inheritance to this class.
+
+        Parameters
+        ----------
+        kwargs : dict
+
+        Returns
+        -------
+        The parameter space to be searched.
+        """
+        raise NotImplementedError
+
+
+class BaseOptunaSearchCV(BaseOptunaStudyInitializer, BaseEstimator):
     """Base class for hyperparameter search using `Optuna`.
 
     Examples
@@ -129,6 +237,11 @@ class BaseOptunaSearchCV(BaseEstimator):
         In the case where a study named ``study_name`` already exists in the ``storage``,
         a :class:`optuna.exceptions.DuplicatedStudyError` is raised if ``load_if_exists`` is
         set to :obj:`False`. Otherwise, the creation of the study is skipped, and the existing one is returned.
+    sampler : {optuna.samplers, None}, default=None
+        A sampler object that implements background algorithm for value suggestion.
+        If :obj:`None` is specified, :class:`optuna.samplers.TPESampler` is used.
+    sampler_seed : int, default=42
+        Seed for random number generator.
     """
 
     def __init__(
@@ -142,10 +255,13 @@ class BaseOptunaSearchCV(BaseEstimator):
         study_name=None,
         direction="minimize",
         load_if_exists=False,
+        sampler=None,
+        sampler_seed=42,
     ):
         self.estimator = estimator
         self.scoring = scoring
         self.n_jobs = n_jobs
+        self.pre_dispatch = pre_dispatch
 
         if cv is None:
             self.cv = KFold(n_splits=5, shuffle=True)
@@ -154,22 +270,17 @@ class BaseOptunaSearchCV(BaseEstimator):
         else:
             self.cv = cv
 
-        self.pre_dispatch = pre_dispatch
-        self.storage = storage
-        self.study_name = study_name
-        self.direction = direction
-        self.load_if_exists = load_if_exists
-        self.create_study_params = {
-            "storage": storage,
-            "study_name": study_name,
-            "direction": direction,
-            "load_if_exists": load_if_exists,
-        }
-
-        self._study = self._create_study()
-
-    def _create_study(self):
-        return optuna.create_study(**self.create_study_params)
+        # initialize by BaseOptunaStudyInitializer.
+        super(BaseOptunaSearchCV, self).__init__(
+            storage=storage,
+            study_name=study_name,
+            direction=direction,
+            load_if_exists=load_if_exists,
+            sampler=sampler,
+            seed=sampler_seed,
+        )
+        self.sampler_seed = sampler_seed
+        self._study = self.create_study()
 
     @property
     def study(self):
@@ -232,7 +343,10 @@ class BaseOptunaSearchCV(BaseEstimator):
             X_test = data.X.to_pandas().iloc[test]
             y_test = data.y.to_pandas().iloc[test]
 
-            if "early_stopping_rounds" in fit_params.keys():
+            if ("early_stopping_rounds" in fit_params.keys()) or (
+                hasattr(estimator, "early_stopping_rounds")
+                and getattr(estimator, "early_stopping_rounds", None) is not None
+            ):
                 fit_params["eval_set"] = [(X_test, y_test)]
 
             estimator.fit(
@@ -284,7 +398,16 @@ class BaseOptunaSearchCV(BaseEstimator):
 
         return np.average(out)
 
-    def fit(self, X, y, groups=None, n_trials=10, **fit_params):
+    def fit(
+        self,
+        X,
+        y,
+        groups=None,
+        n_trials=10,
+        show_progress_bar=False,
+        optuna_verbosity=1,
+        **fit_params,
+    ):
         """Execute hyperparameter tuning.
 
         Parameters
@@ -298,9 +421,30 @@ class BaseOptunaSearchCV(BaseEstimator):
             Group labels for the samples used while splitting the dataset into train/test set.
         n_trials : int
             The number of trials.
+        show_progress_bar : bool, default=False
+            Flag to show progress bars or not. To disable progress bar, set this :obj:`False`.
+            Currently, progress bar is experimental feature and disabled when ``n_jobs`` :math:`\\ne 1`.
+        optuna_verbosity : int, default=1
+            The degree of verbosity in `Optuna` optimization. Valid values are 0 (silent) - 3 (debug).
         fit_params : dict
             Parameters passed to the `fit` method of the estimator.
         """
+        if optuna_verbosity == 0:
+            OPTUNA_VERBOSE_LEVEL = ERROR
+        elif optuna_verbosity == 1:
+            OPTUNA_VERBOSE_LEVEL = WARNING
+        elif optuna_verbosity == 2:
+            OPTUNA_VERBOSE_LEVEL = INFO
+        elif optuna_verbosity == 3:
+            OPTUNA_VERBOSE_LEVEL = DEBUG
+        else:
+            msg = "Specified optuna_verbosity must be [0, 1, 2, 3], not {}".format(
+                optuna_verbosity
+            )
+            raise ValueError(msg)
+
+        set_verbosity(OPTUNA_VERBOSE_LEVEL)
+
         self._study.optimize(
             lambda trial: self._objective(
                 trial,
@@ -310,6 +454,7 @@ class BaseOptunaSearchCV(BaseEstimator):
                 **fit_params,
             ),
             n_trials=n_trials,
+            show_progress_bar=show_progress_bar,
         )
         return self
 
@@ -322,7 +467,20 @@ class XGBoostOptunaSearchCV(BaseOptunaSearchCV):
     n_estimators : int, default=1000
         Number of gradient boosted trees. Equivalent to number of boosting rounds.
     scoring : str, default="mse"
-        Which metric to use in evaluating the precision of cross validated estimator using `Optuna`.
+        Which metric to use in evaluating the precision of cross validated estimator.
+    early_stopping_rounds : int or None, default=None
+        Activates early stopping. Validation metric needs to improve at least once in
+        every **early_stopping_rounds** round(s) to continue training. Requires at least
+        one item in **eval_set** in :py:meth:`fit`.
+        The method returns the model from the last iteration (not the best one). If
+        there's more than one item in **eval_set**, the last entry will be used for early
+        stopping. If there's more than one metric in **eval_metric**, the last metric
+        will be used for early stopping.
+        If early stopping occurs, the model will have three additional fields:
+        :py:attr:`best_score`, :py:attr:`best_iteration` and
+        :py:attr:`best_ntree_limit`.
+    verbosity : int or None, default=None
+        The degree of verbosity. Valid values are 0 (silent) - 3 (debug).
     cv : {None, int, cross-validation generator or and iterable}, default=None
         Determines the cross-validation splitting strategy. Possible inputs for cv are:
 
@@ -375,12 +533,19 @@ class XGBoostOptunaSearchCV(BaseOptunaSearchCV):
         In the case where a study named ``study_name`` already exists in the ``storage``,
         a :class:`optuna.exceptions.DuplicatedStudyError` is raised if ``load_if_exists`` is
         set to :obj:`False`. Otherwise, the creation of the study is skipped, and the existing one is returned.
+    sampler : {optuna.samplers, None}, default=None
+        A sampler object that implements background algorithm for value suggestion.
+        If :obj:`None` is specified, :class:`optuna.samplers.TPESampler` is used.
+    sampler_seed : int, default=42
+        Seed for random number generator.
     """
 
     def __init__(
         self,
         n_estimators=1000,
         scoring="mse",
+        early_stopping_rounds=None,
+        verbosity=1,
         cv=None,
         n_jobs=None,
         pre_dispatch="2*n_jobs",
@@ -388,9 +553,18 @@ class XGBoostOptunaSearchCV(BaseOptunaSearchCV):
         study_name=None,
         direction="minimize",
         load_if_exists=False,
+        sampler=None,
+        sampler_seed=42,
     ):
         self.n_estimators = n_estimators
-        estimator = XGBoostRegressor(n_estimators=n_estimators)
+        self.early_stopping_rounds = early_stopping_rounds
+        self.verbosity = verbosity
+        estimator = XGBoostRegressor(
+            n_estimators=self.n_estimators,
+            early_stopping_rounds=self.early_stopping_rounds,
+            verbosity=self.verbosity,
+            random_state=2020,
+        )
         super(XGBoostOptunaSearchCV, self).__init__(
             estimator=estimator,
             scoring=scoring,
@@ -401,6 +575,8 @@ class XGBoostOptunaSearchCV(BaseOptunaSearchCV):
             study_name=study_name,
             direction=direction,
             load_if_exists=load_if_exists,
+            sampler=sampler,
+            sampler_seed=sampler_seed,
         )
 
     def params(self, trial):
@@ -435,9 +611,6 @@ class XGBoostOptunaSearchCV(BaseOptunaSearchCV):
             - max_depth :
                 - Maximum tree depth for base learners.
                 - Suggest a value for the categorical parameter: :math:`\\{5, 7, 9, 11, 13, 15, 17\\}`
-            - random_state :
-                - Random number seed.
-                - Seed is fixed as 2020.
             - min_child_weight :
                 - Minimum sum of instance weight(hessian) needed in a child.
                 - The value is sampled from the integers in :math:`[1, 300]`
@@ -458,12 +631,19 @@ class XGBoostOptunaSearchCV(BaseOptunaSearchCV):
             "max_depth": trial.suggest_categorical(
                 "max_depth", [5, 7, 9, 11, 13, 15, 17]
             ),
-            "random_state": trial.suggest_categorical("random_state", [2020]),
             "min_child_weight": trial.suggest_int("min_child_weight", 1, 300),
         }
 
     def fit(
-        self, X, y, groups=None, n_trials=10, early_stopping_rounds=100, **fit_params
+        self,
+        X,
+        y,
+        groups=None,
+        n_trials=10,
+        show_progress_bar=False,
+        eval_verbosity=1,
+        optuna_verbosity=1,
+        **fit_params,
     ):
         """Execute hyperparameter tuning.
 
@@ -478,19 +658,31 @@ class XGBoostOptunaSearchCV(BaseOptunaSearchCV):
             Group labels for the samples used while splitting the dataset into train/test set.
         n_trials : int
             The number of trials.
-        early_stopping_rounds : int
-             Activates early stopping.
+        show_progress_bar : bool, default=False
+            Flag to show progress bars or not. To disable progress bar, set this :obj:`False`.
+            Currently, progress bar is experimental feature and disabled when ``n_jobs`` :math:`\\ne 1`.
+        eval_verbosity : int, default=1
+            The degree of verbosity in cross-validation evaluation. Valid values are 0 (silent) - 3 (debug).
+        optuna_verbosity : int, default=1
+            The degree of verbosity in `Optuna` optimization. Valid values are 0 (silent) - 3 (debug).
         fit_params : dict
-            Parameters passed to the `fit` method of the estimator of :class:`~sandbox.ensemble.boost.XGBoostRegressor`.
+            Parameters passed to the `fit` method of the estimator of
+            :class:`~sandbox.ensemble.boost.XGBoostRegressor`.
         """
-        fit_params["early_stopping_rounds"] = early_stopping_rounds
+        fit_params["verbose"] = eval_verbosity
         super(XGBoostOptunaSearchCV, self).fit(
-            X=X, y=y, groups=groups, n_trials=n_trials, **fit_params
+            X=X,
+            y=y,
+            groups=groups,
+            n_trials=n_trials,
+            show_progress_bar=show_progress_bar,
+            optuna_verbosity=optuna_verbosity,
+            **fit_params,
         )
         return self
 
 
-class LightGBMOptunaStepwiseSearchCV(BaseEstimator):
+class LightGBMOptunaStepwiseSearchCV(BaseOptunaStudyInitializer, BaseEstimator):
     """Hyperparameter stepwise search for LightGBM with cross-validation
 
     Parameters
@@ -547,6 +739,11 @@ class LightGBMOptunaStepwiseSearchCV(BaseEstimator):
         In the case where a study named ``study_name`` already exists in the ``storage``,
         a :class:`optuna.exceptions.DuplicatedStudyError` is raised if ``load_if_exists`` is
         set to :obj:`False`. Otherwise, the creation of the study is skipped, and the existing one is returned.
+    sampler : {optuna.samplers, None}, default=None
+        A sampler object that implements background algorithm for value suggestion.
+        If :obj:`None` is specified, :class:`optuna.samplers.TPESampler` is used.
+    sampler_seed : int, default=42
+        Seed for random number generator.
 
     See Also
     --------
@@ -560,12 +757,14 @@ class LightGBMOptunaStepwiseSearchCV(BaseEstimator):
         objective="regression",
         metric="rmse",
         early_stopping_rounds=100,
-        random_state=2022,
+        random_state=42,
         cv=None,
         storage=None,
         study_name=None,
         direction="minimize",
         load_if_exists=False,
+        sampler=None,
+        sampler_seed=42,
     ):
         self.n_estimators = n_estimators
         self.early_stopping_rounds = early_stopping_rounds
@@ -588,20 +787,17 @@ class LightGBMOptunaStepwiseSearchCV(BaseEstimator):
         else:
             self.cv = cv
 
-        self.storage = storage
-        self.study_name = study_name
-        self.direction = direction
-        self.load_if_exists = load_if_exists
-        self.create_study_params = {
-            "storage": storage,
-            "study_name": study_name,
-            "direction": direction,
-            "load_if_exists": load_if_exists,
-        }
+        # initialize by BaseOptunaStudyInitializer.
+        super(LightGBMOptunaStepwiseSearchCV, self).__init__(
+            storage=storage,
+            study_name=study_name,
+            direction=direction,
+            load_if_exists=load_if_exists,
+            sampler=sampler,
+            seed=sampler_seed,
+        )
+        self.sampler_seed = sampler_seed
         self.tuner = None
-
-    def _create_study(self):
-        return optuna.create_study(**self.create_study_params)
 
     @property
     def study(self):
@@ -616,7 +812,8 @@ class LightGBMOptunaStepwiseSearchCV(BaseEstimator):
         else:
             return self.tuner.study
 
-    def _define_tuner(self, X, y, groups=None):
+    def _define_tuner(self, X, y, groups=None, eval_verbosity=1, **fit_params):
+        from lightgbm import early_stopping, log_evaluation
         from optuna.integration.lightgbm import Dataset, LightGBMTunerCV
 
         if groups is not None:
@@ -631,12 +828,27 @@ class LightGBMOptunaStepwiseSearchCV(BaseEstimator):
             self.tuner_params,
             train_set,
             num_boost_round=self.n_estimators,
-            early_stopping_rounds=self.early_stopping_rounds,
             folds=list(self.cv.split(X, y, groups=groups)),
-            study=self._create_study(),
+            study=self.create_study(),
+            callbacks=[
+                early_stopping(
+                    stopping_rounds=self.early_stopping_rounds, verbose=False
+                ),
+                log_evaluation(eval_verbosity),
+            ],
+            **fit_params,
         )
 
-    def fit(self, X, y, groups=None):
+    def fit(
+        self,
+        X,
+        y,
+        groups=None,
+        show_progress_bar=False,
+        eval_verbosity=1,
+        optuna_verbosity=1,
+        **fit_params,
+    ):
         """Execute hyperparameter tuning.
 
         Parameters
@@ -648,7 +860,34 @@ class LightGBMOptunaStepwiseSearchCV(BaseEstimator):
             For classification, labels must correspond to classes.
         groups :
             Group labels for the samples used while splitting the dataset into train/test set.
+        show_progress_bar : bool, default=False
+            Flag to show progress bars or not. To disable progress bar, set this :obj:`False`.
+            Currently, progress bar is experimental feature and disabled when ``n_jobs`` :math:`\\ne 1`.
+        eval_verbosity : int, default=1
+            The degree of verbosity in cross-validation evaluation. Valid values are 0 (silent) - 3 (debug).
+        optuna_verbosity : int, default=1
+            The degree of verbosity in `Optuna` optimization. Valid values are 0 (silent) - 3 (debug).
+        fit_params : dict
+            Parameters passed to the `fit` method of the estimator of
+            :class:`~sandbox.ensemble.boost.XGBoostRegressor`.
         """
-        self._define_tuner(X, y, groups)
+        if optuna_verbosity == 0:
+            OPTUNA_VERBOSE_LEVEL = ERROR
+        elif optuna_verbosity == 1:
+            OPTUNA_VERBOSE_LEVEL = WARNING
+        elif optuna_verbosity == 2:
+            OPTUNA_VERBOSE_LEVEL = INFO
+        elif optuna_verbosity == 3:
+            OPTUNA_VERBOSE_LEVEL = DEBUG
+        else:
+            msg = "Specified optuna_verbosity must be [0, 1, 2, 3], not {}".format(
+                optuna_verbosity
+            )
+            raise ValueError(msg)
+
+        set_verbosity(OPTUNA_VERBOSE_LEVEL)
+
+        fit_params["show_progress_bar"] = show_progress_bar
+        self._define_tuner(X, y, groups, eval_verbosity, **fit_params)
         self.tuner.run()
         return self
