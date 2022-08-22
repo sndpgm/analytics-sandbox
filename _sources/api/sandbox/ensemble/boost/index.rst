@@ -331,15 +331,15 @@ Attributes
    :type min_child_weight: float, default=1e-3
    :param min_child_samples: Minimum number of data needed in a child (leaf).
    :type min_child_samples: int, default=20
-   :param subsample: Subsample ratio of the training instance.
+   :param subsample: Subsample ratio of the training instance (alias: bagging_fraction, sub_row, bagging).
    :type subsample: float, default=1.
    :param subsample_freq: Frequency of subsample, <=0 means no enable.
    :type subsample_freq: int, default=0
-   :param colsample_bytree: Subsample ratio of columns when constructing each tree.
+   :param colsample_bytree: Subsample ratio of columns when constructing each tree (alias: feature_fraction).
    :type colsample_bytree: float, default=1.
-   :param reg_alpha: L1 regularization term on weights.
+   :param reg_alpha: L1 regularization term on weights (alias: lambda_l1, l1_regularization).
    :type reg_alpha: float, default=0.
-   :param reg_lambda: L2 regularization term on weights.
+   :param reg_lambda: L2 regularization term on weights (alias: lambda_l2, l2_regularization, lambda).
    :type reg_lambda: float, default=0.
    :param random_state: Random number seed.
                         If int, this number is used to seed the C++ code.

@@ -178,6 +178,23 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  勾配ブースティング決定木モデル
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../analytics/gbdt/xgboost.html">
+   XGBoost
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../analytics/gbdt/lightgbm.html">
+   LightGBM
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   補足
  </span>
 </p>
@@ -1304,11 +1321,11 @@ if <code class="docutils literal notranslate"><span class="pre">sample_weight</s
 <li><p><strong>min_split_gain</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>default=0.</em>) – Minimum loss reduction required to make a further partition on a leaf node of the tree.</p></li>
 <li><p><strong>min_child_weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>default=1e-3</em>) – Minimum sum of instance weight (Hessian) needed in a child (leaf).</p></li>
 <li><p><strong>min_child_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>default=20</em>) – Minimum number of data needed in a child (leaf).</p></li>
-<li><p><strong>subsample</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>default=1.</em>) – Subsample ratio of the training instance.</p></li>
+<li><p><strong>subsample</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>default=1.</em>) – Subsample ratio of the training instance (alias: bagging_fraction, sub_row, bagging).</p></li>
 <li><p><strong>subsample_freq</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>default=0</em>) – Frequency of subsample, &lt;=0 means no enable.</p></li>
-<li><p><strong>colsample_bytree</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>default=1.</em>) – Subsample ratio of columns when constructing each tree.</p></li>
-<li><p><strong>reg_alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>default=0.</em>) – L1 regularization term on weights.</p></li>
-<li><p><strong>reg_lambda</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>default=0.</em>) – L2 regularization term on weights.</p></li>
+<li><p><strong>colsample_bytree</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>default=1.</em>) – Subsample ratio of columns when constructing each tree (alias: feature_fraction).</p></li>
+<li><p><strong>reg_alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>default=0.</em>) – L1 regularization term on weights (alias: lambda_l1, l1_regularization).</p></li>
+<li><p><strong>reg_lambda</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>default=0.</em>) – L2 regularization term on weights (alias: lambda_l2, l2_regularization, lambda).</p></li>
 <li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>RandomState object</em><em> or </em><em>None</em><em>, </em><em>default=None</em>) – Random number seed.
 If int, this number is used to seed the C++ code.
 If RandomState object (numpy), a random integer is picked based on its state to seed the C++ code.

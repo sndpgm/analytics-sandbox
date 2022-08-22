@@ -175,6 +175,23 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  勾配ブースティング決定木モデル
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../analytics/gbdt/xgboost.html">
+   XGBoost
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../analytics/gbdt/lightgbm.html">
+   LightGBM
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   補足
  </span>
 </p>
@@ -1534,6 +1551,14 @@ title="Open an issue"
 <span class="sd">         Activates early stopping.</span>
 <span class="sd">    random_state : int</span>
 <span class="sd">        Random number seed.</span>
+<span class="sd">    verbosity : int, default=1</span>
+<span class="sd">        Controls the level of LightGBM’s verbosity.</span>
+
+<span class="sd">            - ``&lt; 0``: Fatal</span>
+<span class="sd">            - ``= 0``: Error (Warning)</span>
+<span class="sd">            - ``= 1``: Info</span>
+<span class="sd">            - ``&gt; 1``: Debug</span>
+
 <span class="sd">    cv : {None, int, cross-validation generator or and iterable}, default=None</span>
 <span class="sd">        Determines the cross-validation splitting strategy. Possible inputs for cv are:</span>
 
@@ -1587,6 +1612,7 @@ title="Open an issue"
         <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;rmse&quot;</span><span class="p">,</span>
         <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
         <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+        <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">cv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">storage</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">study_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1602,11 +1628,13 @@ title="Open an issue"
         <span class="bp">self</span><span class="o">.</span><span class="n">objective</span> <span class="o">=</span> <span class="n">objective</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">=</span> <span class="n">metric</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="n">verbosity</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tuner_params</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;boosting_type&quot;</span><span class="p">:</span> <span class="n">boosting_type</span><span class="p">,</span>
             <span class="s2">&quot;objective&quot;</span><span class="p">:</span> <span class="n">objective</span><span class="p">,</span>
             <span class="s2">&quot;metric&quot;</span><span class="p">:</span> <span class="n">metric</span><span class="p">,</span>
             <span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="n">random_state</span><span class="p">,</span>
+            <span class="s2">&quot;verbosity&quot;</span><span class="p">:</span> <span class="n">verbosity</span><span class="p">,</span>
         <span class="p">}</span>
 
         <span class="k">if</span> <span class="n">cv</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1641,8 +1669,8 @@ title="Open an issue"
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tuner</span><span class="o">.</span><span class="n">study</span></div>
 
-    <span class="k">def</span> <span class="nf">_define_tuner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">lightgbm</span> <span class="kn">import</span> <span class="n">early_stopping</span><span class="p">,</span> <span class="n">log_evaluation</span>
+    <span class="k">def</span> <span class="nf">_define_tuner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">lightgbm</span> <span class="kn">import</span> <span class="n">early_stopping</span>
         <span class="kn">from</span> <span class="nn">optuna.integration.lightgbm</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">LightGBMTunerCV</span>
 
         <span class="k">if</span> <span class="n">groups</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1663,7 +1691,6 @@ title="Open an issue"
                 <span class="n">early_stopping</span><span class="p">(</span>
                     <span class="n">stopping_rounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">early_stopping_rounds</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
                 <span class="p">),</span>
-                <span class="n">log_evaluation</span><span class="p">(</span><span class="n">eval_verbosity</span><span class="p">),</span>
             <span class="p">],</span>
             <span class="o">**</span><span class="n">fit_params</span><span class="p">,</span>
         <span class="p">)</span>
@@ -1674,8 +1701,8 @@ title="Open an issue"
         <span class="n">y</span><span class="p">,</span>
         <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">show_progress_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">eval_verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">optuna_verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">optuna_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
         <span class="o">**</span><span class="n">fit_params</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Execute hyperparameter tuning.</span>
@@ -1692,13 +1719,22 @@ title="Open an issue"
 <span class="sd">        show_progress_bar : bool, default=False</span>
 <span class="sd">            Flag to show progress bars or not. To disable progress bar, set this :obj:`False`.</span>
 <span class="sd">            Currently, progress bar is experimental feature and disabled when ``n_jobs`` :math:`\\ne 1`.</span>
-<span class="sd">        eval_verbosity : int, default=1</span>
-<span class="sd">            The degree of verbosity in cross-validation evaluation. Valid values are 0 (silent) - 3 (debug).</span>
 <span class="sd">        optuna_verbosity : int, default=1</span>
 <span class="sd">            The degree of verbosity in `Optuna` optimization. Valid values are 0 (silent) - 3 (debug).</span>
+<span class="sd">        optuna_seed : int,default=42</span>
+<span class="sd">            ``seed`` of :class:`optuna.samplers.TPESampler` for random number generator</span>
+<span class="sd">            that affects sampling for ``num_leaves``, ``bagging_fraction``, ``bagging_freq``,</span>
+<span class="sd">            ``lambda_l1``, and ``lambda_l2``.</span>
+
+<span class="sd">            .. note::</span>
+<span class="sd">                The `deterministic`_ parameter of LightGBM makes training reproducible.</span>
+<span class="sd">                Please enable it when you use this argument.</span>
+
 <span class="sd">        fit_params : dict</span>
 <span class="sd">            Parameters passed to the `fit` method of the estimator of</span>
 <span class="sd">            :class:`~sandbox.ensemble.boost.XGBoostRegressor`.</span>
+
+<span class="sd">        .. _deterministic: https://lightgbm.readthedocs.io/en/latest/Parameters.html#deterministic</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">optuna_verbosity</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">OPTUNA_VERBOSE_LEVEL</span> <span class="o">=</span> <span class="n">ERROR</span>
@@ -1717,7 +1753,8 @@ title="Open an issue"
         <span class="n">set_verbosity</span><span class="p">(</span><span class="n">OPTUNA_VERBOSE_LEVEL</span><span class="p">)</span>
 
         <span class="n">fit_params</span><span class="p">[</span><span class="s2">&quot;show_progress_bar&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">show_progress_bar</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_define_tuner</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">,</span> <span class="n">eval_verbosity</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
+        <span class="n">fit_params</span><span class="p">[</span><span class="s2">&quot;optuna_seed&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">optuna_seed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_define_tuner</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tuner</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span></div></div>
 </pre></div>

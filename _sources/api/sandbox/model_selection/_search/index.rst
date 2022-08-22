@@ -475,7 +475,7 @@ Classes
           !! processed by numpydoc !!
 
 
-.. py:class:: LightGBMOptunaStepwiseSearchCV(n_estimators=1000, boosting_type='gbdt', objective='regression', metric='rmse', early_stopping_rounds=100, random_state=42, cv=None, storage=None, study_name=None, direction='minimize', load_if_exists=False, sampler=None, sampler_seed=42)
+.. py:class:: LightGBMOptunaStepwiseSearchCV(n_estimators=1000, boosting_type='gbdt', objective='regression', metric='rmse', early_stopping_rounds=100, random_state=42, verbosity=1, cv=None, storage=None, study_name=None, direction='minimize', load_if_exists=False, sampler=None, sampler_seed=42)
 
    Bases: :py:obj:`BaseOptunaStudyInitializer`, :py:obj:`sklearn.base.BaseEstimator`
 
@@ -501,6 +501,14 @@ Classes
    :type early_stopping_rounds: int
    :param random_state: Random number seed.
    :type random_state: int
+   :param verbosity:
+                     Controls the level of LightGBM’s verbosity.
+
+                         - ``< 0``: Fatal
+                         - ``= 0``: Error (Warning)
+                         - ``= 1``: Info
+                         - ``> 1``: Debug
+   :type verbosity: int, default=1
    :param cv:
               Determines the cross-validation splitting strategy. Possible inputs for cv are:
 
@@ -589,7 +597,7 @@ Classes
       ..
           !! processed by numpydoc !!
 
-   .. py:method:: fit(X, y, groups=None, show_progress_bar=False, eval_verbosity=1, optuna_verbosity=1, **fit_params)
+   .. py:method:: fit(X, y, groups=None, show_progress_bar=False, optuna_verbosity=1, optuna_seed=42, **fit_params)
 
       
       Execute hyperparameter tuning.
@@ -601,13 +609,21 @@ Classes
       :param show_progress_bar: Flag to show progress bars or not. To disable progress bar, set this :obj:`False`.
                                 Currently, progress bar is experimental feature and disabled when ``n_jobs`` :math:`\ne 1`.
       :type show_progress_bar: bool, default=False
-      :param eval_verbosity: The degree of verbosity in cross-validation evaluation. Valid values are 0 (silent) - 3 (debug).
-      :type eval_verbosity: int, default=1
       :param optuna_verbosity: The degree of verbosity in `Optuna` optimization. Valid values are 0 (silent) - 3 (debug).
       :type optuna_verbosity: int, default=1
+      :param optuna_seed: ``seed`` of :class:`optuna.samplers.TPESampler` for random number generator
+                          that affects sampling for ``num_leaves``, ``bagging_fraction``, ``bagging_freq``,
+                          ``lambda_l1``, and ``lambda_l2``.
+
+                          .. note::
+                              The `deterministic`_ parameter of LightGBM makes training reproducible.
+                              Please enable it when you use this argument.
+      :type optuna_seed: int,default=42
       :param fit_params: Parameters passed to the `fit` method of the estimator of
                          :class:`~sandbox.ensemble.boost.XGBoostRegressor`.
       :type fit_params: dict
+      :param .. _deterministic:
+      :type .. _deterministic: https://lightgbm.readthedocs.io/en/latest/Parameters.html#deterministic
 
 
 

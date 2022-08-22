@@ -175,6 +175,23 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  勾配ブースティング決定木モデル
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../analytics/gbdt/xgboost.html">
+   XGBoost
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../analytics/gbdt/lightgbm.html">
+   LightGBM
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   補足
  </span>
 </p>
@@ -1105,15 +1122,15 @@ title="Open an issue"
 <span class="sd">    min_child_samples : int, default=20</span>
 <span class="sd">        Minimum number of data needed in a child (leaf).</span>
 <span class="sd">    subsample : float, default=1.</span>
-<span class="sd">        Subsample ratio of the training instance.</span>
+<span class="sd">        Subsample ratio of the training instance (alias: bagging_fraction, sub_row, bagging).</span>
 <span class="sd">    subsample_freq : int, default=0</span>
 <span class="sd">        Frequency of subsample, &lt;=0 means no enable.</span>
 <span class="sd">    colsample_bytree : float, default=1.</span>
-<span class="sd">        Subsample ratio of columns when constructing each tree.</span>
+<span class="sd">        Subsample ratio of columns when constructing each tree (alias: feature_fraction).</span>
 <span class="sd">    reg_alpha : float, default=0.</span>
-<span class="sd">        L1 regularization term on weights.</span>
+<span class="sd">        L1 regularization term on weights (alias: lambda_l1, l1_regularization).</span>
 <span class="sd">    reg_lambda : float, default=0.</span>
-<span class="sd">        L2 regularization term on weights.</span>
+<span class="sd">        L2 regularization term on weights (alias: lambda_l2, l2_regularization, lambda).</span>
 <span class="sd">    random_state : int, RandomState object or None, default=None</span>
 <span class="sd">        Random number seed.</span>
 <span class="sd">        If int, this number is used to seed the C++ code.</span>

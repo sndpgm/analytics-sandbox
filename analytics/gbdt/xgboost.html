@@ -1,0 +1,2025 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>XGBoost — Analytics Study Blog</title>
+<!-- Loaded before other Sphinx assets -->
+<link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" rel="stylesheet" type="text/css">
+<link href="../../_static/togglebutton.css" rel="stylesheet" type="text/css">
+<link href="../../_static/copybutton.css" rel="stylesheet" type="text/css">
+<link href="../../_static/mystnb.css" rel="stylesheet" type="text/css">
+<link href="../../_static/sphinx-thebe.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/graphviz.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/sphinx-codeautolink.css" rel="stylesheet" type="text/css"/>
+<link href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" rel="stylesheet" type="text/css"/>
+<!-- Pre-loaded scripts that we'll load fully later -->
+<link as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+<script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script>
+<script src="../../_static/underscore.js"></script>
+<script src="../../_static/doctools.js"></script>
+<script src="../../_static/clipboard.min.js"></script>
+<script src="../../_static/copybutton.js"></script>
+<script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+<script>let toggleHintShow = 'Click to show';</script>
+<script>let toggleHintHide = 'Click to hide';</script>
+<script>let toggleOpenOnPrint = 'true';</script>
+<script src="../../_static/togglebutton.js"></script>
+<script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+<script src="../../_static/design-tabs.js"></script>
+<script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+<script async="async" src="../../_static/sphinx-thebe.js"></script>
+<script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link href="../../genindex.html" rel="index" title="Index">
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="lightgbm.html" rel="next" title="LightGBM"/>
+<link href="../tsa/ssm.html" rel="prev" title="状態空間モデル"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="None" name="docsearch:language"/>
+<!-- Google Analytics -->
+</link></link></link></link></link></link></head>
+<body data-offset="60" data-spy="scroll" data-target="#bd-toc-nav">
+<!-- Checkboxes to toggle the left sidebar -->
+<input aria-label="Toggle navigation sidebar" class="sidebar-toggle" id="__navigation" name="__navigation" type="checkbox"/>
+<label class="overlay overlay-navbar" for="__navigation">
+<div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input aria-label="Toggle in-page Table of Contents" class="sidebar-toggle" id="__page-toc" name="__page-toc" type="checkbox"/>
+<label class="overlay overlay-pagetoc" for="__page-toc">
+<div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+<div class="container-fluid" id="banner"></div>
+<div class="container-xl">
+<div class="row">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+<div class="bd-sidebar__content">
+<div class="bd-sidebar__top"><div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+<!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+<img alt="logo" class="logo" src="../../_static/logo.png"/>
+<h1 class="site-logo" id="site-title">Analytics Study Blog</h1>
+</a>
+</div><form action="../../search.html" class="bd-search d-flex align-items-center" method="get">
+<i class="icon fas fa-search"></i>
+<input aria-label="Search this book..." autocomplete="off" class="form-control" id="search-input" name="q" placeholder="Search this book..." type="search"/>
+</form><nav aria-label="Main" class="bd-links" id="bd-docs-nav">
+<div class="bd-toc-item active">
+<ul class="nav bd-sidenav bd-sidenav__home-link">
+<li class="toctree-l1">
+<a class="reference internal" href="../../intro.html">
+                    Welcome to my Analytics Sandbox
+                </a>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+<span class="caption-text">
+  確率変数と確率分布
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1">
+<a class="reference internal" href="../distribution/rvs.html">
+   確率変数
+  </a>
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="../distribution/dist.html">
+   確率分布
+  </a>
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="../distribution/mdist.html">
+   多変量確率分布
+  </a>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+<span class="caption-text">
+  回帰モデル
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1">
+<a class="reference internal" href="../regression/blm.html">
+   ベイズ線形回帰モデル
+  </a>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+<span class="caption-text">
+  時系列モデル
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1">
+<a class="reference internal" href="../tsa/ts.html">
+   時系列データ
+  </a>
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="../tsa/arma.html">
+   ARMAモデル系
+  </a>
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="../tsa/arima.html">
+   ARIMAモデル系
+  </a>
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="../tsa/ssm.html">
+   状態空間モデル
+  </a>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+<span class="caption-text">
+  勾配ブースティング決定木モデル
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active">
+<a class="current reference internal" href="#">
+   XGBoost
+  </a>
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="lightgbm.html">
+   LightGBM
+  </a>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+<span class="caption-text">
+  補足
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1">
+<a class="reference internal" href="../math/calculus.html">
+   微分積分学
+  </a>
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="../math/linear_algebra.html">
+   線形代数学
+  </a>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+<span class="caption-text">
+  API Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children">
+<a class="reference internal" href="../../api/sandbox/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+     sandbox
+    </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox">
+<label for="toctree-checkbox-1">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/datamodel/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.datamodel
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox">
+<label for="toctree-checkbox-2">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/datamodel/base/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datamodel.base
+        </span>
+</code>
+</a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/datamodel/ts_datamodel/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datamodel.ts_datamodel
+        </span>
+</code>
+</a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/datamodel/ts_simulator/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datamodel.ts_simulator
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</input></li>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.datasets
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox">
+<label for="toctree-checkbox-3">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/air_passengers/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.air_passengers
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+<label for="toctree-checkbox-4">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/air_passengers/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.air_passengers.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/blsallfood/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.blsallfood
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+<label for="toctree-checkbox-5">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/blsallfood/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.blsallfood.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/hakusan/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.hakusan
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+<label for="toctree-checkbox-6">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/hakusan/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.hakusan.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/maxtemp/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.maxtemp
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+<label for="toctree-checkbox-7">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/maxtemp/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.maxtemp.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/mye1f/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.mye1f
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+<label for="toctree-checkbox-8">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/mye1f/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.mye1f.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/nikkei225/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.nikkei225
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+<label for="toctree-checkbox-9">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/nikkei225/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.nikkei225.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/rtf/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.rtf
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+<label for="toctree-checkbox-10">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/rtf/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.rtf.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children">
+<a class="reference internal" href="../../api/sandbox/datasets/whard/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.whard
+        </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+<label for="toctree-checkbox-11">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l4">
+<a class="reference internal" href="../../api/sandbox/datasets/whard/data/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+           sandbox.datasets.whard.data
+          </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/datasets/utils/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.datasets.utils
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</input></li>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/ensemble/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.ensemble
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+<label for="toctree-checkbox-12">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/ensemble/base/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.ensemble.base
+        </span>
+</code>
+</a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/ensemble/boost/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.ensemble.boost
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/features/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.features
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+<label for="toctree-checkbox-13">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/features/features/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.features.features
+        </span>
+</code>
+</a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/features/ts_calculator/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.features.ts_calculator
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/graphics/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.graphics
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+<label for="toctree-checkbox-14">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/graphics/ts_grapher/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.graphics.ts_grapher
+        </span>
+</code>
+</a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/graphics/utils/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.graphics.utils
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/metrics/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.metrics
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+<label for="toctree-checkbox-15">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/metrics/score/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.metrics.score
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2">
+<a class="reference internal" href="../../api/sandbox/model_selection/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.model_selection
+      </span>
+</code>
+</a>
+</li>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/tsa/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.tsa
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+<label for="toctree-checkbox-16">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/tsa/base/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.tsa.base
+        </span>
+</code>
+</a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/tsa/sarimax/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.tsa.sarimax
+        </span>
+</code>
+</a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/tsa/ssm/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.tsa.ssm
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children">
+<a class="reference internal" href="../../api/sandbox/utils/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+       sandbox.utils
+      </span>
+</code>
+</a>
+<input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+<label for="toctree-checkbox-17">
+<i class="fas fa-chevron-down">
+</i>
+</label>
+<ul>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/utils/tools/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.utils.tools
+        </span>
+</code>
+</a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../api/sandbox/utils/validation/index.html">
+<code class="xref py py-mod docutils literal notranslate">
+<span class="pre">
+         sandbox.utils.validation
+        </span>
+</code>
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</input></li>
+</ul>
+</div>
+</nav></div>
+<div class="bd-sidebar__bottom">
+<!-- To handle the deprecated key -->
+<div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+</div>
+</div>
+<div id="rtd-footer-container"></div>
+</div>
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+<div class="header-article row sticky-top noprint">
+<div class="col py-1 d-flex header-article-main">
+<div class="header-article__left">
+<label class="headerbtn" data-placement="right" data-toggle="tooltip" for="__navigation" title="Toggle navigation">
+<span class="headerbtn__icon-container">
+<i class="fas fa-bars"></i>
+</span>
+</label>
+</div>
+<div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+<button aria-label="Launch interactive content" class="headerbtn menu-dropdown__trigger">
+<i class="fas fa-rocket"></i>
+</button>
+<div class="menu-dropdown__content">
+<ul>
+<li>
+<a class="headerbtn" data-placement="left" data-toggle="tooltip" href="https://mybinder.org/v2/gh/sndpgm/analytics-sandbox/main?urlpath=lab/tree/docs/analytics/gbdt/xgboost.ipynb" title="Launch on Binder">
+<span class="headerbtn__icon-container">
+<img src="../../_static/images/logo_binder.svg"/>
+</span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+</li>
+<li>
+<a class="headerbtn" data-placement="left" data-toggle="tooltip" href="https://colab.research.google.com/github/sndpgm/analytics-sandbox/blob/main/docs/analytics/gbdt/xgboost.ipynb" title="Launch on Colab">
+<span class="headerbtn__icon-container">
+<img src="../../_static/images/logo_colab.png"/>
+</span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<button class="headerbtn" data-placement="bottom" data-toggle="tooltip" onclick="toggleFullScreen()" title="Fullscreen mode">
+<span class="headerbtn__icon-container">
+<i class="fas fa-expand"></i>
+</span>
+</button>
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+<button aria-label="Source repositories" class="headerbtn menu-dropdown__trigger">
+<i class="fab fa-github"></i>
+</button>
+<div class="menu-dropdown__content">
+<ul>
+<li>
+<a class="headerbtn" data-placement="left" data-toggle="tooltip" href="https://github.com/sndpgm/analytics-sandbox" title="Source repository">
+<span class="headerbtn__icon-container">
+<i class="fab fa-github"></i>
+</span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+</li>
+<li>
+<a class="headerbtn" data-placement="left" data-toggle="tooltip" href="https://github.com/sndpgm/analytics-sandbox/issues/new?title=Issue%20on%20page%20%2Fanalytics/gbdt/xgboost.html&amp;body=Your%20issue%20content%20here." title="Open an issue">
+<span class="headerbtn__icon-container">
+<i class="fas fa-lightbulb"></i>
+</span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+</li>
+<li>
+<a class="headerbtn" data-placement="left" data-toggle="tooltip" href="https://github.com/sndpgm/analytics-sandbox/edit/main/docs/analytics/gbdt/xgboost.ipynb" title="Edit this page">
+<span class="headerbtn__icon-container">
+<i class="fas fa-pencil-alt"></i>
+</span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="menu-dropdown menu-dropdown-download-buttons">
+<button aria-label="Download this page" class="headerbtn menu-dropdown__trigger">
+<i class="fas fa-download"></i>
+</button>
+<div class="menu-dropdown__content">
+<ul>
+<li>
+<a class="headerbtn" data-placement="left" data-toggle="tooltip" href="../../_sources/analytics/gbdt/xgboost.ipynb" title="Download source file">
+<span class="headerbtn__icon-container">
+<i class="fas fa-file"></i>
+</span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+</li>
+<li>
+<button class="headerbtn" data-placement="left" data-toggle="tooltip" onclick="printPdf(this)" title="Print to PDF">
+<span class="headerbtn__icon-container">
+<i class="fas fa-file-pdf"></i>
+</span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+</li>
+</ul>
+</div>
+</div>
+<label class="headerbtn headerbtn-page-toc" for="__page-toc">
+<span class="headerbtn__icon-container">
+<i class="fas fa-list"></i>
+</span>
+</label>
+</div>
+</div>
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+<div class="tocsection onthispage pt-5 pb-3">
+<i class="fas fa-list"></i> Contents
+    </div>
+<nav aria-label="Page" id="bd-toc-nav">
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id1">
+   0. 前準備
+  </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id2">
+   1. テストデータの準備
+  </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#airpassengers-overview">
+     1.1. AirPassengers データ Overview
+    </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id3">
+     1.2. 特徴量生成
+    </a>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id4">
+   2. XGBoost回帰器の使い方
+  </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id5">
+     2.1. 理論
+    </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id6">
+       XGBoost における損失関数
+      </a>
+</li>
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id7">
+       勾配ツリーブースティング
+      </a>
+</li>
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#shrinkage-column-subsampling">
+       Shrinkage (縮小)・Column subsampling
+      </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry">
+<a class="reference internal nav-link" href="#shirinkage">
+         Shirinkage
+        </a>
+</li>
+<li class="toc-h5 nav-item toc-entry">
+<a class="reference internal nav-link" href="#column-subsampling">
+         Column subsampling
+        </a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id8">
+   3. XGBoostを用いた一連の処理フロー
+  </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#cvhpo">
+     3.1. CV・HPO
+    </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id9">
+     3.2. 学習
+    </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id10">
+     3.3. 予測
+    </a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class="article row">
+<div class="col pl-md-3 pl-lg-5 content-container">
+<!-- Table of contents that is only displayed when printing the page -->
+<div class="onlyprint" id="jb-print-docs-body">
+<h1>XGBoost</h1>
+<!-- Table of contents -->
+<div id="print-main-content">
+<div id="jb-print-toc">
+<div>
+<h2> Contents </h2>
+</div>
+<nav aria-label="Page">
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id1">
+   0. 前準備
+  </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id2">
+   1. テストデータの準備
+  </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#airpassengers-overview">
+     1.1. AirPassengers データ Overview
+    </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id3">
+     1.2. 特徴量生成
+    </a>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id4">
+   2. XGBoost回帰器の使い方
+  </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id5">
+     2.1. 理論
+    </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id6">
+       XGBoost における損失関数
+      </a>
+</li>
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id7">
+       勾配ツリーブースティング
+      </a>
+</li>
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#shrinkage-column-subsampling">
+       Shrinkage (縮小)・Column subsampling
+      </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry">
+<a class="reference internal nav-link" href="#shirinkage">
+         Shirinkage
+        </a>
+</li>
+<li class="toc-h5 nav-item toc-entry">
+<a class="reference internal nav-link" href="#column-subsampling">
+         Column subsampling
+        </a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id8">
+   3. XGBoostを用いた一連の処理フロー
+  </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#cvhpo">
+     3.1. CV・HPO
+    </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id9">
+     3.2. 学習
+    </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id10">
+     3.3. 予測
+    </a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<main id="main-content" role="main">
+<div>
+<section class="tex2jax_ignore mathjax_ignore" id="xgboost">
+<h1>XGBoost<a class="headerlink" href="#xgboost" title="Permalink to this headline">#</a></h1>
+<section id="id1">
+<h2>0. 前準備<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># セル直下に直接図示.</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="c1"># グラフおよびデザインに関するモジュール.</span>
+<span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.html#module-matplotlib.pyplot" title="matplotlib.pyplot"><span class="nn">matplotlib.pyplot</span></a> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://pandas.pydata.org/pandas-docs/stable/index.html#module-pandas" title="pandas"><span class="nn">pandas</span></a> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># air passenger データセット.</span>
+<span class="kn">from</span> <a class="sphinx-codeautolink-a" href="../../api/sandbox/datasets/index.html#module-sandbox.datasets" title="sandbox.datasets"><span class="nn">sandbox.datasets</span></a> <span class="kn">import</span> <a class="sphinx-codeautolink-a" href="../../api/sandbox/datasets/air_passengers/index.html#module-sandbox.datasets.air_passengers" title="sandbox.datasets.air_passengers"><span class="n">air_passengers</span></a>
+
+<span class="kn">from</span> <a class="sphinx-codeautolink-a" href="../../api/sandbox/features/features/index.html#module-sandbox.features.features" title="sandbox.features.features"><span class="nn">sandbox.features.features</span></a> <span class="kn">import</span> <a class="sphinx-codeautolink-a" href="../../api/sandbox/features/features/index.html#sandbox.features.features.get_features" title="sandbox.features.features.get_features"><span class="n">get_features</span></a>                <span class="c1"># 特徴量生成モジュール.</span>
+<span class="kn">from</span> <span class="nn">sandbox.model_selection</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">train_test_split</span><span class="p">,</span>                                             <span class="c1"># データ分割 (scikit-learn と同じ)</span>
+    <span class="n">GroupTimeSeriesSplit</span><span class="p">,</span>                                         <span class="c1"># 時系列用CV spliter</span>
+    <span class="n">XGBoostOptunaSearchCV</span>                                         <span class="c1"># CVを伴うXGBoost用ハイパーパラメータ探索</span>
+<span class="p">)</span>
+<span class="kn">from</span> <a class="sphinx-codeautolink-a" href="../../api/sandbox/ensemble/boost/index.html#module-sandbox.ensemble.boost" title="sandbox.ensemble.boost"><span class="nn">sandbox.ensemble.boost</span></a> <span class="kn">import</span> <a class="sphinx-codeautolink-a" href="../../api/sandbox/ensemble/boost/index.html#sandbox.ensemble.boost.XGBoostRegressor" title="sandbox.ensemble.boost.XGBoostRegressor"><span class="n">XGBoostRegressor</span></a>               <span class="c1"># XGBoost回帰器</span>
+<span class="kn">from</span> <a class="sphinx-codeautolink-a" href="../../api/sandbox/metrics/score/index.html#module-sandbox.metrics.score" title="sandbox.metrics.score"><span class="nn">sandbox.metrics.score</span></a> <span class="kn">import</span> <a class="sphinx-codeautolink-a" href="../../api/sandbox/metrics/score/index.html#sandbox.metrics.score.mean_absolute_percentage_error" title="sandbox.metrics.score.mean_absolute_percentage_error"><span class="n">mean_absolute_percentage_error</span></a>  <span class="c1"># MAPE(scikit-learn と同じ)</span>
+
+<a class="sphinx-codeautolink-a" href="https://seaborn.pydata.org/generated/seaborn.set.html#seaborn.set" title="seaborn.set"><span class="n">sns</span><span class="o">.</span><span class="n">set</span></a><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 14&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">from</span> <span class="nn">sandbox.datasets</span> <span class="kn">import</span> <span class="n">air_passengers</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="kn">from</span> <span class="nn">sandbox.features.features</span> <span class="kn">import</span> <span class="n">get_features</span>                <span class="c1"># 特徴量生成モジュール.</span>
+<span class="ne">---&gt; </span><span class="mi">14</span> <span class="kn">from</span> <span class="nn">sandbox.model_selection</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="n">train_test_split</span><span class="p">,</span>                                             <span class="c1"># データ分割 (scikit-learn と同じ)</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="n">GroupTimeSeriesSplit</span><span class="p">,</span>                                         <span class="c1"># 時系列用CV spliter</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="n">XGBoostOptunaSearchCV</span>                                         <span class="c1"># CVを伴うXGBoost用ハイパーパラメータ探索</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="kn">from</span> <span class="nn">sandbox.ensemble.boost</span> <span class="kn">import</span> <span class="n">XGBoostRegressor</span>               <span class="c1"># XGBoost回帰器</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="kn">from</span> <span class="nn">sandbox.metrics.score</span> <span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span>  <span class="c1"># MAPE(scikit-learn と同じ)</span>
+
+<span class="n">File</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">sandbox</span><span class="o">-</span><span class="mf">0.0.0</span><span class="o">-</span><span class="n">py3</span><span class="mf">.10</span><span class="o">.</span><span class="n">egg</span><span class="o">/</span><span class="n">sandbox</span><span class="o">/</span><span class="n">model_selection</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="sd">""""""</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">._search</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">BaseOptunaSearchCV</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">BaseOptunaStudyInitializer</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">LightGBMOptunaStepwiseSearchCV</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">XGBoostOptunaSearchCV</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">._split</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">BaseCrossValidator</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">BaseShuffleSplit</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">30</span>     <span class="n">train_test_split</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span> <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="s2">"BaseOptunaStudyInitializer"</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span>     <span class="s2">"BaseOptunaSearchCV"</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">59</span>     <span class="s2">"train_test_split"</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="p">]</span>
+
+<span class="n">File</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">sandbox</span><span class="o">-</span><span class="mf">0.0.0</span><span class="o">-</span><span class="n">py3</span><span class="mf">.10</span><span class="o">.</span><span class="n">egg</span><span class="o">/</span><span class="n">sandbox</span><span class="o">/</span><span class="n">model_selection</span><span class="o">/</span><span class="n">_search</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractmethod</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">optuna</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">optuna.logging</span> <span class="kn">import</span> <span class="n">DEBUG</span><span class="p">,</span> <span class="n">ERROR</span><span class="p">,</span> <span class="n">INFO</span><span class="p">,</span> <span class="n">WARNING</span><span class="p">,</span> <span class="n">set_verbosity</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named 'optuna'
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>1. テストデータの準備<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<section id="airpassengers-overview">
+<h3>1.1. AirPassengers データ Overview<a class="headerlink" href="#airpassengers-overview" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">air_passengers</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">"#Passengers"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"People"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Air Passengers (1949-1960)"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/xgboost_4_0.png" src="../../_images/xgboost_4_0.png">
+</img></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>#Passengers</th>
+</tr>
+<tr>
+<th>Month</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>1949-01-01</th>
+<td>112.0</td>
+</tr>
+<tr>
+<th>1949-02-01</th>
+<td>118.0</td>
+</tr>
+<tr>
+<th>1949-03-01</th>
+<td>132.0</td>
+</tr>
+<tr>
+<th>1949-04-01</th>
+<td>129.0</td>
+</tr>
+<tr>
+<th>1949-05-01</th>
+<td>121.0</td>
+</tr>
+<tr>
+<th>1949-06-01</th>
+<td>135.0</td>
+</tr>
+<tr>
+<th>1949-07-01</th>
+<td>148.0</td>
+</tr>
+<tr>
+<th>1949-08-01</th>
+<td>148.0</td>
+</tr>
+<tr>
+<th>1949-09-01</th>
+<td>136.0</td>
+</tr>
+<tr>
+<th>1949-10-01</th>
+<td>119.0</td>
+</tr>
+</tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="id3">
+<h3>1.2. 特徴量生成<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>日付に関する特徴量を作成.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># indexに設定されているMonthをもとに特徴量を生成するためindexから列に変換.</span>
+<span class="n">data</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 特徴量の生成.</span>
+<span class="c1"># column_valuesで指定した列に対して特徴量を生成する.</span>
+<span class="c1"># グループ単位で処理する場合にはcolumn_idでグループを区切る列名を指定する. 今回はないのでNone.</span>
+<span class="c1"># window, shift系の処理をする場合に列順がある場合にはsort_valuesで指定する.</span>
+<span class="c1"># func_param_list に処理する特徴量メソッドを設定する.</span>
+<span class="n">column_values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Month"</span><span class="p">]</span>
+<span class="n">column_id</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">sort_values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Month"</span><span class="p">]</span>
+<span class="n">func_params_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">"func_name"</span><span class="p">:</span> <span class="s2">"month"</span><span class="p">,</span> <span class="s2">"func_params"</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"func_name"</span><span class="p">:</span> <span class="s2">"year"</span><span class="p">,</span> <span class="s2">"func_params"</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">data_ts</span> <span class="o">=</span> <span class="n">get_features</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">column_values</span><span class="o">=</span><span class="n">column_values</span><span class="p">,</span>
+    <span class="n">column_id</span><span class="o">=</span><span class="n">column_id</span><span class="p">,</span>
+    <span class="n">sort_values</span><span class="o">=</span><span class="n">sort_values</span><span class="p">,</span>
+    <span class="n">func_params_list</span><span class="o">=</span><span class="n">func_params_list</span>
+<span class="p">)</span>
+
+<span class="n">data_ts</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>index</th>
+<th>Month</th>
+<th>#Passengers</th>
+<th>Month__month</th>
+<th>Month__year</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>0</td>
+<td>1949-01-01</td>
+<td>112.0</td>
+<td>1</td>
+<td>1949</td>
+</tr>
+<tr>
+<th>1</th>
+<td>1</td>
+<td>1949-02-01</td>
+<td>118.0</td>
+<td>2</td>
+<td>1949</td>
+</tr>
+<tr>
+<th>2</th>
+<td>2</td>
+<td>1949-03-01</td>
+<td>132.0</td>
+<td>3</td>
+<td>1949</td>
+</tr>
+<tr>
+<th>3</th>
+<td>3</td>
+<td>1949-04-01</td>
+<td>129.0</td>
+<td>4</td>
+<td>1949</td>
+</tr>
+<tr>
+<th>4</th>
+<td>4</td>
+<td>1949-05-01</td>
+<td>121.0</td>
+<td>5</td>
+<td>1949</td>
+</tr>
+<tr>
+<th>5</th>
+<td>5</td>
+<td>1949-06-01</td>
+<td>135.0</td>
+<td>6</td>
+<td>1949</td>
+</tr>
+<tr>
+<th>6</th>
+<td>6</td>
+<td>1949-07-01</td>
+<td>148.0</td>
+<td>7</td>
+<td>1949</td>
+</tr>
+<tr>
+<th>7</th>
+<td>7</td>
+<td>1949-08-01</td>
+<td>148.0</td>
+<td>8</td>
+<td>1949</td>
+</tr>
+<tr>
+<th>8</th>
+<td>8</td>
+<td>1949-09-01</td>
+<td>136.0</td>
+<td>9</td>
+<td>1949</td>
+</tr>
+<tr>
+<th>9</th>
+<td>9</td>
+<td>1949-10-01</td>
+<td>119.0</td>
+<td>10</td>
+<td>1949</td>
+</tr>
+</tbody>
+</table>
+</div></div></div>
+</div>
+<p>lag系, window関数系の特徴量を生成.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 予測期間は先12ヶ月とすれば, lag=12以上であれば移動平均やラグについて過去データから生成されたものとして取り扱える.</span>
+<span class="c1"># (予測期間がNULLでも特徴量として有効)</span>
+<span class="n">column_values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"#Passengers"</span><span class="p">]</span>
+<span class="n">column_id</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">sort_values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Month"</span><span class="p">]</span>
+<span class="n">func_params_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">"func_name"</span><span class="p">:</span> <span class="s2">"lag"</span><span class="p">,</span> <span class="s2">"func_params"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"lag"</span><span class="p">:</span> <span class="mi">12</span><span class="p">},]},</span>
+    <span class="p">{</span><span class="s2">"func_name"</span><span class="p">:</span> <span class="s2">"rolling"</span><span class="p">,</span> <span class="s2">"func_params"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">"lag"</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="s2">"window"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s2">"stats"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"mean"</span><span class="p">,]},</span>
+        <span class="p">{</span><span class="s2">"lag"</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="s2">"window"</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="s2">"stats"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"mean"</span><span class="p">,]},</span>
+        <span class="p">{</span><span class="s2">"lag"</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="s2">"window"</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span> <span class="s2">"stats"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"mean"</span><span class="p">,]},</span>
+        <span class="p">{</span><span class="s2">"lag"</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="s2">"window"</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span> <span class="s2">"stats"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"mean"</span><span class="p">,]},</span>
+    <span class="p">]},</span>
+<span class="p">]</span>
+
+<span class="n">data_ts_shifting</span> <span class="o">=</span> <span class="n">get_features</span><span class="p">(</span>
+    <span class="n">data_ts</span><span class="p">,</span>
+    <span class="n">column_values</span><span class="o">=</span><span class="n">column_values</span><span class="p">,</span>
+    <span class="n">column_id</span><span class="o">=</span><span class="n">column_id</span><span class="p">,</span>
+    <span class="n">sort_values</span><span class="o">=</span><span class="n">sort_values</span><span class="p">,</span>
+    <span class="n">func_params_list</span><span class="o">=</span><span class="n">func_params_list</span>
+<span class="p">)</span>
+
+<span class="n">data_ts_shifting</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">30</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>level_0</th>
+<th>index</th>
+<th>Month</th>
+<th>#Passengers</th>
+<th>Month__month</th>
+<th>Month__year</th>
+<th>#Passengers__lag_lag_12</th>
+<th>#Passengers__rolling_mean_lag_12_window_6</th>
+<th>#Passengers__rolling_mean_lag_12_window_12</th>
+<th>#Passengers__rolling_mean_lag_12_window_18</th>
+<th>#Passengers__rolling_mean_lag_12_window_24</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>20</th>
+<td>20</td>
+<td>20</td>
+<td>1950-09-01</td>
+<td>158.0</td>
+<td>9</td>
+<td>1950</td>
+<td>136.0</td>
+<td>136.166667</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>21</th>
+<td>21</td>
+<td>21</td>
+<td>1950-10-01</td>
+<td>133.0</td>
+<td>10</td>
+<td>1950</td>
+<td>119.0</td>
+<td>134.500000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>22</th>
+<td>22</td>
+<td>22</td>
+<td>1950-11-01</td>
+<td>114.0</td>
+<td>11</td>
+<td>1950</td>
+<td>104.0</td>
+<td>131.666667</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>23</th>
+<td>23</td>
+<td>23</td>
+<td>1950-12-01</td>
+<td>140.0</td>
+<td>12</td>
+<td>1950</td>
+<td>118.0</td>
+<td>128.833333</td>
+<td>126.666667</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>24</th>
+<td>24</td>
+<td>24</td>
+<td>1951-01-01</td>
+<td>145.0</td>
+<td>1</td>
+<td>1951</td>
+<td>115.0</td>
+<td>123.333333</td>
+<td>126.916667</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>25</th>
+<td>25</td>
+<td>25</td>
+<td>1951-02-01</td>
+<td>150.0</td>
+<td>2</td>
+<td>1951</td>
+<td>126.0</td>
+<td>119.666667</td>
+<td>127.583333</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>26</th>
+<td>26</td>
+<td>26</td>
+<td>1951-03-01</td>
+<td>178.0</td>
+<td>3</td>
+<td>1951</td>
+<td>141.0</td>
+<td>120.500000</td>
+<td>128.333333</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>27</th>
+<td>27</td>
+<td>27</td>
+<td>1951-04-01</td>
+<td>163.0</td>
+<td>4</td>
+<td>1951</td>
+<td>135.0</td>
+<td>123.166667</td>
+<td>128.833333</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>28</th>
+<td>28</td>
+<td>28</td>
+<td>1951-05-01</td>
+<td>172.0</td>
+<td>5</td>
+<td>1951</td>
+<td>125.0</td>
+<td>126.666667</td>
+<td>129.166667</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>29</th>
+<td>29</td>
+<td>29</td>
+<td>1951-06-01</td>
+<td>178.0</td>
+<td>6</td>
+<td>1951</td>
+<td>149.0</td>
+<td>131.833333</td>
+<td>130.333333</td>
+<td>128.388889</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+</div></div></div>
+</div>
+<p>test/trainデータに分割するための後処理を実施.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 不要なカラムを削除する.</span>
+<span class="c1"># level_0, index は get_featureを実行することで付与されたもので元々あったindex番号.</span>
+<span class="n">data_ts_shifting</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">"Month"</span><span class="p">],</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data_ts_shifting</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"level_0"</span><span class="p">,</span> <span class="s2">"index"</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># train/testデータに分割する.</span>
+<span class="n">data_train</span><span class="p">,</span> <span class="n">data_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">data_ts_shifting</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">X_name</span> <span class="o">=</span> <span class="n">data_train</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="n">X_name</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">"#Passengers"</span><span class="p">)</span>
+<span class="n">y_name</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"#Passengers"</span><span class="p">]</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">data_train</span><span class="p">[</span><span class="n">X_name</span><span class="p">],</span> <span class="n">data_train</span><span class="p">[</span><span class="n">y_name</span><span class="p">]</span>
+<span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">data_test</span><span class="p">[</span><span class="n">X_name</span><span class="p">],</span> <span class="n">data_test</span><span class="p">[</span><span class="n">y_name</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h2>2. XGBoost回帰器の使い方<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<section id="id5">
+<h3>2.1. 理論<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<section id="id6">
+<h4>XGBoost における損失関数<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h4>
+<p><span class="math notranslate nohighlight">\(\mathcal{D} = \{(\mathbf{x}_i, y_i)\} \ \ (|\mathcal{D}| = n, \mathbf{x}_i \in \mathbb{R}^m, y_i \in \mathbb{R})\)</span></p>
+<p><span class="math notranslate nohighlight">\(K\)</span> 個の弱学習器ツリーを用いて予測値を以下のようにして計算することとする.</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+    \hat{y}_i = \phi(\mathbf{x}_i) = \sum_{k=1}^{K}{f_k(\mathbf{x}_i)}, \quad f_k \in \mathcal{F}
+\end{align*}
+\]</div>
+<p><span class="math notranslate nohighlight">\(\mathcal{F} = \{ f(\mathbf{x}) = w_{q(\mathbf{x})} \} \ \ (q: \mathbb{R}^m \rightarrow T, w \in \mathbb{R}^T)\)</span> となる木集合. <span class="math notranslate nohighlight">\(w\)</span> は葉ノードの重み付け値を示す.</p>
+<figure class="align-default" id="xgboost-obj">
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/xgboost-obj.png"><img alt="xgboost-obj" class="bg-primary mb-1" src="../../_images/xgboost-obj.png" style="width: 600px;"/></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text"><span class="math notranslate nohighlight">\(f_k(\mathbf{x}_i) = w_{q(x)}\)</span> の関係性</span><a class="headerlink" href="#xgboost-obj" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p><span class="math notranslate nohighlight">\(f\)</span> は決定木の構造が変わるたびに値が動くので, それぞれの学習器の決定木の構造が予測にフィットするように学習させていくのが目的.<br/>
+決定木の構造が変数, つまり <span class="math notranslate nohighlight">\(f\)</span> が変数である.</p>
+<p><span class="math notranslate nohighlight">\(f\)</span> を動かして <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> と <span class="math notranslate nohighlight">\(y_i\)</span> の損失 (誤差) を最小化すれば良いが, そうすると決定木の深さが大きくなって損失が減少していく戦略をとりうる. そうするとインプットしたデータに異常に適合したモデルとなってしまい, そのモデルを用いて予測してもかえって精度が悪化しうる (汎化性能の減少).<br/>
+　ゆえに理想的なのは決定木の深さはある程度を浅く, 汎化性能の担保されたモデルであることも必要. そこで正則化項 <span class="math notranslate nohighlight">\(\Sigma(f)\)</span> を加えた以下の目的関数の最小化によって精度と汎化性能を担保する.</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+    \mathcal{L}(\phi) = \sum_{i}{l(\hat{y}_i, y_i)} + \sum_{k}{\Omega(f_k)} \quad \text{where} \ \ \Omega(f) = \gamma T + \frac{1}{2} \lambda \|w\|^2
+\end{align*}
+\]</div>
+<p><span class="math notranslate nohighlight">\(l\)</span> は予測値 <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> と正解値 <span class="math notranslate nohighlight">\(y_i\)</span> における微分可能な凸損失関数, <span class="math notranslate nohighlight">\(T\)</span> は決定木の葉ノード数, <span class="math notranslate nohighlight">\(\|w\|\)</span> は重み付け値のノルムで <span class="math notranslate nohighlight">\(\|w\| = w_1^2 + \cdots + w_T^2\)</span>, <span class="math notranslate nohighlight">\(\gamma\)</span>, <span class="math notranslate nohighlight">\(\lambda\)</span> は調整係数.</p>
+</section>
+<section id="id7">
+<h4>勾配ツリーブースティング<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h4>
+<p><span class="math notranslate nohighlight">\(t\)</span> 番目の繰り返し計算における <span class="math notranslate nohighlight">\(i\)</span> 番目のデータに対する予測値を <span class="math notranslate nohighlight">\(\hat{y}_i^{(t)}\)</span> とした時,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+    \hat{y}_i^{(t)} 
+        &amp;= \sum_{k=1}^{t}{f_k(\mathbf{x}_i)} \\
+        &amp;= \sum_{k=1}^{t-1}{f_k(\mathbf{x}_i)} + f_t(\mathbf{x}_i) \\
+        &amp;= \hat{y}_i^{(t-1)} + f_t(\mathbf{x}_i)
+\end{align*}
+\end{split}\]</div>
+<p>より <span class="math notranslate nohighlight">\(k\)</span> 番目の決定木における損失関数は</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+    \mathcal{L}^{(t)} = \sum_{i=1}^{n}{l(y_i, \hat{y}_i^{(t-1)} + f_t(\mathbf{x}_i))} + \Omega(f_t)
+\end{align*}
+\]</div>
+<p>と書ける.<br/>
+　<span class="math notranslate nohighlight">\(l(y_i, \hat{y}_i^{(t-1)} + f_t(\mathbf{x}_i))\)</span> について Taylor展開により</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+    l(y_i, \hat{y}_i^{(t-1)} + f_t(\mathbf{x}_i)) 
+        &amp;\simeq l(y_i, \hat{y}_i^{(t-1)}) 
+            + \frac{\partial l(y_i, \hat{y}_i^{(t-1)})}{\partial \hat{y}_i^{(t-1)}} f_t(\mathbf{x}_i)
+            + \frac{1}{2} \frac{\partial^2 l(y_i, \hat{y}_i^{(t-1)})}{\partial \bigl\{ \hat{y}_i^{(t-1)} \bigr\}^2 } f_t^2(\mathbf{x}_i) \\
+        &amp;= l(y_i, \hat{y}_i^{(t-1)}) + g_i f_t(\mathbf{x}_i) + \frac{1}{2} h_i f_t^2(\mathbf{x}_i)
+\end{align*}
+\end{split}\]</div>
+<p>となる. ただし,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+    g_i = \frac{\partial l(y_i, \hat{y}_i^{(t-1)})}{\partial \hat{y}_i^{(t-1)}} \\
+    h_i = \frac{\partial^2 l(y_i, \hat{y}_i^{(t-1)})}{\partial \bigl\{ \hat{y}_i^{(t-1)} \bigr\}^2 }
+\end{align*}
+\end{split}\]</div>
+<p>ここで <span class="math notranslate nohighlight">\(l(y_i, \hat{y}_i^{(t-1)})\)</span> は <span class="math notranslate nohighlight">\(f\)</span> に関係しないので <span class="math notranslate nohighlight">\(\tilde{\mathcal{L}}^{(t)} = \mathcal{L}^{(t)} - \sum{l(y_i, \hat{y}_i^{(t-1)})}\)</span> とすると損失関数は以下のように簡略化できる.</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+    \tilde{\mathcal{L}}^{(t)} = \sum_{i=1}^{n}{ \biggl[ g_i f_t(\mathbf{x}_i) + \frac{1}{2} h_i f_t^2(\mathbf{x}_i) \biggr] } + \Omega(f_t)
+\end{align*}
+\]</div>
+<p><span class="math notranslate nohighlight">\(f_t(\mathbf{x}_i)\)</span> は <span class="math notranslate nohighlight">\(t\)</span> 番目の決定木においてデータ <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> に対する重み付け値を表す. これを <span class="math notranslate nohighlight">\(t\)</span> 番目の決定木の葉ノードに着目すると, その <span class="math notranslate nohighlight">\(T\)</span> 個のノードの重みづけ <span class="math notranslate nohighlight">\(w_j \ (j = 1, \dots, T)\)</span> の和で表現できる. つまり</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+    f_t(\mathbf{x}_i) = \sum_{j=1}^{T}{w_j}
+\end{align*}
+\]</div>
+<p>となる. ただし, 葉ノード <span class="math notranslate nohighlight">\(j\)</span> を固定した時に, データ <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> の中でもその葉ノード <span class="math notranslate nohighlight">\(j\)</span> に属するものに限られるもので計算されるので, データ <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> のうちノード <span class="math notranslate nohighlight">\(j\)</span> に属する <span class="math notranslate nohighlight">\(i\)</span> の部分集合 <span class="math notranslate nohighlight">\(I_j = \{i \ | q(\mathbf{x}_i) = j\}\)</span> とすると (例えば, データ <span class="math notranslate nohighlight">\(\mathbf{x}_1, \mathbf{x}_2, \mathbf{x}_4\)</span> のみがノード <span class="math notranslate nohighlight">\(1\)</span> に属する場合, <span class="math notranslate nohighlight">\(I_1 = \{1, 2, 4\}\)</span>), 上式は <span class="math notranslate nohighlight">\(i \in I_j\)</span> であることが必要である. すなわち</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+    f_t(\mathbf{x}_i) = \sum_{j=1}^{T}{w_j} \quad s.t. \ i \in I_j = \{i \ | q(\mathbf{x}_i) = j\}
+\end{align*}
+\]</div>
+<p>ゆえに</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+    \tilde{\mathcal{L}}^{(t)} 
+        &amp;= \sum_{i=1}^{n}{ \biggl[ g_i f_t(\mathbf{x}_i) + \frac{1}{2} h_i f_t^2(\mathbf{x}_i) \biggr] } + \Omega(f_t) \\
+        &amp;= \sum_{i=1}^{n}{ \Biggl[ g_i \sum_{j=1}^{T}{w_j} + \frac{1}{2} h_i \sum_{j=1}^{T}{w_j}^2 \Biggr] } + \Omega(f_t) \quad s.t. \ i \in I_j = \{i \ | q(\mathbf{x}_i) = j\} \\
+        &amp;= \sum_{i \in I_j}{ \Biggl[ g_i \sum_{j=1}^{T}{w_j} + \frac{1}{2} h_i \sum_{j=1}^{T}{w_j}^2 \Biggr] } + \Omega(f_t) \\
+        &amp;= \sum_{j=1}^{T}{ \Biggl[ \biggl( \sum_{i \in I_j}{g_i} \biggr) w_j + \frac{1}{2} \biggl( \sum_{i \in I_j}{h_i} \biggr) w_j^2 \Biggr] } + \Omega(f_t)
+\end{align*}
+\end{split}\]</div>
+<p>また <span class="math notranslate nohighlight">\(\Omega(f_t)\)</span> は</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+    \Omega(f_t) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^{T}{w_j^2}
+\end{align*}
+\]</div>
+<p>より</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+    \tilde{\mathcal{L}}^{(t)} 
+        &amp;= \sum_{j=1}^{T}{ \Biggl[ \biggl( \sum_{i \in I_j}{g_i} \biggr) w_j + \frac{1}{2} \biggl( \sum_{i \in I_j}{h_i} \biggr) w_j^2 \Biggr] } + 
+            \gamma T + \frac{1}{2} \lambda \sum_{j=1}^{T}{w_j^2} \\
+        &amp;= \sum_{j=1}^{T}{ \Biggl[ \biggl( \sum_{i \in I_j}{g_i} \biggr) w_j + \frac{1}{2} \biggl( \sum_{i \in I_j}{h_i} + \lambda \biggr) w_j^2 \Biggr] } + \gamma T
+\end{align*}
+\end{split}\]</div>
+<p>ここで木構造を固定した時の最適な値 <span class="math notranslate nohighlight">\(w_j^*\)</span> を求める. つまり <span class="math notranslate nohighlight">\(q(\mathbf{x})\)</span> を固定した場合, 上式を <span class="math notranslate nohighlight">\(w_j\)</span> についての導関数を0とし</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+    w_j^* = -\frac{\sum_{i \in I_j}{g_i}}{\sum_{i \in I_j}{h_i} + \lambda}
+\end{align*}
+\]</div>
+<p>と求められる. ノードの最適な重み付け値をとった場合の損失関数は <span class="math notranslate nohighlight">\(\tilde{\mathcal{L}}^{(t)}\)</span> に <span class="math notranslate nohighlight">\(w_j^*\)</span> を代入し</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+    \tilde{\mathcal{L}}^{(t)}(q) = - \frac{1}{2}\sum_{j=1}^{T}{ \frac{ \bigl( \sum_{i \in I_j}{g_i} \bigr)^2 }{ \sum_{i \in I_j}{h_i} + \lambda } } + \gamma T
+\end{align*}
+\]</div>
+<p>となる.<br/>
+　次に木構造を変化させる. すなわち, ある葉ノードに対して分割するべきか否かについて, 分割する前のノードの持つ損失関数を <span class="math notranslate nohighlight">\(\mathcal{L}\)</span>, 分割した際のノードを <span class="math notranslate nohighlight">\(\mathcal{L}_L\)</span>, <span class="math notranslate nohighlight">\(\mathcal{L}_R\)</span> とする. この時, <span class="math notranslate nohighlight">\(\mathcal{L} &gt; \mathcal{L}_L + \mathcal{L}_R \Leftrightarrow \mathcal{L} - (\mathcal{L}_L + \mathcal{L}_R) &gt; 0\)</span> で分割するべきなので, <span class="math notranslate nohighlight">\(\mathcal{L}_{split} = \mathcal{L} - (\mathcal{L}_L + \mathcal{L}_R)\)</span> として,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+    \mathcal{L}_{split} = \frac{1}{2} \biggl[ 
+        \frac{ \bigl( \sum_{i \in I_L}{g_i} \bigr)^2 }{ \sum_{i \in I_L}{h_i} + \lambda } 
+        + \frac{ \bigl( \sum_{i \in I_R}{g_i} \bigr)^2 }{ \sum_{i \in I_R}{h_i} + \lambda }
+        - \frac{ \bigl( \sum_{i \in I}{g_i} \bigr)^2 }{ \sum_{i \in I}{h_i} + \lambda }
+    \biggr] - \gamma
+\end{align*}
+\]</div>
+<p>を用いることで分割するかどうかを決定できる.</p>
+</section>
+<section id="shrinkage-column-subsampling">
+<h4>Shrinkage (縮小)・Column subsampling<a class="headerlink" href="#shrinkage-column-subsampling" title="Permalink to this headline">#</a></h4>
+<section id="shirinkage">
+<h5>Shirinkage<a class="headerlink" href="#shirinkage" title="Permalink to this headline">#</a></h5>
+<p>学習率 <span class="math notranslate nohighlight">\(\eta \ (0 \lt \eta \lt 1)\)</span> を用いて</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+    \hat{y}_i^{(t)} = \hat{y}_i^{(t-1)} + \eta f_t (\mathbf{x}_i)
+\end{align*}
+\]</div>
+<p>とすることで学習率が小さいほどに保守的な学習を行い, 弱学習器を多く組み合わせた緻密なモデリングとなるが, 計算反復数は多く必要となってしまう. 一方で, 1 に近いほどそれぞれの決定木学習器をそのまま組み込まれることとなるので, 計算反復数は <span class="math notranslate nohighlight">\(\eta\)</span> が小さいものと比べて少なくなるが, 決定木それぞれの学習器をそのままに近い形で組み込まれるので過学習してしまう可能性が出る.</p>
+</section>
+<section id="column-subsampling">
+<h5>Column subsampling<a class="headerlink" href="#column-subsampling" title="Permalink to this headline">#</a></h5>
+<p>あえて一部の列だけのデータを使用して学習することで過学習を防止する.</p>
+<figure class="align-default" id="xgboost-colsubsampling">
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/xgboost-colsubsampling.png"><img alt="xgboost-obj" class="bg-primary mb-1" src="../../_images/xgboost-colsubsampling.png" style="width: 300px;"/></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Column subsampling のイメージ</span><a class="headerlink" href="#xgboost-colsubsampling" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">XGBoostRegressor</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># 学習</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-25 {color: black;background-color: white;}#sk-container-id-25 pre{padding: 0;}#sk-container-id-25 div.sk-toggleable {background-color: white;}#sk-container-id-25 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-25 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-25 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-25 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-25 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-25 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-25 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-25 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-25 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-25 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-25 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-25 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-25 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-25 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-25 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-25 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-25 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-25 div.sk-item {position: relative;z-index: 1;}#sk-container-id-25 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-25 div.sk-item::before, #sk-container-id-25 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-25 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-25 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-25 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-25 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-25 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-25 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-25 div.sk-label-container {text-align: center;}#sk-container-id-25 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-25 div.sk-text-repr-fallback {display: none;}</style><div class="sk-top-container" id="sk-container-id-25"><div class="sk-text-repr-fallback"><pre>XGBoostRegressor(base_score=0.5, booster='gbtree', callbacks=None,
+                 colsample_bylevel=1, colsample_bynode=1, colsample_bytree=1,
+                 early_stopping_rounds=None, enable_categorical=False,
+                 eval_metric=None, gamma=0, gpu_id=-1, grow_policy='depthwise',
+                 importance_type=None, interaction_constraints='',
+                 learning_rate=0.300000012, max_bin=256, max_cat_to_onehot=4,
+                 max_delta_step=0, max_depth=6, max_leaves=0,
+                 min_child_weight=1, missing=nan, monotone_constraints='()',
+                 n_estimators=1000, n_jobs=0, num_parallel_tree=1,
+                 predictor='auto', random_state=0, reg_alpha=0, reg_lambda=1, ...)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br/>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input checked="" class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-25" type="checkbox"/><label class="sk-toggleable__label sk-toggleable__label-arrow" for="sk-estimator-id-25">XGBoostRegressor</label><div class="sk-toggleable__content"><pre>XGBoostRegressor(base_score=0.5, booster='gbtree', callbacks=None,
+                 colsample_bylevel=1, colsample_bynode=1, colsample_bytree=1,
+                 early_stopping_rounds=None, enable_categorical=False,
+                 eval_metric=None, gamma=0, gpu_id=-1, grow_policy='depthwise',
+                 importance_type=None, interaction_constraints='',
+                 learning_rate=0.300000012, max_bin=256, max_cat_to_onehot=4,
+                 max_delta_step=0, max_depth=6, max_leaves=0,
+                 min_child_weight=1, missing=nan, monotone_constraints='()',
+                 n_estimators=1000, n_jobs=0, num_parallel_tree=1,
+                 predictor='auto', random_state=0, reg_alpha=0, reg_lambda=1, ...)</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 予測</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">y_test</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"#Passengers"</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">y_train</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">"#Passengers"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"train"</span><span class="p">)</span>
+<span class="n">y_test</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">"#Passengers"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"test"</span><span class="p">)</span>
+<span class="n">y_pred</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">"#Passengers"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"predict"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/xgboost_18_0.png" src="../../_images/xgboost_18_0.png"/>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+<section id="id8">
+<h2>3. XGBoostを用いた一連の処理フロー<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>CV (クロスバリデーション)・HPO (ハイパーパラメータ最適化)</p></li>
+<li><p>学習</p></li>
+<li><p>予測</p></li>
+</ol>
+<section id="cvhpo">
+<h3>3.1. CV・HPO<a class="headerlink" href="#cvhpo" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CV spliter.</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">GroupTimeSeriesSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># CVを介したハイパーパラメータ探索インスタンス.</span>
+<span class="n">search</span> <span class="o">=</span> <span class="n">XGBoostOptunaSearchCV</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># 最適化</span>
+<span class="n">search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span>
+    <span class="n">groups</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">n_trials</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">show_progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">eval_verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">optuna_verbosity</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/yuta.sonoda/opt/anaconda3/envs/analytics-sandbox/lib/python3.9/site-packages/optuna/progress_bar.py:47: ExperimentalWarning: Progress bar is experimental (supported from v1.2.0). The interface can change in the future.
+  self._init_valid()
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "a877d088b15e40fd811c423172b94b84", "version_major": 2, "version_minor": 0}
+</script><div class="output text_html"><style>#sk-container-id-26 {color: black;background-color: white;}#sk-container-id-26 pre{padding: 0;}#sk-container-id-26 div.sk-toggleable {background-color: white;}#sk-container-id-26 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-26 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-26 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-26 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-26 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-26 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-26 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-26 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-26 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-26 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-26 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-26 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-26 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-26 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-26 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-26 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-26 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-26 div.sk-item {position: relative;z-index: 1;}#sk-container-id-26 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-26 div.sk-item::before, #sk-container-id-26 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-26 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-26 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-26 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-26 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-26 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-26 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-26 div.sk-label-container {text-align: center;}#sk-container-id-26 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-26 div.sk-text-repr-fallback {display: none;}</style><div class="sk-top-container" id="sk-container-id-26"><div class="sk-text-repr-fallback"><pre>XGBoostOptunaSearchCV(cv=GroupTimeSeriesSplit(max_train_size=None, n_splits=5, sort_groups=True),
+                      early_stopping_rounds=50,
+                      sampler=&lt;optuna.samplers._tpe.sampler.TPESampler object at 0x7f982aca0a00&gt;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br/>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input checked="" class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-26" type="checkbox"/><label class="sk-toggleable__label sk-toggleable__label-arrow" for="sk-estimator-id-26">XGBoostOptunaSearchCV</label><div class="sk-toggleable__content"><pre>XGBoostOptunaSearchCV(cv=GroupTimeSeriesSplit(max_train_size=None, n_splits=5, sort_groups=True),
+                      early_stopping_rounds=50,
+                      sampler=&lt;optuna.samplers._tpe.sampler.TPESampler object at 0x7f982aca0a00&gt;)</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Optunaによって求められたハイパーパラメータ.</span>
+<span class="n">best_params</span> <span class="o">=</span> <span class="n">search</span><span class="o">.</span><span class="n">study</span><span class="o">.</span><span class="n">best_trial</span><span class="o">.</span><span class="n">params</span>
+<span class="n">best_params</span><span class="p">[</span><span class="s2">"n_estimators"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="n">best_params</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'reg_lambda': 1.326404760107769,
+ 'reg_alpha': 0.004623945156842208,
+ 'gamma': 8,
+ 'colsample_bytree': 0.9,
+ 'subsample': 0.8,
+ 'learning_rate': 0.016,
+ 'max_depth': 13,
+ 'min_child_weight': 1,
+ 'n_estimators': 1000}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id9">
+<h3>3.2. 学習<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_opt</span> <span class="o">=</span> <span class="n">XGBoostRegressor</span><span class="p">(</span><span class="o">**</span><span class="n">best_params</span><span class="p">)</span>
+<span class="n">model_opt</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-27 {color: black;background-color: white;}#sk-container-id-27 pre{padding: 0;}#sk-container-id-27 div.sk-toggleable {background-color: white;}#sk-container-id-27 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-27 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-27 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-27 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-27 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-27 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-27 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-27 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-27 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-27 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-27 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-27 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-27 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-27 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-27 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-27 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-27 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-27 div.sk-item {position: relative;z-index: 1;}#sk-container-id-27 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-27 div.sk-item::before, #sk-container-id-27 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-27 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-27 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-27 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-27 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-27 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-27 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-27 div.sk-label-container {text-align: center;}#sk-container-id-27 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-27 div.sk-text-repr-fallback {display: none;}</style><div class="sk-top-container" id="sk-container-id-27"><div class="sk-text-repr-fallback"><pre>XGBoostRegressor(base_score=0.5, booster='gbtree', callbacks=None,
+                 colsample_bylevel=1, colsample_bynode=1, colsample_bytree=0.9,
+                 early_stopping_rounds=None, enable_categorical=False,
+                 eval_metric=None, gamma=8, gpu_id=-1, grow_policy='depthwise',
+                 importance_type=None, interaction_constraints='',
+                 learning_rate=0.016, max_bin=256, max_cat_to_onehot=4,
+                 max_delta_step=0, max_depth=13, max_leaves=0,
+                 min_child_weight=1, missing=nan, monotone_constraints='()',
+                 n_estimators=1000, n_jobs=0, num_parallel_tree=1,
+                 predictor='auto', random_state=0,
+                 reg_alpha=0.004623945156842208, reg_lambda=1.326404760107769, ...)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br/>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input checked="" class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-27" type="checkbox"/><label class="sk-toggleable__label sk-toggleable__label-arrow" for="sk-estimator-id-27">XGBoostRegressor</label><div class="sk-toggleable__content"><pre>XGBoostRegressor(base_score=0.5, booster='gbtree', callbacks=None,
+                 colsample_bylevel=1, colsample_bynode=1, colsample_bytree=0.9,
+                 early_stopping_rounds=None, enable_categorical=False,
+                 eval_metric=None, gamma=8, gpu_id=-1, grow_policy='depthwise',
+                 importance_type=None, interaction_constraints='',
+                 learning_rate=0.016, max_bin=256, max_cat_to_onehot=4,
+                 max_delta_step=0, max_depth=13, max_leaves=0,
+                 min_child_weight=1, missing=nan, monotone_constraints='()',
+                 n_estimators=1000, n_jobs=0, num_parallel_tree=1,
+                 predictor='auto', random_state=0,
+                 reg_alpha=0.004623945156842208, reg_lambda=1.326404760107769, ...)</pre></div></div></div></div></div></div></div>
+</div>
+</section>
+<section id="id10">
+<h3>3.3. 予測<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 予測</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model_opt</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">y_test</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"#Passengers"</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">y_train</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">"#Passengers"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"train"</span><span class="p">)</span>
+<span class="n">y_test</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">"#Passengers"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"test"</span><span class="p">)</span>
+<span class="n">y_pred</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">"#Passengers"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"predict"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/xgboost_26_0.png" src="../../_images/xgboost_26_0.png"/>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mape</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+<span class="n">mape_opt</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">model_opt</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+
+<a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#print" title="print"><span class="nb">print</span></a><span class="p">(</span><span class="s2">"[Before HPO] MAPE: </span><span class="si">{}</span><span class="s2">%"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#round" title="round"><span class="nb">round</span></a><span class="p">(</span><span class="n">mape</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#print" title="print"><span class="nb">print</span></a><span class="p">(</span><span class="s2">"[After  HPO] MAPE: </span><span class="si">{}</span><span class="s2">%"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/functions.html#round" title="round"><span class="nb">round</span></a><span class="p">(</span><span class="n">mape_opt</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Before HPO] MAPE: 4.38%
+[After  HPO] MAPE: 4.58%
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">importances</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">model_opt</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">model_opt</span><span class="o">.</span><span class="n">feature_names_in_</span><span class="p">)</span>
+<span class="n">importances_sorted</span> <span class="o">=</span> <span class="n">importances</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">importances_sorted</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">'barh'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'lightblue'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Features Importances'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/xgboost_28_0.png" src="../../_images/xgboost_28_0.png"/>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ガーベッジコレクション.</span>
+<span class="kn">import</span> <a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/gc.html#module-gc" title="gc"><span class="nn">gc</span></a>
+
+<a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/gc.html#gc.collect" title="gc.collect"><span class="n">gc</span><span class="o">.</span><span class="n">collect</span></a><span class="p">()</span>
+<a class="sphinx-codeautolink-a" href="https://docs.python.org/3/library/gc.html#gc.collect" title="gc.collect"><span class="n">gc</span><span class="o">.</span><span class="n">collect</span></a><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./analytics/gbdt"
+        },
+        predefinedOutput: true
+    }
+    </script>
+<script>kernelName = 'python3'</script>
+</div>
+</main>
+<footer class="footer-article noprint">
+<!-- Previous / next buttons -->
+<div class="prev-next-area">
+<a class="left-prev" href="../tsa/ssm.html" id="prev-link" title="previous page">
+<i class="fas fa-angle-left"></i>
+<div class="prev-next-info">
+<p class="prev-next-subtitle">previous</p>
+<p class="prev-next-title">状態空間モデル</p>
+</div>
+</a>
+<a class="right-next" href="lightgbm.html" id="next-link" title="next page">
+<div class="prev-next-info">
+<p class="prev-next-subtitle">next</p>
+<p class="prev-next-title">LightGBM</p>
+</div>
+<i class="fas fa-angle-right"></i>
+</a>
+</div>
+</footer>
+</div>
+</div>
+<div class="footer-content row">
+<footer class="col footer"><p>
+  
+    By Yuta<br/>
+  
+      © Copyright 2022.<br/>
+</p>
+</footer>
+</div>
+</div>
+</div>
+</div>
+<!-- Scripts loaded after <body> so the DOM is not blocked -->
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+</body>
+</html>
