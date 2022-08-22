@@ -276,15 +276,15 @@ class LightGBMRegressor(LGBMRegressor, metaclass=_BaseEnsembleModelMeta):
     min_child_samples : int, default=20
         Minimum number of data needed in a child (leaf).
     subsample : float, default=1.
-        Subsample ratio of the training instance.
+        Subsample ratio of the training instance (alias: bagging_fraction, sub_row, bagging).
     subsample_freq : int, default=0
         Frequency of subsample, <=0 means no enable.
     colsample_bytree : float, default=1.
-        Subsample ratio of columns when constructing each tree.
+        Subsample ratio of columns when constructing each tree (alias: feature_fraction).
     reg_alpha : float, default=0.
-        L1 regularization term on weights.
+        L1 regularization term on weights (alias: lambda_l1, l1_regularization).
     reg_lambda : float, default=0.
-        L2 regularization term on weights.
+        L2 regularization term on weights (alias: lambda_l2, l2_regularization, lambda).
     random_state : int, RandomState object or None, default=None
         Random number seed.
         If int, this number is used to seed the C++ code.
