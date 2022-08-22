@@ -705,6 +705,14 @@ class LightGBMOptunaStepwiseSearchCV(BaseOptunaStudyInitializer, BaseEstimator):
          Activates early stopping.
     random_state : int
         Random number seed.
+    verbosity : int, default=1
+        Controls the level of LightGBM’s verbosity.
+
+            - ``< 0``: Fatal
+            - ``= 0``: Error (Warning)
+            - ``= 1``: Info
+            - ``> 1``: Debug
+
     cv : {None, int, cross-validation generator or and iterable}, default=None
         Determines the cross-validation splitting strategy. Possible inputs for cv are:
 
@@ -758,6 +766,7 @@ class LightGBMOptunaStepwiseSearchCV(BaseOptunaStudyInitializer, BaseEstimator):
         metric="rmse",
         early_stopping_rounds=100,
         random_state=42,
+        verbosity=1,
         cv=None,
         storage=None,
         study_name=None,
@@ -773,11 +782,13 @@ class LightGBMOptunaStepwiseSearchCV(BaseOptunaStudyInitializer, BaseEstimator):
         self.objective = objective
         self.metric = metric
         self.random_state = random_state
+        self.verbosity = verbosity
         self.tuner_params = {
             "boosting_type": boosting_type,
             "objective": objective,
             "metric": metric,
             "random_state": random_state,
+            "verbosity": verbosity,
         }
 
         if cv is None:
@@ -812,8 +823,8 @@ class LightGBMOptunaStepwiseSearchCV(BaseOptunaStudyInitializer, BaseEstimator):
         else:
             return self.tuner.study
 
-    def _define_tuner(self, X, y, groups=None, eval_verbosity=1, **fit_params):
-        from lightgbm import early_stopping, log_evaluation
+    def _define_tuner(self, X, y, groups=None, **fit_params):
+        from lightgbm import early_stopping
         from optuna.integration.lightgbm import Dataset, LightGBMTunerCV
 
         if groups is not None:
@@ -834,7 +845,6 @@ class LightGBMOptunaStepwiseSearchCV(BaseOptunaStudyInitializer, BaseEstimator):
                 early_stopping(
                     stopping_rounds=self.early_stopping_rounds, verbose=False
                 ),
-                log_evaluation(eval_verbosity),
             ],
             **fit_params,
         )
@@ -845,8 +855,8 @@ class LightGBMOptunaStepwiseSearchCV(BaseOptunaStudyInitializer, BaseEstimator):
         y,
         groups=None,
         show_progress_bar=False,
-        eval_verbosity=1,
         optuna_verbosity=1,
+        optuna_seed=42,
         **fit_params,
     ):
         """Execute hyperparameter tuning.
@@ -863,13 +873,22 @@ class LightGBMOptunaStepwiseSearchCV(BaseOptunaStudyInitializer, BaseEstimator):
         show_progress_bar : bool, default=False
             Flag to show progress bars or not. To disable progress bar, set this :obj:`False`.
             Currently, progress bar is experimental feature and disabled when ``n_jobs`` :math:`\\ne 1`.
-        eval_verbosity : int, default=1
-            The degree of verbosity in cross-validation evaluation. Valid values are 0 (silent) - 3 (debug).
         optuna_verbosity : int, default=1
             The degree of verbosity in `Optuna` optimization. Valid values are 0 (silent) - 3 (debug).
+        optuna_seed : int,default=42
+            ``seed`` of :class:`optuna.samplers.TPESampler` for random number generator
+            that affects sampling for ``num_leaves``, ``bagging_fraction``, ``bagging_freq``,
+            ``lambda_l1``, and ``lambda_l2``.
+
+            .. note::
+                The `deterministic`_ parameter of LightGBM makes training reproducible.
+                Please enable it when you use this argument.
+
         fit_params : dict
             Parameters passed to the `fit` method of the estimator of
             :class:`~sandbox.ensemble.boost.XGBoostRegressor`.
+
+        .. _deterministic: https://lightgbm.readthedocs.io/en/latest/Parameters.html#deterministic
         """
         if optuna_verbosity == 0:
             OPTUNA_VERBOSE_LEVEL = ERROR
@@ -888,6 +907,7 @@ class LightGBMOptunaStepwiseSearchCV(BaseOptunaStudyInitializer, BaseEstimator):
         set_verbosity(OPTUNA_VERBOSE_LEVEL)
 
         fit_params["show_progress_bar"] = show_progress_bar
-        self._define_tuner(X, y, groups, eval_verbosity, **fit_params)
+        fit_params["optuna_seed"] = optuna_seed
+        self._define_tuner(X, y, groups, **fit_params)
         self.tuner.run()
         return self

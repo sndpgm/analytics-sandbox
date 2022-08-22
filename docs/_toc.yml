@@ -21,6 +21,11 @@ parts:
     - file: analytics/tsa/arima
     - file: analytics/tsa/ssm
 
+  - caption: 勾配ブースティング決定木モデル
+    chapters:
+      - file: analytics/gbdt/xgboost
+      - file: analytics/gbdt/lightgbm
+
   - caption: 補足
     chapters:
     - file: analytics/math/calculus
