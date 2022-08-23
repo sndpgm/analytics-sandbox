@@ -173,6 +173,10 @@ class BaseData:
         """Return a tuple representing the dimensionality of data."""
         return self.data.shape
 
+    @property
+    def ndim(self):
+        return self.data.ndim
+
     def to_pandas(self) -> Union[DataFrame, Series, Index]:
         """Convert the BaseData to Pandas dataframe.
 
