@@ -34,6 +34,7 @@ Submodules
    :maxdepth: 1
 
    base/index.rst
+   dpregressor/index.rst
    sarimax/index.rst
    ssm/index.rst
 

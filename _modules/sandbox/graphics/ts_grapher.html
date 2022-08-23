@@ -655,6 +655,15 @@ const thebe_selector_output = ".output, .cell_output"
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/sandbox/tsa/dpregressor/index.html">
+       <code class="xref py py-mod docutils literal notranslate">
+        <span class="pre">
+         sandbox.tsa.dpregressor
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="../../../api/sandbox/tsa/sarimax/index.html">
        <code class="xref py py-mod docutils literal notranslate">
         <span class="pre">
@@ -861,6 +870,12 @@ title="Open an issue"
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span>
+        <span class="p">):</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;The module supports only univariate modeling.&quot;</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> (</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
@@ -930,11 +945,24 @@ title="Open an issue"
         <span class="c1"># (1) Training period</span>
         <span class="c1"># Prepare for data in training period.</span>
         <span class="n">x_train</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">common_index</span>
-        <span class="n">y_train</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">values</span>
-        <span class="n">y_fitted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fittedvalues_</span>
+
+        <span class="c1"># 1変量でも2次元マトリックスの結果の可能性があり, plotする場合には1次元ベクトルにする必要があるので暫定的に if 文で対応.</span>
+        <span class="c1"># ToDo: どこかでひとまとめでデータ形式を確認する出力を作るべきか...?</span>
+        <span class="n">y_train</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">values</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
+            <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data_</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="n">y_fitted</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fittedvalues_</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fittedvalues_</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
+            <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fittedvalues_</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+        <span class="p">)</span>
 
         <span class="c1"># Draw ax in training period.</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="c1"># データ数が少ない場合, figsizeに対してバーのサイズが小さすぎて表示されないことがあり, 暫定的にwidth=10と決めうち.</span>
+        <span class="c1"># ToDo: width が最適な値となるようなmatplotlibメソッド, なければロジックを追加できないか...?</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
             <span class="n">x_train</span><span class="p">,</span> <span class="n">y_fitted</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="n">linestyles</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="p">)</span>
@@ -1066,7 +1094,11 @@ title="Open an issue"
             <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">n_plot</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">plot_idx</span><span class="p">)</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
                 <span class="n">x_train</span><span class="p">,</span>
-                <span class="n">comp</span><span class="o">.</span><span class="n">train</span><span class="p">[</span><span class="n">name</span><span class="p">],</span>
+                <span class="c1"># 1変量でも2次元マトリックスの結果の可能性があり, plotする場合は1次元ベクトルにする必要があるので暫定的にif文で対応.</span>
+                <span class="c1"># ToDo: どこかでひとまとめでデータ形式を確認する出力を作るべきか...?</span>
+                <span class="n">comp</span><span class="o">.</span><span class="n">train</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">comp</span><span class="o">.</span><span class="n">train</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
+                <span class="k">else</span> <span class="n">comp</span><span class="o">.</span><span class="n">train</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span>
                 <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
                 <span class="n">linestyle</span><span class="o">=</span><span class="n">linestyles</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
                 <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
@@ -1075,7 +1107,11 @@ title="Open an issue"
             <span class="k">if</span> <span class="n">draw_forecast</span><span class="p">:</span>
                 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
                     <span class="n">x_pred</span><span class="p">,</span>
-                    <span class="n">comp</span><span class="o">.</span><span class="n">pred</span><span class="p">[</span><span class="n">name</span><span class="p">],</span>
+                    <span class="c1"># 1変量でも2次元マトリックスの結果の可能性があり, plotする場合は1次元ベクトルにする必要があるので暫定的にif文で対応.</span>
+                    <span class="c1"># ToDo: どこかでひとまとめでデータ形式を確認する出力を作るべきか...?</span>
+                    <span class="n">comp</span><span class="o">.</span><span class="n">pred</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">comp</span><span class="o">.</span><span class="n">pred</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
+                    <span class="k">else</span> <span class="n">comp</span><span class="o">.</span><span class="n">pred</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span>
                     <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
                     <span class="n">linestyle</span><span class="o">=</span><span class="n">linestyles</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
                     <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>

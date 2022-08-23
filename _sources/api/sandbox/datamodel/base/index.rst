@@ -210,6 +210,10 @@ Attributes
       ..
           !! processed by numpydoc !!
 
+   .. py:method:: ndim()
+      :property:
+
+
    .. py:method:: to_pandas() -> Union[pandas.DataFrame, pandas.Series, pandas.Index]
 
       
