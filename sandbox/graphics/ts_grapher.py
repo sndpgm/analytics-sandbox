@@ -15,6 +15,12 @@ class TimeSeriesGrapher:
 
     def __init__(self, model):
         self.model = model
+        if (
+            self.model.data_.y.values.shape[0] > 1
+            and self.model.data_.y.values.shape[1] > 1
+        ):
+            msg = "The module supports only univariate modeling."
+            raise NotImplementedError(msg)
 
     def __repr__(self):
         return "{} ({})".format(self.__class__.__name__, self.model)
@@ -84,11 +90,24 @@ class TimeSeriesGrapher:
         # (1) Training period
         # Prepare for data in training period.
         x_train = self.model.data_.common_index
-        y_train = self.model.data_.y.values
-        y_fitted = self.model.fittedvalues_
+
+        # 1変量でも2次元マトリックスの結果の可能性があり, plotする場合には1次元ベクトルにする必要があるので暫定的に if 文で対応.
+        # ToDo: どこかでひとまとめでデータ形式を確認する出力を作るべきか...?
+        y_train = (
+            self.model.data_.y.values
+            if self.model.data_.y.ndim == 1
+            else self.model.data_.y.values.squeeze()
+        )
+        y_fitted = (
+            self.model.fittedvalues_
+            if self.model.fittedvalues_.ndim == 1
+            else self.model.fittedvalues_.squeeze()
+        )
 
         # Draw ax in training period.
-        ax.bar(x_train, y_train, color=colors[0], label=labels[0])
+        # データ数が少ない場合, figsizeに対してバーのサイズが小さすぎて表示されないことがあり, 暫定的にwidth=10と決めうち.
+        # ToDo: width が最適な値となるようなmatplotlibメソッド, なければロジックを追加できないか...?
+        ax.bar(x_train, y_train, color=colors[0], label=labels[0], width=10)
         ax.plot(
             x_train, y_fitted, color=colors[1], linestyle=linestyles[1], label=labels[1]
         )
@@ -220,7 +239,11 @@ class TimeSeriesGrapher:
             ax = fig.add_subplot(n_plot, 1, plot_idx)
             ax.plot(
                 x_train,
-                comp.train[name],
+                # 1変量でも2次元マトリックスの結果の可能性があり, plotする場合は1次元ベクトルにする必要があるので暫定的にif文で対応.
+                # ToDo: どこかでひとまとめでデータ形式を確認する出力を作るべきか...?
+                comp.train[name]
+                if comp.train[name].ndim == 1
+                else comp.train[name].squeeze(),
                 color=colors[1],
                 linestyle=linestyles[1],
                 label=labels[1],
@@ -229,7 +252,11 @@ class TimeSeriesGrapher:
             if draw_forecast:
                 ax.plot(
                     x_pred,
-                    comp.pred[name],
+                    # 1変量でも2次元マトリックスの結果の可能性があり, plotする場合は1次元ベクトルにする必要があるので暫定的にif文で対応.
+                    # ToDo: どこかでひとまとめでデータ形式を確認する出力を作るべきか...?
+                    comp.pred[name]
+                    if comp.pred[name].ndim == 1
+                    else comp.pred[name].squeeze(),
                     color=colors[2],
                     linestyle=linestyles[2],
                     label=labels[2],
